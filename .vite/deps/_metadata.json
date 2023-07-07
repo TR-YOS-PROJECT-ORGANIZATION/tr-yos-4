@@ -1,0 +1,23 @@
+{
+  "hash": "e6398501",
+  "browserHash": "c9ea3fc5",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "8a424f1b",
+      "needsInterop": true
+    },
+    "react-slick": {
+      "src": "../../node_modules/react-slick/lib/index.js",
+      "file": "react-slick.js",
+      "fileHash": "5e5789a6",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-SGI7XJUV": {
+      "file": "chunk-SGI7XJUV.js"
+    }
+  }
+}
