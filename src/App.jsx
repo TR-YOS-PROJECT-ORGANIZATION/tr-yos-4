@@ -1,14 +1,14 @@
-import './App.css'
-import Departments from './pages/Departments';
+import "./App.css";
+import Departments from "./pages/Departments";
+import Footer from "../src/footer/Footer";
 
 function App() {
-
   return (
     <>
-    <Departments/>
-
+      <Departments />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
