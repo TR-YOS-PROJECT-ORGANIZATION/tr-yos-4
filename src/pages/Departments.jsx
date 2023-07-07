@@ -250,7 +250,7 @@ function Departments() {
               </div>
             </div>
             <div className="flex flex-row mx-2">
-              <button className="float-right ml-auto bg-green-dark m-2 w-1/4 py-1 rounded-md">
+              <button className="float-right ml-auto bg-green-dark m-2 w-1/4 py-1 rounded-md text-white">
                 Search
               </button>
             </div>
