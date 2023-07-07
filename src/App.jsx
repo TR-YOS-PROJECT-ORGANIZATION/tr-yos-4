@@ -1,12 +1,11 @@
 import "./App.css";
+import Card1 from "./components/card/Card";
 import Departments from "./pages/Departments";
-import Footer from "../src/footer/Footer";
 
 function App() {
   return (
     <>
       <Departments />
-      <Footer />
     </>
   );
 }
