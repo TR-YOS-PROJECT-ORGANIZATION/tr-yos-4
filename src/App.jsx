@@ -1,11 +1,12 @@
 import './App.css'
-import Departments from './pages/Departments'
+import Departments from './pages/Departments';
 
 function App() {
 
   return (
     <>
     <Departments/>
+
     </>
   )
 }
