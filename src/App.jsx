@@ -1,4 +1,5 @@
 import './App.css'
+import Card1 from './components/card/Card';
 import Departments from './pages/Departments';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   return (
     <>
     <Departments/>
+    <Card1/>
     </>
   )
 }
