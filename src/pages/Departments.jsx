@@ -18,19 +18,19 @@ function Departments() {
           </div>
         </div>
         {/*  */}
-        <div className="flex flex-row">
-          <div>
-            <div>
+        <div className="flex flex-row justify-center m-2">
+          <div className="w-1/4">
+            <div className="">
               <label
                 htmlFor="selectCity"
-                className="block w-1/5 py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 "
+                className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 "
               >
                 Select City
               </label>
               <div className="relative rounded-md">
                 <select
                   id="selectCity"
-                  className="block w-1/5 border-2 rounded-md py-1.5 pl-2 pr-10 text-gray-900"
+                  className="block w-full border-2 rounded-md py-1.5 pl-2 pr-10 text-gray-900"
                 >
                   <option selected>Ankara</option>
                   <option value="US">İstanbul</option>
@@ -43,14 +43,14 @@ function Departments() {
             <div>
               <label
                 htmlFor="selectCity"
-                className="block w-1/5 py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 "
+                className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 "
               >
                 Select Department
               </label>
               <div className="relative rounded-md">
                 <select
                   id="selectCity"
-                  className="block w-1/5 border-2 rounded-md py-1.5 pl-2 pr-10 text-gray-900"
+                  className="block w-full border-2 rounded-md py-1.5 pl-2 pr-10 text-gray-900"
                 >
                   <option selected>Ethnology</option>
                   <option value="">Antropologhy</option>
@@ -63,14 +63,14 @@ function Departments() {
             <div>
               <label
                 htmlFor="selectCity"
-                className="block w-1/5 py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 "
+                className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 "
               >
                 Select Univercity
               </label>
               <div className="relative rounded-md">
                 <select
                   id="selectCity"
-                  className="block w-1/5 border-2 rounded-md py-1.5 pl-2 pr-10 text-gray-900"
+                  className="block w-full border-2 rounded-md py-1.5 pl-2 pr-10 text-gray-900"
                 >
                   <option selected>ABDULLAH GÜL UNIVERSITY</option>
                   <option value="">
@@ -247,8 +247,13 @@ function Departments() {
                 </li>
               </ul>
             </div>
+            
           </div>
+
         </div>
+        <div className="w-full bg-red-500">
+            <button>Search</button>
+          </div>
       </div>
     </>
   );
