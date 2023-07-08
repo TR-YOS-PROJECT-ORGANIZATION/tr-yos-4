@@ -6,6 +6,7 @@ function App() {
   return (
     <>
       <Departments />
+      <Card1 />
     </>
   );
 }
