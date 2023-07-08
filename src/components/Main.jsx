@@ -7,7 +7,7 @@ const Main = () => {
     const settings = {
         dots: true,
         infinite: false,
-        speed: 500,
+        speed: 550,
         slidesToShow: 1,
         slidesToScroll: 1
       };
