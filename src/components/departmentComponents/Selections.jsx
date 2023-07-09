@@ -4,27 +4,25 @@ import Select from "react-select";
 
 function Selections() {
   const cities = [
-    {
-      value: "ankara",
-      label: "Ankara",
-    },
-    {
-      value: "izmir",
+    { value: "ankara", label: "Ankara" },
+    { value: "izmir", label: "İzmir" },
+    { value: "istanbul", label: "İstanbul" },
+    { value: "bursa", label: "Bursa" },
+  ];
 
-      label: "İzmir",
-    },
+  const departments = [
+    { value: "ethnology", label: "Ethnology" },
+    { value: "antropologhy", label: "Antropologhy" },
+    { value: "folklore", label: "Folklore" },
+    { value: "prehistory", label: "Prehistory" },
+  ];
 
-    {
-      value: "istanbul",
-
-      label: "İstanbul",
-    },
-
-    {
-      value: "bursa",
-
-      label: "Bursa",
-    },
+  const universities = [
+    { value: "agu", label: "ABDULLAH GÜL UNIVERSITY" },
+    { value: "amaayu", label: "ACIBADEM MEHMET ALI AYDINLAR UNIVERSITY" },
+    { value: "adu", label: "ADIYAMAN UNIVERSITY" },
+    { value: "aku", label: "AFYON KOCATEPE UNIVERSITY" },
+    { value: "aatbtu", label: "ADANA ALPARSLAN TÜRKEŞ BİLİM VE TEKNOLOJİ UNIVERSITY" },
   ];
   return (
     <>
@@ -36,9 +34,9 @@ function Selections() {
           >
             Select City
           </label>
-          <div className="relative rounded-md">
+          <div className="relative rounded-md text-left">
             <Select
-              defaultValue={[cities[0], cities[1]]}
+              defaultValue={[cities[0]]}
               isMulti
               name="selectCity"
               options={cities}
@@ -49,44 +47,38 @@ function Selections() {
         </div>
         <div>
           <label
-            htmlFor="selectCity"
+            htmlFor="selectDepartment"
             className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 "
           >
             Select Department
           </label>
-          <div className="relative rounded-md">
-            <select
-              id="selectCity"
-              className="block w-full border-2 rounded-md py-1.5 pl-2 pr-10 text-gray-900"
-            >
-              <option selected>Ethnology</option>
-              <option value="">Antropologhy</option>
-              <option value="">Folklore</option>
-              <option value="">Archaelogy</option>
-              <option value="">Prehistory</option>
-            </select>
+          <div className="relative rounded-md text-left">
+            <Select
+              defaultValue={[departments[0]]}
+              isMulti
+              name="selectDepartment"
+              options={departments}
+              className="basic-multi-select"
+              classNamePrefix="select"
+            />
           </div>
         </div>
         <div>
           <label
-            htmlFor="selectCity"
+            htmlFor="selectUniversity"
             className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 "
           >
             Select University
           </label>
-          <div className="relative rounded-md">
-            <select
-              id="selectCity"
-              className="block w-full border-2 rounded-md py-1.5 pl-2 pr-10 text-gray-900"
-            >
-              <option selected>ABDULLAH GÜL UNIVERSITY</option>
-              <option value="">ACIBADEM MEHMET ALI AYDINLAR UNIVERSITY</option>
-              <option value="">ADIYAMAN UNIVERSITY</option>
-              <option value="">AFYON KOCATEPE UNIVERSITY</option>
-              <option value="">
-                ADANA ALPARSLAN TÜRKEŞ BİLİM VE TEKNOLOJİ UNIVERSITY
-              </option>
-            </select>
+          <div className="relative rounded-md text-left">
+          <Select
+              defaultValue={[universities[0]]}
+              isMulti
+              name="selectUniversity"
+              options={universities}
+              className="basic-multi-select"
+              classNamePrefix="select"
+            />
           </div>
         </div>
       </div>
