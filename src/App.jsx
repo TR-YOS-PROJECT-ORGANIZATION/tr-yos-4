@@ -7,6 +7,8 @@ function App() {
   return (
     <>
       <HomePage />
+      {/*Router yapılmadığı için sadece değişiklikleri görebilmek amacıyla koydum */}
+      <Departments/>
     </>
   );
 }
