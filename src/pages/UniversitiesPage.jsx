@@ -1,28 +1,25 @@
 import React from 'react';
 import backgroundImage from '../images/university.jpg';
 import UniversityCard from '../components/card/UniversityCard';
+import university from "../images/university.jpg";
 
-const UniversitiesPage = () => {
+function UniversitiesPage() {
   return (
-    <div className="bg-gray-100 py-0">
-      <div className="relative">
-        <img
-          src={backgroundImage}
-          alt="University"
-          className="w-full h-auto"
-          style={{ height: '50%', objectFit: 'contain' }}
-        />
-
-        <h1 className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold text-white-800 text-center">
-          Universities
-        </h1>
-        <h3 className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-bold text-gray-500 text-center">
-          You can find all universities and departments in this list.
-        </h3>
-        <UniversityCard />
-      </div>
-    </div>
-  );
-};
-
+    <>
+      <div className="flex flex-col">
+        <div className="relative">
+          <img className="w-screen h-96" src={university} alt="#" />
+          <div className="absolute inset-0 flex items-center justify-center flex-col bg-gray-800 bg-opacity-60">
+            <h1 className="text-gray-100 text-3xl sm:text-4xl lg:text-5xl m-2 ">
+             Universities
+            </h1>
+            <h2 className="text-gray-100 text-xl sm:text-2xl lg:text-3xl m-2">
+            You can find all universities and departments in this list.
+            </h2>
+            
+          </div>
+        </div>
+         </div>
+    </>);
+}
 export default UniversitiesPage;
