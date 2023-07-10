@@ -1,14 +1,14 @@
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import Footer from "../src/footer/Footer";
+import AppRouter from "./router/AppRouter";
 
 
 function App() {
   return (
-    <>
-      <HomePage />
-      <Footer />
-    </>
+    <div>
+      <AppRouter />
+    </div>
   );
 }
 
