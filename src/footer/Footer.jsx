@@ -5,15 +5,15 @@ const Footer = () => {
     <div className="flex flex-col text-center  bg-gray-900">
       <div className="flex justify-evenly mt-8">
         <div className="text-left">
-          <h2 className="mb-6 text-md font-semibold text-gray-900 uppercase dark:text-white">
+          <h2 className="mb-6 text-md font-semibold text-gray-400 uppercase dark:text-white">
             ADDRESS
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
               <a href="#" className="hover:underline flex">
-                <div className="pt-1.5 m-0.5">
+                <div className="pt-1.5 mr-2">
                   <svg
-                    className="fill-white"
+                    className="fill-gray-400"
                     xmlns="http://www.w3.org/2000/svg"
                     height="0.9em"
                     viewBox="0 0 512 512"
@@ -26,9 +26,9 @@ const Footer = () => {
             </li>
             <li className="mb-4">
               <a href="#" className="hover:underline flex">
-                <div className="pt-0.5 m-1">
+                <div className="pt-1 mr-2">
                   <svg
-                    className="fill-white"
+                    className="fill-gray-400"
                     xmlns="http://www.w3.org/2000/svg"
                     height="1em"
                     viewBox="0 0 512 512"
@@ -42,7 +42,7 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <h2 className="mb-6 text-md font-semibold text-gray-900 uppercase dark:text-white">
+          <h2 className="mb-6 text-md font-semibold text-gray-400 uppercase dark:text-white">
             NAVIGATIONS
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
@@ -74,7 +74,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="text-right">
-          <h2 className="mb-6 text-md font-semibold text-gray-900 uppercase dark:text-white ">
+          <h2 className="mb-6 text-md font-semibold text-gray-400 uppercase dark:text-white ">
             MY ACCOUNT
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
