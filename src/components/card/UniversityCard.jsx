@@ -13,15 +13,16 @@ const UniversityCard = () => {
 
 
         <div>
-          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNIVERSITY</p>
+          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNİVERSTY</p>
           <p className="text-xs mb-2">
             Afyon kocatepe Üniversitesi Rektörlüğü ANS Kampüsü Gazlıgöl Yolu Üzeri AFYONKARAHİSAR
           </p>
+
           <svg className="h-4 w-4 text-gray-400 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            <path d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#0D0D0D"></path>
+
           </svg>
           <p className="ml-1 text-sm text-gray-500 inline-block">Afyonkarahisar</p>
-
 
 
           <div className="my-4">
@@ -76,12 +77,13 @@ const UniversityCard = () => {
 
 
         <div>
-          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNIVERSITY</p>
+          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNİVERSTY</p>
           <p className="text-xs mb-2">
             Afyon kocatepe Üniversitesi Rektörlüğü ANS Kampüsü Gazlıgöl Yolu Üzeri AFYONKARAHİSAR
           </p>
           <svg className="h-4 w-4 text-gray-400 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            <path d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#0D0D0D"></path>
+
           </svg>
           <p className="ml-1 text-sm text-gray-500 inline-block">Afyonkarahisar</p>
 
@@ -145,14 +147,16 @@ const UniversityCard = () => {
 
 
         <div>
-          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNIVERSITY</p>
+          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNİVERSTY</p>
           <p className="text-xs mb-2">
             Afyon kocatepe Üniversitesi Rektörlüğü ANS Kampüsü Gazlıgöl Yolu Üzeri AFYONKARAHİSAR
           </p>
           <svg className="h-4 w-4 text-gray-400 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            <path d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#0D0D0D"></path>
+
           </svg>
           <p className="ml-1 text-sm text-gray-500 inline-block">Afyonkarahisar</p>
+
 
 
 
@@ -181,13 +185,6 @@ const UniversityCard = () => {
 
 
               </button>
-
-
-
-
-
-
-
 
 
 
