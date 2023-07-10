@@ -11,18 +11,25 @@ function Departments() {
       <div className="flex flex-col">
         <ImageSection />
         {/*  */}
-        <div className="flex flex-row justify-center m-8">
+        <form
+          className="flex sm:flex-col sm:justify-center sm:items-center sm:m-4 md:flex-row md:justify-center md:items-center md:m-8 lg:flex-row lg:justify-center lg:items-center"
+          method="POST"
+        >
           <Selections />
           <PriceForm />
           <div className="flex flex-col">
             <Checks />
             <div className="flex flex-row mx-2">
-              <button className="float-right ml-auto bg-purple-base m-2 w-1/4 py-1 rounded-md text-white">
+              <button
+                className="float-right ml-auto bg-purple-base m-2 w-1/4 py-1 rounded-md text-white"
+                name="searchDepartments"
+                type="submit"
+              >
                 Search
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );

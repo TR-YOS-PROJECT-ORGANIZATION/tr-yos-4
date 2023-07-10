@@ -22,15 +22,18 @@ function Selections() {
     { value: "amaayu", label: "ACIBADEM MEHMET ALI AYDINLAR UNIVERSITY" },
     { value: "adu", label: "ADIYAMAN UNIVERSITY" },
     { value: "aku", label: "AFYON KOCATEPE UNIVERSITY" },
-    { value: "aatbtu", label: "ADANA ALPARSLAN TÜRKEŞ BİLİM VE TEKNOLOJİ UNIVERSITY" },
+    {
+      value: "aatbtu",
+      label: "ADANA ALPARSLAN TÜRKEŞ BİLİM VE TEKNOLOJİ UNIVERSITY",
+    },
   ];
   return (
     <>
-      <div className="w-1/4">
+      <div className="m-1 sm:w-full m-3 md:w-1/2 m-2 lg:w-1/3 xl:w-1-4">
         <div className="">
           <label
             htmlFor="selectCity"
-            className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 "
+            className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
           >
             Select City
           </label>
@@ -48,7 +51,7 @@ function Selections() {
         <div>
           <label
             htmlFor="selectDepartment"
-            className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 "
+            className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
           >
             Select Department
           </label>
@@ -66,12 +69,12 @@ function Selections() {
         <div>
           <label
             htmlFor="selectUniversity"
-            className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 "
+            className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
           >
             Select University
           </label>
           <div className="relative rounded-md text-left">
-          <Select
+            <Select
               defaultValue={[universities[0]]}
               isMulti
               name="selectUniversity"
