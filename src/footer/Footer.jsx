@@ -2,88 +2,107 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-gray-900">
-      <div className="mx-auto w-full max-w-screen-xl">
-        <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
-          <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              ADDRESS
-            </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              <li className="mb-4">
-                <a href="#" className=" hover:underline">
-                  +90 555 555 55 56
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  info@tryos.com
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              NAVIGATIONS
-            </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  About Us
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  FAQs Page
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Checkout
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Contact
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              MY ACCOUNT
-            </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  My Profile
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  My Account
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Favorites
-                </a>
-              </li>
-            </ul>
-          </div>
+    <div className="flex flex-col text-center  bg-gray-900">
+      <div className="flex justify-evenly mt-8">
+        <div className="text-left">
+          <h2 className="mb-6 text-md font-semibold text-gray-900 uppercase dark:text-white">
+            ADDRESS
+          </h2>
+          <ul className="text-gray-500 dark:text-gray-400 font-medium">
+            <li className="mb-4">
+              <a href="#" className="hover:underline flex">
+                <div className="pt-1.5 m-0.5">
+                  <svg
+                    className="fill-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="0.9em"
+                    viewBox="0 0 512 512"
+                  >
+                    <path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" />
+                  </svg>
+                </div>
+                <div>+90 555 555 55 55</div>
+              </a>
+            </li>
+            <li className="mb-4">
+              <a href="#" className="hover:underline flex">
+                <div className="pt-0.5 m-1">
+                  <svg
+                    className="fill-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1em"
+                    viewBox="0 0 512 512"
+                  >
+                    <path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />
+                  </svg>
+                </div>
+                <div>info@tryos.com</div>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div className="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-center">
-          <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
-            © 2023 .All Rights Reserved.
-          </span>
+        <div>
+          <h2 className="mb-6 text-md font-semibold text-gray-900 uppercase dark:text-white">
+            NAVIGATIONS
+          </h2>
+          <ul className="text-gray-500 dark:text-gray-400 font-medium">
+            <li className="mb-4">
+              <a href="#" className="hover:underline">
+                About Us
+              </a>
+            </li>
+            <li className="mb-4">
+              <a href="#" className="hover:underline">
+                FAQs Page
+              </a>
+            </li>
+            <li className="mb-4">
+              <a href="#" className="hover:underline">
+                Checkout
+              </a>
+            </li>
+            <li className="mb-4">
+              <a href="#" className="hover:underline">
+                Contact
+              </a>
+            </li>
+            <li className="mb-4">
+              <a href="#" className="hover:underline">
+                Blog
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="text-right">
+          <h2 className="mb-6 text-md font-semibold text-gray-900 uppercase dark:text-white ">
+            MY ACCOUNT
+          </h2>
+          <ul className="text-gray-500 dark:text-gray-400 font-medium">
+            <li className="mb-4">
+              <a href="#" className="hover:underline border rounded p-1">
+                My Profile
+              </a>
+            </li>
+            <li className="mb-4">
+              <a href="#" className="hover:underline border rounded p-1">
+                My Account
+              </a>
+            </li>
+            <li className="mb-4">
+              <a href="#" className="hover:underline border rounded p-1">
+                Favorites
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-    </footer>
+
+      <div className="py-7 my-5 mx-auto w-[50%] border-t">
+        <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
+          © 2023 .All Rights Reserved.
+        </span>
+      </div>
+    </div>
   );
 };
 

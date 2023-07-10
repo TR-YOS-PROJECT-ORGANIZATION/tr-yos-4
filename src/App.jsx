@@ -1,15 +1,14 @@
 import "./App.css";
-import Card1 from "./components/card/Card";
-import Departments from "./pages/Departments";
-import HomePage from './pages/HomePage'
+import HomePage from "./pages/HomePage";
+import Footer from "../src/footer/Footer";
+import AppRouter from "./router/AppRouter";
+
 
 function App() {
   return (
-    <>
-      <HomePage />
-      
-      
-    </>
+    <div>
+      <AppRouter />
+    </div>
   );
 }
 
