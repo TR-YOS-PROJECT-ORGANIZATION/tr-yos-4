@@ -11,7 +11,7 @@ const Footer = () => {
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
               <a href="#" className="hover:underline flex">
-                <div className="pt-1.5 m-0.5">
+                <div className="pt-1.5 mr-2">
                   <svg
                     className="fill-gray-400"
                     xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@ const Footer = () => {
             </li>
             <li className="mb-4">
               <a href="#" className="hover:underline flex">
-                <div className="pt-0.5 m-1">
+                <div className="pt-1 mr-2">
                   <svg
                     className="fill-gray-400"
                     xmlns="http://www.w3.org/2000/svg"
