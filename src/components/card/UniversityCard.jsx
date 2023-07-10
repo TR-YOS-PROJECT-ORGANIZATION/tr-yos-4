@@ -13,7 +13,7 @@ const UniversityCard = () => {
 
 
         <div>
-          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNİVERSTY</p>
+          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNIVERSITY</p>
           <p className="text-xs mb-2">
             Afyon kocatepe Üniversitesi Rektörlüğü ANS Kampüsü Gazlıgöl Yolu Üzeri AFYONKARAHİSAR
           </p>
@@ -77,7 +77,7 @@ const UniversityCard = () => {
 
 
         <div>
-          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNİVERSTY</p>
+          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNIVERSITY</p>
           <p className="text-xs mb-2">
             Afyon kocatepe Üniversitesi Rektörlüğü ANS Kampüsü Gazlıgöl Yolu Üzeri AFYONKARAHİSAR
           </p>
@@ -147,7 +147,7 @@ const UniversityCard = () => {
 
 
         <div>
-          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNİVERSTY</p>
+          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNIVERSITY</p>
           <p className="text-xs mb-2">
             Afyon kocatepe Üniversitesi Rektörlüğü ANS Kampüsü Gazlıgöl Yolu Üzeri AFYONKARAHİSAR
           </p>
