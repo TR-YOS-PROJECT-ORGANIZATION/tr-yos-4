@@ -4,7 +4,7 @@ import React from "react";
 function Checks() {
   return (
     <>
-      <div className="w-full sm:w-full md:w-1/2 m-2 bg-red-700 flex">
+      <div className="w-full sm:w-full md:w-1/2 m-2 flex">
         <div className="m-2">
           <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
             Checks
