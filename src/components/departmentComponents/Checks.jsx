@@ -4,12 +4,12 @@ import React from "react";
 function Checks() {
   return (
     <>
-      <div className="w-full sm:w-full md:w-1/2 m-2 flex">
+      <div className="w-screen flex flex-row sm:w-screen sm:flex sm:flex-row sm: md:w-1/2 m-2">
         <div className="m-2">
-          <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
+          <h3 className="mb-2 text-left font-semibold text-gray-900 dark:text-white">
             Checks
           </h3>
-          <ul className="sm:w-48 md:w-36 lg:w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+          <ul className="flex flex-col w-24 sm:flex sm:flex-col sm:w-36 md:w-36 lg:w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <li className="border-b border-gray-200 rounded-t-lg dark:border-gray-600">
               <div className="flex items-center pl-3">
                 <input
@@ -77,10 +77,10 @@ function Checks() {
           </ul>
         </div>
         <div className="m-2">
-          <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
+          <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">
             Checks
           </h3>
-          <ul className="sm:w-48 md:w-36 lg:w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+          <ul className="flex flex-col w-24 sm:flex sm:flex-col sm:w-36 md:w-36 lg:w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
               <div className="flex items-center pl-3">
                 <input

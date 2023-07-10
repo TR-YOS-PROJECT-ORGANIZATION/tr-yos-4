@@ -1,17 +1,14 @@
 import "./App.css";
-
-
-import UniversitiesPage from "./pages/UniversitiesPage"; 
+import HomePage from "./pages/HomePage";
+import Footer from "../src/footer/Footer";
+import AppRouter from "./router/AppRouter";
 
 
 function App() {
   return (
-    <>
-      
-      <UniversitiesPage/>
-      
-      
-    </>
+    <div>
+      <AppRouter />
+    </div>
   );
 }
 

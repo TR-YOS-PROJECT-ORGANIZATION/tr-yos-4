@@ -12,7 +12,7 @@ function Departments() {
         <ImageSection />
         {/*  */}
         <form
-          className="flex sm:flex-col sm:justify-center sm:items-center sm:m-4 md:flex-row md:justify-center md:items-center md:m-8 lg:flex-row lg:justify-center lg:items-center"
+          className="flex flex-col justify-center items-center w-full sm:flex-col sm:justify-center sm:items-center sm:m-4 md:w-full md:flex md:flex-row md:justify-center md:items-center md:m-3 lg:flex-row lg:justify-center lg:items-center"
           method="POST"
         >
           <Selections />
@@ -21,7 +21,7 @@ function Departments() {
             <Checks />
             <div className="flex flex-row mx-2">
               <button
-                className="float-right ml-auto bg-purple-base m-2 w-1/4 py-1 rounded-md text-white"
+                className="float-left mr-auto bg-purple-base m-2 w-1/4 py-1 rounded-md text-white"
                 name="searchDepartments"
                 type="submit"
               >

@@ -29,7 +29,7 @@ function Selections() {
   ];
   return (
     <>
-      <div className="m-1 sm:w-full m-3 md:w-1/2 m-2 lg:w-1/3 xl:w-1-4">
+      <div className="w-full m-1 sm:w-full m-2 sm:w-full sm:m-1 md:w-1/2 m-2 lg:w-1/3 xl:w-1-4">
         <div className="">
           <label
             htmlFor="selectCity"
