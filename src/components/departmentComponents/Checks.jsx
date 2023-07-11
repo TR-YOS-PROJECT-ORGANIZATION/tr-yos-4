@@ -1,12 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import "./checks.css";
 
 function Checks() {
   return (
     <>
-      <div className="w-screen flex flex-row sm:w-screen sm:flex sm:flex-row sm: md:w-1/2 m-2">
+      <div className="w-screen flex flex-row sm:w-screen sm:flex sm:flex-row sm: md:w-1/2 m-2 departments_checks_container">
         <div className="m-2">
-          <h3 className="mb-2 text-left font-semibold text-gray-900 dark:text-white">
+          <h3 className="mb-0 p-2 text-left font-semibold text-gray-900 dark:text-white">
             Checks
           </h3>
           <ul className="flex flex-col w-24 sm:flex sm:flex-col sm:w-36 md:w-36 lg:w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
@@ -77,7 +78,7 @@ function Checks() {
           </ul>
         </div>
         <div className="m-2">
-          <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">
+          <h3 className="mb-0 p-2 font-semibold text-gray-900 dark:text-white">
             Checks
           </h3>
           <ul className="flex flex-col w-24 sm:flex sm:flex-col sm:w-36 md:w-36 lg:w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
