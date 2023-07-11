@@ -267,7 +267,7 @@ const Card1 = () => {
                 </div>
               </div>
               <div className="">
-                <div className="mt-3 grid grid-cols-2">
+                <div className="mt-4 grid grid-cols-2">
                   <div className="flex text-left ml-3">
                     <div className="relative">
                       <h2
@@ -292,7 +292,7 @@ const Card1 = () => {
                   </div>
                 </div>
                 <div className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2">
-                  <span className="inline-flex justify-items-start select-none rounded-lg bg-red-500 px-3 py-2 text-sm font-medium text-white">
+                  <span className="inline-flex select-none rounded-lg bg-red-500 px-3 py-2 text-sm font-medium text-white">
                     {" "}
                     Compare{" "}
                   </span>
@@ -339,7 +339,6 @@ const Card1 = () => {
                         />
                       </g>
                     </svg>
-
                     <span className="mt-0"> 15000/year </span>
                   </p>
                 </div>
