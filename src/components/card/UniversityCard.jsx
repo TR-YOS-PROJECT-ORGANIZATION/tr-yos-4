@@ -4,7 +4,7 @@ const UniversityCard = ({key}) => {
   return (
 
     <>
- <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-auto my-10" key={key}>
+ <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg mx-auto my-10" key={key}>
       <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
         <img src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg" alt="" className="w-full h-full object-cover" />
       </div>
@@ -26,15 +26,15 @@ const UniversityCard = ({key}) => {
 
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-gray-base text-green-500">2 Departments</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
 
 
-              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none border-orange-500 rounded-md bg-green-dark   text-gray-base hover:bg-red-warm hover:text-black">
+              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base  hover:bg-red-retro hover:text-gray">
 
                 <div className="pt-1 m-0.5">
                   <svg
-                    className="fill-green"
+                    className="fill-gray-base"
                     xmlns="http://www.w3.org/2000/svg"
                     height="0.9em"
                     viewBox="0 0 512 512"
@@ -53,12 +53,12 @@ const UniversityCard = ({key}) => {
 
 
 
-              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-red-retro text-orange-500  hover:bg-gray-base hover:text-black'>
+              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base  hover:bg-red-retro hover:text-gray-base '>
                 <a
                   href=""
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-700"
+                  className="text-gray-base hover:text-gray-base"
                 >
                   Send Message
                 </a></button>
@@ -74,7 +74,7 @@ const UniversityCard = ({key}) => {
       </div>
 
 
-      <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-auto my-2" key={key}>
+      <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg  mx-auto my-2" key={key}>
       <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
         <img src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg" alt="" className="w-full h-full object-cover" />
       </div>
@@ -94,18 +94,17 @@ const UniversityCard = ({key}) => {
 
 
 
-
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-gray-base text-green-500">2 Departments</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
 
 
-              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none border-orange-500 rounded-md bg-green-dark   text-gray-base hover:bg-red-warm hover:text-black">
+              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base hover:bg-red-retro  hover:text-gray">
 
                 <div className="pt-1 m-0.5">
                   <svg
-                    className="fill-green"
+                    className="fill-gray-base"
                     xmlns="http://www.w3.org/2000/svg"
                     height="0.9em"
                     viewBox="0 0 512 512"
@@ -124,18 +123,18 @@ const UniversityCard = ({key}) => {
 
 
 
-              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-red-retro text-orange-500  hover:bg-gray-base hover:text-black'>
+              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base   hover:bg-red-retro hover:text-gray-base '>
                 <a
                   href=""
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-700"
+                  className="text-gray-base hover:text-gray-base"
                 >
                   Send Message
                 </a></button>
 
             </div>
-
+          
 
 
 
@@ -143,7 +142,7 @@ const UniversityCard = ({key}) => {
         </div>
       </div>
 
-      <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-auto my-10" key={key}>
+      <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg  mx-auto my-10" key={key}>
       <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
         <img src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg" alt="" className="w-full h-full object-cover" />
       </div>
@@ -163,18 +162,17 @@ const UniversityCard = ({key}) => {
 
 
 
-
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-gray-base text-green-500">2 Departments</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
 
 
-              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none border-orange-500 rounded-md bg-green-dark   text-gray-base hover:bg-red-warm hover:text-black">
+              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base   hover:bg-red-retro hover:text-gray">
 
                 <div className="pt-1 m-0.5">
                   <svg
-                    className="fill-green"
+                    className="fill-gray-base"
                     xmlns="http://www.w3.org/2000/svg"
                     height="0.9em"
                     viewBox="0 0 512 512"
@@ -193,17 +191,18 @@ const UniversityCard = ({key}) => {
 
 
 
-              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-red-retro text-orange-500  hover:bg-gray-base hover:text-black'>
+              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base  hover:bg-red-retro hover:text-gray-base '>
                 <a
                   href=""
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-700"
+                  className="text-gray-base hover:text-gray-base"
                 >
                   Send Message
                 </a></button>
 
             </div>
+         
 
 
           </div>
