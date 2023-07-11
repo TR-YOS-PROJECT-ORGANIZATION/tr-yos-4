@@ -6,7 +6,7 @@ const Card1 = () => {
     <>
       <div className="row mt-16 justify-center-center">
         <div className="sec-heading center">
-          <h2>Our Departments</h2>
+          <h2 className="font-extrabold text-2xl">Our Departments</h2>
           <p>Our Departments Our Departments Our Departments</p>
         </div>
       </div>
