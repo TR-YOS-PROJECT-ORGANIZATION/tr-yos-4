@@ -5,6 +5,7 @@ import Selections from "../components/departmentComponents/Selections";
 import PriceForm from "../components/departmentComponents/PriceForm";
 import Checks from "../components/departmentComponents/Checks";
 import "../components/departmentComponents/departments.css";
+import Card from "../components/card/Card";
 
 function Departments() {
   return (
@@ -13,10 +14,9 @@ function Departments() {
         <ImageSection />
         {/*  */}
 
-
         <form
           method="POST"
-        className=" flex flex-col justify-center items-center w-full sm:flex-col sm:justify-center sm:items-center sm:m-4  md:flex md:flex-row md:m-0 md:justify-center md:items-center"
+          className=" flex flex-col justify-center items-center w-full sm:flex-col sm:justify-center sm:items-center sm:m-4  md:flex md:flex-row md:m-0 md:justify-center md:items-center"
         >
           <Selections />
           <PriceForm />
@@ -33,6 +33,7 @@ function Departments() {
             </div>
           </div>
         </form>
+        <Card/>
       </div>
     </>
   );
