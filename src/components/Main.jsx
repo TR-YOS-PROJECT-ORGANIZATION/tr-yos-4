@@ -17,10 +17,22 @@ const Main = () => {
         slidesToScroll:1 
       };
 
-      const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
+      const cities = [
+        { value: 'Ankara', label: 'Ankara' },
+        { value: 'Erzurum', label: 'Erzurum' },
+        { value: 'Afyonkarahisar', label: 'Afyonkarahisar' }
+      ]
+      
+      const departments = [
+        { value: 'Biology', label: 'Biology' },
+        { value: 'Chemistry Engineering', label: 'Chemistry Engineering' },
+        { value: 'Archeology', label: 'Archeology' }
+      ]
+      
+      const universities = [
+        { value: 'Acıbadem Mehmet Ali Aydınlar Üniversity', label: 'Acıbadem Mehmet Ali Aydınlar Üniversitesi' },
+        { value: 'Adana Alparslan Türkeş Bilim ve Teknoloji Üniversity', label: 'Adana Alparslan Türkeş Bilim ve Teknoloji Üniversity' },
+        { value: 'Afyon Kocatepe University', label: 'Afyon Kocatepe University' }
       ]
       
 
@@ -49,9 +61,9 @@ const Main = () => {
         </Slider>
 
         <div className='absolute bottom-20 right-20 flex justify-evenly bg-green-dark rounded p-2'>
-        <Select options={options} className='w-48 m-2'/>
-        <Select options={options} className='w-48 m-2'/>
-        <Select options={options} className='w-48 m-2'/>
+        <Select options={cities} className='w-48 m-2'/>
+        <Select options={departments} className='w-48 m-2'/>
+        <Select options={universities} className='w-48 m-2'/>
         <button className='m-2 bg-red-warm text-gray-base px-12 py-2 font-bold rounded'>Search</button>
 
 
