@@ -71,6 +71,7 @@ const Card1 = () => {
                 </div>
                 <div className="mt-2 ml-3 mr-3 flex justify-between border-b border-t border-gray-200 pb-3 pt-3">
                   <p className="flex items-center text-gray-800 xl:flex-row xl:items-center">
+                    { /*icon*/}
                     <svg
                       width="20px"
                       height="20px"
