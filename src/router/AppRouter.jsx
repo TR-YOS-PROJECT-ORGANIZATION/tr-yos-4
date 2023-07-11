@@ -10,7 +10,7 @@ import Navbar from '../components/Navbar';
 
 const AppRouter = () => {
   return (
-    <div>
+    <div >
 
         <BrowserRouter>
             <Navbar />
@@ -18,6 +18,8 @@ const AppRouter = () => {
                 <Route path='/' element={<HomePage/>}></Route>
                 <Route path='Departments' element={<Departments />}></Route>
                 <Route path='Universities' element={<UniversitiesPage/>}></Route>
+                <Route path='about' element={<Footer/>}></Route>
+
                 
 
                 

@@ -5,7 +5,7 @@ import WorkUs from '../components/workUs/WorkUs'
 
 const HomePage = () => {
   return (
-    <div >
+    <div>
         <Main />
         <Card />
         <WorkUs/>
