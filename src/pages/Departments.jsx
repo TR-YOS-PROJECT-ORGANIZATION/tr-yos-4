@@ -30,6 +30,7 @@ function Departments() {
             </div>
           </div>
         </form>
+        <Card />
       </div>
     </>
   );
