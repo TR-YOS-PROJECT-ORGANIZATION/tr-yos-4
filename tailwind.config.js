@@ -18,7 +18,8 @@ module.exports = {
         },
         white:{
           beige:'#2DCDDF',
-          cream:'#FFFEEC'
+          cream:'#FFFEEC',
+          500:'#FFFFFF'
         },
         green:{
           dark:'#4E6C50'
