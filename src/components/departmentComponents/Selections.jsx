@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import Select from "react-select";
+import "./selections.css";
 
 function Selections() {
   const cities = [
@@ -29,11 +30,11 @@ function Selections() {
   ];
   return (
     <>
-      <div className="w-full m-1 sm:w-full m-2 sm:w-full sm:m-1 md:w-1/2 m-2 lg:w-1/3 xl:w-1-4">
-        <div className="">
+      <div className="w-full m-1 sm:w-full sm:m-1 sm:text-left md:flex md:flex-col md:w-1/3 selections_container">
+        <div className="md:-mt-8 md:text-left selections_cityContainer">
           <label
             htmlFor="selectCity"
-            className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
+            className="w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 md:mb-2"
           >
             Select City
           </label>
@@ -43,15 +44,15 @@ function Selections() {
               isMulti
               name="selectCity"
               options={cities}
-              className="basic-multi-select"
+              className="basic-multi-select md:mt-1"
               classNamePrefix="select"
             />
           </div>
         </div>
-        <div>
+        <div className="md:text-left">
           <label
             htmlFor="selectDepartment"
-            className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
+            className="w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
           >
             Select Department
           </label>
@@ -66,10 +67,10 @@ function Selections() {
             />
           </div>
         </div>
-        <div>
+        <div className="md:text-left">
           <label
             htmlFor="selectUniversity"
-            className="block w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
+            className="w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
           >
             Select University
           </label>
