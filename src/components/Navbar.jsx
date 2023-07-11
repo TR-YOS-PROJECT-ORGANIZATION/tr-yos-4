@@ -5,9 +5,8 @@ const Navbar = () => {
   return (
     <>
       <div className="w-full h-10 bg-green-dark pl-32 pt-8 "></div>
-      <nav className="rounded flex items-center md:justify-evenly sm:justify-center py-5 font-bold text-lg">
+      <nav className="rounded flex items-center md:justify-between sm:justify-center py-5 font-bold text-lg">
         <div className="lg:flex lg:flex-row items-center sm:flex-col sm:flex" >
-          <img className="w-12" src={image}></img>
           <a className="mx-3">Home Page</a>
           <a className="mx-3">Universities</a>
           <a className="mx-3">Departments</a>

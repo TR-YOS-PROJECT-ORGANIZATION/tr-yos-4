@@ -1,7 +1,7 @@
 import React from 'react'
 import Slider from "react-slick";
 import image1 from '../images/studentG.jpg'
-import image2 from '../images/student2.jpg'
+import image2 from '../images/graduate.jpg'
 import Select from 'react-select'
 
 
