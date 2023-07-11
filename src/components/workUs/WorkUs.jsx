@@ -4,7 +4,7 @@ const WorkUs = () => {
   return (
     <>
       {/* Section: Design Block */}
-      <section className="mb-40 border bg-stone-400">
+      <section className="bg-stone-400">
         {/* Jumbotron */}
         <div className="px-6 py-12 text-center md:px-12 lg:text-left">
           <div className="w-100 mx-auto sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl xl:px-32">
