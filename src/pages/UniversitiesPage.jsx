@@ -18,7 +18,7 @@ function UniversitiesPage() {
             </h2>
             
           </div>
-        </div>
+        </div> <UniversityCard/>
          </div>
     </>);
 }
