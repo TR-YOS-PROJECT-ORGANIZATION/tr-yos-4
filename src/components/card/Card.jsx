@@ -404,7 +404,7 @@ const Card1 = () => {
                   </div>
                 </div>
                 <div className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2">
-                  <span className="inline-flex select-none rounded-lg bg-red-retro px-3 py-2 text-sm font-medium text-white">
+                  <span className="inline-flex select-none rounded-lg bg-red-500 px-3 py-2 text-sm font-medium text-white">
                     {" "}
                     Compare{" "}
                   </span>
