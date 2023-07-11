@@ -13,27 +13,29 @@ function Departments() {
       <div className="flex flex-col">
         <ImageSection />
         {/*  */}
-
-        <form
-          method="POST"
-          className=" flex flex-col justify-center items-center w-full sm:flex-col sm:justify-center sm:items-center sm:m-4  md:flex md:flex-row md:m-0 md:justify-center md:items-center"
-        >
-          <Selections />
-          <PriceForm />
-          <div className="flex flex-col">
-            <Checks />
-            <div className="flex flex-row mx-2 justify-end sm:justify-start md:justify-end departments_search_button_container">
-              <button
-                className="block float-right bg-red-retro m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:m-2"
-                name="searchDepartments"
-                type="submit"
-              >
-                Search
-              </button>
+        {/* Deneme yorum */}
+        <div className="flex flex-col justify-center">
+          <form
+            method="POST"
+            className=" flex flex-col justify-center items-center w-full sm:flex-col sm:justify-center sm:items-center sm:m-4  md:flex md:flex-row md:justify-center md:items-center md:px-20"
+          >
+            <Selections />
+            <PriceForm />
+            <div className="flex flex-col">
+              <Checks />
+              <div className="flex flex-row mx-2 justify-end sm:justify-start md:justify-end departments_search_button_container">
+                <button
+                  className="block float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:m-2"
+                  name="searchDepartments"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
-        <Card/>
+          </form>
+          <Card />
+        </div>
       </div>
     </>
   );

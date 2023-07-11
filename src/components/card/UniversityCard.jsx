@@ -1,39 +1,40 @@
 import React from 'react';
 
-const UniversityCard = () => {
+const UniversityCard = ({key}) => {
   return (
 
     <>
-
-      <div className="max-w-5xl flex flex-col mx-auto px-4 sm:px-6 lg:px-8justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-25 mt-4 mb-2">
-
-
-        <img src="https://aku.edu.tr/wp-content/themes/akuyenitema/img/aku.png" alt="" />
-
+ <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg mx-auto my-10" key={key}>
+      <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
+        <img src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg" alt="" className="w-full h-full object-cover" />
+      </div>
 
 
         <div>
-          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNIVERSITY</p>
+          <p className="font-bold text-xl mb-2">SAKARYA UNIVERSITY</p>
           <p className="text-xs mb-2">
-            Afyon kocatepe Üniversitesi Rektörlüğü ANS Kampüsü Gazlıgöl Yolu Üzeri AFYONKARAHİSAR
+          Adres Esentepe Kampüsü 54187 Serdivan / SAKARYA
           </p>
 
           <svg className="h-4 w-4 text-gray-400 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#0D0D0D"></path>
 
           </svg>
-          <p className="ml-1 text-sm text-gray-500 inline-block">Afyonkarahisar</p>
+          <p className="ml-1 text-sm text-gray-500 inline-block">Sakarya</p>
+
 
 
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-orange-100 text-orange-500">1 Faculties</p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-100 text-green-500">2 Departments</p>
-              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none border-orange-500 rounded-md bg-orange-100 text-orange-500 hover:bg-orange-500 hover:text-white">
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
+
+
+              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base  hover:bg-red-retro hover:text-gray">
 
                 <div className="pt-1 m-0.5">
                   <svg
-                    className="fill-green"
+                    className="fill-gray-base"
                     xmlns="http://www.w3.org/2000/svg"
                     height="0.9em"
                     viewBox="0 0 512 512"
@@ -49,18 +50,22 @@ const UniversityCard = () => {
 
               </button>
 
-              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-orange-100 text-orange-500'>
+
+
+
+              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base  hover:bg-red-retro hover:text-gray-base '>
                 <a
-                  href="https://aku.edu.tr/"
+                  href=""
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-700"
+                  className="text-gray-base hover:text-gray-base"
                 >
-                  Visit Website
+                  Send Message
                 </a></button>
 
             </div>
 
+        
 
           </div>
         </div>
@@ -69,38 +74,37 @@ const UniversityCard = () => {
       </div>
 
 
-      <div className="max-w-5xl flex flex-col mx-auto px-4 sm:px-6 lg:px-8justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-25 mt-2 mb-2">
-
-
-        <img src="https://aku.edu.tr/wp-content/themes/akuyenitema/img/aku.png" alt="" />
-
+      <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg  mx-auto my-2" key={key}>
+      <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
+        <img src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg" alt="" className="w-full h-full object-cover" />
+      </div>
 
 
         <div>
-          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNIVERSITY</p>
+          <p className="font-bold text-xl mb-2">SAKARYA UNIVERSITY</p>
           <p className="text-xs mb-2">
-            Afyon kocatepe Üniversitesi Rektörlüğü ANS Kampüsü Gazlıgöl Yolu Üzeri AFYONKARAHİSAR
+          Adres Esentepe Kampüsü 54187 Serdivan / SAKARYA
           </p>
+
           <svg className="h-4 w-4 text-gray-400 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#0D0D0D"></path>
 
           </svg>
-          <p className="ml-1 text-sm text-gray-500 inline-block">Afyonkarahisar</p>
+          <p className="ml-1 text-sm text-gray-500 inline-block">Sakarya</p>
 
 
 
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-orange-100 text-orange-500">1 Faculties</p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-100 text-green-500">2 Departments</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
 
 
-
-              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none border-orange-500 rounded-md bg-orange-100 text-orange-500 hover:bg-orange-500 hover:text-white">
+              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base hover:bg-red-retro  hover:text-gray">
 
                 <div className="pt-1 m-0.5">
                   <svg
-                    className="fill-green"
+                    className="fill-gray-base"
                     xmlns="http://www.w3.org/2000/svg"
                     height="0.9em"
                     viewBox="0 0 512 512"
@@ -119,58 +123,56 @@ const UniversityCard = () => {
 
 
 
-
-
-
-              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-orange-100 text-orange-500'>
+              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base   hover:bg-red-retro hover:text-gray-base '>
                 <a
-                  href="https://aku.edu.tr/"
+                  href=""
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-700"
+                  className="text-gray-base hover:text-gray-base"
                 >
-                  Visit Website
+                  Send Message
                 </a></button>
 
             </div>
+          
+
 
 
           </div>
         </div>
       </div>
 
-      <div className="max-w-5xl flex flex-col mx-auto px-4 sm:px-6 lg:px-8justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-25 mt-2 mb-6">
-
-
-        <img src="https://aku.edu.tr/wp-content/themes/akuyenitema/img/aku.png" alt="" />
-
+      <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg  mx-auto my-10" key={key}>
+      <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
+        <img src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg" alt="" className="w-full h-full object-cover" />
+      </div>
 
 
         <div>
-          <p className="font-bold text-xl mb-2">AFYON KOCATEPE UNIVERSITY</p>
+          <p className="font-bold text-xl mb-2">SAKARYA UNIVERSITY</p>
           <p className="text-xs mb-2">
-            Afyon kocatepe Üniversitesi Rektörlüğü ANS Kampüsü Gazlıgöl Yolu Üzeri AFYONKARAHİSAR
+          Adres Esentepe Kampüsü 54187 Serdivan / SAKARYA
           </p>
+
           <svg className="h-4 w-4 text-gray-400 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#0D0D0D"></path>
 
           </svg>
-          <p className="ml-1 text-sm text-gray-500 inline-block">Afyonkarahisar</p>
-
+          <p className="ml-1 text-sm text-gray-500 inline-block">Sakarya</p>
 
 
 
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-orange-100 text-orange-500">1 Faculties</p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-100 text-green-500">2 Departments</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
 
 
-              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none border-orange-500 rounded-md bg-orange-100 text-orange-500 hover:bg-orange-500 hover:text-white">
+              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base   hover:bg-red-retro hover:text-gray">
 
                 <div className="pt-1 m-0.5">
                   <svg
-                    className="fill-green"
+                    className="fill-gray-base"
                     xmlns="http://www.w3.org/2000/svg"
                     height="0.9em"
                     viewBox="0 0 512 512"
@@ -189,17 +191,18 @@ const UniversityCard = () => {
 
 
 
-              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-orange-100 text-orange-500'>
+              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base  hover:bg-red-retro hover:text-gray-base '>
                 <a
-                  href="https://aku.edu.tr/"
+                  href=""
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-700"
+                  className="text-gray-base hover:text-gray-base"
                 >
-                  Visit Website
+                  Send Message
                 </a></button>
 
             </div>
+         
 
 
           </div>
