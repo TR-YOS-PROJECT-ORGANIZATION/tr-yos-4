@@ -4,16 +4,17 @@ import React from "react";
 const Card1 = () => {
   return (
     <>
+
       <div className="row mt-16 justify-center-center">
         <div className="sec-heading center">
           <h2 className="font-extrabold text-2xl">Our Departments</h2>
           <p>Our Departments Our Departments Our Departments</p>
         </div>
       </div>
-      <div className="xs:m-0 xs:px-0 xs:w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20">
+      <div className="xs:m-0 xs:px-0 xs:w-full sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20">
         <>
           {/* component */}
-          <div className="relative mx-auto w-full max-w-sm pt-6 ml-6">
+          <div className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6">
             <a
               href="#"
               className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
@@ -30,11 +31,11 @@ const Card1 = () => {
                         width="20px"
                         height="20px"
                         viewBox="0 0 24 24"
-                        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                        xmlns: rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                         xmlns="http://www.w3.org/2000/svg"
                         version="1.1"
-                        xmlns:cc="http://creativecommons.org/ns#"
-                        xmlns:dc="http://purl.org/dc/elements/1.1/"
+                        xmlns: cc="http://creativecommons.org/ns#"
+                        xmlns: dc="http://purl.org/dc/elements/1.1/"
                       >
                         <g transform="translate(0 -1028.4)">
                           <path
@@ -101,9 +102,9 @@ const Card1 = () => {
                         version="1.1"
                         id="Icons"
                         xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns: xlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 32 32"
-                        xml:space="preserve"
+                        xml: space="preserve"
                       >
                         <g>
                           <path
@@ -126,7 +127,7 @@ const Card1 = () => {
               </div>
             </a>
           </div>
-          <div className="relative mx-auto w-full max-w-sm pt-6 ml-6">
+          <div className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6">
             <a
               href="#"
               className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
@@ -143,11 +144,11 @@ const Card1 = () => {
                         width="20px"
                         height="20px"
                         viewBox="0 0 24 24"
-                        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                        xmlns: rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                         xmlns="http://www.w3.org/2000/svg"
                         version="1.1"
-                        xmlns:cc="http://creativecommons.org/ns#"
-                        xmlns:dc="http://purl.org/dc/elements/1.1/"
+                        xmlns: cc="http://creativecommons.org/ns#"
+                        xmlns: dc="http://purl.org/dc/elements/1.1/"
                       >
                         <g transform="translate(0 -1028.4)">
                           <path
@@ -214,9 +215,9 @@ const Card1 = () => {
                         version="1.1"
                         id="Icons"
                         xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns: xlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 32 32"
-                        xml:space="preserve"
+                        xml: space="preserve"
                       >
                         <g>
                           <path
@@ -239,7 +240,7 @@ const Card1 = () => {
               </div>
             </a>
           </div>
-          <div className="relative mx-auto w-full max-w-sm pt-6 ml-6">
+          <div className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6">
             <a
               href="#"
               className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
@@ -256,11 +257,11 @@ const Card1 = () => {
                         width="20px"
                         height="20px"
                         viewBox="0 0 24 24"
-                        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                        xmlns: rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                         xmlns="http://www.w3.org/2000/svg"
                         version="1.1"
-                        xmlns:cc="http://creativecommons.org/ns#"
-                        xmlns:dc="http://purl.org/dc/elements/1.1/"
+                        xmlns: cc="http://creativecommons.org/ns#"
+                        xmlns: dc="http://purl.org/dc/elements/1.1/"
                       >
                         <g transform="translate(0 -1028.4)">
                           <path
@@ -327,9 +328,9 @@ const Card1 = () => {
                         version="1.1"
                         id="Icons"
                         xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns: xlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 32 32"
-                        xml:space="preserve"
+                        xml: space="preserve"
                       >
                         <g>
                           <path
@@ -352,7 +353,7 @@ const Card1 = () => {
               </div>
             </a>
           </div>
-          <div className="relative mx-auto w-full max-w-sm pt-6 ml-6">
+          <div className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6">
             <a
               href="#"
               className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
@@ -369,11 +370,11 @@ const Card1 = () => {
                         width="20px"
                         height="20px"
                         viewBox="0 0 24 24"
-                        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                        xmlns: rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                         xmlns="http://www.w3.org/2000/svg"
                         version="1.1"
-                        xmlns:cc="http://creativecommons.org/ns#"
-                        xmlns:dc="http://purl.org/dc/elements/1.1/"
+                        xmlns: cc="http://creativecommons.org/ns#"
+                        xmlns: dc="http://purl.org/dc/elements/1.1/"
                       >
                         <g transform="translate(0 -1028.4)">
                           <path
@@ -440,9 +441,9 @@ const Card1 = () => {
                         version="1.1"
                         id="Icons"
                         xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns: xlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 32 32"
-                        xml:space="preserve"
+                        xml: space="preserve"
                       >
                         <g>
                           <path
@@ -467,6 +468,8 @@ const Card1 = () => {
           </div>
         </>
       </div>
+
+
     </>
   );
 };

@@ -18,26 +18,29 @@ function Departments() {
       <div className="flex flex-col">
         <ImageSection />
         {/*  */}
-        <div className="xs:flex-col sm:flex-col xs:justify-center xs:items-center md:flex-row md:justify-center md:items-start flex">
-          <div className="xs:visible xs:flex xs:justify-center xs:items-center sm:visible md:hidden ">
+        <div className="xs:flex-col xs:justify-center xs:items-center md:flex md:flex-row md:justify-center md:items-start">
+          <div className="xs:visible xs:flex xs:justify-center xs:items-center sm:visible md:hidden">
             <button>
               <Hamburger
                 label="show menu"
                 toggled={isOpen}
                 toggle={setOpen}
                 direction=""
-              /> 
+              />
               {
                 isOpen && (
                   <form
                     method="POST"
-                    className="bg-blue-900 w-5/5"
+                    className="xs:flex xs:flex-col xs:justify-center xs:items-center"
                   >
-                    <Selections />
-                    <PriceForm />
+                    <div className="sm:w-3/4 sm:m-2">
+                      <Selections />
+                      <PriceForm />
+                    </div>
+
                     <div className="flex flex-row mx-2 justify-end sm:justify-start md:justify-end departments_search_button_container">
                       <button
-                        className="block float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:m-2"
+                        className="xs:w-72 sm:w-52 block float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:m-2"
                         name="searchDepartments"
                         type="submit"
                       >
@@ -52,13 +55,13 @@ function Departments() {
           <div className="xs:hidden sm:hidden md:visible md:flex md:flex-row md:justify-center md:items-center">
             <form
               method="POST"
-              className="bg-blue-900 w-5/5 md:"
+              className=""
             >
               <Selections />
               <PriceForm />
               <div className="flex flex-row mx-2 justify-end sm:justify-start md:justify-end departments_search_button_container">
                 <button
-                  className="block float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:m-2"
+                  className="block float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:mx-auto md:w-full"
                   name="searchDepartments"
                   type="submit"
                 >
@@ -67,38 +70,14 @@ function Departments() {
               </div>
             </form>
           </div>
-          <div className="w-4/5 bg-red-900 flex flex-col justify-center items-center">
+          <div className="xs:flex xs:flex-col xs:justify-center xs:items-center sm:flex sm:flex-col sm:justify-center sm:items-center">
             <Card />
           </div>
+
+
         </div>
       </div>
     </>
   );
 }
 export default Departments;
-
-/*
-        <div className="flex flex-col justify-center">
-          <form
-            method="POST"
-            className=" flex flex-col justify-center items-center w-full sm:flex-col sm:justify-center sm:items-center sm:m-4  md:flex md:flex-row md:justify-center md:items-center md:px-20"
-          >
-            <Selections />
-            <PriceForm />
-            <div className="flex flex-col">
-              <Checks />
-              <div className="flex flex-row mx-2 justify-end sm:justify-start md:justify-end departments_search_button_container">
-                <button
-                  className="block float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:m-2"
-                  name="searchDepartments"
-                  type="submit"
-                >
-                  Search
-                </button>
-              </div>
-            </div>
-          </form>
-          <Card />
-        </div>
-
-*/
