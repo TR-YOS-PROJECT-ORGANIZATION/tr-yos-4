@@ -53,7 +53,7 @@ function Departments() {
           <div className="xs:hidden sm:hidden md:visible md:flex md:flex-row md:justify-center md:items-center">
             <form
               method="POST"
-              className=""
+              className="md:mt-40"
             >
               <Selections />
               <PriceForm />
