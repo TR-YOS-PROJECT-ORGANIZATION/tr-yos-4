@@ -67,14 +67,14 @@ const Main = () => {
         </div>
       </Slider>
 
-      <div className="absolute bottom-20 md:right-36  flex md:flex-col sm:flex-row  sm:items-center lg:w-[60%] md:w-[70%] sm:w-full max-sm:w-full bg-green-dark rounded lg:p-8 md:p-8 sm:p-1 shadow-xl ">
+      <div className="absolute bottom-20 md:right-36  flex md:flex-col sm:flex-row  sm:items-center lg:w-[38%] md:w-[70%] sm:w-full max-sm:w-full bg-green-dark rounded lg:p-8 md:p-4 sm:p-1 shadow-xl ">
         <div>
           <Select
             defaultValue={[cities[0]]}
             isMulti
             name="selectCity"
             options={cities}
-            className="basic-multi-select  max-sm:text-xs md:m-5 sm:m-2 max-sm:m-1 text-left shadow-md lg:text-sm md:text-sm sm:text-xs sm:w-[500px] max-sm:w-[400px]  max-sm:pt-2"
+            className="basic-multi-select  max-sm:text-xs md:m-5 sm:m-2 max-sm:m-1 text-left shadow-md lg:text-sm md:text-sm sm:text-xs sm:w-[500px] lg:w-96 max-sm:w-[400px]  max-sm:pt-2"
             classNamePrefix="select"
             placeholder="Select City"
           />
@@ -84,7 +84,7 @@ const Main = () => {
             isMulti
             name="selectUniversity"
             options={universities}
-            className="basic-multi-select  max-sm:text-xs md:m-5 sm:m-2  max-sm:m-1 text-left shadow-md lg:text-sm md:text-sm sm:text-xs sm:w-[500px] max-sm:w-[400px] "
+            className="basic-multi-select  max-sm:text-xs md:m-5 sm:m-2  max-sm:m-1 text-left shadow-md lg:text-sm md:text-sm sm:text-xs sm:w-[500px] lg:w-96 max-sm:w-[400px] "
             classNamePrefix="select"
             placeholder="Select Univercity"
           />
@@ -94,14 +94,14 @@ const Main = () => {
             isMulti
             name="selectDepartment"
             options={departments}
-            className="basic-multi-select  max-sm:text-xs md:m-5 sm:m-2 max-sm:m-1 text-left shadow-md lg:text-sm md:text-sm sm:text-xs sm:w-[500px] max-sm:w-[400px] "
+            className="basic-multi-select  max-sm:text-xs md:m-5 sm:m-2 max-sm:m-1 text-left shadow-md lg:text-sm md:text-sm sm:text-xs sm:w-[500px] lg:w-96 max-sm:w-[400px] "
             classNamePrefix="select"
             placeholder="Select Department"
           />
         </div>
 
         <div>
-          <button className="mx-auto  max-sm:m-12 md:sm:text-xs max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-24 font-bold rounded  hover:bg-red-retro shadow-md">
+          <button className="mx-auto  max-sm:m-12 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-24 font-bold rounded  hover:bg-red-retro shadow-md">
             Search
           </button>
         </div>
