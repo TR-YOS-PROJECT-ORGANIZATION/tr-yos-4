@@ -4,13 +4,6 @@ import React from "react";
 const Card1 = () => {
   return (
     <>
-
-      <div className="row mt-16 justify-center-center">
-        <div className="sec-heading center">
-          <h2 className="font-extrabold text-2xl">Our Departments</h2>
-          <p>Our Departments Our Departments Our Departments</p>
-        </div>
-      </div>
       <div className="xs:m-0 xs:px-0 xs:w-full sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20">
         <>
           {/* component */}

@@ -3,7 +3,6 @@ import React from "react";
 import ImageSection from "../components/departmentComponents/ImageSection";
 import Selections from "../components/departmentComponents/Selections";
 import PriceForm from "../components/departmentComponents/PriceForm";
-import Checks from "../components/departmentComponents/Checks";
 import "../components/departmentComponents/departments.css";
 import Card from "../components/card/Card";
 import Hamburger from "hamburger-react";
@@ -11,7 +10,6 @@ import { useState } from "react";
 
 function Departments() {
   const [isOpen, setOpen] = useState(false);
-
 
   return (
     <>
@@ -71,12 +69,17 @@ function Departments() {
             </form>
           </div>
           <div className="xs:flex xs:flex-col xs:justify-center xs:items-center sm:flex sm:flex-col sm:justify-center sm:items-center">
+            <div className="row mt-16 justify-center-center">
+              <div className="sec-heading center">
+                <h2 className="font-extrabold text-2xl">Our Departments</h2>
+                <p>Our Departments Our Departments Our Departments</p>
+              </div>
+            </div>
             <Card />
           </div>
-
-
         </div>
       </div>
+
     </>
   );
 }
