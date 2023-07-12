@@ -69,7 +69,7 @@ const Main = () => {
               isMulti
               name="selectCity"
               options={cities}
-              className="basic-multi-select m-5 text-left"
+              className="basic-multi-select m-5 text-left shadow-md"
               classNamePrefix="select"
               placeholder='Select City'
 
@@ -80,7 +80,7 @@ const Main = () => {
               isMulti
               name="selectUniversity"
               options={universities}
-              className="basic-multi-select m-5 text-left"
+              className="basic-multi-select m-5 text-left shadow-md"
               classNamePrefix="select"
               placeholder='Select Univercity'
             />
@@ -90,12 +90,12 @@ const Main = () => {
               isMulti
               name="selectDepartment"
               options={departments}
-              className="basic-multi-select m-5 text-left"
+              className="basic-multi-select m-5 text-left shadow-md"
               classNamePrefix="select"
               placeholder='Select Department'
             />
 
-              <button className='mx-auto bg-red-warm text-white-cream px-12 py-2 w-48 font-bold rounded  hover:bg-red-retro'>Search</button>
+              <button className='mx-auto bg-red-warm text-white-cream px-12 py-2 w-48 font-bold rounded  hover:bg-red-retro shadow-md'>Search</button>
   
         </div>
 

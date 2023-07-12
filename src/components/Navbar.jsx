@@ -4,6 +4,7 @@ import Hamburger from "hamburger-react";
 import { useState } from "react";
 import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
+import langIcon from '../images/global.png'
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -79,10 +80,10 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
+               
 
-        {
-          //  navbar bölümü
-          <div className="w-full h-[82px]  flex items-center justify-end">
+               <div className="w-full h-[82px]  flex items-center justify-end">
+               <button className="mx-5 shadow-md"><img src={langIcon}></img></button>
             <div className="flex gap-4 h-[51px]  pr-[100px]">
               <button
                 onClick={() => setOpenModal(!openModal)}
@@ -98,7 +99,7 @@ const Navbar = () => {
               </button>
             </div>
           </div>
-        }
+      
 
       </nav>
       </div>
