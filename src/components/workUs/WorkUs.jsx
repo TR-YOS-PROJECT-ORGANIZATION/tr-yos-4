@@ -36,7 +36,7 @@ const WorkUs = () => {
                       />
                       <button
                         type="submit"
-                        className="text-white absolute right-3.5 bottom-2.5 bg-red-retro hover:bg-red-base focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2"
+                        className="text-white absolute right-3.5 bottom-2.5 bg-red-warm  hover:bg-red-retro focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2"
                       >
                         Subscribe
                       </button>
@@ -44,10 +44,10 @@ const WorkUs = () => {
                   </form>
                 </div>
               </div>
-              <div className="md:mb-12 lg:mb-0">
+              <div className="md:mb-12 lg:mb-0 ">
                 <img
                   src="images/business.jpg"
-                  className="h-100 w-100 rounded-lg shadow-2xl"
+                  className=" h-100 w-100 rounded-lg shadow-2xl"
                   alt=""
                 />
               </div>
