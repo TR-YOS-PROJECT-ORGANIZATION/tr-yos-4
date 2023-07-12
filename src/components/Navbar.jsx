@@ -32,20 +32,16 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li className="border  border-green-dark  px-3  py-2  bg-white-cream  hover:bg-red-retro">
-                 
                     <Link to="/Universities" className="mx-3">
                       Universities
                     </Link>
                   </li>
                   <li className="border  border-green-dark  px-3  py-2   bg-white-cream  hover:bg-red-retro">
-                 
                     <Link to="/Departments" className="mx-3">
                       Departments
                     </Link>
                   </li>
-
-                  <li className="border  border-green-dark  px-3  py-2   bg-white-cream hover:bg-red-retro">
-                 
+                  <li className="border  border-green-dark  px-3  py-2   bg-white-cream hover:bg-red-retro">                 
                  <Link to="/About" className="mx-3">
                    About
                  </Link>
@@ -54,10 +50,7 @@ const Navbar = () => {
             
             )} 
           </button>
-
-      
           <div className="lg:visible md:invisible sm:invisible md:m-0 sm:m-0 xsm:invisible">
-
             <Link to="/" className="mx-3">
               Home 
             </Link>
@@ -68,13 +61,9 @@ const Navbar = () => {
               Departments
             </Link>
           </div>
-
-
-
-
         </div>
         <div>
-        
+      
           <button className="mx-3 bg-red-retro py-3 px-5 rounded text-white-cream hover:bg-red-warm hover:text-black">
             Sign In
           </button>
@@ -84,7 +73,6 @@ const Navbar = () => {
         </div>
       </nav>
       </div>
-     
     </div>
   );
 };
