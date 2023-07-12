@@ -10,7 +10,7 @@ const Card1 = () => {
           <p>Our Departments Our Departments Our Departments</p>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20">
+      <div className="xs:m-0 xs:px-0 xs:w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20">
         <>
           {/* component */}
           <div className="relative mx-auto w-full max-w-sm pt-6 ml-6">
