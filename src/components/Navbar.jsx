@@ -2,9 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { useState } from "react";
+import SignInModal from "./SignInModal";
+import SignUpModal from "./SignUpModal";
+import langIcon from '../images/global.png'
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [openUpModal, setOpenUpModal] = useState(false);
+
 
   const currentUser = false;
 
@@ -12,6 +18,18 @@ const Navbar = () => {
 
   return (
     <div  >
+
+<SignInModal
+  open={openModal}
+  setOpen={setOpenModal}
+  setOpenUpModal={setOpenUpModal}
+/>
+<SignUpModal
+  open={openUpModal}
+  setOpen={setOpenUpModal}
+  setOpenUpModal={setOpenModal}
+/>
+
       <div className="relative">
       <nav className="rounded flex items-center md:justify-between sm:justify-around py-5 font-bold text-md fixed right-0 left-0 top-0 z-10 bg-white-500 border-t-[2rem] border-green-dark">
         <div className="lg:flex lg:flex-row items-center sm:flex-col sm:flex ">
@@ -62,15 +80,27 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        <div>
+               
+
+               <div className="w-full h-[82px]  flex items-center justify-end">
+               <button className="mx-5 shadow-md"><img src={langIcon}></img></button>
+            <div className="flex gap-4 h-[51px]  pr-[100px]">
+              <button
+                onClick={() => setOpenModal(!openModal)}
+                className="border rounded hover:bg-red-retro bg-red-warm text-white-cream px-4 py-2 shadow-md"
+              >
+                Sign In
+              </button>
+              <button
+                onClick={() => setOpenUpModal(!openUpModal)}
+                className="border rounded  hover:bg-red-retro bg-red-warm	 text-white-cream px-4 py-2 shadow-md"
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
       
-          <button className="mx-3 bg-red-retro py-3 px-5 rounded text-white-cream hover:bg-red-warm hover:text-black">
-            Sign In
-          </button>
-          <button className="mx-3 bg-red-warm py-3 px-5 rounded text-white-cream hover:bg-red-retro hover:text-black">
-            Sign Up
-          </button>
-        </div>
+
       </nav>
       </div>
     </div>

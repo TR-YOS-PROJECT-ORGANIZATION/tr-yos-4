@@ -4,6 +4,8 @@ import image1 from '../images/studentG.jpg'
 import image2 from '../images/graduate.jpg'
 import Select from 'react-select';
 import '../index.css'
+import Checks from './departmentComponents/Checks';
+import Selections from './departmentComponents/Selections';
 
 
 
@@ -60,14 +62,51 @@ const Main = () => {
 
         </Slider>
 
-        <div className='absolute bottom-20 right-20 flex justify-evenly bg-green-dark rounded p-2'>
+        <div className='absolute bottom-20 right-20 flex flex-col w-96 bg-green-dark rounded p-4 shadow-xl '>
+      
+        <Select
+              defaultValue={[cities[0]]}
+              isMulti
+              name="selectCity"
+              options={cities}
+              className="basic-multi-select m-5 text-left shadow-md"
+              classNamePrefix="select"
+              placeholder='Select City'
+
+            />
+          
+             <Select
+              defaultValue={[universities[0]]}
+              isMulti
+              name="selectUniversity"
+              options={universities}
+              className="basic-multi-select m-5 text-left shadow-md"
+              classNamePrefix="select"
+              placeholder='Select Univercity'
+            />
+       
+             <Select
+              defaultValue={[departments[0]]}
+              isMulti
+              name="selectDepartment"
+              options={departments}
+              className="basic-multi-select m-5 text-left shadow-md"
+              classNamePrefix="select"
+              placeholder='Select Department'
+            />
+
+              <button className='mx-auto bg-red-warm text-white-cream px-12 py-2 w-48 font-bold rounded  hover:bg-red-retro shadow-md'>Search</button>
+  
+        </div>
+
+        {/* <div className='absolute bottom-20 right-20 flex justify-evenly bg-green-dark rounded p-2'>
         <Select options={cities} className='w-48 m-2'/>
         <Select options={departments} className='w-48 m-2'/>
         <Select options={universities} className='w-48 m-2'/>
         <button className='m-2 bg-red-warm text-gray-base px-12 py-2 font-bold rounded'>Search</button>
 
 
-        </div>
+        </div> */}
 
         
 
