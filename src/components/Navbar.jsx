@@ -30,7 +30,7 @@ const Navbar = () => {
 />
 
       <div className="relative">
-      <nav className="rounded flex items-center md:justify-between sm:justify-around py-5 font-bold text-md fixed right-0 left-0 top-0 z-10 bg-white-500 border-t-[2rem] border-cyan-900">
+      <nav className="rounded flex items-center md:justify-between sm:justify-around py-5 font-bold text-md fixed right-0 left-0 top-0 z-10 bg-white-500 border-t-[2rem] border-green-dark">
         <div className="lg:flex lg:flex-row items-center sm:flex-col sm:flex ">
           <button className="mx-8 sm:mx-1 lg:invisible md:visible sm:visible relative">
             <Hamburger
@@ -86,13 +86,13 @@ const Navbar = () => {
             <div className="flex gap-4 h-[51px]  pr-[100px]">
               <button
                 onClick={() => setOpenModal(!openModal)}
-                className="border rounded bg-green-dark hover:bg-red-warm text-white-cream px-4 py-2"
+                className="border rounded hover:bg-red-retro bg-red-warm text-white-cream px-4 py-2 shadow-md"
               >
                 Sign In
               </button>
               <button
                 onClick={() => setOpenUpModal(!openUpModal)}
-                className="border rounded bg-green-dark hover:bg-red-warm	 text-white-cream px-4 py-2"
+                className="border rounded  hover:bg-red-retro bg-red-warm	 text-white-cream px-4 py-2 shadow-md"
               >
                 Sign Up
               </button>
