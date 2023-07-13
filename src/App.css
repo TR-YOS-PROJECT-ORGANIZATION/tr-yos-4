@@ -2,4 +2,24 @@
   margin: 0;
   padding: 0;
   text-align: center;
+  position: relative;
+}
+
+
+button.slick-arrow.slick-next {
+  right: 10rem !important;
+  background-color: transparent !important;
+  color: aqua !important;
+  display: block;
+  width: 50px !important;
+  height: 50px !important;
+}
+
+button.slick-arrow.slick-prev {
+  background-color: purple !important;
+  color: aqua !important;
+  display:block;
+  width: 50px !important;
+  height: 50px !important;
+  border: 5px solid blue !important;
 }
