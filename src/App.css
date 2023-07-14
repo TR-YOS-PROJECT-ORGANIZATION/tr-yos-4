@@ -8,9 +8,11 @@
 
 button.slick-arrow.slick-next {
   right: 10rem !important;
-  background-color: brown !important;
+  background-color: transparent !important;
   color: aqua !important;
   display: block;
+  width: 50px !important;
+  height: 50px !important;
 }
 
 button.slick-arrow.slick-prev {
