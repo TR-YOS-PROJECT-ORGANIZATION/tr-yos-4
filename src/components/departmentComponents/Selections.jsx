@@ -75,13 +75,13 @@ function Selections() {
           >
             Select Department
           </label>
-          <div className="xs:w-64 relative rounded-md text-left">
+          <div className=" relative rounded-md text-left">
             <Select
               defaultValue={[departments[0]]}
               isMulti
               name="selectDepartment"
               options={departments}
-              className="basic-multi-select md:w-full md:mx-0"
+              className="xs:w-64 basic-multi-select md:w-full md:mx-0"
               classNamePrefix="select"
             />
           </div>
