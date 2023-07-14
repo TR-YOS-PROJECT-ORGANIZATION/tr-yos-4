@@ -4,9 +4,10 @@ import ImageSection from "../components/departmentComponents/ImageSection";
 import Selections from "../components/departmentComponents/Selections";
 import PriceForm from "../components/departmentComponents/PriceForm";
 import "../components/departmentComponents/departments.css";
-import Card from "../components/card/Card";
+// import Card from "../components/card/Card";
 import Hamburger from "hamburger-react";
 import { useState } from "react";
+import OneCard from "../components/card/OneCard";
 
 function Departments() {
   const [isOpen, setOpen] = useState(false);
@@ -18,48 +19,48 @@ function Departments() {
         {/*  */}
         <div className="xs:flex-col xs:justify-center xs:items-center md:flex md:flex-row md:justify-center md:items-start">
           <div className="xs:visible xs:flex xs:justify-center xs:items-center sm:visible md:hidden">
-            <button>
+            <button>     
               <Hamburger
                 label="show menu"
                 toggled={isOpen}
                 toggle={setOpen}
-                direction=""
+                direction="right"
               />
               {
                 isOpen && (
-                  <form
-                    method="POST"
-                    className="xs:flex xs:flex-col xs:justify-center xs:items-center"
-                  >
-                    <div className="sm:w-3/4 sm:m-2">
+                  <div className="md:visible md:flex md:flex-row md:justify-center md:items-center md:ml-3">
+                    <form
+                      method="POST"
+                      className="border shadow-lg md:mt-36 rounded-lg "
+                    >
                       <Selections />
                       <PriceForm />
-                    </div>
-
-                    <div className="flex flex-row mx-2 justify-end sm:justify-start md:justify-end departments_search_button_container">
-                      <button
-                        className="xs:w-72 sm:w-52 block float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:m-2"
-                        name="searchDepartments"
-                        type="submit"
-                      >
-                        Search
-                      </button>
-                    </div>
-                  </form>
+                      <div className="flex flex-row mx-2 justify-end xs:justify-start xs:mx-0  sm:justify-start md:justify-end departments_search_button_container">
+                        <button
+                          className="sm:mx-0 block xs:float-left float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:px-auto md:w-full"
+                          name="searchDepartments"
+                          type="submit"
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 )
               }
+              
             </button>
           </div>
-          <div className="xs:hidden sm:hidden md:visible md:flex md:flex-row md:justify-center md:items-center">
+          <div className="xs:hidden sm:hidden md:visible md:flex md:flex-row md:justify-center md:items-center md:ml-3">
             <form
               method="POST"
-              className="md:mt-40"
+              className="border shadow-lg md:mt-36 rounded-lg "
             >
               <Selections />
               <PriceForm />
               <div className="flex flex-row mx-2 justify-end sm:justify-start md:justify-end departments_search_button_container">
                 <button
-                  className="block float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:mx-auto md:w-full"
+                  className="block float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:px-auto md:w-full"
                   name="searchDepartments"
                   type="submit"
                 >
@@ -68,14 +69,19 @@ function Departments() {
               </div>
             </form>
           </div>
-          <div className="xs:flex xs:flex-col xs:justify-center xs:items-center sm:flex sm:flex-col sm:justify-center sm:items-center">
+          <div className="xs:flex xs:flex-col xs:justify-center xs:items-center sm:flex sm:flex-col sm:justify-center sm:items-center md:px-0">
             <div className="row mt-16 justify-center-center">
               <div className="sec-heading center">
                 <h2 className="font-extrabold text-2xl">Our Departments</h2>
-                <p>Our Departments Our Departments Our Departments</p>
+                <p>Our Departments Our Departments Our Departments...</p>
               </div>
             </div>
-            <Card />
+            <div className="xs:m-0 xs:px-0 sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 md:px-4 lg:grid-cols-3">
+              <OneCard />
+              <OneCard />
+              <OneCard />
+              <OneCard />
+            </div>
           </div>
         </div>
       </div>
