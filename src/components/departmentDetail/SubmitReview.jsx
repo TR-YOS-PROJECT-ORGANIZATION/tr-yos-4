@@ -310,7 +310,9 @@ const SubmitReview = () => {
             >
               {show ? "Add Favourite" : "Remove Favourite"}
             </button>
-            <section className="bg-white dark:bg-gray-900 border mb-10">
+            
+          </div>
+          <section className="bg-white dark:bg-gray-900 border mb-10">
               <div className="container px-3 py-3 mx-auto flex justify-center">
                 <div className="lg:w-2/3 lg:mx-6 flex flex-col items-center">
                   <div className="w-28 h-28 m-6 border-2 border-gray-400 rounded-md">
@@ -421,7 +423,6 @@ const SubmitReview = () => {
                 </div>
               </div>
             </section>
-          </div>
         </div>
       </div>
     </div>
