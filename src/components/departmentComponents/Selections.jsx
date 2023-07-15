@@ -30,8 +30,8 @@ function Selections() {
   ];
   return (
     <>
-      <div className="w-full m-1 sm:w-full sm:m-1 sm:text-left md:flex md:flex-col md:w-1/3 selections_container">
-        <div className="md:-mt-8 md:text-left selections_cityContainer">
+      <div className="xs:flex xs:flex-col xs:justify-center xs:items-center sm:w-full m-1  sm:m-auto sm:text-left md:flex md:flex-col md:px-4 selections_container">
+        <div className="md:text-left md:w-full selections_cityContainer">
           <label
             htmlFor="selectCity"
             className="w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 md:mb-2"
@@ -44,33 +44,16 @@ function Selections() {
               isMulti
               name="selectCity"
               options={cities}
-              className="basic-multi-select md:mt-1"
+              className="xs:w-64 basic-multi-select md:mt-1 md:w-full
+              "
               classNamePrefix="select"
             />
           </div>
         </div>
-        <div className="md:text-left">
-          <label
-            htmlFor="selectDepartment"
-            className="w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
-          >
-            Select Department
-          </label>
-          <div className="relative rounded-md text-left">
-            <Select
-              defaultValue={[departments[0]]}
-              isMulti
-              name="selectDepartment"
-              options={departments}
-              className="basic-multi-select"
-              classNamePrefix="select"
-            />
-          </div>
-        </div>
-        <div className="md:text-left">
+        <div className="md:text-left md:w-full">
           <label
             htmlFor="selectUniversity"
-            className="w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
+            className="w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 md:mb-2"
           >
             Select University
           </label>
@@ -80,11 +63,30 @@ function Selections() {
               isMulti
               name="selectUniversity"
               options={universities}
-              className="basic-multi-select"
+              className="xs:w-64 basic-multi-select  md:w-full md:mx-0"
               classNamePrefix="select"
             />
           </div>
         </div>
+        <div className="md:text-left md:w-full">
+          <label
+            htmlFor="selectDepartment"
+            className=" w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
+          >
+            Select Department
+          </label>
+          <div className=" relative rounded-md text-left">
+            <Select
+              defaultValue={[departments[0]]}
+              isMulti
+              name="selectDepartment"
+              options={departments}
+              className="xs:w-64 basic-multi-select md:w-full md:mx-0"
+              classNamePrefix="select"
+            />
+          </div>
+        </div>
+
       </div>
     </>
   );

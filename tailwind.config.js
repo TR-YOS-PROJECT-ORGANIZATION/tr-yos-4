@@ -1,9 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-
-
-// eslint-disable-next-line no-undef
-const defaultTheme = require('tailwindcss/defaultTheme')
-// eslint-disable-next-line no-undef
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -15,8 +10,8 @@ module.exports = {
           lila: "#C4B0FF",
         },
         blue: {
-          dark: "#6C00FF",
-          light: "#2DCDDF",
+          dark: "#1C3D5A",
+          light: "#BCDEFA",
         },
         white: {
           beige: "#2DCDDF",
@@ -24,7 +19,8 @@ module.exports = {
           500: "#FFFFFF",
         },
         green: {
-          dark: "#4E6C50",
+          dark: "#1A4731",
+          light: "#51D88A",
         },
         red: {
           base: "#C10000",
@@ -35,11 +31,6 @@ module.exports = {
         gray: {
           base: "#DEDEDE",
         },
-      },
-      screens: {
-        'xs': '320px',
-        // eslint-disable-next-line no-undef
-        ...defaultTheme.screens,
       },
     },
   },

@@ -1,124 +1,38 @@
-import React from "react";
+import React from 'react';
 
-const UniversityCard = ({ key, univercities }) => {
-  console.log(univercities);
-  
+const UniversityCard = ({key,univercities}) => {
   return (
+
     <>
-      <div
-        className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg mx-auto my-10"
-        key={key}
-      >
-     
-        <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
-          <img
-            src={univercities[0].logo}
-            alt=""
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        <div>
-          <p className="font-bold text-xl mb-2">
-            {univercities[0].en}
-          </p>
-          <p className="text-xs mb-2">
-            {univercities[0].data.address}
-          </p>
-
-          <svg
-            className="h-4 w-4 text-gray-400 inline-block"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
-              fill="#0D0D0D"
-            ></path>
-          </svg>
-          <p className="ml-1 text-sm text-gray-500 inline-block">Sakarya</p>
-
-          <div className="my-4">
-            <div className="flex">
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">
-                1 Faculties
-              </p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">
-                2 Departments
-              </p>
-
-              <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base  hover:bg-red-retro hover:text-gray">
-                <div className="pt-1 m-0.5">
-                  <svg
-                    className="fill-gray-base"
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="0.9em"
-                    viewBox="0 0 512 512"
-                  >
-                    <path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" />
-                  </svg>
-                </div>
-
-                <div>(352)-444-9977</div>
-              </button>
-
-              <button className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base  hover:bg-red-retro hover:text-gray-base ">
-                <a
-                  href=""
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-base hover:text-gray-base"
-                >
-                  Send Message
-                </a>
-              </button>
-            </div>
-          </div>
-        </div>
+    <div className='flex'>
+ <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg mx-auto my-10" key={key}>
+      <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
+        <img src={univercities[0].logo} alt="" className="w-full h-full object-cover" />
       </div>
 
-      <div
-        className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg  mx-auto my-2"
-        key={key}
-      >
-        <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
-          <img
-            src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-        </div>
 
         <div>
-          <p className="font-bold text-xl mb-2">SAKARYA UNIVERSITY</p>
+          <p className="font-bold text-xl mb-2">{univercities[0].en}</p>
           <p className="text-xs mb-2">
-            Adres Esentepe Kampüsü 54187 Serdivan / SAKARYA
+         {univercities[0].data.address}
           </p>
 
-          <svg
-            className="h-4 w-4 text-gray-400 inline-block"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
-              fill="#0D0D0D"
-            ></path>
+          <svg className="h-4 w-4 text-gray-400 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#0D0D0D"></path>
+
           </svg>
-          <p className="ml-1 text-sm text-gray-500 inline-block">Sakarya</p>
+          <p className="ml-1 text-sm text-gray-500 inline-block">Kayseri</p>
+
+
 
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">
-                1 Faculties
-              </p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">
-                2 Departments
-              </p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
+
 
               <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base hover:bg-red-retro  hover:text-gray">
+
                 <div className="pt-1 m-0.5">
                   <svg
                     className="fill-gray-base"
@@ -130,10 +44,17 @@ const UniversityCard = ({ key, univercities }) => {
                   </svg>
                 </div>
 
-                <div>(352)-444-9977</div>
+
+
+                <div>{univercities[0].data.phone}</div>
+
+
               </button>
 
-              <button className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base   hover:bg-red-retro hover:text-gray-base ">
+
+
+
+              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base   hover:bg-red-retro hover:text-gray-base '>
                 <a
                   href=""
                   target="_blank"
@@ -141,54 +62,45 @@ const UniversityCard = ({ key, univercities }) => {
                   className="text-gray-base hover:text-gray-base"
                 >
                   Send Message
-                </a>
-              </button>
+                </a></button>
+
             </div>
+          
+
+
+
           </div>
         </div>
       </div>
 
-      <div
-        className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg  mx-auto my-10"
-        key={key}
-      >
-        <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
-          <img
-            src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg  mx-auto my-10" key={key}>
+      <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
+        <img src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg" alt="" className="w-full h-full object-cover" />
+      </div>
+
 
         <div>
           <p className="font-bold text-xl mb-2">SAKARYA UNIVERSITY</p>
           <p className="text-xs mb-2">
-            Adres Esentepe Kampüsü 54187 Serdivan / SAKARYA
+          Adres Esentepe Kampüsü 54187 Serdivan / SAKARYA
           </p>
 
-          <svg
-            className="h-4 w-4 text-gray-400 inline-block"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
-              fill="#0D0D0D"
-            ></path>
+          <svg className="h-4 w-4 text-gray-400 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#0D0D0D"></path>
+
           </svg>
           <p className="ml-1 text-sm text-gray-500 inline-block">Sakarya</p>
 
+
+
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">
-                1 Faculties
-              </p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">
-                2 Departments
-              </p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
+
 
               <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base   hover:bg-red-retro hover:text-gray">
+
                 <div className="pt-1 m-0.5">
                   <svg
                     className="fill-gray-base"
@@ -200,10 +112,17 @@ const UniversityCard = ({ key, univercities }) => {
                   </svg>
                 </div>
 
+
+
                 <div>(352)-444-9977</div>
+
+
               </button>
 
-              <button className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base  hover:bg-red-retro hover:text-gray-base ">
+
+
+
+              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base  hover:bg-red-retro hover:text-gray-base '>
                 <a
                   href=""
                   target="_blank"
@@ -211,12 +130,17 @@ const UniversityCard = ({ key, univercities }) => {
                   className="text-gray-base hover:text-gray-base"
                 >
                   Send Message
-                </a>
-              </button>
+                </a></button>
+
             </div>
+         
+
+
           </div>
         </div>
-      </div>
+
+
+      </div></div>
     </>
   );
 };
