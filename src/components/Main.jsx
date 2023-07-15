@@ -57,7 +57,7 @@ const Main = () => {
         </div>
 
         <div className="relative">
-          <img className="w-full h-[45rem] object-cover" src={image2}></img>
+          <img className="w-full h-[45rem] object-cover mt-20" src={image2}></img>
           <div className="absolute bg-gray-base bg-opacity-50  text-center  left-20 text-2xl w-96  top-0 rounded pt-64 h-[45rem]">
             <p className=" leading-relaxed italic font-serif font-bold">
               Join this educational journey <br></br> with us <br></br> and

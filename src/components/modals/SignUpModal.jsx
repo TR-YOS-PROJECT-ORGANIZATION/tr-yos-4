@@ -1,5 +1,7 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import SignUpForm from "../SignUpForm";
+import { Formik } from "formik";
 
 const SignUpModal = (props) => {
   return (
@@ -39,9 +41,8 @@ const SignUpModal = (props) => {
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <div
-              className=" rounded-lg overflow-hidden transform transition-all "
+              className=" rounded-lg overflow-hidden transform transition-all bg-white-500 "
               style={{
-                backgroundColor: "#022f5d",
                 width: "512px",
                 height: "510px",
                 fontFamily: "Inter",
@@ -53,7 +54,7 @@ const SignUpModal = (props) => {
                 lineHeight: "21px",
               }}
             >
-              <div className="flex flex-col justify-start items-start text-left">
+              {/* <div className="flex flex-col justify-start items-start text-left">
                 <div
                   onClick={() => {
                     props.setOpen(false);
@@ -108,7 +109,24 @@ const SignUpModal = (props) => {
                     Sign ln
                   </span>
                 </div>
-              </div>
+              </div> */}
+              <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              password1: "",
+            }}
+            onSubmit={(values, actions) => {
+              register({ ...values, password2: values.password1 });
+              actions.resetForm();
+              actions.setSubmitting(false);
+            }}
+
+            component={(props) => <SignUpForm {...props} />}
+            
+
+          >
+          </Formik>
             </div>
           </Transition.Child>
         </div>

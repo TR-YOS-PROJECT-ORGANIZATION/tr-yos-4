@@ -1,8 +1,22 @@
 // eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import useInfoCalls from "../../hooks/useInfoCalls";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Card1 = () => {
+
+  const  departments  = useSelector((state) => state.info);
+  const { getDepartments } = useInfoCalls();
+
+
+useEffect(()=>{
+  getDepartments()
+},[])
+
+  console.log(departments)
+
   return (
     <>
       <div className="xs:m-0 xs:px-0 xs:w-full sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20">
