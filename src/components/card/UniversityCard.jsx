@@ -1,37 +1,54 @@
-import React from 'react';
+import React from "react";
 
-const UniversityCard = ({key}) => {
+const UniversityCard = ({ key, univercities }) => {
+  console.log(univercities);
+  
   return (
-
     <>
- <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg mx-auto my-10" key={key}>
-      <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
-        <img src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg" alt="" className="w-full h-full object-cover" />
-      </div>
-
+      <div
+        className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg mx-auto my-10"
+        key={key}
+      >
+     
+        <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
+          <img
+            src={univercities[0].logo}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         <div>
-          <p className="font-bold text-xl mb-2">SAKARYA UNIVERSITY</p>
+          <p className="font-bold text-xl mb-2">
+            {univercities[0].en}
+          </p>
           <p className="text-xs mb-2">
-          Adres Esentepe Kampüsü 54187 Serdivan / SAKARYA
+            {univercities[0].data.address}
           </p>
 
-          <svg className="h-4 w-4 text-gray-400 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#0D0D0D"></path>
-
+          <svg
+            className="h-4 w-4 text-gray-400 inline-block"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+              fill="#0D0D0D"
+            ></path>
           </svg>
           <p className="ml-1 text-sm text-gray-500 inline-block">Sakarya</p>
 
-
-
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
-
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">
+                1 Faculties
+              </p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">
+                2 Departments
+              </p>
 
               <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base  hover:bg-red-retro hover:text-gray">
-
                 <div className="pt-1 m-0.5">
                   <svg
                     className="fill-gray-base"
@@ -43,17 +60,10 @@ const UniversityCard = ({key}) => {
                   </svg>
                 </div>
 
-
-
                 <div>(352)-444-9977</div>
-
-
               </button>
 
-
-
-
-              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base  hover:bg-red-retro hover:text-gray-base '>
+              <button className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base  hover:bg-red-retro hover:text-gray-base ">
                 <a
                   href=""
                   target="_blank"
@@ -61,47 +71,54 @@ const UniversityCard = ({key}) => {
                   className="text-gray-base hover:text-gray-base"
                 >
                   Send Message
-                </a></button>
-
+                </a>
+              </button>
             </div>
-
-        
-
           </div>
         </div>
-
-
       </div>
 
-
-      <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg  mx-auto my-2" key={key}>
-      <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
-        <img src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg" alt="" className="w-full h-full object-cover" />
-      </div>
-
+      <div
+        className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg  mx-auto my-2"
+        key={key}
+      >
+        <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
+          <img
+            src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         <div>
           <p className="font-bold text-xl mb-2">SAKARYA UNIVERSITY</p>
           <p className="text-xs mb-2">
-          Adres Esentepe Kampüsü 54187 Serdivan / SAKARYA
+            Adres Esentepe Kampüsü 54187 Serdivan / SAKARYA
           </p>
 
-          <svg className="h-4 w-4 text-gray-400 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#0D0D0D"></path>
-
+          <svg
+            className="h-4 w-4 text-gray-400 inline-block"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+              fill="#0D0D0D"
+            ></path>
           </svg>
           <p className="ml-1 text-sm text-gray-500 inline-block">Sakarya</p>
 
-
-
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
-
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">
+                1 Faculties
+              </p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">
+                2 Departments
+              </p>
 
               <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base hover:bg-red-retro  hover:text-gray">
-
                 <div className="pt-1 m-0.5">
                   <svg
                     className="fill-gray-base"
@@ -113,17 +130,10 @@ const UniversityCard = ({key}) => {
                   </svg>
                 </div>
 
-
-
                 <div>(352)-444-9977</div>
-
-
               </button>
 
-
-
-
-              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base   hover:bg-red-retro hover:text-gray-base '>
+              <button className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base   hover:bg-red-retro hover:text-gray-base ">
                 <a
                   href=""
                   target="_blank"
@@ -131,45 +141,54 @@ const UniversityCard = ({key}) => {
                   className="text-gray-base hover:text-gray-base"
                 >
                   Send Message
-                </a></button>
-
+                </a>
+              </button>
             </div>
-          
-
-
-
           </div>
         </div>
       </div>
 
-      <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg  mx-auto my-10" key={key}>
-      <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
-        <img src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg" alt="" className="w-full h-full object-cover" />
-      </div>
-
+      <div
+        className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg  mx-auto my-10"
+        key={key}
+      >
+        <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
+          <img
+            src="https://i4.hurimg.com/i/hurriyet/75/1200x675/55eb4d2af018fbb8f8b86f12.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         <div>
           <p className="font-bold text-xl mb-2">SAKARYA UNIVERSITY</p>
           <p className="text-xs mb-2">
-          Adres Esentepe Kampüsü 54187 Serdivan / SAKARYA
+            Adres Esentepe Kampüsü 54187 Serdivan / SAKARYA
           </p>
 
-          <svg className="h-4 w-4 text-gray-400 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#0D0D0D"></path>
-
+          <svg
+            className="h-4 w-4 text-gray-400 inline-block"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+              fill="#0D0D0D"
+            ></path>
           </svg>
           <p className="ml-1 text-sm text-gray-500 inline-block">Sakarya</p>
 
-
-
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
-
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">
+                1 Faculties
+              </p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">
+                2 Departments
+              </p>
 
               <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base   hover:bg-red-retro hover:text-gray">
-
                 <div className="pt-1 m-0.5">
                   <svg
                     className="fill-gray-base"
@@ -181,17 +200,10 @@ const UniversityCard = ({key}) => {
                   </svg>
                 </div>
 
-
-
                 <div>(352)-444-9977</div>
-
-
               </button>
 
-
-
-
-              <button className='text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base  hover:bg-red-retro hover:text-gray-base '>
+              <button className="text-xs mr-4 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base  hover:bg-red-retro hover:text-gray-base ">
                 <a
                   href=""
                   target="_blank"
@@ -199,16 +211,11 @@ const UniversityCard = ({key}) => {
                   className="text-gray-base hover:text-gray-base"
                 >
                   Send Message
-                </a></button>
-
+                </a>
+              </button>
             </div>
-         
-
-
           </div>
         </div>
-
-
       </div>
     </>
   );

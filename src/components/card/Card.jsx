@@ -1,7 +1,21 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import useInfoCalls from "../../hooks/useInfoCalls";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Card1 = () => {
+
+  const  departments  = useSelector((state) => state.info);
+  const { getDepartments } = useInfoCalls();
+
+
+useEffect(()=>{
+  getDepartments()
+},[])
+
+  console.log(departments)
+
   return (
     <>
       <div className="row mt-16 justify-center-center">
