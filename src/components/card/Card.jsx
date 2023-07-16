@@ -1,7 +1,7 @@
 import React from "react";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 import image1 from "../../images/medical.jpg";
 import image2 from "../../images/dna.jpg";
 import image3 from "../../images/lab.jpg";
@@ -123,7 +123,7 @@ const Card1 = () => {
                     {" "}
                     Compare{" "}
                     <svg
-                      fill="#f2e9e9"
+                      fill="#fff"
                       width="20px"
                       className="ml-2"
                       height="20px"
@@ -222,7 +222,7 @@ const Card1 = () => {
                     <div className="relative">
                       <h2
                         className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg"
-                        title="New York"
+                        title="Department"
                       >
                         Biology
                       </h2>

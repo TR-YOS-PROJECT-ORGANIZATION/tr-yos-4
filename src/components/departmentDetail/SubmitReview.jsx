@@ -149,7 +149,7 @@ const SubmitReview = () => {
                 <section className="text-gray-600 body-font">
                   <div className="container px-5 py-5 mx-auto">
                     <div className="flex flex-wrap -m-4 text-center">
-                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+                      <div className="p-4 w-full">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                           <svg
                             width="640px"
@@ -164,7 +164,7 @@ const SubmitReview = () => {
                           <p className="leading-relaxed">3</p>
                         </div>
                       </div>
-                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+                      <div className="p-4 w-full">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                           <svg
                             height="800px"
@@ -197,7 +197,7 @@ const SubmitReview = () => {
                           <p className="leading-relaxed">4,240</p>
                         </div>
                       </div>
-                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+                      <div className="p-4 w-full">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                           <svg
                             width="640px"
@@ -212,7 +212,7 @@ const SubmitReview = () => {
                           <p className="leading-relaxed">1</p>
                         </div>
                       </div>
-                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+                      <div className="p-4 w-full">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                           {/* className="text-indigo-500 w-12 h-12 mb-3 inline-block" */}
                           <svg
@@ -238,8 +238,8 @@ const SubmitReview = () => {
             <div className="border rounded-xl m-5 w-2/3 grid grid-col-2">
               <div className="m-5 col-span-2">
                 <h2 className="text-2xl font-bold">Submit Review</h2>
-                <div className="flex gap-3 mt-3 col-span-2 lg:col-span-1">
-                  <div className=" w-1/2 md:text-xl">
+                <div className="flex gap-3 mt-3 col-span-2">
+                  <div className="w-1/2 md:text-xl">
                     <label htmlFor="" className="">
                       Name
                     </label>
@@ -250,7 +250,7 @@ const SubmitReview = () => {
                       placeholder="Your Name"
                     />
                   </div>
-                  <div className="w-1/2 col-span-2 sm:text-xl sm:col-span-1 lg:col-span-1">
+                  <div className="w-1/2">
                     <label htmlFor="" className="">
                       Email
                     </label>
@@ -262,7 +262,7 @@ const SubmitReview = () => {
                     />
                   </div>
                 </div>
-                <div className="flex gap-3 mt-4 col-span-2 lg:col-span-1">
+                <div className="flex gap-3 mt-4">
                   <div className="w-1/2  md:text-xl">
                     <label htmlFor="" className="">
                       Phone No.
@@ -274,7 +274,7 @@ const SubmitReview = () => {
                       placeholder="Your Contact"
                     />
                   </div>
-                  <div className=" w-1/2 col-span-2 sm:text-xl lg:col-span-1">
+                  <div className=" w-1/2">
                     <p className="">Ratting</p>
                     <select className="w-full rounded-md mt-2 border-2  focus:border-green-light focus:ring-green-dark p-3 md:text-xl">
                       <option value="option1">1 : Very Poor</option>
@@ -287,7 +287,7 @@ const SubmitReview = () => {
                 </div>
                 <div className=" w-5/12"></div>
                 <div className="mt-5 ">
-                  <div className=" w-full flex flex-col col-span-2 md:text-xl">
+                  <div className=" w-full flex flex-col md:text-xl">
                     <label htmlFor="" className="">
                       Your Message
                     </label>
@@ -300,7 +300,7 @@ const SubmitReview = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-span-2 text-center">
+              <div className="text-center">
                 <button className="bg-red-base hover:bg-red-retro rounded-lg  p-4 m-5 text-white-500">
                   Submit Review
                 </button>
@@ -320,7 +320,7 @@ const SubmitReview = () => {
           </div>
           <section className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-2xl">
             <div className="container px-3 py-3 mx-auto flex justify-center">
-              <div className="lg:w-2/3 lg:mx-6 flex flex-col items-center">
+              <div className="flex flex-col items-center">
                 <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
                   <img
                     src="https://www.tr-yös.com/test/6984215678913/logo/acibadem-mehmet-ali-aydinlar-universitesi-logo-1683762727498.png"
