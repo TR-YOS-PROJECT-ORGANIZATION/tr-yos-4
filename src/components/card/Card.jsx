@@ -1,43 +1,98 @@
 // eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import image1 from "../../images/medical.jpg";
+import image2 from "../../images/dna.jpg";
+import image3 from "../../images/lab.jpg";
+import image4 from "../../images/biology.jpg";
+
+function Arrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "inline-flex",
+        background: "red",
+        position: "fixed",
+      }}
+      onClick={onClick}
+    />
+  );
+}
 
 const Card1 = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <Arrow />,
+    prevArrow: <Arrow />,
+  };
   return (
     <>
       <div className="xs:m-0 xs:px-0 xs:w-full sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20">
         {/* component */}
-        <div className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6">
+        <div className="xs:m-0 sm:m-auto mx-auto w-full max-w-sm pt-6 ml-6">
           <a
             href="#"
             className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
           >
             <div className="rounded-lg border shadow-2xl">
               <div className="relative flex h-60 justify-center overflow-hidden rounded-lg">
-                <div className="w-full transform transition-transform duration-500">
-                  <img
-                    src="https://img.freepik.com/free-photo/3d-medical-background-with-blood-cells-dna-strand_1048-8978.jpg?w=740&t=st=1689094148~exp=1689094748~hmac=f4a33381ca740cd4292284b75b4c3d8ec7f841fd3d1295a031efd418896826cc"
-                    alt=""
-                  />
-                  <div class="absolute top-0 right-0 px-2 py-1 m-2 rounded-md shadow-2xl">
-                    <svg
-                      width="20px"
-                      height="20px"
-                      viewBox="0 0 24 24"
-                      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-                      xmlns="http://www.w3.org/2000/svg"
-                      version="1.1"
-                      xmlns:cc="http://creativecommons.org/ns#"
-                      xmlns:dc="http://purl.org/dc/elements/1.1/"
-                    >
-                      <g transform="translate(0 -1028.4)">
-                        <path
-                          d="m7 1031.4c-1.5355 0-3.0784 0.5-4.25 1.7-2.3431 2.4-2.2788 6.1 0 8.5l9.25 9.8 9.25-9.8c2.279-2.4 2.343-6.1 0-8.5-2.343-2.3-6.157-2.3-8.5 0l-0.75 0.8-0.75-0.8c-1.172-1.2-2.7145-1.7-4.25-1.7z"
-                          fill="#e74c3c"
-                        />
-                      </g>
-                    </svg>
-                  </div>
+                <div className="relative w-full">
+                  <Slider {...settings}>
+                    <div className="relative">
+                      <img
+                        className="w-full h-[25rem] object-cover"
+                        src={image1}
+                      ></img>
+                    </div>
+                    <div className="relative">
+                      <img
+                        className="w-full h-[25rem] object-cover"
+                        src={image2}
+                      ></img>
+                    </div>
+                    <div className="relative">
+                      <img
+                        className="w-full h-[25rem] object-cover"
+                        src={image3}
+                      ></img>
+                    </div>
+                    <div className="relative">
+                      <img
+                        className="w-full h-[25rem] object-cover"
+                        src={image4}
+                      ></img>
+                    </div>
+                  </Slider>
+                </div>
+
+                <div class="absolute top-0 right-0 px-2 py-1 m-2 rounded-md shadow-2xl">
+                  <svg
+                    width="20px"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                    xmlns="http://www.w3.org/2000/svg"
+                    version="1.1"
+                    xmlns:cc="http://creativecommons.org/ns#"
+                    xmlns:dc="http://purl.org/dc/elements/1.1/"
+                  >
+                    <g transform="translate(0 -1028.4)">
+                      <path
+                        d="m7 1031.4c-1.5355 0-3.0784 0.5-4.25 1.7-2.3431 2.4-2.2788 6.1 0 8.5l9.25 9.8 9.25-9.8c2.279-2.4 2.343-6.1 0-8.5-2.343-2.3-6.157-2.3-8.5 0l-0.75 0.8-0.75-0.8c-1.172-1.2-2.7145-1.7-4.25-1.7z"
+                        fill="#e74c3c"
+                      />
+                    </g>
+                  </svg>
                 </div>
               </div>
               <div className="">
@@ -45,7 +100,7 @@ const Card1 = () => {
                   <div className="flex text-left ml-3">
                     <div className="relative">
                       <h2
-                        className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg"
+                        className="text-base font-medium text-gray-800 md:text-lg"
                         title="New York"
                       >
                         Biology
@@ -69,6 +124,16 @@ const Card1 = () => {
                   <span className="inline-flex select-none rounded-lg bg-red-500 px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm">
                     {" "}
                     Compare{" "}
+                    <svg
+                      fill="#f2e9e9"
+                      width="20px"
+                      className="ml-2"
+                      height="20px"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M1,8A1,1,0,0,1,2,7H9.586L7.293,4.707A1,1,0,1,1,8.707,3.293l4,4a1,1,0,0,1,0,1.414l-4,4a1,1,0,1,1-1.414-1.414L9.586,9H2A1,1,0,0,1,1,8Zm21,7H14.414l2.293-2.293a1,1,0,0,0-1.414-1.414l-4,4a1,1,0,0,0,0,1.414l4,4a1,1,0,0,0,1.414-1.414L14.414,17H22a1,1,0,0,0,0-2Z" />
+                    </svg>
                   </span>
                 </div>
                 <div className="mt-2 ml-3 mr-3 flex justify-between border-b border-t border-gray-200 pb-3 pt-3">
@@ -182,6 +247,16 @@ const Card1 = () => {
                   <span className="inline-flex select-none rounded-lg bg-red-500 px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm">
                     {" "}
                     Compare{" "}
+                    <svg
+                      fill="#f2e9e9"
+                      width="20px"
+                      className="ml-2"
+                      height="20px"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M1,8A1,1,0,0,1,2,7H9.586L7.293,4.707A1,1,0,1,1,8.707,3.293l4,4a1,1,0,0,1,0,1.414l-4,4a1,1,0,1,1-1.414-1.414L9.586,9H2A1,1,0,0,1,1,8Zm21,7H14.414l2.293-2.293a1,1,0,0,0-1.414-1.414l-4,4a1,1,0,0,0,0,1.414l4,4a1,1,0,0,0,1.414-1.414L14.414,17H22a1,1,0,0,0,0-2Z" />
+                    </svg>
                   </span>
                 </div>
                 <div className="mt-2 ml-3 mr-3 flex justify-between border-b border-t border-gray-200 pb-3 pt-3">
@@ -295,6 +370,16 @@ const Card1 = () => {
                   <span className="inline-flex select-none rounded-lg bg-red-500 px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm">
                     {" "}
                     Compare{" "}
+                    <svg
+                      fill="#f2e9e9"
+                      width="20px"
+                      className="ml-2"
+                      height="20px"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M1,8A1,1,0,0,1,2,7H9.586L7.293,4.707A1,1,0,1,1,8.707,3.293l4,4a1,1,0,0,1,0,1.414l-4,4a1,1,0,1,1-1.414-1.414L9.586,9H2A1,1,0,0,1,1,8Zm21,7H14.414l2.293-2.293a1,1,0,0,0-1.414-1.414l-4,4a1,1,0,0,0,0,1.414l4,4a1,1,0,0,0,1.414-1.414L14.414,17H22a1,1,0,0,0,0-2Z" />
+                    </svg>
                   </span>
                 </div>
                 <div className="mt-2 ml-3 mr-3 flex justify-between border-b border-t border-gray-200 pb-3 pt-3">
@@ -408,6 +493,16 @@ const Card1 = () => {
                   <span className="inline-flex select-none rounded-lg bg-red-500 px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm">
                     {" "}
                     Compare{" "}
+                    <svg
+                      fill="#f2e9e9"
+                      width="20px"
+                      className="ml-2"
+                      height="20px"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M1,8A1,1,0,0,1,2,7H9.586L7.293,4.707A1,1,0,1,1,8.707,3.293l4,4a1,1,0,0,1,0,1.414l-4,4a1,1,0,1,1-1.414-1.414L9.586,9H2A1,1,0,0,1,1,8Zm21,7H14.414l2.293-2.293a1,1,0,0,0-1.414-1.414l-4,4a1,1,0,0,0,0,1.414l4,4a1,1,0,0,0,1.414-1.414L14.414,17H22a1,1,0,0,0,0-2Z" />
+                    </svg>
                   </span>
                 </div>
                 <div className="mt-2 ml-3 mr-3 flex justify-between border-b border-t border-gray-200 pb-3 pt-3">
