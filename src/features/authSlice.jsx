@@ -13,17 +13,18 @@ const authSlice = createSlice({
       state.error = false;
     },
     registerSuccess: (state, { payload }) => {
-      state.currentUser = payload?.name;
+      state.currentUser = payload?.user?.name;
       state.error = false;
     },
     fetchFail: (state) => {
       state.error = true;
     },
     loginSuccess: (state, { payload }) => {
-      state.currentUser = payload?.user?.username;
+      state.currentUser = payload?.user?.userID;
     },
     logoutSuccess: (state) => {
       state.currentUser = null;
+      state.loading = false;
     },
   },
 });

@@ -1,20 +1,27 @@
 import React from "react";
 import backgroundImage from "../images/university.jpg";
-import UniversityCard from "../components/card/UniversityCard";
 import university from "../images/university.jpg";
 import { useEffect } from "react";
 import useInfoCalls from "../hooks/useInfoCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFail, fetchStart, getUniSuccess } from "../features/infoSlice";
 import axios from "axios";
+import UniCard from "../components/card/UniCard";
 
 const UniversitiesPage = () => {
+
   const { getUni } = useInfoCalls();
-  const{ univercities} = useSelector((state) => state.info);
+  const {univercities} = useSelector((state )=> state.info);
 
   useEffect(() => {
     getUni();
   }, []);
+
+
+  const uni = univercities?.slice(178,-1)
+
+
+
 
   console.log(univercities);
 
@@ -31,9 +38,22 @@ const UniversitiesPage = () => {
               You can find all universities and departments in this list.
             </h2>
           </div>
-        </div>{" "}
-      { univercities &&  <UniversityCard univercities={univercities} />}
+        </div>
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-2">
+        {  
+      uni?.map((item)=>
+        <div key={item.id}>
+        <UniCard item={item}  />
+
+        </div>
+      ) }
+        </div>
+    
+
+
+    
       </div>
+
     </>
   );
 };
