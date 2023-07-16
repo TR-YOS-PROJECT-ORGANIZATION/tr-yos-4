@@ -23,7 +23,7 @@ const SliderPage = () => {
     prevArrow: <Arrow />
   };
   return (
-    <div>
+    <div className="mt-32">
       <Slider {...settings}>
         <div className="relative">
           <img className="w-full h-[25rem] object-cover" src="images/uni1.jpg"></img>
