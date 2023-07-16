@@ -8,6 +8,7 @@ import "../components/departmentComponents/departments.css";
 import Hamburger from "hamburger-react";
 import { useState } from "react";
 import OneCard from "../components/card/OneCard";
+import SubmitReview from "../components/departmentDetail/SubmitReview";
 
 function Departments() {
   const [isOpen, setOpen] = useState(false);
@@ -81,6 +82,7 @@ function Departments() {
               <OneCard />
               <OneCard />
               <OneCard />
+              <SubmitReview />
             </div>
           </div>
         </div>

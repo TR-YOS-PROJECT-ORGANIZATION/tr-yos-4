@@ -5,6 +5,7 @@ import Footer from '../footer/Footer';
 import Departments from '../pages/Departments';
 import UniversitiesPage from '../pages/UniversitiesPage'
 import Navbar from '../components/Navbar';
+import DepartmentDetail from '../components/departmentDetail/DepartmentDetail';
 
 
 
@@ -19,6 +20,7 @@ const AppRouter = () => {
                 <Route path='Departments' element={<Departments />}></Route>
                 <Route path='Universities' element={<UniversitiesPage/>}></Route>
                 <Route path='about' element={<Footer/>}></Route>
+                <Route path='departmentDetail' element={<DepartmentDetail/>}></Route>
 
                 
 

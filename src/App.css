@@ -23,3 +23,8 @@ button.slick-arrow.slick-prev {
   height: 50px !important;
   border: 5px solid blue !important;
 }
+
+.slick-prev:before, .slick-next:before {
+  color: red;
+}
+
