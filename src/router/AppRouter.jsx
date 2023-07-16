@@ -9,6 +9,7 @@ import DepartmentDetail from '../components/departmentDetail/DepartmentDetail';
 
 
 
+
 const AppRouter = () => {
   return (
     <div >

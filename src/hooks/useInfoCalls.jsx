@@ -10,6 +10,7 @@ import axios from "axios";
 const useInfoCalls = () => {
   const dispatch = useDispatch();
 
+
   //!------------- GET CALLS ----------------
 
   const getUni = async () => {
@@ -24,7 +25,9 @@ const useInfoCalls = () => {
       dispatch(fetchFail());
       console.log(error);
     }
+
   };
+
 
   const getDepartments = async () => {
     dispatch(fetchStart());

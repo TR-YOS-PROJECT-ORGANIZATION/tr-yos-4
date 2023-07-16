@@ -8,12 +8,14 @@ const infoSlice = createSlice({
     departments:null,
     cities:null,
     error: false,
+    loading:false
   },
 
   
   reducers: {
     fetchStart: (state) => {
       state.error = false;
+      state.loading = true;
     },
     getUniSuccess: (state, { payload }) => {
       state.univercities = payload;
