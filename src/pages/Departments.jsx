@@ -12,6 +12,7 @@ import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 
 import OneCard from "../components/card/OneCard";
+import SubmitReview from "../components/departmentDetail/SubmitReview";
 
 
 function Departments() {
@@ -101,6 +102,7 @@ function Departments() {
               <OneCard />
               <OneCard />
               <OneCard />
+              <SubmitReview />
             </div>
           </div>
         </div>
