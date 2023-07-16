@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect } from "react";
 import ImageSection from "../components/departmentComponents/ImageSection";
 import Selections from "../components/departmentComponents/Selections";
 import PriceForm from "../components/departmentComponents/PriceForm";
@@ -7,24 +7,43 @@ import "../components/departmentComponents/departments.css";
 // import Card from "../components/card/Card";
 import Hamburger from "hamburger-react";
 import { useState } from "react";
+
+import useInfoCalls from "../hooks/useInfoCalls";
+import { useSelector } from "react-redux";
+
 import OneCard from "../components/card/OneCard";
 import SubmitReview from "../components/departmentDetail/SubmitReview";
 
+
 function Departments() {
+  const { departments } = useSelector((state) => state.info);
   const [isOpen, setOpen] = useState(false);
+
+
+  const { getDepartments } = useInfoCalls();
+
+  useEffect(() => {
+    getDepartments();
+  }, []);
+
+  console.log(departments);
+
 
   return (
     <>
       <div className="flex flex-col">
         <ImageSection />
+
         {/*  */}
         <div className="xs:flex-col xs:justify-center xs:items-center md:flex md:flex-row md:justify-center md:items-start">
           <div className="xs:visible xs:flex xs:justify-center xs:items-center sm:visible md:hidden">
             <button>     
+
               <Hamburger
                 label="show menu"
                 toggled={isOpen}
                 toggle={setOpen}
+
                 direction="right"
               />
               {
@@ -57,6 +76,7 @@ function Departments() {
               method="POST"
               className="border shadow-lg md:mt-36 rounded-lg "
             >
+
               <Selections />
               <PriceForm />
               <div className="flex flex-row mx-2 justify-end sm:justify-start md:justify-end departments_search_button_container">
@@ -91,4 +111,7 @@ function Departments() {
     </>
   );
 }
+
+
 export default Departments;
+

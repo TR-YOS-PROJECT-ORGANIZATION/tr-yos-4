@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { useState } from "react";
-import SignInModal from "./SignInModal";
-import SignUpModal from "./SignUpModal";
+import SignInModal from "./modals/SignInModal";
+import SignUpModal from "./modals/SignUpModal";
 import langIcon from "../images/global.png";
 
 const Navbar = () => {
@@ -13,8 +13,6 @@ const Navbar = () => {
 
   const currentUser = false;
 
-  console.log(isOpen);
-
   return (
     <div>
       <SignInModal
@@ -23,9 +21,10 @@ const Navbar = () => {
         setOpenUpModal={setOpenUpModal}
       />
       <SignUpModal
-        open={openUpModal}
-        setOpen={setOpenUpModal}
-        setOpenUpModal={setOpenModal}
+            open={openModal}
+        setOpen={setOpenModal}
+        setOpenUpModal={setOpenUpModal}
+      
       />
 
       <div className="relative">
@@ -77,8 +76,8 @@ const Navbar = () => {
           </div>
 
           <div className="w-full h-[82px] max-[600]:h-96 flex items-center justify-end max-[sm]:justify-center">
-            <button className="mx-5 shadow-md">
-              <img src={langIcon}></img>
+            <button className="mx-5 shadow-md w-10">
+              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs3a7kIGk4YKVkY3AjdXnWh_o2bFXDeA8vWlnS6wFZcw&s'></img>
             </button>
             <div className="flex gap-4 h-[51px]  pr-[100px] max-[600px]:h-96">
               <button
