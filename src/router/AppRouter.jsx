@@ -22,10 +22,6 @@ const AppRouter = () => {
                 <Route path='Universities' element={<UniversitiesPage/>}></Route>
                 <Route path='about' element={<Footer/>}></Route>
                 <Route path='departmentDetail' element={<DepartmentDetail/>}></Route>
-
-                
-
-                
             </Routes>
             <Footer/>
         </BrowserRouter>

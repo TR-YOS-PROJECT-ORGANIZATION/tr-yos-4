@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { registerSuccess, fetchFail,fetchStart } from '../features/authSlice';
+import { registerSuccess, fetchFail,fetchStart, loginSuccess } from '../features/authSlice';
 import { useDispatch } from 'react-redux';
 import { toastErrorNotify,toastSuccessNotify } from '../helper/ToastNotify';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 const useAuthCall = () => {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const BASE_URL = 'https://www.tr-yös.com/api/v1/users/';
 
@@ -16,13 +15,13 @@ const useAuthCall = () => {
     const register = async (userInfo) => {
         dispatch(fetchStart());
         try {
-          const { data } = await axios.post(
+          const { data } = await axios.put(
             `${BASE_URL}newuser2.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
           userInfo
           );
           dispatch(registerSuccess(data));
           toastSuccessNotify("Register performed");
-          navigate('/');
+         
 
         } catch (error) {
           console.log(error);
@@ -37,11 +36,12 @@ const useAuthCall = () => {
         try {
           const { data } = await axios.post(
             `${BASE_URL}login.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
-          userInfo
+            userInfo,
+            { headers: { "Content-Type": "multipart/form-data" }}
           );
           dispatch(loginSuccess(data));
           toastSuccessNotify("Login performed");
-          navigate('/');
+         
 
         } catch (error) {
           console.log(error);

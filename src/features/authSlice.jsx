@@ -20,7 +20,7 @@ const authSlice = createSlice({
       state.error = true;
     },
     loginSuccess: (state, { payload }) => {
-      state.currentUser = payload?.user?.username;
+      state.currentUser = payload?.name;
     },
     logoutSuccess: (state) => {
       state.currentUser = null;
