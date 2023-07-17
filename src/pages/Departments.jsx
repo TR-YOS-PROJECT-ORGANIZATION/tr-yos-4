@@ -12,7 +12,7 @@ import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 
 import OneCard from "../components/card/OneCard";
-import SubmitReview from "../components/departmentDetail/SubmitReview";
+import SubmitReview from "../pages/departmentDetail/SubmitReview";
 
 
 function Departments() {
