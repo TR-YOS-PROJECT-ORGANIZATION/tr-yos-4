@@ -6,6 +6,7 @@ const infoSlice = createSlice({
   initialState: {
     univercities:null,
     departments:null,
+    cities:null,
     error: false,
   },
 
@@ -21,6 +22,10 @@ const infoSlice = createSlice({
     getDepSuccess:(state, { payload })=> {
       state.departments = payload;
     },
+
+    getCitiesSuccess:(state, { payload })=> {
+      state.cities = payload;
+    },
   
     fetchFail: (state) => {
       state.error = true;
@@ -34,7 +39,8 @@ export const {
   fetchStart,
   getUniSuccess,
   fetchFail,
-  getDepSuccess
+  getDepSuccess,
+  getCitiesSuccess
   
 } = infoSlice.actions;
 
