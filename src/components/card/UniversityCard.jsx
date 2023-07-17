@@ -1,6 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const UniversityCard = ({key,univercities}) => {
+
+  const {t} = useTranslation();
+
   return (
 
     <>
@@ -27,8 +31,8 @@ const UniversityCard = ({key,univercities}) => {
 
           <div className="my-4">
             <div className="flex">
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 Faculties</p>
-              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 Departments</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">1 {t("Faculties")}</p>
+              <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-gray-base ">2 {t("Departments")}</p>
 
 
               <button className=" flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-red-warm text-gray-base hover:bg-red-retro  hover:text-gray">
@@ -61,7 +65,7 @@ const UniversityCard = ({key,univercities}) => {
                   rel="noopener noreferrer"
                   className="text-gray-base hover:text-gray-base"
                 >
-                  Send Message
+                  {t("Send Message")}
                 </a></button>
 
             </div>

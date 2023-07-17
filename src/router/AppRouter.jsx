@@ -5,7 +5,8 @@ import Footer from '../footer/Footer';
 import Departments from '../pages/Departments';
 import UniversitiesPage from '../pages/UniversitiesPage'
 import Navbar from '../components/Navbar';
-import Register from '../components/Register';
+
+// import Register from '../components/Register';
 
 
 

@@ -12,13 +12,12 @@ import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 
 import OneCard from "../components/card/OneCard";
+import { t } from "i18next";
 
 
 function Departments() {
   const { departments } = useSelector((state) => state.info);
   const [isOpen, setOpen] = useState(false);
-
-
   const { getDepartments } = useInfoCalls();
 
   useEffect(() => {
@@ -36,7 +35,7 @@ function Departments() {
         {/*  */}
         <div className="xs:flex-col xs:justify-center xs:items-center md:flex md:flex-row md:justify-center md:items-start">
           <div className="xs:visible xs:flex xs:justify-center xs:items-center sm:visible md:hidden">
-            <button>     
+            <button>
 
               <Hamburger
                 label="show menu"
@@ -60,14 +59,14 @@ function Departments() {
                           name="searchDepartments"
                           type="submit"
                         >
-                          Search
+                          {t("Search")}
                         </button>
                       </div>
                     </form>
                   </div>
                 )
               }
-              
+
             </button>
           </div>
           <div className="xs:hidden sm:hidden md:visible md:flex md:flex-row md:justify-center md:items-center md:ml-3">
@@ -84,16 +83,18 @@ function Departments() {
                   name="searchDepartments"
                   type="submit"
                 >
-                  Search
+                   {t("Search")}
                 </button>
               </div>
             </form>
+
+
           </div>
           <div className="xs:flex xs:flex-col xs:justify-center xs:items-center sm:flex sm:flex-col sm:justify-center sm:items-center md:px-0">
             <div className="row mt-16 justify-center-center">
               <div className="sec-heading center">
-                <h2 className="font-extrabold text-2xl">Our Departments</h2>
-                <p>Our Departments Our Departments Our Departments...</p>
+                <h2 className="font-extrabold text-2xl">{t("Our Departments")}</h2>
+                <p>{t("Our Departments")} {t("Our Departments")} {t("Our Departments")}...</p>
               </div>
             </div>
             <div className="xs:m-0 xs:px-0 sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 md:px-4 lg:grid-cols-3">

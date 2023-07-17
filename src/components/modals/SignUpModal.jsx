@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import SignUpForm from "../SignUpForm";
+// import SignUpForm from "../SignUpForm";
 import { Formik } from "formik";
 
 const SignUpModal = (props) => {

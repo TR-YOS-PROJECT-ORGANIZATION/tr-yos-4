@@ -2,6 +2,7 @@
 import React from "react";
 import Select from "react-select";
 import "./selections.css";
+import { t } from "i18next";
 
 function Selections() {
   const cities = [
@@ -36,7 +37,7 @@ function Selections() {
             htmlFor="selectCity"
             className="w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 md:mb-2"
           >
-            Select City
+            {t("Select City")}
           </label>
           <div className="relative rounded-md text-left">
             <Select
@@ -55,7 +56,7 @@ function Selections() {
             htmlFor="selectUniversity"
             className="w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900 md:mb-2"
           >
-            Select University
+            {t("Select University")}
           </label>
           <div className="relative rounded-md text-left">
             <Select
@@ -73,7 +74,7 @@ function Selections() {
             htmlFor="selectDepartment"
             className=" w-full py-1.5 pr-10 text-sm text-left font-medium leading-6 text-gray-900"
           >
-            Select Department
+            {t("Select Department")}
           </label>
           <div className=" relative rounded-md text-left">
             <Select
