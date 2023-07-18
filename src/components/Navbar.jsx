@@ -4,14 +4,36 @@ import Hamburger from "hamburger-react";
 import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
-import langIcon from "../images/global.png";
+
+import { useSelector } from "react-redux";
+import useAuthCall from "../hooks/useAuthCall";
+import MyMenu from "./MyMenu";
+
+import { useTranslation } from "react-i18next";
+
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openUpModal, setOpenUpModal] = useState(false);
 
+
+  const {currentUser} = useSelector((state) => state?.auth);
+
+  const { logout } = useAuthCall();
+
+
+
+  console.log(currentUser);
+
   const currentUser = false;
+
+
+  const { t, i18n } = useTranslation();
+
+  const clickHandle = lng => {
+    i18n.changeLanguage(lng)
+  }
 
   return (
     <div>
@@ -21,10 +43,11 @@ const Navbar = () => {
         setOpenUpModal={setOpenUpModal}
       />
       <SignUpModal
-            open={openModal}
+
+        openUp={openUpModal}
         setOpen={setOpenModal}
         setOpenUpModal={setOpenUpModal}
-      
+
       />
 
       <div className="relative">
@@ -64,40 +87,55 @@ const Navbar = () => {
             </button>
             <div className="lg:visible md:invisible sm:invisible sr-only sm:not-sr-only md:m-0 sm:m-0 ">
               <Link to="/" className="mx-3">
-                Home
+                {t("Home")}
               </Link>
               <Link to="/Universities" className="mx-3">
-                Universities
+                {t("Universities")}
               </Link>
               <Link to="/Departments" className="mx-3">
-                Departments
+                {t("Departments")}
               </Link>
             </div>
           </div>
 
-          <div className="w-full h-[82px] max-[600]:h-96 flex items-center justify-end max-[sm]:justify-center">
-            <button className="mx-5 shadow-md w-10">
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs3a7kIGk4YKVkY3AjdXnWh_o2bFXDeA8vWlnS6wFZcw&s'></img>
-            </button>
-            <div className="flex gap-4 h-[51px]  pr-[100px] max-[600px]:h-96">
-              <button
-                onClick={() => setOpenModal(!openModal)}
-                className="border rounded lg:text-sm md:text-sm max-sm:text-xs sm:text-xs  hover:bg-red-retro bg-red-warm text-white-cream px-4 py-2 shadow-md "
-              >
-                Sign In
-              </button>
-              <button
-                onClick={() => setOpenUpModal(!openUpModal)}
-                className="border rounded lg:text-sm md:text-sm max-sm:text-xs  sm:text-xs max-[600px]:bg-cyan-800  hover:bg-red-retro bg-red-warm	 text-white-cream px-4 py-2 shadow-md"
-              >
-                Sign Up
+
+              {currentUser ? (
+            <div className="flex m-2 ">
+               
+               <MyMenu />
+           
+              <button className="border rounded lg:text-sm md:text-sm max-sm:text-xs mr-10 sm:text-xs  hover:bg-red-retro bg-red-warm	 text-white-cream px-4 py-2 shadow-md"
+               onClick={logout}>
+                Logout
               </button>
             </div>
-          </div>
+          ) : (
+            <div className="w-full h-[82px] max-[600]:h-96 flex items-center justify-end max-[sm]:justify-center">
+              <button className="mx-5 shadow-md w-10">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs3a7kIGk4YKVkY3AjdXnWh_o2bFXDeA8vWlnS6wFZcw&s"></img>
+              </button>
+              <div className="flex gap-4 h-[51px]  pr-[100px] max-[600px]:h-96">
+                <button
+                  onClick={() => setOpenModal(!openModal)}
+                  className="border rounded lg:text-sm md:text-sm max-sm:text-xs sm:text-xs  hover:bg-red-retro bg-red-warm text-white-cream px-4 py-2 shadow-md "
+                >
+                  Sign In
+                </button>
+                <button
+                  onClick={() => setOpenUpModal(!openUpModal)}
+                  className="border rounded lg:text-sm md:text-sm max-sm:text-xs  sm:text-xs  hover:bg-red-retro bg-red-warm	 text-white-cream px-4 py-2 shadow-md"
+                >
+                  Sign Up
+                </button>
+                
+              </div>
+            </div>
+          )}
         </nav>
+         
       </div>
     </div>
   );
 };
 
-export default Navbar;
+

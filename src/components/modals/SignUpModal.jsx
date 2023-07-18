@@ -1,15 +1,49 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import SignUpForm from "../SignUpForm";
-import { Formik } from "formik";
+
+import { Formik, Field, Form } from "formik";
+import * as yup from "yup";
+import useAuthCall from "../../hooks/useAuthCall";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { toastErrorNotify, toastSuccessNotify } from "../../helper/ToastNotify";
+import { ErrorMessage } from "formik";
+
+export const registerSchema = yup.object().shape({
+  name: yup
+    .string()
+    .max(10, "name must have less than 10 chars")
+    .required("Please enter an username")
+    .nullable(),
+
+  email: yup.string(),
+
+  password1: yup
+    .string()
+    .required()
+    .min(8, "Password must have min 8 chars")
+    .max(16, "Password must have max 16 chars")
+    .matches(/\d+/, "Password must have a number")
+    .matches(/[a-z]+/, "Password must have a lowercase")
+    .matches(/[A-Z]+/, "Password must have an uppercase")
+    .matches(/[!,?{}><%&$#£+-.]+/, " Password must have a special char"),
+});
+
 
 const SignUpModal = (props) => {
+  const { currentUser } = useSelector((state) => state?.auth);
+  const { register } = useAuthCall();
+
+  // const copyDeployerWallet = () => {
+  //   navigator.clipboard.writeText("0x49AE63056b3A0Be0B166813eE687309Ab653c07c");
+  //   // toast.success("Address copied");
+  // };
   return (
-    <Transition.Root show={props.open} as={Fragment}>
+    <Transition.Root show={props.openUp} as={Fragment}>
       <Dialog
         as="div"
         className="fixed z-50 inset-0 overflow-y-auto"
-        onClose={props.setOpen}
+        onClose={props.setOpenUpModal}
       >
         <div className="flex items-center justify-center min-h-screen  text-center text-white">
           <Transition.Child
@@ -41,92 +75,105 @@ const SignUpModal = (props) => {
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <div
-              className=" rounded-lg overflow-hidden transform transition-all bg-white-500 "
-              style={{
-                width: "512px",
-                height: "510px",
-                fontFamily: "Inter",
-                fontStyle: "Semi Bold",
-                borderRadius: "8px",
-                color: "#FFFFFF",
-                padding: "0 36px",
-                fontSize: "18px",
-                lineHeight: "21px",
-              }}
+              className="text-white-500 w-[500px] min-h-[450px] border-2 border-spacing-3 
+            border-red-950 outline outline-offset-4  p-5 rounded-lg overflow-hidden transform transition-all bg-white-500"
             >
-              {/* <div className="flex flex-col justify-start items-start text-left">
-                <div
-                  onClick={() => {
+              <p className="text-green-dark font-bold text-lg">Sign Up</p>
+              <div className="m-5 rounded items-start text-start">
+                <Formik
+                  initialValues={{
+                    email: "",
+                    name: "",
+                    password1: "",
+                    password2: "",
+                  }}
+                  validationSchema={registerSchema}
+                  onSubmit={(values, actions) => {
+                    register(values);
+                    actions.resetForm();
+                    actions.setSubmitting(false);
                     props.setOpen(false);
                   }}
-                  className="cursor-pointer flex w-full items-center justify-end mt-10"
                 >
-                  X
-                </div>
-                <div className="h-[60px] text-[50px] flex items-center justify-center w-full ">
-                  Sign Up
-                </div>
-                <div className="w-full flex flex-col items-center justify-center gap-4">
-                  <input
-                    className="w-full rounded bg-transparent h-[50px] p-2"
-                    placeholder="Your Name"
-                    type="text"
-                  />
-                  <input
-                    className="w-full rounded bg-transparent h-[50px] p-2"
-                    placeholder="Your Email"
-                    type="Email"
-                  />
-                </div>
+                  {({
+                    values,
+                    handleChange,
+                    errors,
+                    touched,
+                    handleBlur,
+                    isSubmitting,
+                   
+                    
+                  }) => (
+                    <Form>
+                      <div className="flex flex-col text-black ">
+                        <label htmlFor="name">Username</label>
 
-                <div className="w-full flex flex-col items-center justify-center gap-4">
-                  <input
-                    className="w-full rounded bg-transparent h-[50px] p-2"
-                    placeholder="Password"
-                    type="Password"
-                  />
-                  <input
-                    className="w-full rounded bg-transparent h-[50px] p-2"
-                    placeholder="Re Password"
-                    type="password"
-                  />
-                </div>
-                <div className="w-full ">
-                  <button className="w-full mt-4 h-[50px] rounded bg-blue-600 flex items-center justify-center ">
-                    Sing Up
-                  </button>
-                </div>
-                
-                <div className="border border-l-0 border-r-0 border-b-0 border-t-1 mt-6 w-full pt-4 flex text-center justify-center items-center text-[14px]">
-                  Have an account.
-                  <span
-                    className="cursor-pointer hover:text-blue-500 pl-2"
-                    onClick={() => {
-                      props.setOpen(false);
-                      props.setOpenUpModal(true);
-                    }}
-                  >
-                    Sign ln
-                  </span>
-                </div>
-              </div> */}
-              <Formik
-            initialValues={{
-              name: "",
-              email: "",
-              password1: "",
-            }}
-            onSubmit={(values, actions) => {
-              register({ ...values, password2: values.password1 });
-              actions.resetForm();
-              actions.setSubmitting(false);
-            }}
+                        <Field
+                          className="border border-green-dark my-3 p-1 rounded"
+                          id="name"
+                          name="name"
+                          placeholder="Enter your username"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.name}
+                        />
 
-            component={(props) => <SignUpForm {...props} />}
-            
+                        <ErrorMessage name="name" />
 
-          >
-          </Formik>
+                        <label htmlFor="email">Email</label>
+
+                        <Field
+                          className="border border-green-dark my-3 p-1 rounded"
+                          id="email"
+                          name="email"
+                          placeholder="Enter your e-mail"
+                          type="email"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.email}
+                          variant="outlined"
+                        />
+                        <ErrorMessage name="email" />
+
+                        <label htmlFor="password">Password</label>
+
+                        <Field
+                          className="border border-green-dark my-3 p-1 rounded"
+                          id="password1"
+                          name="password1"
+                          placeholder="Enter your password"
+                          type="password"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.password1}
+                        />
+                        <ErrorMessage name="password1" />
+
+                        <Field
+                          className="border border-green-dark my-3 p-1 rounded"
+                          id="password2"
+                          name="password2"
+                          placeholder="Enter your password"
+                          type="password"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.password2}
+                        />
+                      
+
+                        <button
+                          className="bg-red-warm mx-auto rounded py-3 mt-5 text-white-500 w-48"
+                          type="submit"
+                          disabled={isSubmitting}
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
             </div>
           </Transition.Child>
         </div>

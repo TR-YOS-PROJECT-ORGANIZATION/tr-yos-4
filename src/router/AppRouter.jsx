@@ -5,7 +5,9 @@ import Footer from '../footer/Footer';
 import Departments from '../pages/Departments';
 import UniversitiesPage from '../pages/UniversitiesPage'
 import Navbar from '../components/Navbar';
-import DepartmentDetail from '../components/departmentDetail/DepartmentDetail';
+import DepartmentDetail from '../pages/departmentDetail/DepartmentDetail'
+
+// import Register from '../components/Register';
 
 
 
@@ -22,10 +24,6 @@ const AppRouter = () => {
                 <Route path='Universities' element={<UniversitiesPage/>}></Route>
                 <Route path='about' element={<Footer/>}></Route>
                 <Route path='departmentDetail' element={<DepartmentDetail/>}></Route>
-
-                
-
-                
             </Routes>
             <Footer/>
         </BrowserRouter>

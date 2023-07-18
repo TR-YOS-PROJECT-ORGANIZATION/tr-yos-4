@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const WorkUs = () => {
+  const {t} = useTranslation();
   return (
     <>
       {/* Section: Design Block */}
@@ -12,12 +14,11 @@ const WorkUs = () => {
               <div className="mb-12 md:mt-12 lg:mt-0 lg:mb-0">
                 <div className="block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.17),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,56%,47%,1)] dark:shadow-black/20 md:px-12 lg:-mr-14 backdrop-blur-[30px]">
                   <h1 className="mt-2 mb-8 text-2xl  tracking-tight md:text-2xl xl:text-3xl">
-                    Are You Already <br /> Working With Us?
+                    {t("Are You Already")} <br /> {t("Working With Us?")}
                   </h1>
                   <p className="mb-20">
-                    At vero eos et accusamus et iusto odio dignissimos <br />{" "}
-                    ducimus qui blanditiis praesentium voluptatum <br />{" "}
-                    deleniti atque corrupti quos dolores et quas molestias
+                    {t("At vero eos et accusamus et iusto odio dignissimos")} <br />{" "}
+                    {t("ducimus qui blanditiis praesentium voluptatum")} <br />{" "}
                   </p>
                   <form>
                     <label
@@ -38,7 +39,7 @@ const WorkUs = () => {
                         type="submit"
                         className="text-white-cream absolute right-3.5 bottom-2.5 bg-red-warm  hover:bg-red-retro focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2"
                       >
-                        Subscribe
+                        {t("Subscribe")}
                       </button>
                     </div>
                   </form>
