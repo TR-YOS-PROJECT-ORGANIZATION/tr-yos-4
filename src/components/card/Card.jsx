@@ -12,6 +12,7 @@ function Arrow(props) {
   return (
     <div
       className={className}
+      id="ok"
       style={{
         ...style,
         display: "inline-flex",
@@ -40,7 +41,7 @@ const Card1 = () => {
         <div className="xs:m-0 sm:m-auto mx-auto w-full max-w-sm pt-6 ml-6">
           <a
             href="#"
-            className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
+            className="inline-block w-full transform transition-transform duration-300 ease-in-out"
           >
             <div className="rounded-lg border shadow-2xl">
               <div className="relative flex h-60 justify-center overflow-hidden rounded-lg">
@@ -51,6 +52,7 @@ const Card1 = () => {
                         className="w-full h-[25rem] object-cover"
                         src={image1}
                       ></img>
+
                     </div>
                     <div className="relative">
                       <img

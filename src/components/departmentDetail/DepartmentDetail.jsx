@@ -12,4 +12,4 @@ const DepartmentDetail = () => {
   )
 }
 
-export default DepartmentDetail
+export default DepartmentDetail;

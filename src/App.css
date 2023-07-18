@@ -28,3 +28,8 @@ button.slick-arrow.slick-prev {
   color: red;
 }
 
+#ok {
+  margin-top: -95px;
+  z-index: 10;
+
+}

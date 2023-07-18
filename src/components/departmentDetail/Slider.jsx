@@ -26,16 +26,16 @@ const SliderPage = () => {
     <div className="mt-32">
       <Slider {...settings}>
         <div className="relative">
-          <img className="w-full h-[25rem] object-cover" src="images/uni1.jpg"></img>
+          <img className="w-full h-[25rem] object-cover" src="../images/business.jpg"></img>
         </div>
         <div className="relative">
-          <img className="w-full h-[25rem] object-cover" src="images/uni3.jpg"></img>
+          <img className="w-full h-[25rem] object-cover" src="../images/work.jpg"></img>
         </div>
         <div className="relative">
-          <img className="w-full h-[25rem] object-cover" src="images/uni7.jpg"></img>
+          <img className="w-full h-[25rem] object-cover" src="../images/smilling.jpg"></img>
         </div>
         <div className="relative">
-          <img className="w-full h-[25rem] object-cover" src="images/uni4.jpg"></img>
+          <img className="w-full h-[25rem] object-cover" src="images/university.jpg"></img>
         </div>
       </Slider>
     </div>
