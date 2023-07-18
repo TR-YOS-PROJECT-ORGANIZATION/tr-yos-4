@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 
 
 const Navbar = () => {
+
   const [isOpen, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openUpModal, setOpenUpModal] = useState(false);
@@ -95,6 +96,9 @@ const Navbar = () => {
               </Link>
             </div>
           </div>
+
+          <button onClick={()=> clickHandle("tr")}>Tr</button>
+          <button onClick={()=> clickHandle("en")}>En</button>
 
 
               {currentUser ? (

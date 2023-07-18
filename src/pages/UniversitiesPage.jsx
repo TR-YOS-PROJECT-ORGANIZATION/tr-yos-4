@@ -12,12 +12,13 @@ import { useTranslation } from "react-i18next";
 
 const UniversitiesPage = () => {
   const { getUni } = useInfoCalls();
-  const{ univercities} = useSelector((state) => state.info);
+  const {univercities} = useSelector((state) => state.info);
   const {t} = useTranslation();
 
   useEffect(() => {
     getUni();
   }, []);
+
   const uni = univercities?.slice(178,-1)
   console.log(univercities);
   return (

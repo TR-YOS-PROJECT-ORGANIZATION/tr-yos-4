@@ -2,10 +2,10 @@
 import React from 'react'
 import i18next from 'i18next'
 
-function OneCard({key, item}) {
+function OneCard({ item}) {
 
     return (
-        <div key= {key} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
+        <div key={item.id} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
             <a
                 href="#"
                 className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
