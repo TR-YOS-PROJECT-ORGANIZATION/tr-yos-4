@@ -26,8 +26,6 @@ const Navbar = () => {
 
   console.log(currentUser);
 
-  const currentUser = false;
-
 
   const { t, i18n } = useTranslation();
 
@@ -137,5 +135,7 @@ const Navbar = () => {
     </div>
   );
 };
+
+export default Navbar;
 
 
