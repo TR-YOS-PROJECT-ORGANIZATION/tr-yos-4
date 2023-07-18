@@ -4,12 +4,12 @@ import image1 from "../images/studentG.jpg";
 import image2 from "../images/graduate.jpg";
 import Select from "react-select";
 import "../index.css";
-import Checks from "./departmentComponents/Checks";
-import Selections from "./departmentComponents/Selections";
+
 import { useTranslation } from "react-i18next";
 
+
 const Main = () => {
-  const {t} = useTranslation();
+
   const settings = {
     dots: true,
     infinite: true,

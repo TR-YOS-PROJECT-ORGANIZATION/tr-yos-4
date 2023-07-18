@@ -1,4 +1,6 @@
+
 import i18next from "i18next";
+
 import React from "react";
 const UniCard = ({ key,item }) => {
     console.log(item)
@@ -11,9 +13,11 @@ const UniCard = ({ key,item }) => {
         <img src={item.logo} alt="" className="w-full h-full object-cover" />
       </div>
       <div className="">
+
         <p className="font-bold text-xl mb-2">                                        {
                                         i18next.language== "tr" ? item.tr : item.en
                                         }</p>
+
         <p className="text-xs mb-2">
           {item.adress}
         </p>
@@ -28,9 +32,11 @@ const UniCard = ({ key,item }) => {
             fill="#0D0D0D"
           ></path>
         </svg>
+
         <p className="ml-1 text-sm text-gray-500 inline-block">                                        {
                                         i18next.language== "tr" ? item.tr : item.en
                                         }</p>
+
         <div className="my-4">
           <div className="flex">
             <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">

@@ -1,5 +1,5 @@
 import React from 'react'
-import SubmitReview from './SubmitReview'
+import SubmitReview from '../departmentDetail/SubmitReview'
 import Slider from '../departmentDetail/Slider'
 
 const DepartmentDetail = () => {

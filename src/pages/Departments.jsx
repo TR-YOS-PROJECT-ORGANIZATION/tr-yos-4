@@ -4,7 +4,7 @@ import ImageSection from "../components/departmentComponents/ImageSection";
 import Selections from "../components/departmentComponents/Selections";
 import PriceForm from "../components/departmentComponents/PriceForm";
 import "../components/departmentComponents/departments.css";
-// import Card from "../components/card/Card";
+
 import Hamburger from "hamburger-react";
 import { useState } from "react";
 
@@ -12,9 +12,11 @@ import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 
 import OneCard from "../components/card/OneCard";
+
 // eslint-disable-next-line no-unused-vars
 import i18next, { t } from "i18next";
-// import SubmitReview from "../components/departmentDetail/SubmitReview";
+ import SubmitReview from "../pages/departmentDetail/SubmitReview";
+
 
 
 function Departments() {

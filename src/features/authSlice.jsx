@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
   name: "auth",
@@ -13,20 +13,23 @@ const authSlice = createSlice({
       state.error = false;
     },
     registerSuccess: (state, { payload }) => {
-      state.currentUser = payload?.name;
+      state.currentUser = payload;
       state.error = false;
     },
     fetchFail: (state) => {
       state.error = true;
     },
     loginSuccess: (state, { payload }) => {
-      state.currentUser = payload?.user?.username;
+      state.currentUser = payload;
+
     },
     logoutSuccess: (state) => {
       state.currentUser = null;
+
     },
   },
 });
+
 
 export const {
   registerSuccess,
