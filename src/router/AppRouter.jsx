@@ -7,8 +7,6 @@ import UniversitiesPage from '../pages/UniversitiesPage'
 import Navbar from '../components/Navbar';
 import DepartmentDetail from '../pages/departmentDetail/DepartmentDetail'
 
-// import Register from '../components/Register';
-
 
 
 const AppRouter = () => {
@@ -16,7 +14,7 @@ const AppRouter = () => {
     <div >
 
         <BrowserRouter>
-            <Navbar />
+           <Navbar />
            
             <Routes>
                 <Route path='/' element={<HomePage/>}></Route>
