@@ -1,15 +1,17 @@
 import React from 'react';
 import axios from 'axios';
-import { registerSuccess, fetchFail,fetchStart, loginSuccess } from '../features/authSlice';
+import { registerSuccess, fetchFail,fetchStart, loginSuccess, logoutSuccess} from '../features/authSlice';
 import { useDispatch } from 'react-redux';
 import { toastErrorNotify,toastSuccessNotify } from '../helper/ToastNotify';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const useAuthCall = () => {
 
     const dispatch = useDispatch();
 
     const BASE_URL = 'https://www.tr-yös.com/api/v1/users/';
+
+   const navigate = useNavigate();
 
 
     const register = async (userInfo) => {
@@ -40,7 +42,9 @@ const useAuthCall = () => {
             { headers: { "Content-Type": "multipart/form-data" }}
           );
           dispatch(loginSuccess(data));
+          
           toastSuccessNotify("Login performed");
+          console.log(data)
          
 
         } catch (error) {
@@ -50,7 +54,15 @@ const useAuthCall = () => {
           toastErrorNotify("Login can not be performed");
         }
       };
-  return {register,login}
+
+      const logout = () => {
+        dispatch(logoutSuccess());
+        navigate('/');
+        toastSuccessNotify("Logout performed");
+      }
+
+     
+  return {register,login,logout}
   
 }
 

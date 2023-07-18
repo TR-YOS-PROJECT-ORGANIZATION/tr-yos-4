@@ -90,6 +90,7 @@ const SignUpModal = (props) => {
                     register(values);
                     actions.resetForm();
                     actions.setSubmitting(false);
+                    props.setOpen(false);
                   }}
                 >
                   {({

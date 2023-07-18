@@ -16,15 +16,15 @@ const infoSlice = createSlice({
       state.error = false;
     },
     getUniSuccess: (state, { payload }) => {
-      state.univercities = payload;
+      state.univercities = payload.univercities;
     },
 
     getDepSuccess:(state, { payload })=> {
-      state.departments = payload;
+      state.departments = payload.departments;
     },
 
     getCitiesSuccess:(state, { payload })=> {
-      state.cities = payload;
+      state.cities = payload.cities;
     },
   
     fetchFail: (state) => {

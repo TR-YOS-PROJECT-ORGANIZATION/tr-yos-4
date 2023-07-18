@@ -25,6 +25,7 @@ export const registerSchema = yup.object().shape({
 });
 
 const SignInModal = (props) => {
+
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state?.auth);
   const { login } = useAuthCall();
@@ -32,7 +33,6 @@ const SignInModal = (props) => {
   useEffect(() => {
     if (currentUser) {
       navigate("/");
-      toastSuccessNotify("Login Performed");
     }
   }, [currentUser]);
 
@@ -90,6 +90,8 @@ const SignInModal = (props) => {
                     navigate("/");
                     actions.resetForm();
                     actions.setSubmitting(false);
+                    props.setOpen(false);
+
 
                     console.log(values);
                   }}

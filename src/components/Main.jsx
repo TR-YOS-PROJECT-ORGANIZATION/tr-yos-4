@@ -4,8 +4,6 @@ import image1 from "../images/studentG.jpg";
 import image2 from "../images/graduate.jpg";
 import Select from "react-select";
 import "../index.css";
-import Checks from "./departmentComponents/Checks";
-import Selections from "./departmentComponents/Selections";
 
 const Main = () => {
   const settings = {
