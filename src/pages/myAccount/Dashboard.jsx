@@ -1,5 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 const Dashboard = () => {
+  const {currentUser, userInfo} = useSelector((state) => state?.auth);
+  getUserInfo(currentUser);
+  console.log(currentUser);
+  
   return (
     <div className="flex flex-col border justify-center p-6 mt-5 shadow-xl rounded-xl h-1/2 xs:w-full sm:px-12 ">
       <img
