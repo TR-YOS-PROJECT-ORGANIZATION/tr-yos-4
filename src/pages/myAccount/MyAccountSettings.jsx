@@ -1,6 +1,9 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 const MyAccountSettings = () => {
+  const {currentUser, userInfo} = useSelector((state) => state?.auth);
+  getUserInfo(currentUser);
+  console.log(currentUser);
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
       <div className="mt-2 p-5 ">
