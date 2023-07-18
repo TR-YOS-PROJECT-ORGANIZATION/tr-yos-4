@@ -12,20 +12,30 @@ import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 
 import OneCard from "../components/card/OneCard";
-import { t } from "i18next";
-import SubmitReview from "../components/departmentDetail/SubmitReview";
+// eslint-disable-next-line no-unused-vars
+import i18next, { t } from "i18next";
+// import SubmitReview from "../components/departmentDetail/SubmitReview";
 
 
 function Departments() {
-  const { departments } = useSelector((state) => state.info);
+  const { getDepartments, getCities } = useInfoCalls();
+  const { departments, cities } = useSelector((state) => state.info);
   const [isOpen, setOpen] = useState(false);
-  const { getDepartments } = useInfoCalls();
 
   useEffect(() => {
     getDepartments();
   }, []);
 
+  useEffect(()=>{
+    getCities();
+  }, []);
+
+  // const getUniById= uniById?.slice(200,-1)
   console.log(departments);
+
+  console.log(cities);
+
+
 
 
   return (
@@ -52,8 +62,16 @@ function Departments() {
                       method="POST"
                       className="border shadow-lg md:mt-36 rounded-lg "
                     >
-                      <Selections />
-                      <PriceForm />
+                      {
+                        cities?.map((item) =>
+                          <div key = {item.id}>
+                            <Selections item={item} />
+                            <PriceForm />
+                          </div>
+                        )
+                      }
+
+                      
                       <div className="flex flex-row mx-2 justify-end xs:justify-start xs:mx-0  sm:justify-start md:justify-end departments_search_button_container">
                         <button
                           className="sm:mx-0 block xs:float-left float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:px-auto md:w-full"
@@ -84,7 +102,7 @@ function Departments() {
                   name="searchDepartments"
                   type="submit"
                 >
-                   {t("Search")}
+                  {t("Search")}
                 </button>
               </div>
             </form>
@@ -99,11 +117,14 @@ function Departments() {
               </div>
             </div>
             <div className="xs:m-0 xs:px-0 sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 md:px-4 lg:grid-cols-3">
-              <OneCard />
-              <OneCard />
-              <OneCard />
-              <OneCard />
-              <SubmitReview />
+
+              {
+                departments?.map((item) =>
+                  <div key={item.id}>
+                    <OneCard item={item} />
+                  </div>
+                )}
+              {/* <SubmitReview /> */}
             </div>
           </div>
         </div>

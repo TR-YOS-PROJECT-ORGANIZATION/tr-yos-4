@@ -1,10 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
+import i18next from 'i18next'
 
-function OneCard() {
+function OneCard({key, item}) {
+
     return (
-
-        <div className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
+        <div key= {key} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
             <a
                 href="#"
                 className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
@@ -48,19 +49,22 @@ function OneCard() {
                                         className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg"
                                         title="New York"
                                     >
-                                        Biology
+                                {item.facultyCode}
                                     </h2>
                                     <p
                                         className="mt-2 line-clamp-1 text-sm text-gray-800"
                                         title="Faculty"
                                     >
-                                        Faculty Of Arts And Science
+                                        
                                     </p>
                                     <p
                                         className="mt-2 line-clamp-1 text-sm text-gray-800"
                                         title="University"
                                     >
-                                        ABDULLAH GUL UNIVERSITY
+                                        {
+                                        i18next.language== "tr" ? item.tr : item.en
+                                        }
+                                        
                                     </p>
                                 </div>
                             </div>

@@ -3,14 +3,18 @@ import React from "react";
 import Select from "react-select";
 import "./selections.css";
 import { t } from "i18next";
+import axios from "axios";
 
-function Selections() {
+function Selections({key, item}) {
+  
   const cities = [
     { value: "ankara", label: "Ankara" },
     { value: "izmir", label: "İzmir" },
     { value: "istanbul", label: "İstanbul" },
     { value: "bursa", label: "Bursa" },
   ];
+
+  console.log(cities)
 
   const departments = [
     { value: "ethnology", label: "Ethnology" },
