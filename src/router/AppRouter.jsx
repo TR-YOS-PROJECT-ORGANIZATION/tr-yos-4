@@ -7,6 +7,8 @@ import UniversitiesPage from '../pages/UniversitiesPage'
 import Navbar from '../components/Navbar';
 import DepartmentDetail from '../components/departmentDetail/DepartmentDetail';
 
+// import Register from '../components/Register';
+
 
 
 const AppRouter = () => {
