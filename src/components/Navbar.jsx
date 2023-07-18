@@ -4,14 +4,19 @@ import Hamburger from "hamburger-react";
 import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
+
 import { useSelector } from "react-redux";
 import useAuthCall from "../hooks/useAuthCall";
 import MyMenu from "./MyMenu";
+
+import { useTranslation } from "react-i18next";
+
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openUpModal, setOpenUpModal] = useState(false);
+
 
   const {currentUser} = useSelector((state) => state?.auth);
 
@@ -21,6 +26,15 @@ const Navbar = () => {
 
   console.log(currentUser);
 
+  const currentUser = false;
+
+
+  const { t, i18n } = useTranslation();
+
+  const clickHandle = lng => {
+    i18n.changeLanguage(lng)
+  }
+
   return (
     <div>
       <SignInModal
@@ -29,9 +43,11 @@ const Navbar = () => {
         setOpenUpModal={setOpenUpModal}
       />
       <SignUpModal
+
         openUp={openUpModal}
         setOpen={setOpenModal}
         setOpenUpModal={setOpenUpModal}
+
       />
 
       <div className="relative">
@@ -71,18 +87,19 @@ const Navbar = () => {
             </button>
             <div className="lg:visible md:invisible sm:invisible sr-only sm:not-sr-only md:m-0 sm:m-0 ">
               <Link to="/" className="mx-3">
-                Home
+                {t("Home")}
               </Link>
               <Link to="/Universities" className="mx-3">
-                Universities
+                {t("Universities")}
               </Link>
               <Link to="/Departments" className="mx-3">
-                Departments
+                {t("Departments")}
               </Link>
             </div>
           </div>
 
-          {currentUser ? (
+
+              {currentUser ? (
             <div className="flex m-2 ">
                
                <MyMenu />
@@ -115,9 +132,10 @@ const Navbar = () => {
             </div>
           )}
         </nav>
+         
       </div>
     </div>
   );
 };
 
-export default Navbar;
+

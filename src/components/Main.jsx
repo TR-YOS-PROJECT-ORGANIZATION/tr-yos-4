@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useTransition } from "react";
 import Slider from "react-slick";
 import image1 from "../images/studentG.jpg";
 import image2 from "../images/graduate.jpg";
 import Select from "react-select";
 import "../index.css";
 
+import { useTranslation } from "react-i18next";
+
+
 const Main = () => {
+
   const settings = {
     dots: true,
     infinite: true,
@@ -48,8 +52,7 @@ const Main = () => {
           ></img>
           <div className="absolute bg-gray-base bg-opacity-50 leading-relaxed text-center left-20 text-2xl w-96  top-0 rounded pt-64 h-[45rem]">
             <p className="leading-relaxed italic font-serif font-bold">
-              Join this educational journey <br></br> with us <br></br> and
-              discover your data!
+              {t("Join this educational journey")} <br></br> {t("with us")} <br></br> {t("and discover your data!")}
             </p>
           </div>
         </div>
@@ -58,8 +61,7 @@ const Main = () => {
           <img className="w-full h-[45rem] object-cover mt-20" src={image2}></img>
           <div className="absolute bg-gray-base bg-opacity-50  text-center  left-20 text-2xl w-96  top-0 rounded pt-64 h-[45rem]">
             <p className=" leading-relaxed italic font-serif font-bold">
-              Join this educational journey <br></br> with us <br></br> and
-              discover your data!
+            {t("Join this educational journey")} <br></br> {t("with us")} <br></br> {t("and discover your data!")}
             </p>
           </div>
         </div>
@@ -100,7 +102,7 @@ const Main = () => {
 
         <div>
           <button className="mx-auto  max-sm:m-12 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-24 font-bold rounded  hover:bg-red-retro shadow-md">
-            Search
+            {t("Search")}
           </button>
         </div>
       </div>

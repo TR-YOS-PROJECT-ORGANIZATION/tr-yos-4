@@ -1,16 +1,17 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
+import i18next from 'i18next'
 
-function OneCard() {
+function OneCard({key, item}) {
+
     return (
-
-        <div className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2">
+        <div key= {key} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
             <a
                 href="#"
                 className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
             >
                 <div className="rounded-lg border shadow-2xl">
-                    <div className="relative flex h-60 justify-center overflow-hidden rounded-lg">
+                    <div className="relative flex h-60 justify-center overflow-hidden rounded-lg order">
                         <div className="w-full transform transition-transform duration-500">
                             <img
                                 src="https://img.freepik.com/free-photo/3d-medical-background-with-blood-cells-dna-strand_1048-8978.jpg?w=740&t=st=1689094148~exp=1689094748~hmac=f4a33381ca740cd4292284b75b4c3d8ec7f841fd3d1295a031efd418896826cc"
@@ -48,19 +49,22 @@ function OneCard() {
                                         className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg"
                                         title="New York"
                                     >
-                                        Biology
+                                {item.facultyCode}
                                     </h2>
                                     <p
                                         className="mt-2 line-clamp-1 text-sm text-gray-800"
                                         title="Faculty"
                                     >
-                                        Faculty Of Arts And Science
+                                        
                                     </p>
                                     <p
                                         className="mt-2 line-clamp-1 text-sm text-gray-800"
                                         title="University"
                                     >
-                                        ABDULLAH GUL UNIVERSITY
+                                        {
+                                        i18next.language== "tr" ? item.tr : item.en
+                                        }
+                                        
                                     </p>
                                 </div>
                             </div>

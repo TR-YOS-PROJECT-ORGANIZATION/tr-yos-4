@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+
 import { Formik, Field, Form } from "formik";
 import * as yup from "yup";
 import useAuthCall from "../../hooks/useAuthCall";
@@ -27,6 +28,7 @@ export const registerSchema = yup.object().shape({
     .matches(/[A-Z]+/, "Password must have an uppercase")
     .matches(/[!,?{}><%&$#£+-.]+/, " Password must have a special char"),
 });
+
 
 const SignUpModal = (props) => {
   const { currentUser } = useSelector((state) => state?.auth);

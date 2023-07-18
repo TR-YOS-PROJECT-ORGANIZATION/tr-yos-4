@@ -1,12 +1,16 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+const {t} = useTranslation();
+
+
   return (
     <div className="flex flex-col text-center  bg-gray-900">
       <div className="flex justify-evenly mt-8">
         <div className="text-left">
           <h2 className="mb-6 text-md font-semibold text-gray-400 uppercase dark:text-white">
-            ADDRESS
+            {t("ADDRESS")}
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
@@ -43,54 +47,54 @@ const Footer = () => {
         </div>
         <div>
           <h2 className="mb-6 text-md font-semibold text-gray-400 uppercase dark:text-white">
-            NAVIGATIONS
+            {t("NAVIGATIONS")}
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
               <a href="#" className="hover:underline">
-                About Us
+                {t("About Us")}
               </a>
             </li>
             <li className="mb-4">
               <a href="#" className="hover:underline">
-                FAQs Page
+                {t("FAQs Page")}
               </a>
             </li>
             <li className="mb-4">
               <a href="#" className="hover:underline">
-                Checkout
+                {t("Checkout")}
               </a>
             </li>
             <li className="mb-4">
               <a href="#" className="hover:underline">
-                Contact
+                {t("Contact")}
               </a>
             </li>
             <li className="mb-4">
               <a href="#" className="hover:underline">
-                Blog
+                {t("Blog")}
               </a>
             </li>
           </ul>
         </div>
         <div className="text-right">
           <h2 className="mb-6 text-md font-semibold text-gray-400 uppercase dark:text-white ">
-            MY ACCOUNT
+            {t("MY ACCOUNT")}
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
               <a href="#" className="hover:underline border rounded p-1">
-                My Profile
+                {t("My Profile")}
               </a>
             </li>
             <li className="mb-4">
               <a href="#" className="hover:underline border rounded p-1">
-                My Account
+                {t("My Account")}
               </a>
             </li>
             <li className="mb-4">
               <a href="#" className="hover:underline border rounded p-1">
-                Favorites
+                {t("Favorites")}
               </a>
             </li>
           </ul>
@@ -99,7 +103,7 @@ const Footer = () => {
 
       <div className="py-7 my-5 mx-auto w-[50%] border-t">
         <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
-          © 2023 .All Rights Reserved.
+          © 2023 {t("All Rights Reserved.")}
         </span>
       </div>
     </div>

@@ -2,7 +2,6 @@ import React from 'react';
 
 const UniversityCard = ({key,univercities}) => {
   return (
-
     <>
     <div className='flex'>
  <div className="max-w-5xl container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md shadow-lg mx-auto my-10" key={key}>
@@ -144,4 +143,5 @@ const UniversityCard = ({key,univercities}) => {
     </>
   );
 };
+
 export default UniversityCard;
