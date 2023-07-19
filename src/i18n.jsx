@@ -4,19 +4,6 @@ import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 
-// const resources = {
-//   tr: {
-//     translation: {
-//       tTr,
-//     },
-//   },
-
-//   en: {
-//     translation: {
-//       tEn,
-//     },
-//   },
-// };
 
 i18next.use(initReactI18next).
   use(Backend).use(LanguageDetector).
@@ -24,7 +11,7 @@ i18next.use(initReactI18next).
   init({
     // resources,
     fallbackLng: 'en',
-    debug: true,
+    debug: false,
   });
 
 export default i18next;

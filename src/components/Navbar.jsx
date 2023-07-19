@@ -4,7 +4,8 @@ import Hamburger from "hamburger-react";
 import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
-
+import eng from "../images/Icon-en.png"
+import turk from "../images/Icon-tr.png";
 import { useSelector } from "react-redux";
 import useAuthCall from "../hooks/useAuthCall";
 import MyMenu from "./MyMenu";
@@ -19,7 +20,7 @@ const Navbar = () => {
   const [openUpModal, setOpenUpModal] = useState(false);
 
 
-  const {currentUser} = useSelector((state) => state?.auth);
+  const { currentUser } = useSelector((state) => state?.auth);
 
   const { logout } = useAuthCall();
 
@@ -96,45 +97,42 @@ const Navbar = () => {
               </Link>
             </div>
           </div>
-
-          <button onClick={()=> clickHandle("tr")}>Tr</button>
-          <button onClick={()=> clickHandle("en")}>En</button>
-
-
-              {currentUser ? (
+          {currentUser ? (
             <div className="flex m-2 ">
-               
-               <MyMenu />
-           
+
+              <MyMenu />
+
               <button className="border rounded lg:text-sm md:text-sm max-sm:text-xs mr-10 sm:text-xs  hover:bg-red-retro bg-red-warm	 text-white-cream px-4 py-2 shadow-md"
-               onClick={logout}>
-                Logout
+                onClick={logout}>
+                {t("Logout")}
               </button>
             </div>
           ) : (
             <div className="w-full h-[82px] max-[600]:h-96 flex items-center justify-end max-[sm]:justify-center">
-              <button className="mx-5 shadow-md w-10">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs3a7kIGk4YKVkY3AjdXnWh_o2bFXDeA8vWlnS6wFZcw&s"></img>
-              </button>
+
               <div className="flex gap-4 h-[51px]  pr-[100px] max-[600px]:h-96">
                 <button
                   onClick={() => setOpenModal(!openModal)}
                   className="border rounded lg:text-sm md:text-sm max-sm:text-xs sm:text-xs  hover:bg-red-retro bg-red-warm text-white-cream px-4 py-2 shadow-md "
                 >
-                  Sign In
+                  {t("Sign In")}
                 </button>
                 <button
                   onClick={() => setOpenUpModal(!openUpModal)}
                   className="border rounded lg:text-sm md:text-sm max-sm:text-xs  sm:text-xs  hover:bg-red-retro bg-red-warm	 text-white-cream px-4 py-2 shadow-md"
                 >
-                  Sign Up
+                  {t("Sign Up")}
                 </button>
-                
+
+              </div>
+              <div className="flex">
+                <button className="mx-1" onClick={() => clickHandle("tr")}><img src={turk} className="w-10"></img></button>
+                <button className="mx-1" onClick={() => clickHandle("en")}><img src={eng} className="w-10"></img></button>
               </div>
             </div>
           )}
         </nav>
-         
+
       </div>
     </div>
   );
