@@ -39,13 +39,13 @@ const Navbar = () => {
       <SignInModal
         open={openModal}
         setOpen={setOpenModal}
-        setOpenUpModal={setOpenUpModal}
       />
       <SignUpModal
 
         openUp={openUpModal}
-        setOpen={setOpenModal}
-        setOpenUpModal={setOpenUpModal}
+        setOpenUp={setOpenUpModal}
+        
+        
 
       />
 
