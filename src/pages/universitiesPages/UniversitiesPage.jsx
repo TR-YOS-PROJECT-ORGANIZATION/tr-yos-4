@@ -1,24 +1,24 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 // import backgroundImage from "../images/university.jpg";
-import university from "../images/university.jpg";
+import university from "../../images/university.jpg";
 import { useEffect } from "react";
-import useInfoCalls from "../hooks/useInfoCalls";
+import useInfoCalls from "../../hooks/useInfoCalls";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFail, fetchStart, getUniSuccess } from "../features/infoSlice";
+import { fetchFail, fetchStart, getUniSuccess } from "../../features/infoSlice";
 import axios from "axios";
-import UniCard from "../components/card/UniCard"
+import UniCard from "../../components/card/UniCard"
 import { useTranslation } from "react-i18next";
+import Pagination from "./Pagination";
 
 const UniversitiesPage = () => {
   const { getUni } = useInfoCalls();
-  const {univercities} = useSelector((state) => state.info);
+  const{ univercities} = useSelector((state) => state.info);
   const {t} = useTranslation();
 
   useEffect(() => {
     getUni();
   }, []);
-
   const uni = univercities?.slice(178,-1)
   console.log(univercities);
   return (
@@ -40,10 +40,11 @@ const UniversitiesPage = () => {
       uni?.map((item)=>
         <div key={item.id}>
         <UniCard item={item}  />
-        </div>
+       
+        </div> 
       ) }
         </div>
-      </div>
+      </div><Pagination/>
     </>
   );
 };
