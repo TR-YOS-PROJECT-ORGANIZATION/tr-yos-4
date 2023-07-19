@@ -1,11 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
 import i18next from 'i18next'
+import { useTranslation } from 'react-i18next';
 
-function OneCard({key, item}) {
-
+function OneCard({ item }) {
+  const { t } = useTranslation();
     return (
-        <div key= {key} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
+        <div key={item.id} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
             <a
                 href="#"
                 className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
@@ -71,8 +72,7 @@ function OneCard({key, item}) {
                         </div>
                         <div className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2">
                             <span className="inline-flex select-none rounded-lg bg-red-500 px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm">
-                                {" "}
-                                Compare{" "}
+                            {t("Compare")}
                             </span>
                         </div>
                         <div className="mt-2 ml-3 mr-3 flex justify-between border-b border-t border-gray-200 pb-3 pt-3">

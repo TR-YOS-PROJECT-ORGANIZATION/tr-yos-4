@@ -11,11 +11,10 @@ import { useState } from "react";
 import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 
-import OneCard from "../components/card/OneCard";
+import OneCard from '../components/card/OneCard'
 
 // eslint-disable-next-line no-unused-vars
 import i18next, { t } from "i18next";
- import SubmitReview from "../pages/departmentDetail/SubmitReview";
 
 
 
@@ -24,21 +23,16 @@ function Departments() {
   const { departments, cities } = useSelector((state) => state.info);
   const [isOpen, setOpen] = useState(false);
 
-  useEffect(() => {
-    getDepartments();
-  }, []);
+   useEffect(() => {
+     getDepartments();
+     getCities();
+   }, []);
 
-  useEffect(()=>{
-    getCities();
-  }, []);
 
   // const getUniById= uniById?.slice(200,-1)
   console.log(departments);
 
   console.log(cities);
-
-
-
 
   return (
     <>
@@ -126,7 +120,6 @@ function Departments() {
                     <OneCard item={item} />
                   </div>
                 )}
-              {/* <SubmitReview /> */}
             </div>
           </div>
         </div>

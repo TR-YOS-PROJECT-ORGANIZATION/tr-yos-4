@@ -4,6 +4,7 @@ import {
   fetchStart,
   getUniSuccess,
   getDepSuccess,
+  getCitiesSuccess
 } from "../features/infoSlice";
 import axios from "axios";
 
