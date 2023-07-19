@@ -2,7 +2,7 @@ const Pagination = () => {
 
 return (
     <div class="clearfix">
-        <div class="hint-text">Showing <b>5</b> out of <b>40</b> entries</div>
+        <div class="hint-text">Showing <b>15</b> out of <b>14</b> entries</div>
         <ul class="pagination">
             <li class="page-item disabled"><a href="#">Previous</a></li>
             <li class="page-item "><a href="/homePage" class="page-link">1</a></li>
