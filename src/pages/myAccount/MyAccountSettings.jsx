@@ -1,9 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import useInfoCalls from "../../hooks/useInfoCalls";
+import { useEffect } from "react";
+
+
 const MyAccountSettings = () => {
-  const {currentUser, userInfo} = useSelector((state) => state?.auth);
+  const { currentUser} = useSelector((state) => state?.auth);
+  const{userInfo}= useSelector((state) => state?.info);
+const {getUserInfo}= useInfoCalls() 
+
+useEffect(() => {
+  getUserInfo();
+}, []);
+
   getUserInfo(currentUser);
   console.log(currentUser);
+
+
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
       <div className="mt-2 p-5 ">
