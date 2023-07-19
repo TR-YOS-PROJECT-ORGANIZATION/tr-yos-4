@@ -4,10 +4,13 @@ import Hamburger from "hamburger-react";
 import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
+
 import eng from "../images/Icon-en.png"
 import turk from "../images/Icon-tr.png";
+
+
+
 import { useSelector } from "react-redux";
-import useAuthCall from "../hooks/useAuthCall";
 import MyMenu from "./MyMenu";
 
 import { useTranslation } from "react-i18next";
@@ -22,7 +25,7 @@ const Navbar = () => {
 
   const { currentUser } = useSelector((state) => state?.auth);
 
-  const { logout } = useAuthCall();
+ 
 
 
 
@@ -40,13 +43,13 @@ const Navbar = () => {
       <SignInModal
         open={openModal}
         setOpen={setOpenModal}
-        setOpenUpModal={setOpenUpModal}
       />
       <SignUpModal
 
         openUp={openUpModal}
-        setOpen={setOpenModal}
-        setOpenUpModal={setOpenUpModal}
+        setOpenUp={setOpenUpModal}
+        
+        
 
       />
 
@@ -110,6 +113,24 @@ const Navbar = () => {
           ) : (
             <div className="w-full h-[82px] max-[600]:h-96 flex items-center justify-end max-[sm]:justify-center">
 
+          <div className="flex">
+          <button className="mx-1" onClick={()=> clickHandle("tr")}><img src={turk} className="w-14"></img></button>
+          <button className="mx-1" onClick={()=> clickHandle("en")}><img src={eng} className="w-14"></img></button>
+
+          </div>
+
+
+
+              {currentUser ? (
+            <div className="flex m-2 ">
+               
+               <MyMenu />
+           
+           
+            </div>
+          ) : (
+            <div className="w-full h-[82px] max-[600]:h-96 flex items-center justify-end max-[sm]:justify-center">
+             
               <div className="flex gap-4 h-[51px]  pr-[100px] max-[600px]:h-96">
                 <button
                   onClick={() => setOpenModal(!openModal)}
