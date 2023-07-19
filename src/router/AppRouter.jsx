@@ -3,12 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from '../pages/HomePage';
 import Footer from '../footer/Footer';
 import Departments from '../pages/Departments';
-import UniversitiesPage from '../pages/UniversitiesPage'
+import UniversitiesPage from '../pages/universitiesPages/UniversitiesPage'
 import Navbar from '../components/Navbar';
-import DepartmentDetail from '../pages/departmentDetail/DepartmentDetail'
-
-
-
+import DepartmentDetail from '../pages/departmentDetail/DepartmentDetail';
+import MyProfile from "../pages/myAccount/MyProfile";
 const AppRouter = () => {
   return (
     <div >
@@ -22,9 +20,11 @@ const AppRouter = () => {
                 <Route path='Universities' element={<UniversitiesPage/>}></Route>
                 <Route path='about' element={<Footer/>}></Route>
                 <Route path='departmentDetail' element={<DepartmentDetail/>}></Route>
+                <Route path="myProfile" element={<MyProfile/>}></Route>
             </Routes>
             <Footer/>
         </BrowserRouter>
+
     </div>
   )
 }
