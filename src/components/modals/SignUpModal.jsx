@@ -5,9 +5,8 @@ import { Formik, Field, Form } from "formik";
 import * as yup from "yup";
 import useAuthCall from "../../hooks/useAuthCall";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { toastErrorNotify, toastSuccessNotify } from "../../helper/ToastNotify";
 import { ErrorMessage } from "formik";
+import close from '../../images/close.png'
 
 export const registerSchema = yup.object().shape({
   name: yup
@@ -34,6 +33,8 @@ const SignUpModal = (props) => {
   const { currentUser } = useSelector((state) => state?.auth);
   const { register } = useAuthCall();
 
+
+
   // const copyDeployerWallet = () => {
   //   navigator.clipboard.writeText("0x49AE63056b3A0Be0B166813eE687309Ab653c07c");
   //   // toast.success("Address copied");
@@ -43,9 +44,9 @@ const SignUpModal = (props) => {
       <Dialog
         as="div"
         className="fixed z-50 inset-0 overflow-y-auto"
-        onClose={props.setOpenUpModal}
+        onClose={props.setOpenUp}
       >
-        <div className="flex items-center justify-center min-h-screen  text-center text-white">
+        <div className="flex items-center justify-center min-h-screen  text-center text-white ">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -76,8 +77,13 @@ const SignUpModal = (props) => {
           >
             <div
               className="text-white-500 w-[500px] min-h-[450px] border-2 border-spacing-3 
-            border-red-950 outline outline-offset-4  p-5 rounded-lg overflow-hidden transform transition-all bg-white-500"
+            border-red-950 outline outline-offset-4  p-5 rounded-lg overflow-hidden transform transition-all bg-white-500 relative"
             >
+            <button onClick={()=>props.setOpenUp(false)}>
+            <img src={close} className=" absolute right-5"></img>
+
+            </button>
+
               <p className="text-green-dark font-bold text-lg">Sign Up</p>
               <div className="m-5 rounded items-start text-start">
                 <Formik
@@ -92,7 +98,7 @@ const SignUpModal = (props) => {
                     register(values);
                     actions.resetForm();
                     actions.setSubmitting(false);
-                    props.setOpen(false);
+                    props.setOpenUp(false);
                   }}
                 >
                   {({

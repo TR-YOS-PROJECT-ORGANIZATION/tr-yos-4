@@ -1,6 +1,6 @@
 import React from "react";
 import Dashboard from "./Dashboard";
-import MyAccount from "./MyAccount";
+import MyAccountSettings from "./MyAccountSettings";
 
 const MyProfile = () => {
   return (
@@ -12,7 +12,7 @@ const MyProfile = () => {
         <p className="text-4xl font-bold p-5">My Account</p>
         <div className="flex justify-center h-full md:w-full xs:w-full xs:flex-col xs:items-center">
           <Dashboard />
-          <MyAccount />
+          <MyAccountSettings />
         </div>
       </div>
     </div>
