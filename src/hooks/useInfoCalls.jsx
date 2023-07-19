@@ -70,7 +70,7 @@ const useInfoCalls = () => {
     }
   };
 
-  return { getUni, getDepartments, getCities, };
+  return { getUni, getDepartments, getCities, getUserInfo };
 };
 
 export default useInfoCalls;
