@@ -4,19 +4,12 @@ import {
   fetchStart,
   getUniSuccess,
   getDepSuccess,
-
 getUserInfoSuccess,
-
-  getCitiesSuccess
-
 } from "../features/infoSlice";
 import axios from "axios";
-
 const useInfoCalls = () => {
   const dispatch = useDispatch();
-
   //!------------- GET CALLS ----------------
-
   const getUni = async () => {
     dispatch(fetchStart());
     try {
@@ -30,7 +23,6 @@ const useInfoCalls = () => {
       console.log(error);
     }
   };
-
   const getDepartments = async () => {
     dispatch(fetchStart());
     try {
@@ -44,7 +36,6 @@ const useInfoCalls = () => {
       console.log(error);
     }
   };
-
   const getCities = async () => {
     dispatch(fetchStart());
     try {
@@ -72,10 +63,6 @@ const useInfoCalls = () => {
       console.log(error);
     }
   };
-
   return { getUni, getDepartments, getCities, getUserInfo };
 };
-
 export default useInfoCalls;
-
-
