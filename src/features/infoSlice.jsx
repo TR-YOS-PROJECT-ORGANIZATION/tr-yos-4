@@ -38,7 +38,11 @@ const infoSlice = createSlice({
       state.cities = payload;
 
     },
-  
+     
+    getUserInfoSuccess:(state,{ payload})=>{
+      state.userInfo = payload;
+    }
+  ,
     fetchFail: (state) => {
       state.loading= false;
       state.error = true;
@@ -53,7 +57,8 @@ export const {
   getUniSuccess,
   fetchFail,
   getDepSuccess,
-  getCitiesSuccess
+  getCitiesSuccess,
+  getUserInfoSuccess
   
 } = infoSlice.actions;
 
