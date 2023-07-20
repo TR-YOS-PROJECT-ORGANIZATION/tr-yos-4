@@ -2,6 +2,8 @@
 import i18next from "i18next";
 
 import React from "react";
+
+
 const UniCard = ({ key,item }) => {
     console.log(item)
   return (
@@ -59,6 +61,7 @@ const UniCard = ({ key,item }) => {
               <div>(352)-444-9977</div>
             </button>
           </div>
+    
         </div>{" "}
       </div>{" "}
     </div>
