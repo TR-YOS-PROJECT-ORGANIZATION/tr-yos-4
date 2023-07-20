@@ -1,3 +1,5 @@
+
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const infoSlice = createSlice({
@@ -56,3 +58,4 @@ export const {
 } = infoSlice.actions;
 
 export default infoSlice.reducer;
+
