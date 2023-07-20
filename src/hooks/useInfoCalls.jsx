@@ -4,7 +4,8 @@ import {
   fetchStart,
   getUniSuccess,
   getDepSuccess,
-getUserInfoSuccess,
+  getUserInfoSuccess,
+  getCitiesSuccess
 } from "../features/infoSlice";
 import axios from "axios";
 const useInfoCalls = () => {

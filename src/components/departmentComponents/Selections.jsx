@@ -5,7 +5,7 @@ import "./selections.css";
 import { useTranslation } from "react-i18next";
 
 
-function Selections({key, item}) {
+function Selections( ) {
 
   const { t } = useTranslation();
 
