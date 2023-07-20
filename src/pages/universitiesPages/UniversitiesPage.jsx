@@ -10,12 +10,10 @@ import axios from "axios";
 import UniCard from "../../components/card/UniCard"
 import { useTranslation } from "react-i18next";
 import Pagination from "./Pagination";
-
 const UniversitiesPage = () => {
   const { getUni } = useInfoCalls();
   const{ univercities} = useSelector((state) => state.info);
   const {t} = useTranslation();
-
   useEffect(() => {
     getUni();
   }, []);
@@ -40,8 +38,7 @@ const UniversitiesPage = () => {
       uni?.map((item)=>
         <div key={item.id}>
         <UniCard item={item}  />
-       
-        </div> 
+        </div>
       ) }
         </div>
       </div><Pagination/>
