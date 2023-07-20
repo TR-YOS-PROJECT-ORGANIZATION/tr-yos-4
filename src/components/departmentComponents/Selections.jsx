@@ -1,12 +1,15 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect } from "react";
 import Select from "react-select";
 import "./selections.css";
-import { t } from "i18next";
-import axios from "axios";
+import { useTranslation } from "react-i18next";
+
 
 function Selections({key, item}) {
-  
+
+  const { t } = useTranslation();
+
+
   const cities = [
     { value: "ankara", label: "Ankara" },
     { value: "izmir", label: "İzmir" },

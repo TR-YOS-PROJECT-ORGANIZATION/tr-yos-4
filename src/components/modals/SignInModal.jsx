@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { ErrorMessage } from "formik";
 import { toastErrorNotify, toastSuccessNotify } from "../../helper/ToastNotify";
 import * as yup from "yup";
+import close from '../../images/close.png'
 
 export const registerSchema = yup.object().shape({
   email: yup.string(),
@@ -29,6 +30,7 @@ const SignInModal = (props) => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state?.auth);
   const { login } = useAuthCall();
+  const open = props.setOpen
 
   useEffect(() => {
     if (currentUser) {
@@ -76,7 +78,12 @@ const SignInModal = (props) => {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="text-white-500 w-[500px] min-h-[450px] border-2 border-spacing-3 border-red-950 outline outline-offset-4  p-5 rounded-lg overflow-hidden transform transition-all bg-white-500">
+            <div className="text-white-500 relative w-[500px] min-h-[450px] border-2 border-spacing-3 border-red-950 outline outline-offset-4  p-5 rounded-lg overflow-hidden transform transition-all bg-white-500">
+            <button onClick={()=>open(false)}>
+            <img src={close} className=" absolute right-5"></img>
+
+            </button>
+
               <h3 className="text-green-dark text-bold text-lg">Sign In</h3>
               <div className="m-5 rounded items-start text-start">
                 <Formik
