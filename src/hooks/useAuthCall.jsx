@@ -10,6 +10,8 @@ const useAuthCall = () => {
     const dispatch = useDispatch();
 
     const BASE_URL = 'https://tr-yös.com';
+    // const BASE_URL = 'http://localhost:8010/proxy';
+
 
    const navigate = useNavigate();
 
@@ -18,7 +20,7 @@ const useAuthCall = () => {
         dispatch(fetchStart());
         try {
           const { data } = await axios.put(
-            `${BASE_URL}/api/v1/users/newuser2.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
+            `/api/v1/users/newuser2.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
           userInfo
           );
           dispatch(registerSuccess(data));
@@ -37,7 +39,7 @@ const useAuthCall = () => {
         dispatch(fetchStart());
         try {
           const { data } = await axios.post(
-            `${BASE_URL}login.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
+            `${BASE_URL}/api/v1/users/login.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
             userInfo,
             { headers: { "Content-Type": "multipart/form-data" }}
           );
