@@ -1,5 +1,11 @@
 const Pagination = () => {
 
+    const pages = 5;
+     const numOfPages =[]
+     for(let i=1; i<= pages; i++) {
+        numOfPages.push(i);
+     }
+     
     return (
         <div class="clearfix">
             <div class="hint-text">Showing <b>5</b> out of <b>40</b> entries</div>
