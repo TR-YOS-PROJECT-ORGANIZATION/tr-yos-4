@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@reduxjs/toolkit": "^1.9.5",
+    "@tremor/react": "^3.4.1",
     "axios": "^1.4.0",
     "formik": "^2.4.2",
     "hamburger-react": "^2.5.0",
@@ -19,6 +20,7 @@
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-http-backend": "^2.2.1",
     "react": "^18.2.0",
+    "react-activity": "^2.1.3",
     "react-dom": "^18.2.0",
     "react-i18next": "^13.0.2",
     "react-pure-modal": "^2.2.5",

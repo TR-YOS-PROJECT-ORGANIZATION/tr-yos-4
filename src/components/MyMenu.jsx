@@ -26,33 +26,33 @@ const MyMenu = () => {
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-200 rounded-lg bg-white shadow-lg focus:outline-none">
            
-            <div className="h-10 flex p-2 bg-white-500 text-center rounded-t-lg">
+            <div className="h-10 flex p-2 bg-white-500 text-center rounded-t-lg hover:bg-slate-300">
               <Menu.Item>
-                <Link to="/MyProfile" className=" bg-white-500 w-full">
+                <Link to="/MyProfile" className=" bg-white-500 w-full  hover:bg-slate-300">
                   User Dashboard
                 </Link>
               </Menu.Item>
             </div>
 
-            <div className="h-10 flex  p-2 bg-white-500 ">
+            <div className="h-10 flex  p-2 bg-white-500  text-center  hover:bg-slate-300">
               <Menu.Item>
-                <button className=" bg-white-500 w-full">
+                <Link to="/favourites" className=" bg-white-500 w-full  hover:bg-slate-300">
                   Favorite Departments
-                </button>
+                </Link>
               </Menu.Item>
             </div>
 
-            <div className="h-10 flex ">
+            <div className="h-10 flex text-center  hover:bg-slate-300">
               <Menu.Item>
-                <button className=" bg-white-500 w-full">
+                <Link to="/compare" className=" bg-white-500 w-full  hover:bg-slate-300">
                   Compare Departments
-                </button>
+                </Link>
               </Menu.Item>
             </div>
 
-            <div className="h-10 flex rounded-b-lg">
+            <div className="h-10 flex rounded-b-lg  hover:bg-slate-300">
               <Menu.Item>
-                <button className=" bg-white-500 w-full" onClick={logout}>
+                <button className=" bg-white-500 w-full  hover:bg-slate-300" onClick={logout}>
                   Logout
                 </button>
               </Menu.Item>

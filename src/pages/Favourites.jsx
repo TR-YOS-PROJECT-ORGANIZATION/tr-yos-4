@@ -9,7 +9,6 @@ function Favourites() {
     return (
         <div>
             <div>
-                <Navbar />
                 <div >
                     <h2 className="w-full h-36 bg-green-dark pl-28 pt-8 text-5xl text-left text-white-cream font-bold" >
                         {/*  */}
@@ -21,10 +20,9 @@ function Favourites() {
                     <Card1 />
                 </div>
                 <WorkUs />
-                <Footer />
             </div>
         </div>
     )
 }
 
-export default Favourites
+export default Favourites;
