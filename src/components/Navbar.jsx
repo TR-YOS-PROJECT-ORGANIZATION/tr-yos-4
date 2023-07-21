@@ -21,12 +21,7 @@ const Navbar = () => {
 
   const {currentUser} = useSelector((state) => state?.auth);
 
- 
-
-
-
   console.log(currentUser);
-
 
   const { t, i18n } = useTranslation();
 
@@ -103,14 +98,10 @@ const Navbar = () => {
           <button className="mx-1" onClick={()=> clickHandle("en")}><img src={eng} className="w-14"></img></button>
 
           </div>
-
-
-
               {currentUser ? (
             <div className="flex m-2 ">
                
                <MyMenu />
-           
            
             </div>
           ) : (

@@ -1,6 +1,11 @@
 // eslint-disable-next-line no-unused-vars
+
+
+import Card1 from "../components/card/Card";
+
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+
 import Footer from "../footer/Footer";
 import WorkUs from "../components/workUs/WorkUs";
 import Slider from 'react-slick';
@@ -31,7 +36,7 @@ function removeFromSelectedDepartments (id) {
 
   return (
     <div>
-      <Navbar />
+      
       <div >
         <h2 className="w-full h-36 bg-green-dark pl-28 pt-8 text-5xl text-left text-white-cream font-bold mt-32" >
           {/*  */}
@@ -200,8 +205,9 @@ function removeFromSelectedDepartments (id) {
         {/*  */}
       </div>
 
-      <WorkUs />
-      <Footer />
+      <WorkUs/>
+
+
     </div>
   );
 }
