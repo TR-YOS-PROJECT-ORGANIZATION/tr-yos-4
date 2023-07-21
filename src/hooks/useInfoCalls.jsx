@@ -5,6 +5,7 @@ import {
   getUniSuccess,
   getDepSuccess,
 getUserInfoSuccess,
+getCitiesSuccess
 } from "../features/infoSlice";
 import axios from "axios";
 const useInfoCalls = () => {
