@@ -10,6 +10,8 @@ import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 import { MultiSelect,MultiSelectItem , SelectItem} from "@tremor/react";
 import { Dots } from "react-activity";
+import "react-activity/dist/library.css";
+import '../../src/App.css'
 
 
 
@@ -21,8 +23,10 @@ const Main = () => {
   const {getUni , getCities, getDepartments} = useInfoCalls();
 
   const [selectedStatus, setSelectedStatus] = useState("all");
-  const [selectedCities, setSelectedCities] = useState(["adana"]);
+  const [selectedCities, setSelectedCities] = useState([]);
   const [selectedUnivercities, setSelectedUnivercities] = useState([]);
+  const [selectedDepartments, setSelectedDepartments] = useState([]);
+
 
 
   useEffect(()=>{
@@ -35,9 +39,18 @@ const Main = () => {
 
   const {univercities, cities, departments , loading} = useSelector((state)=>state.info);
 
-  console.log(univercities,cities,departments);
+ console.log(univercities,cities,departments);
 
-   console.log(selectedUnivercities);
+  console.log(selectedUnivercities);
+  console.log(selectedCities);
+
+  const filteredCities = selectedCities.length > 0 && cities?.filter((item) => item?.en === (selectedCities?.map((item)=>item)));
+
+  // const filteredUnivercities = univercities.filter((item)=> item?.code === filteredCities[0]?.id)
+
+console.log(filteredCities);
+
+console.log(loading);
 
 
 
@@ -88,21 +101,47 @@ const Main = () => {
 
     
 
-       <div className="absolute bottom-20 md:right-36  flex md:flex-col sm:flex-row  sm:items-center lg:w-[38%] md:w-[70%] sm:w-full max-sm:w-full bg-green-dark rounded lg:p-8 md:p-4 sm:p-1 shadow-xl ">
+       <div className="absolute bottom-20  md:right-36  flex md:flex-col sm:flex-row  sm:items-center lg:w-[38%] md:w-[70%] sm:w-full max-sm:w-full bg-green-dark rounded lg:p-8 md:p-4 sm:p-1 shadow-xl ">
       
-       { !loading && !cities?.length   &&
-           <Dots />
+       { loading  &&
+           <Dots color="#ffffff" size={32} speed={1} animating={true} />
       }
       
       
-      { univercities?.length > 0 &&
+      { cities?.length > 0 &&
        <MultiSelect
-          className="max-w-full sm:max-w-md bg-white-500"
-          onValueChange={setSelectedUnivercities}
+          className="max-w-full rounded-lg sm:max-w-md bg-white-500 p-2  border border-green-dark"
+          onValueChange={"" || setSelectedCities}
           placeholder="Select City"
         >
+          {cities?.map((item,index) => (
+            <MultiSelectItem className=" rounded-md bg-white-500" key={index} value={item.en}>
+              {item.en}
+            </MultiSelectItem>
+          ))}
+        </MultiSelect> }
+
+        { univercities?.length > 0 &&
+       <MultiSelect
+          className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-10 p-2  border border-green-dark"
+          onValueChange={"" || setSelectedUnivercities}
+          placeholder="Select Univercity"
+        >
           {univercities?.map((item,index) => (
-            <MultiSelectItem className="bg-white-500" key={index} value={item.en}>
+            <MultiSelectItem className="bg-white-500 " key={index} value={item.en}>
+              {item.en}
+            </MultiSelectItem>
+          ))}
+        </MultiSelect> }
+
+        { departments?.length > 0 &&
+       <MultiSelect
+          className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-10 p-2 border border-green-dark mb-5"
+          onValueChange={setSelectedDepartments}
+          placeholder="Select Department"
+        >
+          {departments?.map((item) => (
+            <MultiSelectItem className="bg-white-500 " key={item.id} value={item.en}>
               {item.en}
             </MultiSelectItem>
           ))}
@@ -157,7 +196,7 @@ const Main = () => {
         </div>
  */}
         <div>
-          <button className="mx-auto  max-sm:m-12 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-24 font-bold rounded  hover:bg-red-retro shadow-md">
+          <button className="mx-auto   max-sm:m-12 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-24 font-bold rounded  hover:bg-red-retro shadow-md">
             {t("Search")}
           </button>
         </div>
