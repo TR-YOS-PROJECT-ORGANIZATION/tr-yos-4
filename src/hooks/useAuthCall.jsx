@@ -9,7 +9,7 @@ const useAuthCall = () => {
 
     const dispatch = useDispatch();
 
-    const BASE_URL = 'https://www.tr-yös.com/api/v1/users/';
+    const BASE_URL = 'https://tr-yös.com';
 
    const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const useAuthCall = () => {
         dispatch(fetchStart());
         try {
           const { data } = await axios.put(
-            `${BASE_URL}newuser2.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
+            `${BASE_URL}/api/v1/users/newuser2.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
           userInfo
           );
           dispatch(registerSuccess(data));
