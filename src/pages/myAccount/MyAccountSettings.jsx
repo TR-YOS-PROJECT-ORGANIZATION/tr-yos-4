@@ -2,13 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import useInfoCalls from "../../hooks/useInfoCalls";
 import { useEffect } from "react";
+
 const MyAccountSettings = () => {
-  const { currentUser} = useSelector((state) => state?.auth);
-  const{userInfo}= useSelector((state) => state?.info);
-const {getUserInfo}= useInfoCalls()
-useEffect(() => {
-  getUserInfo();
-}, []);
+  const { currentUser } = useSelector((state) => state?.auth);
+  const { userInfo } = useSelector((state) => state?.info);
+  const { getUserInfo } = useInfoCalls();
+  useEffect(() => {
+    getUserInfo();
+  }, []);
   getUserInfo(currentUser);
   console.log(currentUser);
   return (
@@ -80,53 +81,7 @@ useEffect(() => {
           </div>
         </div>
       </div>
-      <div className="p-5">
-        <h2 className="text-2xl font-bold">Social Accounts</h2>
-        <div className="flex mr-4 mt-4 mb-4">
-          <div className="w-1/2 mr-2">
-            <label htmlFor="" className="font-bold ">
-              Facebook
-            </label>
-            <input
-              type="email"
-              required
-              className="w-full rounded-md mt-2  border-2"
-            />
-          </div>
-          <div className="w-1/2">
-            <label htmlFor="" className="font-bold">
-              Twitter
-            </label>
-            <input
-              type="email"
-              required
-              className="w-full rounded-md mt-2 border-2"
-            />
-          </div>
-        </div>
-        <div className="flex mr-4 mt-4 mb-4">
-          <div className="w-1/2 mr-2">
-            <label htmlFor="" className="font-bold">
-              Google+
-            </label>
-            <input
-              type="email"
-              required
-              className="w-full rounded-md mt-2 border-2"
-            />
-          </div>
-          <div className="w-1/2">
-            <label htmlFor="" className="font-bold">
-              LinkedIn
-            </label>
-            <input
-              type="email"
-              required
-              className="w-full rounded-md mt-2 border-2"
-            />
-          </div>
-        </div>
-      </div>
+
       <button className="bg-blue-light text-blue-dark hover:bg-blue-dark hover:text-blue-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4">
         Save Changes
       </button>
