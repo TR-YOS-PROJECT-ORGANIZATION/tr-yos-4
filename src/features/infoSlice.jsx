@@ -2,37 +2,41 @@ import { createSlice } from "@reduxjs/toolkit";
 const infoSlice = createSlice({
   name: "info",
   initialState: {
-    univercities:null,
-    departments:null,
-    cities:null,
+    univercities: null,
+    departments: null,
+    cities: null,
     error: false,
-    userInfo:null,
-    loading:false,
+    userInfo: null,
+    loading: false,
   },
   reducers: {
     fetchStart: (state) => {
       state.error = false;
-      state.loading= true;
+      state.loading = true;
     },
     getUniSuccess: (state, { payload }) => {
       state.univercities = payload;
-      state.loading= false;
+      state.loading = false;
     },
-    getDepSuccess:(state, { payload })=> {
+    getDepSuccess: (state, { payload }) => {
       state.departments = payload;
-      state.loading= false;
+      state.loading = false;
     },
-    getCitiesSuccess:(state, { payload })=> {
+    getCitiesSuccess: (state, { payload }) => {
       state.cities = payload;
-      state.loading= false;
+      state.loading = false;
     },
 
     fetchFail: (state) => {
       state.error = true;
-      state.loading= false;
+      state.loading = false;
     },
-    getUserInfoSuccess:(state,{payload}) => {
-      state.loading= false;
+    getUserInfoSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.userInfo = payload;
+    },
+    getUserInfoSuccess: (state, { payload }) => {
+      state.loading = false;
       state.userInfo = payload;
     },
   },
@@ -43,14 +47,6 @@ export const {
   fetchFail,
   getDepSuccess,
   getCitiesSuccess,
-  getUserInfoSuccess
-  
+  getUserInfoSuccess,
 } = infoSlice.actions;
 export default infoSlice.reducer;
-
-
-
-
-
-
-
