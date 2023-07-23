@@ -2,11 +2,7 @@
 
 
 import Card1 from "../components/card/Card";
-
-import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-
-import Footer from "../footer/Footer";
+import React, { useEffect, useState } from "react";
 import WorkUs from "../components/workUs/WorkUs";
 import Slider from 'react-slick';
 import image1 from "../images/3d.jpg";
@@ -15,10 +11,45 @@ import image3 from "../images/lab.jpg";
 import image4 from "../images/biology.jpg";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import useInfoCalls from "../hooks/useInfoCalls";
+import OneCard from "../components/card/OneCard";
 
-function Compare(item) {
-  const [selectedDepartments, setSelectedDepartments] = useState(JSON.parse(localStorage.getItem("selectedDepartmentList")) || []);
-  const {t} = useTranslation();
+function Compare(item, departmentId) {
+  const { t } = useTranslation();
+  const { currentUser } = useSelector((state) => state?.auth);
+  const { userInfo, departments } = useSelector((state) => state?.info);
+  const { getUserInfo, getDepartments } = useInfoCalls()
+  const [compareList, setCompareList] = useState()
+
+  const currentUserId = currentUser.userID;
+
+  useEffect(() => {
+    getUserInfo(currentUser);
+  }, [currentUser]);
+
+  useEffect(() => {
+    getDepartments();
+  }, [])
+
+
+  function getCompareList() {
+    try {
+      axios.get(`https://tr-yös.com/api/v1/users/allcompares.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(({ data }) => setCompareList(data))
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getCompareList();
+  }, [])
+
+
+  console.log(compareList);
+  console.log(departments);
+  const filteredDepartments = departments?.filter((department) => compareList?.departments.map((item) => item).includes(department.id));
 
   const settings = {
     dots: true,
@@ -28,15 +59,19 @@ function Compare(item) {
     slidesToScroll: 1,
   };
 
-function removeFromSelectedDepartments (id) {
-  const updatedDepartments = selectedDepartments.filter(item => item.id !== id);
-  setSelectedDepartments(updatedDepartments);
-  localStorage.setItem('selectedDepartmentList', JSON.stringify(updatedDepartments));
-}
+  function removeFromSelectedDepartments(id) {
+
+    try {
+      axios.get(`https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(() => getCompareList());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   return (
     <div>
-      
+
       <div >
         <h2 className="w-full h-36 bg-green-dark pl-28 pt-8 text-5xl text-left text-white-cream font-bold mt-32" >
           {/*  */}
@@ -47,7 +82,7 @@ function removeFromSelectedDepartments (id) {
       <div className="grid grid-cols-4">
         {/*  */}
         {
-          selectedDepartments.map((item) =>
+          filteredDepartments.map((item) =>
             <div key={item.id} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
               <a
                 href="#"
@@ -205,7 +240,7 @@ function removeFromSelectedDepartments (id) {
         {/*  */}
       </div>
 
-      <WorkUs/>
+      <WorkUs />
 
 
     </div>

@@ -4,12 +4,15 @@ import useInfoCalls from "../../hooks/useInfoCalls";
 import { useEffect } from "react";
 
 const MyAccountSettings = () => {
+
   const { currentUser } = useSelector((state) => state?.auth);
   const { userInfo } = useSelector((state) => state?.info);
   const { getUserInfo } = useInfoCalls();
+  
   useEffect(() => {
     getUserInfo();
   }, []);
+
   getUserInfo(currentUser);
   console.log(currentUser);
   return (
