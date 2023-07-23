@@ -7,14 +7,11 @@ const MyAccountSettings = () => {
   const { currentUser } = useSelector((state) => state?.auth);
   const { userInfo } = useSelector((state) => state?.info);
   const { getUserInfo } = useInfoCalls();
-
   useEffect(() => {
     getUserInfo();
   }, []);
-
   getUserInfo(currentUser);
   console.log(currentUser);
-
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
       <div className="mt-2 p-5 ">
@@ -91,5 +88,4 @@ const MyAccountSettings = () => {
     </div>
   );
 };
-
 export default MyAccountSettings;

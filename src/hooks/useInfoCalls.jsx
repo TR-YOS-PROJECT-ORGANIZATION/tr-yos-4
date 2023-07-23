@@ -5,18 +5,14 @@ import {
   getUniSuccess,
   getDepSuccess,
 
-getUserInfoSuccess,
-
+  getUserInfoSuccess,
   getCitiesSuccess
 
 } from "../features/infoSlice";
 import axios from "axios";
-
 const useInfoCalls = () => {
   const dispatch = useDispatch();
-
   //!------------- GET CALLS ----------------
-
   const getUni = async () => {
     dispatch(fetchStart());
     try {
@@ -30,7 +26,6 @@ const useInfoCalls = () => {
       console.log(error);
     }
   };
-
   const getDepartments = async () => {
     dispatch(fetchStart());
     try {
@@ -44,7 +39,6 @@ const useInfoCalls = () => {
       console.log(error);
     }
   };
-
   const getCities = async () => {
     dispatch(fetchStart());
     try {
@@ -65,17 +59,13 @@ const useInfoCalls = () => {
         "https://tr-yös.com/api/v1/users/login.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a",
         ID
       );
-      dispatch(getUserInfoSuccess());
+      dispatch(getUserInfoSuccess(data));
       console.log(data);
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
     }
   };
-
   return { getUni, getDepartments, getCities, getUserInfo };
 };
-
 export default useInfoCalls;
-
-
