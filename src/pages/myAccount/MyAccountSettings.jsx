@@ -6,6 +6,7 @@ const MyAccountSettings = () => {
   const { currentUser} = useSelector((state) => state?.auth);
   const{userInfo}= useSelector((state) => state?.info);
 const {getUserInfo}= useInfoCalls()
+
 useEffect(() => {
   getUserInfo();
 }, []);

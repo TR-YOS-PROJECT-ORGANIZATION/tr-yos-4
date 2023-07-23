@@ -3,7 +3,7 @@
 
 import Card1 from "../components/card/Card";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 
 import Footer from "../footer/Footer";
@@ -15,10 +15,31 @@ import image3 from "../images/lab.jpg";
 import image4 from "../images/biology.jpg";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import useInfoCalls from "../hooks/useInfoCalls";
 
 function Compare(item) {
+
+  const { currentUser } = useSelector((state) => state?.auth);
+  const { userInfo } = useSelector((state) => state?.info);
+  const { getUserInfo } = useInfoCalls()
+
+  useEffect(() => {
+    getUserInfo(currentUser);
+  }, [currentUser]);
+
   const [selectedDepartments, setSelectedDepartments] = useState(JSON.parse(localStorage.getItem("selectedDepartmentList")) || []);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
+  console.log(selectedDepartments);
+
+  const filteredDepartments = selectedDepartments.filter((department) => department.userID === currentUser.userID);
+  console.log(filteredDepartments);
+
+
+
+  // if(localStorage.getItem("selectedDepartmentList").userID)
+
 
   const settings = {
     dots: true,
@@ -28,15 +49,15 @@ function Compare(item) {
     slidesToScroll: 1,
   };
 
-function removeFromSelectedDepartments (id) {
-  const updatedDepartments = selectedDepartments.filter(item => item.id !== id);
-  setSelectedDepartments(updatedDepartments);
-  localStorage.setItem('selectedDepartmentList', JSON.stringify(updatedDepartments));
-}
+  function removeFromSelectedDepartments(id) {
+    const updatedDepartments = filteredDepartments.filter(item => item.id !== id);
+    setSelectedDepartments(updatedDepartments);
+    localStorage.setItem('selectedDepartmentList', JSON.stringify(updatedDepartments));
+  }
 
   return (
     <div>
-      
+
       <div >
         <h2 className="w-full h-36 bg-green-dark pl-28 pt-8 text-5xl text-left text-white-cream font-bold mt-32" >
           {/*  */}
@@ -47,7 +68,7 @@ function removeFromSelectedDepartments (id) {
       <div className="grid grid-cols-4">
         {/*  */}
         {
-          selectedDepartments.map((item) =>
+          filteredDepartments.map((item) =>
             <div key={item.id} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
               <a
                 href="#"
@@ -205,7 +226,7 @@ function removeFromSelectedDepartments (id) {
         {/*  */}
       </div>
 
-      <WorkUs/>
+      <WorkUs />
 
 
     </div>

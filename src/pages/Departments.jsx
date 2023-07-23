@@ -42,9 +42,6 @@ const department = departments?.slice(0, 51 )
         <ImageSection />
 
         {/*  */}
-        <div>
-                <p>Go to <a href="/compareList">Compare List</a></p>
-            </div>
 
         <div className="xs:flex-col xs:justify-center xs:items-center md:flex md:flex-row md:justify-center md:items-start">
           <div className="xs:visible xs:flex xs:justify-center xs:items-center sm:visible md:hidden">
