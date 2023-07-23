@@ -14,27 +14,34 @@ import axios from 'axios';
 
 function OneCard({ item }) {
 
-    const [selectedDepartments, setSelectedDepartments] = useState([]);
     const { t } = useTranslation();
-
     const { currentUser } = useSelector((state) => state?.auth);
-    // const { userInfo } = useSelector((state) => state?.info);
-    const { getUserInfo } = useInfoCalls()
+    const { getUserInfo } = useInfoCalls();
+    let [isSelected, setIsSelected] = useState(0)
 
     useEffect(() => {
         getUserInfo(currentUser);
     }, []);
 
-    console.log(currentUser);
 
     function moveToSelectedDepartments(id) {
-
-        const departmentId = item.id;
         const currentUserId = currentUser.userID;
+        const departmentId = item.id;
 
-        const data = axios.get(`https://tr-yös.com/api/v1/users/addcompare.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`)
-        
-        console.log(data);
+        if (isSelected < 4) {
+            try {
+                const data = axios.get(`https://tr-yös.com/api/v1/users/addcompare.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+
+                setIsSelected(isSelected=isSelected+1);
+                
+                console.log(isSelected);
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            alert("4 yeter")
+        }
+
     }
 
 

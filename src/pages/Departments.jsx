@@ -126,6 +126,7 @@ const department = departments?.slice(0, 51 )
                 department?.map((item) =>
                   <div key={item.id}>
                     <OneCard item={item}
+                    departmentId={item.id}
                      />
                   </div>
                 )}
