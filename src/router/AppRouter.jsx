@@ -29,6 +29,7 @@ const AppRouter = () => {
                 
                 <Route path='compareList' element={<Compare/>}></Route>
 
+
                 <Route path="myProfile" element={<MyProfile/>}></Route>
                 <Route path="favourites" element={<Favourites/>}></Route>
               
