@@ -1,5 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import image4 from "../../images/business.jpg"
+
 
 const WorkUs = () => {
   const {t} = useTranslation();
@@ -47,7 +49,7 @@ const WorkUs = () => {
               </div>
               <div className="md:mb-12 lg:mb-0 ">
                 <img
-                  src="images/business.jpg"
+                  src={image4}
                   className=" h-100 w-100 rounded-lg shadow-2xl"
                   alt=""
                 />
