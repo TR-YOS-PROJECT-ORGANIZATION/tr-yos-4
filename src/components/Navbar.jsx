@@ -6,10 +6,10 @@ import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
 
-import turk from '../images/turk.png'
+import turk from "../images/turk.png";
 import { useSelector } from "react-redux";
 import MyMenu from "./MyMenu";
-import eng from '../images/eng.png'
+import eng from "../images/eng.png";
 import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
@@ -17,22 +17,16 @@ const Navbar = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openUpModal, setOpenUpModal] = useState(false);
 
-  const {currentUser} = useSelector((state) => state?.auth);
+  const { currentUser } = useSelector((state) => state?.auth);
   console.log(currentUser);
   const { t, i18n } = useTranslation();
-  const clickHandle = lng => {
-    i18n.changeLanguage(lng)
-  }
+  const clickHandle = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   return (
     <div>
-      <SignInModal
-        open={openModal}
-        setOpen={setOpenModal}
-      />
-      <SignUpModal
-        openUp={openUpModal}
-        setOpenUp={setOpenUpModal}
-      />
+      <SignInModal open={openModal} setOpen={setOpenModal} />
+      <SignUpModal openUp={openUpModal} setOpenUp={setOpenUpModal} />
 
       <div className="relative">
         <nav className="rounded flex items-center md:justify-between sm:justify-around font-bold text-md fixed right-0 left-0 top-0 z-10 bg-white-500 border-t-[2rem] border-green-dark">
@@ -83,13 +77,16 @@ const Navbar = () => {
           </div>
 
           <div className="flex">
-          <button className="mx-1" onClick={()=> clickHandle("tr")}><img src={turk} className="w-14"></img></button>
-          <button className="mx-1" onClick={()=> clickHandle("en")}><img src={eng} className="w-14"></img></button>
+            <button className="mx-1" onClick={() => clickHandle("tr")}>
+              <img src={turk} className="w-14"></img>
+            </button>
+            <button className="mx-1" onClick={() => clickHandle("en")}>
+              <img src={eng} className="w-14"></img>
+            </button>
           </div>
-              {currentUser ? (
+          {currentUser ? (
             <div className="flex m-2 ">
-               <MyMenu />
-
+              <MyMenu />
             </div>
           ) : (
             <div className="w-full h-[82px] max-[600]:h-96 flex items-center justify-end max-[sm]:justify-center">
@@ -116,4 +113,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
