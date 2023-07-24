@@ -1,23 +1,95 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import i18next from 'i18next'
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import Slider from 'react-slick';
+import image1 from "../../images/3d.jpg";
+import image2 from "../../images/dna.jpg";
+import image3 from "../../images/lab.jpg";
+import image4 from "../../images/biology.jpg";
+import useAuthCall from '../../hooks/useAuthCall';
+import useInfoCalls from '../../hooks/useInfoCalls';
+import axios from 'axios';
 
 function OneCard({ item }) {
-  const { t } = useTranslation();
+
+    const { t } = useTranslation();
+    const { currentUser } = useSelector((state) => state?.auth);
+    const { getUserInfo } = useInfoCalls();
+    let [isSelected, setIsSelected] = useState(0)
+
+    useEffect(() => {
+        getUserInfo(currentUser);
+    }, []);
+
+
+    function moveToSelectedDepartments(id) {
+        const currentUserId = currentUser.userID;
+        const departmentId = item.id;
+
+        if (isSelected < 4) {
+            try {
+                const data = axios.get(`https://tr-yös.com/api/v1/users/addcompare.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+
+                setIsSelected(isSelected=isSelected+1);
+                
+                console.log(isSelected);
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            alert("4 yeter")
+        }
+
+    }
+
+
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 600,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    };
     return (
-        <div key={item.id} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
-            <a
-                href="#"
-                className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
-            >
-                <div className="rounded-lg border shadow-2xl">
-                    <div className="relative flex h-60 justify-center overflow-hidden rounded-lg order">
-                        <div className="w-full transform transition-transform duration-500">
-                            <img
-                                src="https://img.freepik.com/free-photo/3d-medical-background-with-blood-cells-dna-strand_1048-8978.jpg?w=740&t=st=1689094148~exp=1689094748~hmac=f4a33381ca740cd4292284b75b4c3d8ec7f841fd3d1295a031efd418896826cc"
-                                alt=""
-                            />
+        <>
+            <div key={item.id} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
+                <a
+                    href="#"
+                    className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
+                >
+                    <div className="rounded-lg border shadow-2xl">
+                        <div className="relative flex h-60 justify-center overflow-hidden rounded-lg order">
+                            <div className="relative w-full">
+                                <Slider {...settings}>
+                                    <div className="relative">
+                                        <img
+                                            className="w-full h-[25rem] object-cover"
+                                            src={image1}
+                                        ></img>
+                                    </div>
+                                    <div className="relative">
+                                        <img
+                                            className="w-full h-[25rem] object-cover"
+                                            src={image2}
+                                        ></img>
+                                    </div>
+                                    <div className="relative">
+                                        <img
+                                            className="w-full h-[25rem] object-cover"
+                                            src={image3}
+                                        ></img>
+                                    </div>
+                                    <div className="relative">
+                                        <img
+                                            className="w-full h-[25rem] object-cover"
+                                            src={image4}
+                                        ></img>
+                                    </div>
+                                </Slider>
+                            </div>
                             <div className="absolute top-0 right-0 px-2 py-1 m-2 rounded-md shadow-2xl">
                                 <svg
                                     width="20px"
@@ -41,92 +113,102 @@ function OneCard({ item }) {
                                 </svg>
                             </div>
                         </div>
-                    </div>
-                    <div className="">
-                        <div className="mt-3 grid grid-cols-2">
-                            <div className="flex text-left ml-3">
-                                <div className="relative">
-                                    <h2
-                                        className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg"
-                                        title="New York"
-                                    >
-                                {item.facultyCode}
-                                    </h2>
-                                    <p
-                                        className="mt-2 line-clamp-1 text-sm text-gray-800"
-                                        title="Faculty"
-                                    >
-                                        
-                                    </p>
-                                    <p
-                                        className="mt-2 line-clamp-1 text-sm text-gray-800"
-                                        title="University"
-                                    >
-                                        {
-                                        i18next.language== "tr" ? item.tr : item.en
-                                        }
-                                        
-                                    </p>
+                        <div className="">
+                            <div className="mt-3 grid grid-cols-2">
+                                <div className="flex text-left ml-3">
+                                    <div className="relative">
+                                        <h2
+                                            className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg"
+                                            title="New York"
+                                        >
+                                            {item.facultyCode}
+                                        </h2>
+                                        <p
+                                            className="mt-2 line-clamp-1 text-sm text-gray-800"
+                                            title="Faculty"
+                                        >
+
+                                        </p>
+                                        <p
+                                            className="mt-2 line-clamp-1 text-sm text-gray-800"
+                                            title="University"
+                                        >
+                                            {
+                                                i18next.language == "tr" ? item.tr : item.en
+                                            }
+
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2">
-                            <span className="inline-flex select-none rounded-lg bg-red-500 px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm">
-                            {t("Compare")}
-                            </span>
-                        </div>
-                        <div className="mt-2 ml-3 mr-3 flex justify-between border-b border-t border-gray-200 pb-3 pt-3">
-                            <p className="flex items-center text-gray-800 xl:flex-row xl:items-center">
-                                <svg
-                                    width="20px"
-                                    height="20px"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
-                                        fill="#0D0D0D"
-                                    />
-                                </svg>
-                                <span className="xl:mt-0"> Kayseri </span>
-                            </p>
-                            <p className="flex items-center text-gray-800 xl:flex-row xl:items-center">
-                                <svg
-                                    fill="#000000"
-                                    height="20px"
-                                    width="20px"
-                                    version="1.1"
-                                    id="Icons"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    // eslint-disable-next-line react/no-unknown-property
-                                    xmlns: xlink="http://www.w3.org/1999/xlink"
-                                    viewBox="0 0 32 32"
-                                    // eslint-disable-next-line react/no-unknown-property
-                                    xml: space="preserve"
-                                >
-                                    <g>
+
+                            <div onClick={() => moveToSelectedDepartments(item.id)} className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2">
+                                <span className="inline-flex select-none rounded-lg bg-red-500 px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm">
+                                    {" "}
+                                    {t("Compare")}{" "}
+                                    <svg
+                                        fill="#f2e9e9"
+                                        width="20px"
+                                        className="ml-2"
+                                        height="20px"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path d="M1,8A1,1,0,0,1,2,7H9.586L7.293,4.707A1,1,0,1,1,8.707,3.293l4,4a1,1,0,0,1,0,1.414l-4,4a1,1,0,1,1-1.414-1.414L9.586,9H2A1,1,0,0,1,1,8Zm21,7H14.414l2.293-2.293a1,1,0,0,0-1.414-1.414l-4,4a1,1,0,0,0,0,1.414l4,4a1,1,0,0,0,1.414-1.414L14.414,17H22a1,1,0,0,0,0-2Z" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div className="mt-2 ml-3 mr-3 flex justify-between border-b border-t border-gray-200 pb-3 pt-3">
+                                <p className="flex items-center text-gray-800 xl:flex-row xl:items-center">
+                                    <svg
+                                        width="20px"
+                                        height="20px"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
                                         <path
-                                            d="M15.3,27.1c-0.7-0.4-1.3-0.9-1.8-1.5c-0.4-0.4-1-0.5-1.4-0.1c-0.4,0.4-0.5,1-0.1,1.4c0.7,0.8,1.4,1.5,2.3,2
-		c0.4,0.3,0.7,0.7,0.7,1.1c0,0.6,0.4,1,1,1s1-0.4,1-1C17,28.8,16.4,27.7,15.3,27.1z"
+                                            d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                                            fill="#0D0D0D"
                                         />
-                                        <path d="M5,5v17c0,1.7,1.3,3,3,3h1v-2V4V2H8C6.3,2,5,3.3,5,5z" />
-                                        <path
-                                            d="M21,12.5V5c0-1.7-1.3-3-3-3h-7v1v1v19v1v1h6.8c0.1,0.9,0.5,1.8,1.2,2.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3
+                                    </svg>
+                                    <span className="xl:mt-0"> Kayseri </span>
+                                </p>
+                                <p className="flex items-center text-gray-800 xl:flex-row xl:items-center">
+                                    <svg
+                                        fill="#000000"
+                                        height="20px"
+                                        width="20px"
+                                        version="1.1"
+                                        id="Icons"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                                        viewBox="0 0 32 32"
+                                        xmlSpace="preserve"
+                                    >
+                                        <g>
+                                            <path
+                                                d="M15.3,27.1c-0.7-0.4-1.3-0.9-1.8-1.5c-0.4-0.4-1-0.5-1.4-0.1c-0.4,0.4-0.5,1-0.1,1.4c0.7,0.8,1.4,1.5,2.3,2
+		c0.4,0.3,0.7,0.7,0.7,1.1c0,0.6,0.4,1,1,1s1-0.4,1-1C17,28.8,16.4,27.7,15.3,27.1z"
+                                            />
+                                            <path d="M5,5v17c0,1.7,1.3,3,3,3h1v-2V4V2H8C6.3,2,5,3.3,5,5z" />
+                                            <path
+                                                d="M21,12.5V5c0-1.7-1.3-3-3-3h-7v1v1v19v1v1h6.8c0.1,0.9,0.5,1.8,1.2,2.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3
 		c0.4-0.4,0.4-1,0-1.4c-0.6-0.6-0.8-1.5-0.5-2.3c0.1-0.4,0-0.7-0.2-1l-3.3-3.3c-1-1-1.1-2.7-0.3-4l3.2,3.2l1,1c0.4,0.4,1,0.4,1.4,0
 		s0.4-1,0-1.4L21,17.6v-2.8c1.9,1.3,3,3.4,3,5.7V30c0,0.6,0.4,1,1,1s1-0.4,1-1v-9.5C26,17.1,24.1,14,21,12.5z M17,10
 		c0,0.6-0.4,1-1,1s-1-0.4-1-1V6c0-0.6,0.4-1,1-1s1,0.4,1,1V10z"
-                                        />
-                                    </g>
-                                </svg>
-                                <span className="mt-0"> 15000/year </span>
-                            </p>
+                                            />
+                                        </g>
+                                    </svg>
+                                    <span className="mt-0"> 15000/year </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
 
+            </div>
+        </>
     )
 }
 

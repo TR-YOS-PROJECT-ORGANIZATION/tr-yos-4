@@ -1,18 +1,22 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
+
 import turk from '../images/turk.png'
 import { useSelector } from "react-redux";
 import MyMenu from "./MyMenu";
 import eng from '../images/eng.png'
 import { useTranslation } from "react-i18next";
+
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openUpModal, setOpenUpModal] = useState(false);
+
   const {currentUser} = useSelector((state) => state?.auth);
   console.log(currentUser);
   const { t, i18n } = useTranslation();
@@ -29,6 +33,7 @@ const Navbar = () => {
         openUp={openUpModal}
         setOpenUp={setOpenUpModal}
       />
+
       <div className="relative">
         <nav className="rounded flex items-center md:justify-between sm:justify-around font-bold text-md fixed right-0 left-0 top-0 z-10 bg-white-500 border-t-[2rem] border-green-dark">
           <div className="lg:flex lg:flex-row items-center sm:flex-col sm:flex ">
@@ -76,6 +81,7 @@ const Navbar = () => {
               </Link>
             </div>
           </div>
+
           <div className="flex">
           <button className="mx-1" onClick={()=> clickHandle("tr")}><img src={turk} className="w-14"></img></button>
           <button className="mx-1" onClick={()=> clickHandle("en")}><img src={eng} className="w-14"></img></button>
@@ -83,6 +89,7 @@ const Navbar = () => {
               {currentUser ? (
             <div className="flex m-2 ">
                <MyMenu />
+
             </div>
           ) : (
             <div className="w-full h-[82px] max-[600]:h-96 flex items-center justify-end max-[sm]:justify-center">
@@ -107,4 +114,6 @@ const Navbar = () => {
     </div>
   );
 };
+
 export default Navbar;
+
