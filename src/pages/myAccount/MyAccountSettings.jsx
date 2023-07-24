@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import useInfoCalls from "../../hooks/useInfoCalls";
 import { useEffect } from "react";
 
+
 const MyAccountSettings = () => {
   const { currentUser } = useSelector((state) => state?.auth);
   const { userInfo } = useSelector((state) => state?.info);
@@ -91,5 +92,4 @@ const MyAccountSettings = () => {
     </div>
   );
 };
-
 export default MyAccountSettings;
