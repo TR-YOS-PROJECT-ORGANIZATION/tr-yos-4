@@ -6,6 +6,7 @@ import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
 
+
 import turk from '../images/turk.png'
 import { useSelector } from "react-redux";
 import MyMenu from "./MyMenu";
@@ -13,13 +14,13 @@ import eng from '../images/eng.png'
 
 import { useTranslation } from "react-i18next";
 
+
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openUpModal, setOpenUpModal] = useState(false);
 
-
-  const {currentUser} = useSelector((state) => state?.auth);
+  const { currentUser } = useSelector((state) => state?.auth);
 
 
   console.log(currentUser);
@@ -84,8 +85,6 @@ const Navbar = () => {
           </div>
 
 
-
-
           <div className="flex">
             <button className="mx-1" onClick={() => clickHandle("tr")}>
               <img src={turk} className="w-14"></img>
@@ -94,11 +93,10 @@ const Navbar = () => {
               <img src={eng} className="w-14"></img>
             </button>
           </div>
-              {currentUser ? (
+          {currentUser ? (
             <div className="flex m-2 ">
-               
-               <MyMenu />
-           
+
+              <MyMenu />
 
             </div>
           ) : (
@@ -117,14 +115,10 @@ const Navbar = () => {
                   Sign Up
                 </button>
 
-                
-
               </div>
             </div>
           )}
         </nav>
-
-         
 
       </div>
     </div>

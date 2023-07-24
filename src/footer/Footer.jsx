@@ -2,8 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-const {t} = useTranslation();
-
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col text-center  bg-gray-900">
@@ -83,17 +82,26 @@ const {t} = useTranslation();
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
-              <a href="#" className="hover:underline border rounded p-1">
+              <a
+                href="/myProfile"
+                className="hover:underline border rounded p-1"
+              >
                 {t("My Profile")}
               </a>
             </li>
             <li className="mb-4">
-              <a href="#" className="hover:underline border rounded p-1">
+              <a
+                href="/myProfile"
+                className="hover:underline border rounded p-1"
+              >
                 {t("My Account")}
               </a>
             </li>
             <li className="mb-4">
-              <a href="#" className="hover:underline border rounded p-1">
+              <a
+                href="/favourites"
+                className="hover:underline border rounded p-1"
+              >
                 {t("Favorites")}
               </a>
             </li>

@@ -7,14 +7,14 @@ const infoSlice = createSlice({
     cities: null,
     error: false,
 
-    userInfo:null,
-    loading:false,
+    userInfo: null,
+    loading: false,
 
   },
   reducers: {
     fetchStart: (state) => {
       state.error = false;
-
+      state.loading = true;
     },
     getUniSuccess: (state, { payload }) => {
       state.univercities = payload;
@@ -28,16 +28,14 @@ const infoSlice = createSlice({
 
     fetchFail: (state) => {
       state.error = true;
-      state.loading= false;
-    },
-    getUserInfoSuccess:(state,{payload}) => {
-      state.loading= false;
-      state.userInfo = payload;
+      state.loading = false;
     },
     getUserInfoSuccess: (state, { payload }) => {
       state.loading = false;
       state.userInfo = payload;
     },
+    
+    
   },
 });
 export const {
@@ -47,10 +45,11 @@ export const {
   getDepSuccess,
   getCitiesSuccess,
 
-  getUserInfoSuccess
-  
+  getUserInfoSuccess,
 } = infoSlice.actions;
 export default infoSlice.reducer;
+
+
 
 
 
