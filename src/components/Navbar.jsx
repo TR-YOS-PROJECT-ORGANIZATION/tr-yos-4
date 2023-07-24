@@ -5,11 +5,15 @@ import Hamburger from "hamburger-react";
 import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
-import turk from "../images/turk.png";
+
+
+import turk from '../images/turk.png'
 import { useSelector } from "react-redux";
 import MyMenu from "./MyMenu";
-import eng from "../images/eng.png";
+import eng from '../images/eng.png'
+
 import { useTranslation } from "react-i18next";
+
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -17,6 +21,7 @@ const Navbar = () => {
   const [openUpModal, setOpenUpModal] = useState(false);
 
   const { currentUser } = useSelector((state) => state?.auth);
+
 
   console.log(currentUser);
 
@@ -79,6 +84,7 @@ const Navbar = () => {
             </div>
           </div>
 
+
           <div className="flex">
             <button className="mx-1" onClick={() => clickHandle("tr")}>
               <img src={turk} className="w-14"></img>
@@ -89,7 +95,9 @@ const Navbar = () => {
           </div>
           {currentUser ? (
             <div className="flex m-2 ">
+
               <MyMenu />
+
             </div>
           ) : (
             <div className="w-full h-[82px] max-[600]:h-96 flex items-center justify-end max-[sm]:justify-center">
@@ -106,10 +114,12 @@ const Navbar = () => {
                 >
                   Sign Up
                 </button>
+
               </div>
             </div>
           )}
         </nav>
+
       </div>
     </div>
   );
