@@ -43,11 +43,7 @@ const infoSlice = createSlice({
       state.loading = false;
       state.userInfo = payload;
     },
-    getUserInfoSuccess: (state, { payload }) => {
-      state.loading = false;
-      state.userInfo = payload;
-    },
-  },
+  }
 });
 export const {
   fetchStart,
