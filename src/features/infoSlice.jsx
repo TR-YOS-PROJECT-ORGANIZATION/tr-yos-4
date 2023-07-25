@@ -43,9 +43,11 @@ const infoSlice = createSlice({
       state.userInfo = payload;
     },
 
+
     
     
   },
+
 
 });
 export const {
