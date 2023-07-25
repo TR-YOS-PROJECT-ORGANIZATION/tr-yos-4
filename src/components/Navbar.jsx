@@ -28,7 +28,7 @@ const Navbar = () => {
       <SignInModal open={openModal} setOpen={setOpenModal} />
       <SignUpModal openUp={openUpModal} setOpenUp={setOpenUpModal} />
 
-      <div className="relative">
+      <div className="relative mb-5">
         <nav className="rounded flex items-center md:justify-between sm:justify-around font-bold text-md fixed right-0 left-0 top-0 z-10 bg-white-500 border-t-[2rem] border-green-dark">
           <div className="lg:flex lg:flex-row items-center sm:flex-col sm:flex ">
             <button className="mx-8 sm:mx-1 lg:invisible md:visible sm:visible mt-2  relative">
