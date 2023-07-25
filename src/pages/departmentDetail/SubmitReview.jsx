@@ -325,18 +325,18 @@ const SubmitReview = ({ dept,uni }) => {
           </div>
 
           {/* send message */}
-          <section className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-2xl">
+          {uni.map((item)=> <section className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-2xl">
             <div className="container px-3 py-3 mx-auto flex justify-center">
               <div className="flex flex-col items-center">
                 <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
                   <img
-                    src="https://www.tr-yös.com/test/6984215678913/logo/acibadem-mehmet-ali-aydinlar-universitesi-logo-1683762727498.png"
+                    src={item.logo}
                     alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <h1 className="text-lg font-semibold text-gray-800 capitalize dark:text-white lg:text-lg">
-                  {item.university.en}
+                  {item.en}
                 </h1>
                 <div className="flex mt-2 justify-center border-b-2 w-full">
                   <svg
@@ -444,7 +444,7 @@ const SubmitReview = ({ dept,uni }) => {
                 </div>
               </div>
             </div>
-          </section>
+          </section>)}
         </div>
       </div>))}
     </div>

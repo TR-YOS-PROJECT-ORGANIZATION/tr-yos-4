@@ -11,22 +11,24 @@ const DepartmentDetail = () => {
   const { code } = useParams();
   console.log(code);
 
-  const { getAllDepartments } = useInfoCalls();
-  const { allDepartments } = useSelector((state) => state.info);
-  const { state: item } = useLocation();
-  console.log(item);
+  const { getAllDepartments, getUni } = useInfoCalls();
+  const { allDepartments, univercities } = useSelector((state) => state.info);
+  
 
   useEffect(() => {
     getAllDepartments();
+    getUni();
   }, []);
 
   const dept = allDepartments?.filter((item) => item.department.code === code);
   console.log(dept);
+  const uni = univercities?.filter((item)=> item.code === dept[0].university.code)
+  console.log(uni);
   return (
     <div>
       <Slider />
 
-      <SubmitReview dept={dept} />
+      <SubmitReview dept={dept} uni={uni}/>
       <WorkUs />
     </div>
   );
