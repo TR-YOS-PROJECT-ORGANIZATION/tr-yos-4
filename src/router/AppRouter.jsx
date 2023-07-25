@@ -38,7 +38,7 @@ const AppRouter = () => {
                 <Route path="" element={<Favourites/>} />
                 </Route>
 
-                
+                </Routes>
 
 
             <Footer/>
