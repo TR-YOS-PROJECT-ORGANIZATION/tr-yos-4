@@ -6,11 +6,15 @@ import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
 
+
 import turk from "../images/turk.png";
+
 import { useSelector } from "react-redux";
 import MyMenu from "./MyMenu";
-import eng from "../images/eng.png";
+import eng from '../images/eng.png'
+
 import { useTranslation } from "react-i18next";
+
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -18,6 +22,7 @@ const Navbar = () => {
   const [openUpModal, setOpenUpModal] = useState(false);
 
   const { currentUser } = useSelector((state) => state?.auth);
+
   console.log(currentUser);
   const { t, i18n } = useTranslation();
   const clickHandle = (lng) => {
@@ -28,7 +33,7 @@ const Navbar = () => {
       <SignInModal open={openModal} setOpen={setOpenModal} />
       <SignUpModal openUp={openUpModal} setOpenUp={setOpenUpModal} />
 
-      <div className="relative">
+      <div className="relative mb-5">
         <nav className="rounded flex items-center md:justify-between sm:justify-around font-bold text-md fixed right-0 left-0 top-0 z-10 bg-white-500 border-t-[2rem] border-green-dark">
           <div className="lg:flex lg:flex-row items-center sm:flex-col sm:flex ">
             <button className="mx-8 sm:mx-1 lg:invisible md:visible sm:visible mt-2  relative">
@@ -67,14 +72,15 @@ const Navbar = () => {
               <Link to="/" className="mx-3">
                 {t("Home")}
               </Link>
-              <Link to="/Universities" className="mx-3">
+              <Link to="/universities" className="mx-3">
                 {t("Universities")}
               </Link>
-              <Link to="/Departments" className="mx-3">
+              <Link to="/departments" className="mx-3">
                 {t("Departments")}
               </Link>
             </div>
           </div>
+
 
           <div className="flex">
             <button className="mx-1" onClick={() => clickHandle("tr")}>
@@ -86,7 +92,9 @@ const Navbar = () => {
           </div>
           {currentUser ? (
             <div className="flex m-2 ">
+
               <MyMenu />
+
             </div>
           ) : (
             <div className="w-full h-[82px] max-[600]:h-96 flex items-center justify-end max-[sm]:justify-center">
@@ -103,10 +111,12 @@ const Navbar = () => {
                 >
                   Sign Up
                 </button>
+
               </div>
             </div>
           )}
         </nav>
+
       </div>
     </div>
   );
