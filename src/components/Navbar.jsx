@@ -7,7 +7,8 @@ import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
 
 
-import turk from '../images/turk.png'
+import turk from "../images/turk.png";
+
 import { useSelector } from "react-redux";
 import MyMenu from "./MyMenu";
 import eng from '../images/eng.png'
@@ -22,21 +23,17 @@ const Navbar = () => {
 
   const { currentUser } = useSelector((state) => state?.auth);
 
-
   console.log(currentUser);
-
   const { t, i18n } = useTranslation();
-
   const clickHandle = (lng) => {
     i18n.changeLanguage(lng);
   };
-
   return (
     <div>
       <SignInModal open={openModal} setOpen={setOpenModal} />
       <SignUpModal openUp={openUpModal} setOpenUp={setOpenUpModal} />
 
-      <div className="relative">
+      <div className="relative mb-5">
         <nav className="rounded flex items-center md:justify-between sm:justify-around font-bold text-md fixed right-0 left-0 top-0 z-10 bg-white-500 border-t-[2rem] border-green-dark">
           <div className="lg:flex lg:flex-row items-center sm:flex-col sm:flex ">
             <button className="mx-8 sm:mx-1 lg:invisible md:visible sm:visible mt-2  relative">
@@ -75,10 +72,10 @@ const Navbar = () => {
               <Link to="/" className="mx-3">
                 {t("Home")}
               </Link>
-              <Link to="/Universities" className="mx-3">
+              <Link to="/universities" className="mx-3">
                 {t("Universities")}
               </Link>
-              <Link to="/Departments" className="mx-3">
+              <Link to="/departments" className="mx-3">
                 {t("Departments")}
               </Link>
             </div>
@@ -110,7 +107,7 @@ const Navbar = () => {
                 </button>
                 <button
                   onClick={() => setOpenUpModal(!openUpModal)}
-                  className="border rounded lg:text-sm md:text-sm max-sm:text-xs  sm:text-xs  hover:bg-red-retro bg-red-warm	 text-white-cream px-4 py-2 shadow-md"
+                  className="border rounded lg:text-sm md:text-sm max-sm:text-xs  sm:text-xs  hover:bg-red-retro bg-red-warm   text-white-cream px-4 py-2 shadow-md"
                 >
                   Sign Up
                 </button>

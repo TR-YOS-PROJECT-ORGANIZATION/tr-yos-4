@@ -2,9 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const infoSlice = createSlice({
   name: "info",
   initialState: {
-    univercities: null,
-    departments: null,
-    cities: null,
+
+    univercities:null,
+    departments:null,
+    allDepartments:null,
+    cities:null,
+
     error: false,
 
     userInfo: null,
@@ -22,7 +25,12 @@ const infoSlice = createSlice({
     getDepSuccess: (state, { payload }) => {
       state.departments = payload;
     },
-    getCitiesSuccess: (state, { payload }) => {
+
+    getDepAllSuccess:(state, { payload })=> {
+      state.allDepartments = payload;
+    },
+    getCitiesSuccess:(state, { payload })=> {
+
       state.cities = payload;
     },
 
@@ -34,15 +42,16 @@ const infoSlice = createSlice({
       state.loading = false;
       state.userInfo = payload;
     },
-    
-    
-  },
+
+  }
+
 });
 export const {
   fetchStart,
   getUniSuccess,
   fetchFail,
   getDepSuccess,
+  getDepAllSuccess,
   getCitiesSuccess,
 
   getUserInfoSuccess,
