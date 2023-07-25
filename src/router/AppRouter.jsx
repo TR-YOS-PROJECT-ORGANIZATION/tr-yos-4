@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from '../pages/HomePage';
@@ -18,19 +19,14 @@ const AppRouter = () => {
         <BrowserRouter>
           <Navbar /> 
             <Routes>
-                <Route path='/' element={<HomePage/>} />
-                <Route path='Departments' element={<Departments />} />
-                <Route path='Universities' element={<UniversitiesPage/>} />
-                <Route path="myProfile" element={<MyProfile/>} />
-                <Route path="favourites" element={<Favourites/>} />
-                <Route path="/departmentDetail/:code" element={<DepartmentDetail />} />
-
-                <Route path="/compareList" element={<PrivateRouter />}>
-                <Route path="" element={<Compare/>} />
-                </Route>
-
-                
-
+                <Route path='/' element={<HomePage/>}></Route>
+                <Route path='departments' element={<Departments />}></Route>
+                <Route path='universities' element={<UniversitiesPage/>}></Route>
+                <Route path='about' element={<Footer/>}></Route>
+                <Route path='departmentDetail/:code' element={<DepartmentDetail/>}></Route>
+                <Route path='compare' element={<Compare/>}></Route>
+                <Route path="myProfile" element={<MyProfile/>}></Route>
+                <Route path="favourites" element={<Favourites/>}></Route>
             </Routes>
             <Footer/>
         </BrowserRouter>
