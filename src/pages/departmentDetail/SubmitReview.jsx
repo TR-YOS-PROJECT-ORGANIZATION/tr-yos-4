@@ -7,9 +7,14 @@ const SubmitReview = ({ dept,uni }) => {
   return (
     
     <div className="">
+
       
         
       <div className="flex-none lg:flex  mt-8 w-5/6 m-auto">
+
+      {dept?.map((item)=>(
+      <div key={item.id}  className="flex-none lg:flex  mt-8 w-5/6 m-auto">
+
         <div className="">
           <div className="">
             <div className=" p-7 border-2 m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
