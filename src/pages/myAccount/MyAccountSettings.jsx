@@ -71,12 +71,12 @@ const MyAccountSettings = ({userInfo}) => {
             <textarea
               type="text"
               required
-              className="h-40 rounded-md mt-2 border-2  hover:border-blue-dark"
+              className="h-40 rounded-md mt-2 border-2  hover:border-green-dark"
             ></textarea>
           </div>
         </div>
       </div>
-      <button className="bg-blue-light text-blue-dark hover:bg-blue-dark hover:text-blue-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4">
+      <button className="bg-red-warm text-white-500 hover:bg-green-dark hover:text-green-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4">
         Save Changes
       </button>
     </div>
