@@ -7,25 +7,25 @@ const SubmitReview = ({ dept,uni }) => {
   return (
     
     <div className="">
-      {dept?.map((item)=>(
+      
         
       <div className="flex-none lg:flex  mt-8 w-5/6 m-auto">
         <div className="">
           <div className="">
             <div className=" p-7 border-2 m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
               <div className="ml-5 text-left font-bold text-blue-950 text-xl">
-                <h4>{item?.department.en}</h4>
-                <h4>{item.faculty.en}</h4>
+                <h4>{dept[0]?.department.en}</h4>
+                <h4>{dept[0]?.faculty.en}</h4>
                 <span className="text-xs text-slate-500">
                   <i className="fa-solid fa-location-dot"></i>
                   <a href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL">
-                    {item?.data?.adress}
+                    {dept[0].data?.adress}
                     
                   </a>
                 </span>
               </div>
               <div className=" font-bold text-left ml-5 ">
-                <p className="text-xl text-blue-700 ">{item.price}</p>
+                <p className="text-xl text-blue-700 ">{dept[0]?.price}</p>
                 <span className="text-xs text-slate-500">Year</span>
               </div>
             </div>
@@ -39,19 +39,19 @@ const SubmitReview = ({ dept,uni }) => {
                 <div className="grid-none grid-cols-1 md:grid-cols-2 grid lg:grid-cols-4   divide-x text-center bg-[#E5F8F2] border border-green-300 rounded-xl   divide-dotted divide-green-300">
                   <div className="p-10 ">
                     <div className="text-xs">Language</div>
-                    <div className="font-bold text-[#00A372]">{item.language}</div>
+                    <div className="font-bold text-[#00A372]">{dept[0]?.language}</div>
                   </div>
                   <div className="p-10 ">
-                    <div className="text-xs">Language</div>
-                    <div className="font-bold text-[#00A372]">English</div>
+                    <div className="text-xs">Year</div>
+                    <div className="font-bold text-[#00A372]">4</div>
                   </div>
                   <div className="p-10 ">
-                    <div className="text-xs">Language</div>
-                    <div className="font-bold text-[#00A372]">English</div>
+                    <div className="text-xs">Quota</div>
+                    <div className="font-bold text-[#00A372]">40</div>
                   </div>
                   <div className="p-10  ">
-                    <div className="text-xs">Language</div>
-                    <div className="font-bold text-[#00A372]">English</div>
+                    <div className="text-xs">internships</div>
+                    <div className="font-bold text-[#00A372]"></div>
                   </div>
                 </div>
               </div>
@@ -331,13 +331,13 @@ const SubmitReview = ({ dept,uni }) => {
               <div className="flex flex-col items-center">
                 <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
                   <img
-                    src={item.logo}
+                    src={item?.logo}
                     alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <h1 className="text-lg font-semibold text-gray-800 capitalize dark:text-white lg:text-lg">
-                  {item.en}
+                  {item?.en}
                 </h1>
                 <div className="flex mt-2 justify-center border-b-2 w-full">
                   <svg
@@ -351,7 +351,7 @@ const SubmitReview = ({ dept,uni }) => {
                       fill="#0D0D0D"
                     ></path>
                   </svg>
-                  <p className="ml-1 text-sm text-gray-500">{item.city.en}</p>
+                  <p className="ml-1 text-sm text-gray-500">{item?.city.en}</p>
                 </div>
 
                 <div className="mt-6 space-y-8 md:mt-8">
@@ -447,7 +447,7 @@ const SubmitReview = ({ dept,uni }) => {
             </div>
           </section>)}
         </div>
-      </div>))}
+      </div>
     </div>
   );
 };
