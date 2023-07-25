@@ -44,8 +44,8 @@ const infoSlice = createSlice({
     },
 
 
-    
-    
+
+
   },
 
 

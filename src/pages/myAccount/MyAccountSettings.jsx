@@ -1,7 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 
+
+
+
 const MyAccountSettings = ({userInfo}) => {
+
+
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
       <div className="mt-2 p-5 ">
