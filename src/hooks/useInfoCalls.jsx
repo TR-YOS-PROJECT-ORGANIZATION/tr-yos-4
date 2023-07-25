@@ -4,7 +4,6 @@ import {
   fetchStart,
   getUniSuccess,
   getDepSuccess,
-
   getUserInfoSuccess,
   getCitiesSuccess,
   getDepAllSuccess,
@@ -55,7 +54,6 @@ const useInfoCalls = () => {
     }
   };
 
-
   const getCities = async () => {
     dispatch(fetchStart());
     try {
@@ -73,8 +71,7 @@ const useInfoCalls = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios.get(
-        "https://tr-yös.com/api/v1/users/login.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a",
-        ID
+        `https://tr-yös.com/api/v1/users/user.php?id=${ID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
       dispatch(getUserInfoSuccess(data));
       console.log(data);
@@ -84,9 +81,6 @@ const useInfoCalls = () => {
     }
   };
 
-
   return { getUni, getDepartments, getCities, getUserInfo, getAllDepartments };
 };
-
 export default useInfoCalls;
-

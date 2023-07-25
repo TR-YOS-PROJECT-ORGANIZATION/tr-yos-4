@@ -1,10 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import useInfoCalls from "../../hooks/useInfoCalls";
-import { useEffect } from "react";
 
 
 const MyAccountSettings = () => {
+
 
   const { currentUser } = useSelector((state) => state?.auth);
   const { userInfo } = useSelector((state) => state?.info);
@@ -87,7 +85,6 @@ const MyAccountSettings = () => {
           </div>
         </div>
       </div>
-
       <button className="bg-blue-light text-blue-dark hover:bg-blue-dark hover:text-blue-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4">
         Save Changes
       </button>
