@@ -1,43 +1,44 @@
 import React, { useState } from "react";
 
-const SubmitReview = () => {
+const SubmitReview = ({ dept,uni }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(true);
+  console.log(dept);
   return (
+    
     <div className="">
-      {/* 1. kısım */}
-
-      <div className="flex mx-5 mt-8">
-        <div className="w-3/2">
+      {dept?.map((item)=>(
+      <div key={item.id}  className="flex-none lg:flex  mt-8 w-5/6 m-auto">
+        <div className="">
           <div className="">
-            <div className="w-2/3 p-7 border-2 m-5 rounded-xl flex justify-between shadow-lg">
-              <div className="leading-relaxed ml-5">
-                <h4>Medical Engineering 25% Scholarship</h4>
-                <h4>Medical School</h4>
+            <div className=" p-7 border-2 m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
+              <div className="ml-5 text-left font-bold text-blue-950 text-xl">
+                <h4>{item?.department.en}</h4>
+                <h4>{item.faculty.en}</h4>
                 <span className="text-xs text-slate-500">
                   <i className="fa-solid fa-location-dot"></i>
                   <a href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL">
-                    {" "}
-                    Kayışdağı Cad. No:32 Ataşehir/İstanbul
+                    {item?.data?.adress}
+                    
                   </a>
                 </span>
               </div>
-              <div className="mr-5 m-auto">
-                <p className="font-bold text-xl">$25000</p>
+              <div className=" font-bold text-left ml-5 ">
+                <p className="text-xl text-blue-700 ">{item.price}</p>
                 <span className="text-xs text-slate-500">Year</span>
               </div>
             </div>
             {/* other */}
-            <div className="gap-2 border w-2/3 m-5 rounded-xl ">
+            <div className="gap-2 border w-3/2 m-5 rounded-xl ">
               <div className="">
-                <h4 className="ml-6 mt-4 font-bold">Other</h4>
+                <h4 className="ml-6 mt-4 font-bold text-left">Other</h4>
               </div>
 
-              <div className="grid grid-rows-1  p-4">
-                <div className="grid grid-cols-4 text-center bg-[#E5F8F2] border border-1 border-green-300 rounded-xl">
+              <div className="p-4 ">
+                <div className="grid-none grid-cols-1 md:grid-cols-2 grid lg:grid-cols-4   divide-x text-center bg-[#E5F8F2] border border-green-300 rounded-xl   divide-dotted divide-green-300">
                   <div className="p-10 ">
                     <div className="text-xs">Language</div>
-                    <div className="font-bold text-[#00A372]">English</div>
+                    <div className="font-bold text-[#00A372]">{item.language}</div>
                   </div>
                   <div className="p-10 ">
                     <div className="text-xs">Language</div>
@@ -47,7 +48,7 @@ const SubmitReview = () => {
                     <div className="text-xs">Language</div>
                     <div className="font-bold text-[#00A372]">English</div>
                   </div>
-                  <div className="p-10 ">
+                  <div className="p-10  ">
                     <div className="text-xs">Language</div>
                     <div className="font-bold text-[#00A372]">English</div>
                   </div>
@@ -55,7 +56,7 @@ const SubmitReview = () => {
               </div>
             </div>
             {/* About */}
-            <div className="w-2/3 border ml-5 rounded-xl ">
+            <div className="w-3/2 border m-5 rounded-xl text-left ">
               <div className=" m-5">
                 <h4 className="font-bold">About Department</h4>
               </div>
@@ -130,10 +131,10 @@ const SubmitReview = () => {
                 </p>
               </div>
             </div>
-            {/* <button onClick={() => setIsOpen(!isOpen)} */}
+
             {/* Dropdown */}
 
-            <div className="border w-2/3 m-5 rounded-xl ">
+            <div className="border w-3/2 m-5 rounded-xl ">
               <div className="flex justify-between p-5">
                 <div className="">
                   <h4 className=" font-bold">Other</h4>
@@ -149,7 +150,7 @@ const SubmitReview = () => {
                 <section className="text-gray-600 body-font">
                   <div className="container px-5 py-5 mx-auto">
                     <div className="flex flex-wrap -m-4 text-center">
-                      <div className="p-4 w-full">
+                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                           <svg
                             width="640px"
@@ -164,7 +165,7 @@ const SubmitReview = () => {
                           <p className="leading-relaxed">3</p>
                         </div>
                       </div>
-                      <div className="p-4 w-full">
+                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                           <svg
                             height="800px"
@@ -197,7 +198,7 @@ const SubmitReview = () => {
                           <p className="leading-relaxed">4,240</p>
                         </div>
                       </div>
-                      <div className="p-4 w-full">
+                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                           <svg
                             width="640px"
@@ -212,7 +213,7 @@ const SubmitReview = () => {
                           <p className="leading-relaxed">1</p>
                         </div>
                       </div>
-                      <div className="p-4 w-full">
+                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                           {/* className="text-indigo-500 w-12 h-12 mb-3 inline-block" */}
                           <svg
@@ -235,48 +236,48 @@ const SubmitReview = () => {
             </div>
 
             {/* submit review */}
-            <div className="border rounded-xl m-5 w-2/3 grid grid-col-2">
-              <div className="m-5 col-span-2">
+            <div className="border rounded-xl m-5  text-left">
+              <div className="m-5 ">
                 <h2 className="text-2xl font-bold">Submit Review</h2>
-                <div className="flex gap-3 mt-3 col-span-2">
-                  <div className="w-1/2 md:text-xl">
+                <div className="flex-none lg:flex gap-3 mt-3 ">
+                  <div className="w-full lg:w-1/2 ">
                     <label htmlFor="" className="">
                       Name
                     </label>
                     <input
                       type="text"
                       required
-                      className="w-full rounded-md mt-2 border-2 md:text-xl focus:border-green-light focus:ring-green-dark p-3"
+                      className="w-full rounded-md mt-2 border-2 focus:outline-none p-3"
                       placeholder="Your Name"
                     />
                   </div>
-                  <div className="w-1/2">
+                  <div className="w-full lg:w-1/2">
                     <label htmlFor="" className="">
                       Email
                     </label>
                     <input
                       type="email"
                       required
-                      className="w-full rounded-md mt-2 border-2 md:text-xl focus:border-green-light focus:ring-green-dark p-3"
+                      className="w-full rounded-md mt-2 border-2  focus:outline-none p-3"
                       placeholder="Your Email"
                     />
                   </div>
                 </div>
-                <div className="flex gap-3 mt-4">
-                  <div className="w-1/2  md:text-xl">
+                <div className="flex-none lg:flex gap-3 mt-4">
+                  <div className="w-full lg:w-1/2  ">
                     <label htmlFor="" className="">
                       Phone No.
                     </label>
                     <input
                       type="email"
                       required
-                      className="w-full rounded-md mt-2 border-2 md:text-xl focus:border-green-light focus:ring-green-dark p-3"
+                      className="w-full rounded-md mt-2 border-2 focus:outline-none p-3"
                       placeholder="Your Contact"
                     />
                   </div>
-                  <div className=" w-1/2">
+                  <div className="w-full lg:w-1/2">
                     <p className="">Ratting</p>
-                    <select className="w-full rounded-md mt-2 border-2  focus:border-green-light focus:ring-green-dark p-3 md:text-xl">
+                    <select className="w-full rounded-md mt-2 p-3 border-2  focus:outline-none">
                       <option value="option1">1 : Very Poor</option>
                       <option value="option2">2 : Poor</option>
                       <option value="option3">3 : Good</option>
@@ -285,51 +286,57 @@ const SubmitReview = () => {
                     </select>
                   </div>
                 </div>
-                <div className=" w-5/12"></div>
+
                 <div className="mt-5 ">
-                  <div className=" w-full flex flex-col md:text-xl">
+                  <div className=" w-full flex flex-col ">
                     <label htmlFor="" className="">
                       Your Message
                     </label>
                     <textarea
                       type="text"
                       required
-                      className="h-40 rounded-md mt-2 border-2 md:text-xl"
+                      className="h-40 rounded-md mt-2 border-2 text-base"
                       placeholder="Message"
                     ></textarea>
                   </div>
                 </div>
               </div>
-              <div className="text-center">
-                <button className="bg-red-base hover:bg-red-retro rounded-lg  p-4 m-5 text-white-500">
+              <div className="">
+                <button className=" bg-red-warm  hover:bg-red-retro rounded-lg  p-4 m-5 text-white-500">
                   Submit Review
                 </button>
               </div>
             </div>
           </div>
         </div>
-
+        {/* add favourite and send message */}
         <div className="w-2/3 mt-8">
           <div className="border p-4 rounded-xl mb-12 shadow-2xl">
             <button
-              className="bg-red-warm  py-3 p-3 rounded-xl hover:bg-green-400 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-50 "
+              style={{
+                backgroundColor: !show && "#00A372",
+                borderStyle: !show && "none",
+              }}
+              className=" bg-red-200 border-2 border-red-warm py-3 p-3 rounded-xl hover:bg-red-warm hover:text-white-500 "
               onClick={() => setShow(!show)}
             >
               {show ? "Add Favourite" : "Remove Favourite"}
             </button>
           </div>
-          <section className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-2xl">
+
+          {/* send message */}
+          {uni.map((item)=> <section className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-2xl">
             <div className="container px-3 py-3 mx-auto flex justify-center">
               <div className="flex flex-col items-center">
                 <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
                   <img
-                    src="https://www.tr-yös.com/test/6984215678913/logo/acibadem-mehmet-ali-aydinlar-universitesi-logo-1683762727498.png"
+                    src={item.logo}
                     alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <h1 className="text-lg font-semibold text-gray-800 capitalize dark:text-white lg:text-lg">
-                  ACIBADEM MEHMET ALI AYDINLAR UNIVERSITY
+                  {item.en}
                 </h1>
                 <div className="flex mt-2 justify-center border-b-2 w-full">
                   <svg
@@ -343,7 +350,7 @@ const SubmitReview = () => {
                       fill="#0D0D0D"
                     ></path>
                   </svg>
-                  <p className="ml-1 text-sm text-gray-500">Istanbul</p>
+                  <p className="ml-1 text-sm text-gray-500">{item.city.en}</p>
                 </div>
 
                 <div className="mt-6 space-y-8 md:mt-8">
@@ -366,7 +373,7 @@ const SubmitReview = () => {
                       href="+90 (257) 563-7401"
                       className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
                     >
-                      +90 (257) 563-7401
+                      {item?.data?.phone}
                     </a>
                   </p>
                   <p className="flex items-start -mx-2">
@@ -388,7 +395,7 @@ const SubmitReview = () => {
                       href="info@acibadem.edu.tr"
                       className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
                     >
-                      info@acibadem.edu.tr
+                      {item?.data?.email}
                     </a>
                   </p>
                   <p className="flex items-start -mx-2">
@@ -411,7 +418,7 @@ const SubmitReview = () => {
                       href="https://www.acibadem.edu.tr"
                       className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
                     >
-                      https://www.acibadem.edu.tr
+                      {item?.data?.web}
                     </a>
                   </p>
                   <div className="flex items-end -mx-2">
@@ -437,9 +444,9 @@ const SubmitReview = () => {
                 </div>
               </div>
             </div>
-          </section>
+          </section>)}
         </div>
-      </div>
+      </div>))}
     </div>
   );
 };
