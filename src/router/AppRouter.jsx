@@ -19,15 +19,28 @@ const AppRouter = () => {
         <BrowserRouter>
           <Navbar /> 
             <Routes>
-                <Route path='/' element={<HomePage/>}></Route>
-                <Route path='departments' element={<Departments />}></Route>
-                <Route path='universities' element={<UniversitiesPage/>}></Route>
-                <Route path='about' element={<Footer/>}></Route>
-                <Route path='departmentDetail/:code' element={<DepartmentDetail/>}></Route>
-                <Route path='compare' element={<Compare/>}></Route>
-                <Route path="myProfile" element={<MyProfile/>}></Route>
-                <Route path="favourites" element={<Favourites/>}></Route>
-            </Routes>
+
+                <Route path='/' element={<HomePage/>} />
+                <Route path='Departments' element={<Departments />} />
+                <Route path='Universities' element={<UniversitiesPage/>} />
+                
+                <Route path="/departmentDetail/:code" element={<DepartmentDetail />} />
+
+                <Route path="/compare" element={<PrivateRouter />}>
+                <Route path="" element={<Compare/>} />
+                </Route>
+
+                <Route path="myProfile" element={<PrivateRouter />}>
+                <Route path="" element={<MyProfile/>} />
+                </Route>
+
+                <Route path="favourites" element={<PrivateRouter />}>
+                <Route path="" element={<Favourites/>} />
+                </Route>
+
+                
+
+
             <Footer/>
         </BrowserRouter>
 
