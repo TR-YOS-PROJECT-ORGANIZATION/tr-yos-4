@@ -41,6 +41,15 @@ module.exports = {
           light: "#F1F5F8",
         },
       },
+
+      tremor:{
+        background: {
+          muted: "#ffffff", // gray-50
+          subtle: "#f3f4f6", // gray-100
+          DEFAULT: "#ffffff", // white
+          emphasis: "#374151", // gray-700
+        },
+      }
     },
   },
   plugins: [],

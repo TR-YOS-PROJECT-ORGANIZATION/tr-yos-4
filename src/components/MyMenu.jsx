@@ -10,7 +10,7 @@ const MyMenu = () => {
     <div className="fixed top-10 right-36  w-32 text-start ">
       <Menu as="div" className="inline-block text-left">
         <div>
-          <Menu.Button className="font-bold  w-full rounded-md px-4 py-3 underline  text-sm  focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          <Menu.Button className="font-bold  w-full rounded-md px-4 py-3 underline  text-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             My Account
         
           </Menu.Button>
@@ -42,7 +42,7 @@ const MyMenu = () => {
               </Menu.Item>
             </div>
 
-            <div className="h-10 flex text-center  hover:bg-slate-300">
+            <div className="h-10 flex text-center p-2  bg-white-500  hover:bg-slate-300">
               <Menu.Item>
                 <Link to="/compare" className=" bg-white-500 w-full  hover:bg-slate-300">
                   Compare Departments

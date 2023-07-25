@@ -28,3 +28,10 @@ button.slick-arrow.slick-prev {
   color: red;
 }
 
+#headlessui-listbox-button{
+  border-radius: 10px !important;
+}
+
+#headlessui-listbox-options{
+  background-color: white;
+}

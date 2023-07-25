@@ -6,7 +6,8 @@ import {
   getDepSuccess,
 
   getUserInfoSuccess,
-  getCitiesSuccess
+  getCitiesSuccess,
+  getDepAllSuccess,
 
 } from "../features/infoSlice";
 import axios from "axios";
@@ -39,6 +40,22 @@ const useInfoCalls = () => {
       console.log(error);
     }
   };
+
+  const getAllDepartments = async () => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axios.get(
+        "https://tr-yös.com/api/v1/record/alldepartments.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a"
+      );
+      dispatch(getDepAllSuccess(data));
+      console.log(data);
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(error);
+    }
+  };
+
+
   const getCities = async () => {
     dispatch(fetchStart());
     try {
@@ -66,6 +83,10 @@ const useInfoCalls = () => {
       console.log(error);
     }
   };
-  return { getUni, getDepartments, getCities, getUserInfo };
+
+
+  return { getUni, getDepartments, getCities, getUserInfo, getAllDepartments };
 };
+
 export default useInfoCalls;
+

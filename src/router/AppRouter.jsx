@@ -15,19 +15,15 @@ const AppRouter = () => {
     <div >
 
         <BrowserRouter>
-           <Navbar />
-           
+          <Navbar /> 
             <Routes>
                 <Route path='/' element={<HomePage/>}></Route>
                 <Route path='Departments' element={<Departments />}></Route>
                 <Route path='Universities' element={<UniversitiesPage/>}></Route>
-                <Route path='about' element={<Footer/>}></Route>
-                <Route path='departmentDetail' element={<DepartmentDetail/>}></Route>
+                <Route path='departmentDetail/:code' element={<DepartmentDetail/>}></Route>                
                 <Route path='compareList' element={<Compare/>}></Route>
                 <Route path="myProfile" element={<MyProfile/>}></Route>
                 <Route path="favourites" element={<Favourites/>}></Route>
-              
-
             </Routes>
             <Footer/>
         </BrowserRouter>

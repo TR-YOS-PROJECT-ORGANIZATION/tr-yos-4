@@ -7,7 +7,8 @@ import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
 
 
-import turk from '../images/turk.png'
+import turk from "../images/turk.png";
+
 import { useSelector } from "react-redux";
 import MyMenu from "./MyMenu";
 import eng from '../images/eng.png'
@@ -22,15 +23,11 @@ const Navbar = () => {
 
   const { currentUser } = useSelector((state) => state?.auth);
 
-
   console.log(currentUser);
-
   const { t, i18n } = useTranslation();
-
   const clickHandle = (lng) => {
     i18n.changeLanguage(lng);
   };
-
   return (
     <div>
       <SignInModal open={openModal} setOpen={setOpenModal} />
@@ -110,7 +107,7 @@ const Navbar = () => {
                 </button>
                 <button
                   onClick={() => setOpenUpModal(!openUpModal)}
-                  className="border rounded lg:text-sm md:text-sm max-sm:text-xs  sm:text-xs  hover:bg-red-retro bg-red-warm	 text-white-cream px-4 py-2 shadow-md"
+                  className="border rounded lg:text-sm md:text-sm max-sm:text-xs  sm:text-xs  hover:bg-red-retro bg-red-warm   text-white-cream px-4 py-2 shadow-md"
                 >
                   Sign Up
                 </button>
