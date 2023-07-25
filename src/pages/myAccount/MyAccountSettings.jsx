@@ -1,4 +1,6 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
+
 import { useSelector } from "react-redux";
 import useInfoCalls from "../../hooks/useInfoCalls";
 import { useEffect } from "react";
@@ -18,6 +20,8 @@ const MyAccountSettings = () => {
 
   getUserInfo(currentUser);
   console.log(currentUser);
+
+const MyAccountSettings = () => {
 
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
@@ -88,7 +92,6 @@ const MyAccountSettings = () => {
           </div>
         </div>
       </div>
-
       <button className="bg-blue-light text-blue-dark hover:bg-blue-dark hover:text-blue-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4">
         Save Changes
       </button>

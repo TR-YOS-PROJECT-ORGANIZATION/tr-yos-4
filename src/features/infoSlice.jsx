@@ -45,7 +45,10 @@ const infoSlice = createSlice({
 
 
 
+
   },
+
+
 });
 export const {
   fetchStart,

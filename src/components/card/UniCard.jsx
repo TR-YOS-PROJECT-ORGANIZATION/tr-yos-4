@@ -2,13 +2,13 @@
 import i18next from "i18next";
 
 import React from "react";
+import Pagination from "../../pages/universitiesPages/Pagination";
 
-
-const UniCard = ({ key,item }) => {
+const UniCard = ({ key,item,}) => {
     console.log(item)
   return (
     <div
-      className="w-96 container flex flex-col justify-center items-center sm:flex-col sm:justify-start border-2 border-gray-400 rounded-md shadow-lg  lg:mx-auto my-10 sm:mx-auto md:m-20 "
+      className=" truncate w-96 container flex flex-col justify-center items-center sm:flex-col sm:justify-start border-2 border-gray-400 rounded-md shadow-lg  lg:mx-auto my-10 sm:mx-auto md:m-20 "
       key={key}
     >
       <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
@@ -64,6 +64,7 @@ const UniCard = ({ key,item }) => {
     
         </div>{" "}
       </div>{" "}
+      
     </div>
   );
 };
