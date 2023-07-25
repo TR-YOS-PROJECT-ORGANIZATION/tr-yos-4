@@ -28,7 +28,7 @@ const HomePage = () => {
     
 
     <div>
-      <Main />
+      <Main /> 
       <div className="row mt-16 justify-center-center">
         <div className="sec-heading center">
           <h2 className="font-extrabold text-2xl">{t("Our Departments")}</h2>
