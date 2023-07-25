@@ -65,7 +65,7 @@ const Main = () => {
             className="w-full h-[45rem] object-cover mt-20 "
             src={image1}
           ></img>
-          <div className="absolute bg-gray-base bg-opacity-50 leading-relaxed text-center left-20 text-2xl w-96  top-0 rounded pt-64 h-[45rem]">
+          <div className="absolute bg-gray-base bg-opacity-50 leading-relaxed text-center left-20 text-2xl w-96  top-20 rounded pt-64 h-[45rem]">
             <p className="leading-relaxed italic font-serif font-bold">
               {t("Join this educational journey")} <br></br> {t("with us")}{" "}
               <br></br> {t("and discover your data!")}

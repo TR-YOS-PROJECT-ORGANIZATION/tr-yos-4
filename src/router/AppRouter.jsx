@@ -34,10 +34,12 @@ const AppRouter = () => {
             <Route path="" element={<MyProfile />} />
           </Route>
 
+
           <Route path="favourites" element={<PrivateRouter />}>
             <Route path="" element={<Favourites />} />
           </Route>
         </Routes>
+
 
 
         <Footer />
