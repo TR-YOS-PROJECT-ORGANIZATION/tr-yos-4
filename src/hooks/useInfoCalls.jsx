@@ -7,7 +7,6 @@ import {
   getUserInfoSuccess,
   getCitiesSuccess,
   getDepAllSuccess,
-
 } from "../features/infoSlice";
 import axios from "axios";
 const useInfoCalls = () => {
@@ -39,7 +38,6 @@ const useInfoCalls = () => {
       console.log(error);
     }
   };
-
   const getAllDepartments = async () => {
     dispatch(fetchStart());
     try {
@@ -53,7 +51,6 @@ const useInfoCalls = () => {
       console.log(error);
     }
   };
-
   const getCities = async () => {
     dispatch(fetchStart());
     try {
@@ -80,7 +77,6 @@ const useInfoCalls = () => {
       console.log(error);
     }
   };
-
   return { getUni, getDepartments, getCities, getUserInfo, getAllDepartments };
 };
 export default useInfoCalls;
