@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from '../pages/HomePage';
@@ -18,6 +19,7 @@ const AppRouter = () => {
         <BrowserRouter>
           <Navbar /> 
             <Routes>
+
                 <Route path='/' element={<HomePage/>} />
                 <Route path='Departments' element={<Departments />} />
                 <Route path='Universities' element={<UniversitiesPage/>} />
@@ -38,7 +40,7 @@ const AppRouter = () => {
 
                 
 
-            </Routes>
+
             <Footer/>
         </BrowserRouter>
 

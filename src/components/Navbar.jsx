@@ -67,10 +67,10 @@ const Navbar = () => {
               <Link to="/" className="mx-3">
                 {t("Home")}
               </Link>
-              <Link to="/Universities" className="mx-3">
+              <Link to="/universities" className="mx-3">
                 {t("Universities")}
               </Link>
-              <Link to="/Departments" className="mx-3">
+              <Link to="/departments" className="mx-3">
                 {t("Departments")}
               </Link>
             </div>
