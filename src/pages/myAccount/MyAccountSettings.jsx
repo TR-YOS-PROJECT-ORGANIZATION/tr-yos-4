@@ -21,7 +21,7 @@ const MyAccountSettings = () => {
   getUserInfo(currentUser);
   console.log(currentUser);
 
-const MyAccountSettings = () => {
+
 
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
