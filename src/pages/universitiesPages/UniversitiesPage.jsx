@@ -34,7 +34,7 @@ const UniversitiesPage = () => {
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col ">
         <div className="relative">
           <img className="w-screen h-96" src={university} alt="#" />
           <div className="absolute inset-0 flex items-center justify-center flex-col bg-gray-800 bg-opacity-60">
