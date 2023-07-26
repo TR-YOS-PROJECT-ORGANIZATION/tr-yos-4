@@ -1,23 +1,31 @@
+
 import i18next from "i18next";
+
 import React from "react";
 import Pagination from "../../pages/universitiesPages/Pagination";
-import unilogo from "../../images/unilogo.png"
 
-const UniCard = ({ key, item }) => {
-  // Eğer item.logo geçerli bir resim yolu içermiyorsa, unilogo.png kullan
-  const logoSrc = item.logo !== undefined && item.logo !== null && item.logo !== "" ? item.logo : unilogo;
 
+const UniCard = ({ key,item,}) => {
+    console.log(item)
   return (
     <div
-      className="w-96 h-96 container flex flex-col justify-center items-center sm:flex-col sm:justify-start border-2 border-gray-400 rounded-md shadow-lg lg:mx-auto my-10 sm:mx-auto md:m-20"
+      className=" w-96  h-96 container flex flex-col justify-center items-center sm:flex-col sm:justify-start border-2 border-gray-400 rounded-md shadow-lg  lg:mx-auto my-10 sm:mx-auto md:m-20 "
       key={key}
     >
       <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
-        <img
-          src={logoSrc}
-          alt=""
-          className="w-full h-full object-cover"
-        />
+      <img
+  src={item.logo}
+  alt=""
+  onError={
+    (e)=>{
+      e.target.src="https://img.freepik.com/premium-vector/luxury-university-logo-design_139869-120.jpg?w=740"
+      e.target.alt="geçersiz"
+    }
+  }
+  className="w-full h-full object-cover"
+/>
+
+
       </div>
       <div className="">
 
