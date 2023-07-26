@@ -24,11 +24,11 @@ function OneCard(props) {
     const { getUserInfo } = useInfoCalls();
 
     useEffect(() => {
-        getUserInfo(currentUser);
+        getUserInfo(currentUser.userID);
     }, []);
 
     //To Add and Remove from Compare List///
-    function addRemoveCompareList() {
+    function addRemoveCompareList(id) {
         if (isAdded) {
             removeFromSelectedDepartments(id);
         } else {
@@ -39,7 +39,7 @@ function OneCard(props) {
 
     //To Add and Remove from Favoruite List///
 
-function addRemoveFavouriteList() {
+function addRemoveFavouriteList(id) {
     if(isFavourited) {
 
         removeFromFavourites(id);

@@ -13,8 +13,8 @@ import OneCard from '../components/card/OneCard'
 import i18next, { t } from "i18next";
 import axios from "axios";
 function Departments() {
-  const { getDepartments, getCities, getUserInfo } = useInfoCalls();
-  const { departments, cities} = useSelector((state) => state.info);
+  const { getDepartments, getUserInfo } = useInfoCalls();
+  const { departments} = useSelector((state) => state.info);
   const { currentUser } = useSelector((state) => state?.auth);
   const [isOpen, setOpen] = useState(false);
   const [compareList, setCompareList] = useState([]);
@@ -22,17 +22,10 @@ function Departments() {
 
   useEffect(() => {
     getDepartments();
-    getCities();
-    getUserInfo();
+    getUserInfo(currentUser.userID);
   }, []);
 
   const department = departments?.slice(0, 51)
-
-
-  // const getUniById= uniById?.slice(200,-1)
-  console.log(departments);
-
-  console.log(cities);
 
   const moveToSelectedDepartments = (id) => {
     const currentUserId = currentUser.userID;
@@ -44,7 +37,7 @@ function Departments() {
     catch (error) {
       console.log(error);
     }
-    setCompareList(prevState => [...prevState, departmentId]);
+    setCompareList((prevState) => [...prevState, departmentId]);
     console.log(compareList)
   }
 
@@ -88,7 +81,7 @@ const removeFromFavourites = (id) => {
   } catch (error) {
     console.log(error);
   }
-  setFavouriteList(prevState => prevState.filter((item) => item !== departmentId));
+  
   console.log(favouriteList);
 }
 
