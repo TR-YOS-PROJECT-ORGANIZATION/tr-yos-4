@@ -9,7 +9,11 @@ const SubmitReview = ({ dept,uni }) => {
     <div className="">
       
         
+     
+
+    
       <div className="flex-none lg:flex  mt-8 w-5/6 m-auto">
+
         <div className="">
           <div className="">
             <div className=" p-7 border-2 m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
@@ -326,7 +330,7 @@ const SubmitReview = ({ dept,uni }) => {
           </div>
 
           {/* send message */}
-          {uni.map((item)=> <section className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-2xl">
+          {uni.map((item,id)=> <section key={id} className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-2xl">
             <div className="container px-3 py-3 mx-auto flex justify-center">
               <div className="flex flex-col items-center">
                 <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
@@ -449,9 +453,9 @@ const SubmitReview = ({ dept,uni }) => {
         </div>
       </div>
       </div>
+
+    )}
     
-    
-  );
-};
+
 
 export default SubmitReview;
