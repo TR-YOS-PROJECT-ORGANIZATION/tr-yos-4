@@ -7,8 +7,10 @@ const SubmitReview = ({ dept,uni }) => {
   return (
     
     <div className="">
+
  
       <div  className="flex-none lg:flex  mt-8 w-5/6 m-auto">
+
         <div className="">
           <div className="">
             <div className=" p-7 border-2 m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
@@ -18,7 +20,9 @@ const SubmitReview = ({ dept,uni }) => {
                 <span className="text-xs text-slate-500">
                   <i className="fa-solid fa-location-dot"></i>
                   <a href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL">
+
                     {dept[0]?.data?.adress}
+
                     
                   </a>
                 </span>
@@ -42,15 +46,17 @@ const SubmitReview = ({ dept,uni }) => {
                   </div>
                   <div className="p-10 ">
                     <div className="text-xs">Year</div>
-                    <div className="font-bold text-[#00A372]">English</div>
+
+                    <div className="font-bold text-[#00A372]">4</div>
                   </div>
                   <div className="p-10 ">
                     <div className="text-xs">Quota</div>
-                    <div className="font-bold text-[#00A372]">English</div>
+                    <div className="font-bold text-[#00A372]">40</div>
                   </div>
                   <div className="p-10  ">
                     <div className="text-xs">internships</div>
-                    <div className="font-bold text-[#00A372]">English</div>
+                    <div className="font-bold text-[#00A372]"></div>
+
                   </div>
                 </div>
               </div>
@@ -325,18 +331,18 @@ const SubmitReview = ({ dept,uni }) => {
           </div>
 
           {/* send message */}
-          {uni.map((item)=> <section className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-2xl">
+          {uni.map((item,id)=> <section key={id} className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-2xl">
             <div className="container px-3 py-3 mx-auto flex justify-center">
               <div className="flex flex-col items-center">
                 <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
                   <img
-                    src={item.logo}
+                    src={item?.logo}
                     alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <h1 className="text-lg font-semibold text-gray-800 capitalize dark:text-white lg:text-lg">
-                  {item.en}
+                  {item?.en}
                 </h1>
                 <div className="flex mt-2 justify-center border-b-2 w-full">
                   <svg
@@ -350,7 +356,7 @@ const SubmitReview = ({ dept,uni }) => {
                       fill="#0D0D0D"
                     ></path>
                   </svg>
-                  <p className="ml-1 text-sm text-gray-500">{item.city.en}</p>
+                  <p className="ml-1 text-sm text-gray-500">{item?.city.en}</p>
                 </div>
 
                 <div className="mt-6 space-y-8 md:mt-8">
@@ -447,8 +453,12 @@ const SubmitReview = ({ dept,uni }) => {
           </section>)}
         </div>
       </div>
-    </div>
-  );
-};
+
+      </div>
+
+    )}
+    
+
+
 
 export default SubmitReview;
