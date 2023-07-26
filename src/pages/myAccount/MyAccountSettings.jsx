@@ -5,13 +5,6 @@ const MyAccountSettings = ({userInfo}) => {
 
   
 
-  useEffect(() => {
-    getUserInfo();
-  }, []);
-
-  getUserInfo(currentUser);
-  console.log(currentUser);
-
 
 
   return (
