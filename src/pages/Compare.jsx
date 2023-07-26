@@ -17,19 +17,20 @@ function Compare(isAdded) {
   const [compareList, setCompareList] = useState();
 
   useEffect(() => {
-    getUserInfo(currentUser);
+    getUserInfo(currentUser.userID);
   }, [currentUser]);
 
   useEffect(() => {
     getDepartments();
-  }, [])
+  }, [compareList])
 
+  const pieceOfDepartment = departments?.slice(0, 51);
 
   async function getCompareList(id) {
     const departmentId = id
     const currentUserId = currentUser.userID;
     try {
-      await axios.get(`https://tr-yös.com/api/v1/users/allcompares.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(({ data }) => setCompareList(data))
+      await axios.get(`https://tr-yös.com/api/v1/users/allcompares.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(({data}) => setCompareList(data))
       console.log(compareList);
     } catch (error) {
       console.log(error);
@@ -50,7 +51,7 @@ function Compare(isAdded) {
     }
   }
 
-  const filteredDepartments = departments?.filter((department) => compareList?.departments.map((item) => item).includes(department.id));
+  const filteredDepartments = pieceOfDepartment?.filter((department) => compareList?.departments.map((item) => item).includes(department.id));
 
   console.log(filteredDepartments);
   return (
