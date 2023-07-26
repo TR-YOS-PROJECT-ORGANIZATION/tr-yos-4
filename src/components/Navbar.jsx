@@ -29,7 +29,7 @@ const Navbar = () => {
     i18n.changeLanguage(lng);
   };
   return (
-    <div>
+    <div className="mb-20">
       <SignInModal open={openModal} setOpen={setOpenModal} />
       <SignUpModal openUp={openUpModal} setOpenUp={setOpenUpModal} />
 

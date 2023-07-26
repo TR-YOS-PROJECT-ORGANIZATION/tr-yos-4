@@ -7,12 +7,9 @@ const SubmitReview = ({ dept,uni }) => {
   return (
     
     <div className="">
-      
-        
-     
 
-    
-      <div className="flex-none lg:flex  mt-8 w-5/6 m-auto">
+ 
+      <div  className="flex-none lg:flex  mt-8 w-5/6 m-auto">
 
         <div className="">
           <div className="">
@@ -23,7 +20,9 @@ const SubmitReview = ({ dept,uni }) => {
                 <span className="text-xs text-slate-500">
                   <i className="fa-solid fa-location-dot"></i>
                   <a href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL">
-                    {dept[0].data?.adress}
+
+                    {dept[0]?.data?.adress}
+
                     
                   </a>
                 </span>
@@ -47,6 +46,7 @@ const SubmitReview = ({ dept,uni }) => {
                   </div>
                   <div className="p-10 ">
                     <div className="text-xs">Year</div>
+
                     <div className="font-bold text-[#00A372]">4</div>
                   </div>
                   <div className="p-10 ">
@@ -56,6 +56,7 @@ const SubmitReview = ({ dept,uni }) => {
                   <div className="p-10  ">
                     <div className="text-xs">internships</div>
                     <div className="font-bold text-[#00A372]"></div>
+
                   </div>
                 </div>
               </div>
@@ -452,10 +453,12 @@ const SubmitReview = ({ dept,uni }) => {
           </section>)}
         </div>
       </div>
+
       </div>
 
     )}
     
+
 
 
 export default SubmitReview;
