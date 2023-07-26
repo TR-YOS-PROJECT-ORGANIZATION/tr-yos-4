@@ -35,7 +35,7 @@ const UniCard = ({ key,item,}) => {
           ></path>
         </svg>
 
-        <p className="ml-1 text-sm text-gray-500 inline-block">                                        {
+        <p className="ml-1 text-sm text-gray-500 inline-block" >                                        {
                                         i18next.language== "tr" ? item.tr : item.en
                                         }</p>
 
