@@ -6,6 +6,16 @@ import React from "react";
 
 const MyAccountSettings = ({userInfo}) => {
 
+  
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  getUserInfo(currentUser);
+  console.log(currentUser);
+
+
 
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
