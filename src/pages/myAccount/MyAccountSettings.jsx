@@ -1,19 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 
-
-
-
 const MyAccountSettings = ({userInfo}) => {
 
   
-
-  useEffect(() => {
-    getUserInfo();
-  }, []);
-
-  getUserInfo(currentUser);
-  console.log(currentUser);
 
 
 
