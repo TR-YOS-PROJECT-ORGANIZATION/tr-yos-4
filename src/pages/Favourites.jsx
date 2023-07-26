@@ -14,7 +14,7 @@ function Favourites() {
     const [favouriteList, setFavouriteList] = useState();
 
     useEffect(() => {
-        getUserInfo(currentUser);
+        getUserInfo(currentUser.userID);
     }, [currentUser]);
 
     useEffect(() => {
@@ -42,11 +42,11 @@ function Favourites() {
         const departmentId = id
 
         try {
-            axios.get(`https://tr-yös.com/api/v1/users/deletefavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+            axios.get(`https://tr-yös.com/api/v1/users/deletefavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(()=>getFavouriteList());
         } catch (error) {
             console.log(error);
         }
-        setFavouriteList(prevState => prevState.filter((item) => item !== departmentId));
+        // setFavouriteList(prevState => prevState.filter((item) => item !== departmentId));
         console.log(favouriteList);
     }
 
