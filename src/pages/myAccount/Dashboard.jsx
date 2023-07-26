@@ -11,22 +11,22 @@ const Dashboard = ({userInfo}) => {
       />
       <div className="space-y-4 text-center divide-y divide-gray-700">
         <div className="my-2 space-y-1">
-          <h2 className="text-xl font-semibold sm:text-2xl text-blue-dark ">
-            {userInfo.user.name}
+          <h2 className="text-xl font-semibold sm:text-2xl text-green-dark ">
+          {userInfo?.user?.name}
           </h2>
-          <p className="px-5 text-xs sm:text-base text-blue-dark">
-          {userInfo.user.email}
+          <p className="px-5 text-xs sm:text-base text-green-dark">
+          {userInfo?.user?.email}
           </p>
         </div>
       </div>
       <div>
         <a
           href="#"
-          className="bg-blue-light text-blue-dark border-blue-dark  hover:underline flex mt-5 border-2 rounded-lg p-2"
+          className="bg-red-warm text-white-500 hover:underline flex mt-5 border-2 rounded-lg p-2"
         >
           <div className="pt-1.5 mr-2">
             <svg
-              className="fill-blue-dark"
+              className="fill-white-500"
               xmlns="http://www.w3.org/2000/svg"
               height="0.9em"
               viewBox="0 0 512 512"
@@ -40,11 +40,11 @@ const Dashboard = ({userInfo}) => {
       <div className="mt-2">
         <a
           href="#"
-          className="bg-green-light text-green-dark border-green-dark hover:underline flex border-2 rounded-lg p-2"
+          className="bg-red-warm text-white-500 hover:underline flex border-2 rounded-lg p-2"
         >
           <div className="pt-1 mr-2">
             <svg
-              className="fill-green-dark"
+              className="fill-white-500"
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
               viewBox="0 0 512 512"
@@ -57,7 +57,7 @@ const Dashboard = ({userInfo}) => {
       </div>
       <div className="mt-6">
         <div className="mt-2">
-          <a className=" flex p-2 font-medium border-2 rounded-lg bg-gray-light text-gray-base  hover:bg-blue-dark hover:text-white-cream">
+          <a className=" flex p-2 font-medium border-2 rounded-lg bg-gray-light text-gray-base  hover:bg-green-dark hover:text-white-cream">
             <div className="pt-1 mr-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ const Dashboard = ({userInfo}) => {
         </div>
 
         <div className="mt-2">
-          <a className=" flex p-2 font-medium border-2 rounded-lg bg-gray-light text-gray-base  hover:bg-blue-dark hover:text-white-cream">
+          <a className=" flex p-2 font-medium border-2 rounded-lg bg-gray-light text-gray-base  hover:bg-green-dark hover:text-white-cream">
             <div className="pt-1 mr-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
