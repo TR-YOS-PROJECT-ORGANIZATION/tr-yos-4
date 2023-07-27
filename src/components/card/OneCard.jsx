@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react'
-import i18next from 'i18next'
-import { useTranslation } from 'react-i18next';
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import image1 from "../../images/3d.jpg";
@@ -10,18 +10,20 @@ import image3 from "../../images/lab.jpg";
 import image4 from "../../images/biology.jpg";
 // import useAuthCall from '../../hooks/useAuthCall';
 import useInfoCalls from '../../hooks/useInfoCalls';
+import { useNavigate } from 'react-router-dom';
 
 
-function OneCard(props) {
+function OneCard(props, {item}) {
 
     // eslint-disable-next-line react/prop-types
-    const { facultyCode, en, tr, id, isInCompare, isInFavourite, moveToSelectedDepartments, removeFromSelectedDepartments, removeFromFavourites, moveToFavourites } = props;
+    const { facultyTr, facultyEn, universityTr, universityEn, departmentEn,  departmentTr, cityTr, cityEn, code, price, id, isInCompare, isInFavourite, moveToSelectedDepartments, removeFromSelectedDepartments, removeFromFavourites, moveToFavourites } = props;
     const [isAdded, setIsAdded] = useState(isInCompare);
     const [isFavourited, setIsFavourited] = useState(isInFavourite);
     // eslint-disable-next-line no-unused-vars
-    const { t } = useTranslation();
     const { currentUser } = useSelector((state) => state?.auth);
     const { getUserInfo } = useInfoCalls();
+    const navigate = useNavigate();
+    const {t} = useTranslation()
 
     useEffect(() => {
         getUserInfo(currentUser.userID);
@@ -147,13 +149,17 @@ let heartIcon;
                                         <h2
                                             className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg"
                                             title="New York"
+                                            onClick={()=> navigate(`/departmentDetail/${code}`,{state:item})}
                                         >
-                                            {facultyCode}
+                                            {i18next.language === "tr" ? departmentTr : departmentEn}
+
+                                            {/* {facultyCode} */}
                                         </h2>
                                         <p
                                             className="mt-2 line-clamp-1 text-sm text-gray-800"
                                             title="Faculty"
                                         >
+                                            {i18next.language=== "tr" ? facultyTr : facultyEn}
 
                                         </p>
                                         <p
@@ -161,7 +167,7 @@ let heartIcon;
                                             title="University"
                                         >
                                             {
-                                                i18next.language == "tr" ? tr : en
+                                                i18next.language === "tr" ? universityTr : universityEn
                                             }
 
                                         </p>
@@ -206,7 +212,7 @@ let heartIcon;
                                             fill="#0D0D0D"
                                         />
                                     </svg>
-                                    <span className="xl:mt-0"> Kayseri </span>
+                                    <span className="xl:mt-0"> {i18next.language== "tr" ? cityTr: cityEn} </span>
                                 </p>
                                 <p className="flex items-center text-gray-800 xl:flex-row xl:items-center">
                                     <svg
@@ -234,7 +240,7 @@ let heartIcon;
                                             />
                                         </g>
                                     </svg>
-                                    <span className="mt-0"> 15000/year </span>
+                                    <span className="mt-0"> {price}/{t("year")} </span>
                                 </p>
                             </div>
                         </div>

@@ -7,6 +7,7 @@ import { Dots } from "react-activity";
 import "react-activity/dist/library.css";
 import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
+import OneCard from "../components/card/OneCard";
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -40,7 +41,18 @@ const HomePage = () => {
       <div className="xs:m-0 xs:px-0 xs:w-full sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20">
         {depart?.map((item,index) => (
           <div key={index}>
-            <Card item={item} />
+            <OneCard item={item}
+            facultyTr= {item.faculty.tr}
+            facultyEn= {item.faculty.en}
+            universityTr= {item.university.tr}
+            universityEn = {item.university.en}
+            departmentTr = {item.department.tr}
+            departmentEn = {item.department.en}
+            cityTr = {item.city.tr}
+            cityEn = {item.city.en}
+            code = {item.department.code}
+            price = {item.price}
+             />
           </div>
         ))}
       </div>

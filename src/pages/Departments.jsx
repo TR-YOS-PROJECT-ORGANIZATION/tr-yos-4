@@ -13,19 +13,19 @@ import OneCard from '../components/card/OneCard'
 import i18next, { t } from "i18next";
 import axios from "axios";
 function Departments() {
-  const { getDepartments, getUserInfo } = useInfoCalls();
-  const { departments} = useSelector((state) => state.info);
+  const { getAllDepartments, getUserInfo } = useInfoCalls();
+  const { allDepartments } = useSelector((state) => state.info);
   const { currentUser } = useSelector((state) => state?.auth);
   const [isOpen, setOpen] = useState(false);
   const [compareList, setCompareList] = useState([]);
   const [favouriteList, setFavouriteList] = useState([]);
 
   useEffect(() => {
-    getDepartments();
+    getAllDepartments();
     getUserInfo(currentUser.userID);
   }, []);
 
-  const department = departments?.slice(0, 51)
+  const department = allDepartments?.slice(0, 51)
 
   const moveToSelectedDepartments = (id) => {
     const currentUserId = currentUser.userID;
@@ -44,7 +44,7 @@ function Departments() {
   const removeFromSelectedDepartments = (id) => {
     const currentUserId = currentUser.userID;
     const departmentId = id
-  
+
     try {
       axios.get(`https://tr-yös.com/api/v1/users/deletecompare.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
     } catch (error) {
@@ -54,36 +54,36 @@ function Departments() {
     console.log(compareList);
   }
 
-//Add to Favourites///
+  //Add to Favourites///
 
-const moveToFavourites = (id) => {
+  const moveToFavourites = (id) => {
 
-  const currentUserId = currentUser.userID;
-  const departmentId = id
+    const currentUserId = currentUser.userID;
+    const departmentId = id
 
-  try {
-    axios.get(`https://tr-yös.com/api/v1/users/addfavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+    try {
+      axios.get(`https://tr-yös.com/api/v1/users/addfavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+    }
+    catch (error) {
+      console.log(error);
+    }
+    setFavouriteList(prevState => [...prevState, departmentId]);
+    console.log(favouriteList)
+
   }
-  catch (error) {
-    console.log(error);
+
+  const removeFromFavourites = (id) => {
+    const currentUserId = currentUser.userID;
+    const departmentId = id
+
+    try {
+      axios.get(`https://tr-yös.com/api/v1/users/deletefavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+    } catch (error) {
+      console.log(error);
+    }
+
+    console.log(favouriteList);
   }
-  setFavouriteList(prevState => [...prevState, departmentId]);
-  console.log(favouriteList)
-
-}
-
-const removeFromFavourites = (id) => {
-  const currentUserId = currentUser.userID;
-  const departmentId = id
-
-  try {
-    axios.get(`https://tr-yös.com/api/v1/users/deletefavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
-  } catch (error) {
-    console.log(error);
-  }
-  
-  console.log(favouriteList);
-}
 
 
   return (
@@ -157,18 +157,25 @@ const removeFromFavourites = (id) => {
               {
                 department?.map((item) =>
                   <div key={item.id}>
-                    <OneCard
-                      facultyCode={item.facultyCode}
-                      en={item.en}
-                      tr={item.tr}
-                      item={item}
+
+                    <OneCard item={item}
+                      facultyTr={item.faculty.tr}
+                      facultyEn={item.faculty.en}
+                      universityTr={item.university.tr}
+                      universityEn={item.university.en}
+                      departmentTr={item.department.tr}
+                      departmentEn={item.department.en}
+                      cityTr={item.city.tr}
+                      cityEn={item.city.en}
+                      code={item.department.code}
+                      price={item.price}
                       id={item.id}
                       moveToSelectedDepartments={moveToSelectedDepartments}
                       removeFromSelectedDepartments={removeFromSelectedDepartments}
-                      moveToFavourites = {moveToFavourites}
-                      removeFromFavourites = {removeFromFavourites}
+                      moveToFavourites={moveToFavourites}
+                      removeFromFavourites={removeFromFavourites}
                       isInCompare={compareList.includes(item.id)}
-                      isInFavourite = {favouriteList.includes(item.id)}
+                      isInFavourite={favouriteList.includes(item.id)}
                     />
                   </div>
                 )}

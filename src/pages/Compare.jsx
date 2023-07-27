@@ -12,8 +12,8 @@ import OneCard from "../components/card/OneCard";
 function Compare(isAdded) {
   // const { t } = useTranslation();
   const { currentUser } = useSelector((state) => state?.auth);
-  const { departments } = useSelector((state) => state?.info);
-  const { getUserInfo, getDepartments } = useInfoCalls();
+  const { allDepartments } = useSelector((state) => state?.info);
+  const { getUserInfo, getAllDepartments } = useInfoCalls();
   const [compareList, setCompareList] = useState();
 
   useEffect(() => {
@@ -21,16 +21,17 @@ function Compare(isAdded) {
   }, [currentUser]);
 
   useEffect(() => {
-    getDepartments();
+    getAllDepartments();
   }, [compareList])
 
-  const pieceOfDepartment = departments?.slice(0, 51);
+  const pieceOfDepartment = allDepartments?.slice(0, 51);
 
   async function getCompareList(id) {
     const departmentId = id
+    console.log(departmentId)
     const currentUserId = currentUser.userID;
     try {
-      await axios.get(`https://tr-yös.com/api/v1/users/allcompares.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(({data}) => setCompareList(data))
+      await axios.get(`https://tr-yös.com/api/v1/users/allcompares.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(({ data }) => setCompareList(data))
       console.log(compareList);
     } catch (error) {
       console.log(error);
@@ -61,16 +62,22 @@ function Compare(isAdded) {
           filteredDepartments.map((item) => {
             return (
               <div key={item.id} >
-                <OneCard
-                  facultyCode={item.facultyCode}
-                  en={item.en}
-                  tr={item.tr}
-                  isAdded={isAdded}
-                  item={item}
+                <OneCard item={item}
+                  facultyTr={item.faculty.tr}
+                  facultyEn={item.faculty.en}
+                  universityTr={item.university.tr}
+                  universityEn={item.university.en}
+                  departmentTr={item.department.tr}
+                  departmentEn={item.department.en}
+                  cityTr={item.city.tr}
+                  cityEn={item.city.en}
+                  code={item.department.code}
+                  price={item.price}
                   id={item.id}
-                  isInCompare={true}
                   removeFromSelectedDepartments={removeFromSelectedDepartments}
-
+                  // isInCompare={compareList.includes(item.id)}
+                  isInCompare={true}
+                  isAdded={isAdded}
                 />
               </div>
             )
