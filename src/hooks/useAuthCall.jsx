@@ -61,8 +61,9 @@ const useAuthCall = () => {
         dispatch(logoutSuccess());
         navigate('/');
         toastSuccessNotify("Logout performed");
-      }
+      };
 
+    
      
   return {register,login,logout}
   

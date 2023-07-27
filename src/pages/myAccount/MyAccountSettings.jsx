@@ -3,12 +3,16 @@ import axios from "axios";
 import { toastSuccessNotify } from "../../helper/ToastNotify";
 const MyAccountSettings = ({ userInfo, currentUser }) => {
   const [country, setCountry] = useState();
+
   const [info, setInfo] = useState();
   console.log(info);
+
+
   const [newInfo, setNewInfo] = useState({});
   console.log(newInfo);
   console.log(currentUser);
   const userID = currentUser.userID;
+
   const getCountry = async () => {
     try {
       await axios
@@ -23,9 +27,10 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
   const sendInfo = async (newInfo) => {
     try {
       await axios
-        .patch(
-          `https://tr-yös.com/api/v1/users/updateuser2.php?user_id=${userID}?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
-          newInfo
+        .post(
+          `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
+          newInfo,
+          { headers: { "Content-Type": "multipart/form-data" }}
         )
         .then(({ data }) => setInfo(data));
       toastSuccessNotify("User information updated");
@@ -33,6 +38,7 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
       console.log(error);
     }
   };
+  
   useEffect(() => {
     getCountry();
   }, []);
@@ -44,12 +50,13 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
         <div className="flex ">
           <div className=" w-1/2 mr-2 mt-3">
             <label htmlFor="" className="font-bold">
-              Your Name*
+            Your Name*
             </label>
             <input
               type="text"
               required
               className="w-full rounded-md mt-2 border-2"
+              placeholder={userInfo?.user.name}
               onChange={(e) => setNewInfo({ ...newInfo, name: e.target.value })}
             />
           </div>
@@ -61,6 +68,7 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
               type="email"
               required
               className="w-full rounded-md mt-2 border-2"
+              placeholder={userInfo?.user.email}
               onChange={(e) =>
                 setNewInfo({ ...newInfo, email: e.target.value })
               }
@@ -72,12 +80,14 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
             <p className="font-bold">Country*</p>
             <select
               className="w-full rounded-md mt-2 border-2"
+           
               onChange={(e) =>
                 setNewInfo({ ...newInfo, country: e.target.value })
               }
             >
+            <option>Please choose a country</option>
               {country?.map((item) => (
-                <option value={item.en}>{item.en}</option>
+                <option value={userInfo?.user.country}>{item.en}</option>
               ))}
             </select>
           </div>
@@ -89,7 +99,9 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
               type="email"
               required
               className="w-full rounded-md mt-2 border-2"
+              placeholder={userInfo?.user.city}
               onChange={(e) => setNewInfo({ ...newInfo, city: e.target.value })}
+              
             />
           </div>
         </div>
@@ -101,6 +113,7 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
             type="text"
             required
             className="w-full rounded-md mt-2 border-2"
+            placeholder={userInfo?.user.phone}
             onChange={(e) => setNewInfo({ ...newInfo, phone: e.target.value })}
           />
         </div>
@@ -113,6 +126,7 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
               type="text"
               required
               className="h-40 rounded-md mt-2 border-2  hover:border-green-dark"
+              placeholder={userInfo?.user.about}
               onChange={(e) =>
                 setNewInfo({ ...newInfo, about: e.target.value })
               }

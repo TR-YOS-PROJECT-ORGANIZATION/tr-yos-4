@@ -21,7 +21,7 @@ const MyProfile = () => {
 
   return (
     <div>
-      <div className="bg-green-dark text-white-cream w-full flex-auto h-36 flex items-center justify-start text-5xl pl-20 sm:w-full xs:w-full">
+      <div className="bg-green-dark text-white-cream w-full flex-auto h-28 flex items-center justify-start text-5xl pl-20 sm:w-full xs:w-full">
         <h1>My Account</h1>
       </div>
       <div className="border-2 flex flex-col items-center rounded-lg shadow-grey-primary h-full">
