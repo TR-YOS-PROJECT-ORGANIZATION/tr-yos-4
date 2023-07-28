@@ -48,6 +48,7 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
             </label>
             <input
               type="text"
+              defaultValue={userInfo?.user?.name}
               required
               className="w-full rounded-md mt-2 border-2"
               onChange={(e) => setNewInfo({ ...newInfo, name: e.target.value })}
@@ -59,6 +60,7 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
             </label>
             <input
               type="email"
+              defaultValue={userInfo?.user?.email}
               required
               className="w-full rounded-md mt-2 border-2"
               onChange={(e) =>
