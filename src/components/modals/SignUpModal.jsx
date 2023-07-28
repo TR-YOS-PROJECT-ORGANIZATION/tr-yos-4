@@ -15,7 +15,8 @@ export const registerSchema = yup.object().shape({
     .required("Please enter an username")
     .nullable(),
 
-  email: yup.string(),
+  email: yup.string()
+            .required(),
 
   password1: yup
     .string()
@@ -80,11 +81,11 @@ const SignUpModal = (props) => {
             border-red-950 outline outline-offset-4  p-5 rounded-lg overflow-hidden transform transition-all bg-white-500 relative"
             >
             <button onClick={()=>props.setOpenUp(false)}>
-            <img src={close} className=" absolute right-5"></img>
+            <img src={close} className=" absolute right-5 top-5 hover:opacity-50"></img>
 
             </button>
 
-              <p className="text-green-dark font-bold text-lg">Sign Up</p>
+              <p className="text-black font-bold text-lg">Sign Up</p>
               <div className="m-5 rounded items-start text-start">
                 <Formik
                   initialValues={{
@@ -113,10 +114,10 @@ const SignUpModal = (props) => {
                   }) => (
                     <Form>
                       <div className="flex flex-col text-black ">
-                        <label htmlFor="name">Username</label>
+                        <label className="mt-2 font-bold" htmlFor="name">Username</label>
 
                         <Field
-                          className="border border-green-dark my-3 p-1 rounded"
+                          className="border border-green-dark my-1 p-1 rounded "
                           id="name"
                           name="name"
                           placeholder="Enter your username"
@@ -124,13 +125,17 @@ const SignUpModal = (props) => {
                           onChange={handleChange}
                           value={values.name}
                         />
+                         {touched.name && errors.name ? 
+                         <div className="text-red-retro mb-2 text-sm "> {errors.name}</div>
+                                   
+                                     : null}
 
-                        <ErrorMessage name="name" />
+                        {/* <ErrorMessage name="name" /> */}
 
-                        <label htmlFor="email">Email</label>
+                        <label className="mt-2 font-bold" htmlFor="email">Email</label>
 
                         <Field
-                          className="border border-green-dark my-3 p-1 rounded"
+                          className="border border-green-dark my-1 p-1 rounded"
                           id="email"
                           name="email"
                           placeholder="Enter your e-mail"
@@ -140,12 +145,14 @@ const SignUpModal = (props) => {
                           value={values.email}
                           variant="outlined"
                         />
-                        <ErrorMessage name="email" />
+                          {touched.email && errors.email ?  <div className="text-red-retro mb-2 text-sm "> {errors.email}</div>
+                                   
+                                   : null}
 
-                        <label htmlFor="password">Password</label>
+                        <label className="mt-2 font-bold" htmlFor="password">Password</label>
 
                         <Field
-                          className="border border-green-dark my-3 p-1 rounded"
+                          className="border border-green-dark my-1 p-1 rounded"
                           id="password1"
                           name="password1"
                           placeholder="Enter your password"
@@ -154,7 +161,9 @@ const SignUpModal = (props) => {
                           onChange={handleChange}
                           value={values.password1}
                         />
-                        <ErrorMessage name="password1" />
+                         {touched.password1 && errors.password1 ? <div className="text-red-retro mb-2 text-sm "> {errors.password}</div>
+                                   
+                                   : null}
 
                         <Field
                           className="border border-green-dark my-3 p-1 rounded"

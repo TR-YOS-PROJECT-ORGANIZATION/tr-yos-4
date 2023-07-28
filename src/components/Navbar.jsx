@@ -30,7 +30,7 @@ const Navbar = () => {
   };
   return (
     <div className="mb-20">
-      <SignInModal open={openModal} setOpen={setOpenModal} />
+      <SignInModal open={openModal} setOpen={setOpenModal}  setOpenUp={setOpenUpModal}/>
       <SignUpModal openUp={openUpModal} setOpenUp={setOpenUpModal} />
 
       <div className="relative mb-5">
