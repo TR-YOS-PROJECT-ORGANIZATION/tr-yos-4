@@ -3,15 +3,20 @@ import axios from "axios";
 import { toastSuccessNotify } from "../../helper/ToastNotify";
 const MyAccountSettings = ({ userInfo, currentUser }) => {
   const [country, setCountry] = useState();
-
+  const [citiesbyCountry, setCitiesbyCountry] = useState();
   const [info, setInfo] = useState();
   console.log(info);
-
 
   const [newInfo, setNewInfo] = useState({});
   console.log(newInfo);
   console.log(currentUser);
   const userID = currentUser.userID;
+
+  const filteredCountry = country?.filter(
+    (item) => item.en === newInfo.country
+  );
+
+  console.log(filteredCountry);
 
   const getCountry = async () => {
     try {
@@ -24,13 +29,24 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
       console.log(error);
     }
   };
+  const getCitiesbyCountry = async () => {
+    try {
+      await axios
+        .get(
+          `https://tr-yös.com/api/v1/location/citiesbycountry.php?country_id=${filteredCountry[0].id}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
+        )
+        .then(({ data }) => setCitiesbyCountry(data));
+    } catch (error) {
+      console.log("Error fetching cities:", error);
+    }
+  };
   const sendInfo = async (newInfo) => {
     try {
       await axios
         .post(
           `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
           newInfo,
-          { headers: { "Content-Type": "multipart/form-data" }}
+          { headers: { "Content-Type": "multipart/form-data" } }
         )
         .then(({ data }) => setInfo(data));
       toastSuccessNotify("User information updated");
@@ -38,11 +54,17 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
       console.log(error);
     }
   };
-  
+
   useEffect(() => {
     getCountry();
   }, []);
   console.log(country);
+  useEffect(() => {
+    if (newInfo?.country) {
+      getCitiesbyCountry(newInfo.country);
+    }
+  }, [newInfo?.country]);
+
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
       <div className="mt-2 p-5 ">
@@ -50,7 +72,7 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
         <div className="flex ">
           <div className=" w-1/2 mr-2 mt-3">
             <label htmlFor="" className="font-bold">
-            Your Name*
+              Your Name*
             </label>
             <input
               type="text"
@@ -82,14 +104,16 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
             <p className="font-bold">Country*</p>
             <select
               className="w-full rounded-md mt-2 border-2"
-           
               onChange={(e) =>
                 setNewInfo({ ...newInfo, country: e.target.value })
               }
+              defaultValue={userInfo?.user?.country}
             >
-            <option>Please choose a country</option>
+              <option>{userInfo?.user?.country}</option>
               {country?.map((item) => (
-                <option value={userInfo?.user.country}>{item.en}</option>
+                <option key={item.en} value={item.en}>
+                  {item.en}
+                </option>
               ))}
             </select>
           </div>
@@ -97,14 +121,17 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
             <label htmlFor="" className="font-bold">
               City
             </label>
-            <input
-              type="email"
-              required
+            <select
               className="w-full rounded-md mt-2 border-2"
-              placeholder={userInfo?.user.city}
               onChange={(e) => setNewInfo({ ...newInfo, city: e.target.value })}
-              
-            />
+            >
+              <option>{userInfo?.user?.city}</option>
+              {citiesbyCountry?.map((item) => (
+                <option key={item.en} value={item.en}>
+                  {item.en}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className=" w-5/12 mt-3">
