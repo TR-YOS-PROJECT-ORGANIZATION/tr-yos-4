@@ -12,46 +12,58 @@ import OneCard from '../components/card/OneCard'
 // eslint-disable-next-line no-unused-vars
 import i18next, { t } from "i18next";
 import axios from "axios";
+import useCardCalls from "../hooks/useCardCalls";
 function Departments() {
   const { getAllDepartments, getUserInfo } = useInfoCalls();
+  const { getCompareList } = useCardCalls();
+  const { compareList } = useSelector((state) => state?.card);
   const { allDepartments } = useSelector((state) => state.info);
   const { currentUser } = useSelector((state) => state?.auth);
   const [isOpen, setOpen] = useState(false);
-  const [compareList, setCompareList] = useState([]);
+  // const [compareList, setCompareList] = useState([]);
   const [favouriteList, setFavouriteList] = useState([]);
+  const currentUserId = currentUser?.userID;
+
 
   useEffect(() => {
+    currentUser && getUserInfo(currentUser.userID);
+  }, [currentUser]);
+  console.log(currentUser);
+
+  useEffect(() => {
+    getCompareList(currentUserId);
     getAllDepartments();
-    getUserInfo(currentUser.userID);
-  }, []);
+  }, [])
+
 
   const department = allDepartments?.slice(0, 51)
 
   const moveToSelectedDepartments = (id) => {
-    const currentUserId = currentUser.userID;
+    const currentUserId = currentUser?.userID;
     const departmentId = id
 
     try {
-      axios.get(`https://tr-yös.com/api/v1/users/addcompare.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+      axios.get(`https://tr-yös.com/api/v1/users/addcompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
     }
     catch (error) {
       console.log(error);
     }
-    setCompareList((prevState) => [...prevState, departmentId]);
-    console.log(compareList)
+    // setCompareList((prevState) => [...prevState, departmentId]);
+    // console.log(compareList)
   }
+  // console.log(compareList)
 
   const removeFromSelectedDepartments = (id) => {
-    const currentUserId = currentUser.userID;
+    const currentUserId = currentUser.user.userId;
     const departmentId = id
 
     try {
-      axios.get(`https://tr-yös.com/api/v1/users/deletecompare.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+      axios.get(`https://tr-yös.com/api/v1/users/deletecompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
     } catch (error) {
       console.log(error);
     }
-    setCompareList(prevState => prevState.filter((item) => item !== departmentId));
-    console.log(compareList);
+    // setCompareList(prevState => prevState.filter((item) => item !== departmentId));
+    // console.log(compareList);
   }
 
   //Add to Favourites///
@@ -155,27 +167,27 @@ function Departments() {
             <div className="xs:m-0 xs:px-0 sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 md:px-4 lg:grid-cols-3">
 
               {
-                department?.map((item) =>
-                  <div key={item.id}>
+                department?.map((element) =>
+                  <div key={element.id}>
 
-                    <OneCard item={item}
-                      facultyTr={item.faculty.tr}
-                      facultyEn={item.faculty.en}
-                      universityTr={item.university.tr}
-                      universityEn={item.university.en}
-                      departmentTr={item.department.tr}
-                      departmentEn={item.department.en}
-                      cityTr={item.city.tr}
-                      cityEn={item.city.en}
-                      code={item.department.code}
-                      price={item.price}
-                      id={item.id}
+                    <OneCard element={element}
+                      facultyTr={element.faculty.tr}
+                      facultyEn={element.faculty.en}
+                      universityTr={element.university.tr}
+                      universityEn={element.university.en}
+                      departmentTr={element.department.tr}
+                      departmentEn={element.department.en}
+                      cityTr={element.city.tr}
+                      cityEn={element.city.en}
+                      code={element.department.code}
+                      price={element.price}
+                      id={element.id}
                       moveToSelectedDepartments={moveToSelectedDepartments}
                       removeFromSelectedDepartments={removeFromSelectedDepartments}
                       moveToFavourites={moveToFavourites}
                       removeFromFavourites={removeFromFavourites}
-                      isInCompare={compareList.includes(item.id)}
-                      isInFavourite={favouriteList.includes(item.id)}
+                      isInCompare={compareList?.departments.map((item) => item).includes(element.id)}
+                      isInFavourite={favouriteList.includes(element.id)}
                     />
                   </div>
                 )}
@@ -375,7 +387,7 @@ export default Departments;
 
 
 /**Kısmen çalışan versiyon
- * 
+ *
  * //
  * import ImageSection from "../components/departmentComponents/ImageSection";
 import Selections from "../components/departmentComponents/Selections";
@@ -411,7 +423,7 @@ function Departments(item, facultyCode, en, tr, id) {
       <div className="flex flex-col">
         <ImageSection />
 
-        {/*  
+        {/*
 
         <div className="xs:flex-col xs:justify-center xs:items-center md:flex md:flex-row md:justify-center md:items-start">
           <div className="xs:visible xs:flex xs:justify-center xs:items-center sm:visible md:hidden">
@@ -459,7 +471,7 @@ function Departments(item, facultyCode, en, tr, id) {
 
               <Selections />
               <PriceForm />
-              {/* 
+              {/*
 
               {
                 cities?.map((item) =>
@@ -468,7 +480,7 @@ function Departments(item, facultyCode, en, tr, id) {
                     <PriceForm />
                   </div>
                 )
-              } 
+              }
 
               <div className="flex flex-row mx-2 justify-end sm:justify-start md:justify-end departments_search_button_container">
                 <button
@@ -562,7 +574,7 @@ export default Departments;
 //       <div className="flex flex-col">
 //         <ImageSection />
 
-//         {/*  
+//         {/*
 
 //         <div className="xs:flex-col xs:justify-center xs:items-center md:flex md:flex-row md:justify-center md:items-start">
 //           <div className="xs:visible xs:flex xs:justify-center xs:items-center sm:visible md:hidden">
@@ -619,7 +631,7 @@ export default Departments;
 //                     <PriceForm />
 //                   </div>
 //                 )
-//               } 
+//               }
 
 //               <div className="flex flex-row mx-2 justify-end sm:justify-start md:justify-end departments_search_button_container">
 //                 <button
