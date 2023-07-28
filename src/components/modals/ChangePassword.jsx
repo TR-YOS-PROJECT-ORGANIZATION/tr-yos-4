@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-
 import { Formik, Field, Form } from "formik";
 import * as yup from "yup";
 import useAuthCall from "../../hooks/useAuthCall";
@@ -8,17 +7,33 @@ import { useSelector } from "react-redux";
 import { ErrorMessage } from "formik";
 import close from '../../images/close.png'
 
+
+
 export const registerSchema = yup.object().shape({
-  name: yup
+    password_current: yup
     .string()
-    .max(10, "name must have less than 10 chars")
-    .required("Please enter an username")
-    .nullable(),
+    .required()
+    .min(8, "Password must have min 8 chars")
+    .max(16, "Password must have max 16 chars")
+    .matches(/\d+/, "Password must have a number")
+    .matches(/[a-z]+/, "Password must have a lowercase")
+    .matches(/[A-Z]+/, "Password must have an uppercase")
+    .matches(/[!,?{}><%&$#£+-.]+/, " Password must have a special char"),
 
-  email: yup.string()
-            .required(),
 
-  password1: yup
+password_new1: yup
+.string()
+.required()
+.min(8, "Password must have min 8 chars")
+.max(16, "Password must have max 16 chars")
+.matches(/\d+/, "Password must have a number")
+.matches(/[a-z]+/, "Password must have a lowercase")
+.matches(/[A-Z]+/, "Password must have an uppercase")
+.matches(/[!,?{}><%&$#£+-.]+/, " Password must have a special char"),
+
+
+
+  password_new2: yup
     .string()
     .required()
     .min(8, "Password must have min 8 chars")
@@ -30,9 +45,9 @@ export const registerSchema = yup.object().shape({
 });
 
 
-const SignUpModal = (props) => {
-  const { currentUser } = useSelector((state) => state?.auth);
-  const { register } = useAuthCall();
+const ChangePassword= (props) => {
+  const { currentUser } = useSelector((state) => state.auth);
+  const userID = currentUser.userID
 
 
 
@@ -41,11 +56,11 @@ const SignUpModal = (props) => {
   //   // toast.success("Address copied");
   // };
   return (
-    <Transition.Root show={props.openUp} as={Fragment}>
+    <Transition.Root show={props.open} as={Fragment}>
       <Dialog
         as="div"
         className="fixed z-50 inset-0 overflow-y-auto"
-        onClose={props.setOpenUp}
+        onClose={props.setOpen}
       >
         <div className="flex items-center justify-center min-h-screen  text-center text-white ">
           <Transition.Child
@@ -80,26 +95,26 @@ const SignUpModal = (props) => {
               className="text-white-500 w-[500px] min-h-[450px] border-2 border-spacing-3 
             border-red-950 outline outline-offset-4  p-5 rounded-lg overflow-hidden transform transition-all bg-white-500 relative"
             >
-            <button onClick={()=>props.setOpenUp(false)}>
-            <img src={close} className=" absolute right-5 top-5 hover:opacity-50"></img>
+            <button onClick={()=>props.setOpen(false)}>
+            <img src={close} className=" absolute right-5"></img>
 
             </button>
 
-              <p className="text-black font-bold text-lg">Sign Up</p>
+              <p className="text-green-dark font-bold text-lg">Edit Password</p>
               <div className="m-5 rounded items-start text-start">
                 <Formik
                   initialValues={{
-                    email: "",
-                    name: "",
-                    password1: "",
-                    password2: "",
+                    password_current: "",
+                     password_new1: "",
+                    password_new2: ""
                   }}
+
                   validationSchema={registerSchema}
                   onSubmit={(values, actions) => {
-                    register(values);
+                    props.getChangePassword(userID,values)
                     actions.resetForm();
                     actions.setSubmitting(false);
-                    props.setOpenUp(false);
+                    props.setOpen(false);
                   }}
                 >
                   {({
@@ -114,67 +129,47 @@ const SignUpModal = (props) => {
                   }) => (
                     <Form>
                       <div className="flex flex-col text-black ">
-                        <label className="mt-2 font-bold" htmlFor="name">Username</label>
 
-                        <Field
-                          className="border border-green-dark my-1 p-1 rounded "
-                          id="name"
-                          name="name"
-                          placeholder="Enter your username"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.name}
-                        />
-                         {touched.name && errors.name ? 
-                         <div className="text-red-retro mb-2 text-sm "> {errors.name}</div>
-                                   
-                                     : null}
-
-                        {/* <ErrorMessage name="name" /> */}
-
-                        <label className="mt-2 font-bold" htmlFor="email">Email</label>
-
-                        <Field
-                          className="border border-green-dark my-1 p-1 rounded"
-                          id="email"
-                          name="email"
-                          placeholder="Enter your e-mail"
-                          type="email"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.email}
-                          variant="outlined"
-                        />
-                          {touched.email && errors.email ?  <div className="text-red-retro mb-2 text-sm "> {errors.email}</div>
-                                   
-                                   : null}
-
-                        <label className="mt-2 font-bold" htmlFor="password">Password</label>
-
-                        <Field
-                          className="border border-green-dark my-1 p-1 rounded"
-                          id="password1"
-                          name="password1"
-                          placeholder="Enter your password"
-                          type="password"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.password1}
-                        />
-                         {touched.password1 && errors.password1 ? <div className="text-red-retro mb-2 text-sm "> {errors.password}</div>
-                                   
-                                   : null}
+                        <label htmlFor="password_current">Password</label>
 
                         <Field
                           className="border border-green-dark my-3 p-1 rounded"
-                          id="password2"
-                          name="password2"
+                          id="password_current"
+                          name="password_current"
                           placeholder="Enter your password"
                           type="password"
                           onBlur={handleBlur}
                           onChange={handleChange}
-                          value={values.password2}
+                          value={values.password_current}
                         />
+                        <ErrorMessage name="password_current" />
+
+                        <label htmlFor="password_new1">New Password</label>
+
+                        <Field
+                          className="border border-green-dark my-3 p-1 rounded"
+                          id="password_new1"
+                          name="password_new1"
+                          placeholder="Enter your new password"
+                          type="password"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.password_new1}
+                        />
+
+                        <label htmlFor="password_new2">Confirm New Password</label>
+
+                        <Field
+                          className="border border-green-dark my-3 p-1 rounded"
+                          id="password_new2"
+                          name="password_new2"
+                          placeholder="Enter your new password again"
+                          type="password"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.password_new2}
+                        />
+                      
                       
 
                         <button
@@ -197,4 +192,4 @@ const SignUpModal = (props) => {
   );
 };
 
-export default SignUpModal;
+export default ChangePassword;
