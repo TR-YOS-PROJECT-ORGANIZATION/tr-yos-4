@@ -22,8 +22,8 @@ function Departments() {
 
   useEffect(() => {
     getAllDepartments();
-    getUserInfo(currentUser.userID);
-  }, []);
+    currentUser &&  getUserInfo(currentUser?.userID); 
+  }, [currentUser]);
 
   const department = allDepartments?.slice(0, 51)
 

@@ -26,8 +26,9 @@ function OneCard(props, {item}) {
     const {t} = useTranslation()
 
     useEffect(() => {
-        getUserInfo(currentUser.userID);
-    }, []);
+        currentUser &&  getUserInfo(currentUser?.userID);  
+    }, [currentUser]);
+
 
     //To Add and Remove from Compare List///
     function addRemoveCompareList(id) {

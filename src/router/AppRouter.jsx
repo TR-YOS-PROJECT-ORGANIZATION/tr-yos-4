@@ -24,18 +24,20 @@ const AppRouter = () => {
           <Route path='Departments' element={<Departments />} />
           <Route path='Universities' element={<UniversitiesPage />} />
 
-          <Route path="/departmentDetail/:code" element={<DepartmentDetail />} />
+          <Route path="/departmentDetail/:code" element={<PrivateRouter />}>
+            <Route path="" element={<DepartmentDetail />} />
+          </Route>
 
           <Route path="/compare" element={<PrivateRouter />}>
             <Route path="" element={<Compare />} />
           </Route>
 
-          <Route path="myProfile" element={<PrivateRouter />}>
-            <Route path="" element={<MyProfile />} />
+          <Route path="/myProfile" element={<PrivateRouter />}>
+          <Route path="" element={<MyProfile />} />
           </Route>
 
 
-          <Route path="favourites" element={<PrivateRouter />}>
+          <Route path="/favourites" element={<PrivateRouter />}>
             <Route path="" element={<Favourites />} />
           </Route>
         </Routes>
