@@ -12,7 +12,9 @@ import * as yup from "yup";
 import close from '../../images/close.png'
 
 export const registerSchema = yup.object().shape({
-  email: yup.string(),
+  email: yup.string()
+            .required()
+  ,
 
   password: yup
     .string()
@@ -127,8 +129,14 @@ const SignInModal = (props) => {
                           onChange={handleChange}
                           value={values?.email}
                           variant="outlined"
+                          helperText={touched.email && errors.email}
+                          
                         />
-                        <ErrorMessage name="email" />
+                           {touched.email && errors.email ? 
+                         <div className="text-red-retro mb-2 text-sm "> {errors.email}</div>
+                                   
+                                     : null}
+
 
                         <label className=" text-red-700" htmlFor="password">
                           Password
@@ -143,8 +151,13 @@ const SignInModal = (props) => {
                           onBlur={handleBlur}
                           onChange={handleChange}
                           value={values?.password}
+                          
                         />
-                        <ErrorMessage name="password" />
+                          {touched.password && errors.password ? 
+                         <div className="text-red-retro mb-2 text-sm "> {errors.password}</div>
+                                   
+                                     : null}
+
 
                         <button
                           className="bg-red-warm mx-auto rounded py-3 mt-5 text-white-500 w-48"
@@ -153,6 +166,15 @@ const SignInModal = (props) => {
                         >
                           Submit
                         </button>
+
+                        <div className="flex justify-center mt-5">
+                          <p className="text-sm mx-1">Don't have an account yet?</p>
+                          <a onClick={()=>{open(false);
+                          props.setOpenUp(true)}}
+                          className="text-sm text-red-retro cursor-pointer hover:text-red-warm font-bold underline"> 
+                          Sign Up
+                          </a>
+                        </div>
                       </div>
                     </Form>
                   )}
