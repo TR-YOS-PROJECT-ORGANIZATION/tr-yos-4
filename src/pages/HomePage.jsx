@@ -1,33 +1,55 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect } from "react";
 import Main from "../components/Main";
-import Card from "../components/card/Card";
 import WorkUs from "../components/workUs/WorkUs";
 import { useTranslation } from "react-i18next";
-import { Dots } from "react-activity";
 import "react-activity/dist/library.css";
 import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 import OneCard from "../components/card/OneCard";
+import axios from "axios";
+import useCardCalls from "../hooks/useCardCalls";
 
 const HomePage = () => {
   const { t } = useTranslation();
-  const { getAllDepartments } = useInfoCalls();
+  const { getAllDepartments} = useInfoCalls();
   const { allDepartments } = useSelector((state) => state.info);
+  const { currentUser } = useSelector((state) => state?.auth);
+  const { getCompareList } = useCardCalls();
+  const { compareList } = useSelector((state) => state?.card);
+  const currentUserId = currentUser?.userID;
+
+  useEffect(() => {
+    getCompareList(currentUserId);
+  }, [])
+  // const currentUserId = currentUser.userID
+  
 
   useEffect(() => {
     getAllDepartments();
+    // getUserInfo(currentUser.userID);
   }, []);
   
   const depart = allDepartments?.slice(71,79)
   console.log(depart);
 
+  const moveToSelectedDepartments = (id) => {
+    const currentUserId = currentUser?.userID;
+    const departmentId = id
 
-
+    try {
+      axios.get(`https://tr-yös.com/api/v1/users/addcompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+    }
+    catch (error) {
+      console.log(error);
+    }
+    // setCompareList((prevState) => [...prevState, departmentId]);
+    // console.log(compareList)
+  }
 
 
   return (
     
-
     <div>
       <Main /> 
       <div className="row mt-16 justify-center-center">
@@ -52,6 +74,9 @@ const HomePage = () => {
             cityEn = {item.city.en}
             code = {item.department.code}
             price = {item.price}
+            id = {item.id}
+            moveToSelectedDepartments= {moveToSelectedDepartments}
+            isInCompare={compareList?.departments.map((item) => item).includes(item.id)}
              />
           </div>
         ))}

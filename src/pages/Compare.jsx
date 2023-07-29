@@ -8,51 +8,44 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import useInfoCalls from "../hooks/useInfoCalls";
 import OneCard from "../components/card/OneCard";
+import useCardCalls from "../hooks/useCardCalls";
 
 function Compare(isAdded) {
   // const { t } = useTranslation();
   const { currentUser } = useSelector((state) => state?.auth);
   const { allDepartments } = useSelector((state) => state?.info);
   const { getUserInfo, getAllDepartments } = useInfoCalls();
-  const [compareList, setCompareList] = useState();
+  const { getCompareList } = useCardCalls();
+  const { compareList } = useSelector((state) => state?.card);
+  const currentUserId = currentUser?.userID;
+  // const departmentId = id
 
   useEffect(() => {
-    getUserInfo(currentUser.userID);
+    getUserInfo(currentUserId);
   }, [currentUser]);
 
   useEffect(() => {
     getAllDepartments();
   }, [compareList])
 
-  const pieceOfDepartment = allDepartments?.slice(0, 51);
+console.log(currentUser);
 
-  async function getCompareList(id) {
+  const removeFromSelectedDepartments = (id) => {
     const departmentId = id
-    console.log(departmentId)
-    const currentUserId = currentUser.userID;
+    // const currentUserId = currentUser.user.userId;
     try {
-      await axios.get(`https://tr-yös.com/api/v1/users/allcompares.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(({ data }) => setCompareList(data))
-      console.log(compareList);
+      axios.get(`https://tr-yös.com/api/v1/users/deletecompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(()=> getCompareList(currentUserId));
     } catch (error) {
       console.log(error);
     }
+    
   }
 
   useEffect(() => {
-    getCompareList();
+    getCompareList(currentUserId);
   }, [])
 
-  const removeFromSelectedDepartments = (id) => {
-    const currentUserId = currentUser.userID;
-    const departmentId = id
-    try {
-      axios.get(`https://tr-yös.com/api/v1/users/deletecompare.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(() => getCompareList());
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const filteredDepartments = pieceOfDepartment?.filter((department) => compareList?.departments.map((item) => item).includes(department.id));
+  const filteredDepartments = allDepartments?.filter((department) => compareList?.departments.map((item) => item).includes(department.id));
 
   console.log(filteredDepartments);
   return (
@@ -75,8 +68,8 @@ function Compare(isAdded) {
                   price={item.price}
                   id={item.id}
                   removeFromSelectedDepartments={removeFromSelectedDepartments}
-                  // isInCompare={compareList.includes(item.id)}
-                  isInCompare={true}
+                  isInCompare={compareList?.departments.map((item) => item).includes(item.id)}
+                  // isInCompare={true}
                   isAdded={isAdded}
                 />
               </div>
