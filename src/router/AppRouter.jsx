@@ -11,6 +11,7 @@ import DepartmentDetail from '../pages/departmentDetail/DepartmentDetail';
 import MyProfile from "../pages/myAccount/MyProfile";
 import Compare from '../pages/Compare'
 import PrivateRouter from './PrivateRouter';
+import UniversitiesDetail from '../pages/universitiesDetail/UniversitiesDetail';
 
 const AppRouter = () => {
   return (
@@ -23,6 +24,9 @@ const AppRouter = () => {
           <Route path='/' element={<HomePage />} />
           <Route path='Departments' element={<Departments />} />
           <Route path='Universities' element={<UniversitiesPage />} />
+          
+          <Route path="/univercitiesDetail/:code" element={<UniversitiesDetail />} />
+
 
           <Route path="/departmentDetail/:code" element={<DepartmentDetail />} />
 

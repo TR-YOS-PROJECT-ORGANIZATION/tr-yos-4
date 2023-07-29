@@ -12,6 +12,8 @@ import OneCard from '../components/card/OneCard'
 // eslint-disable-next-line no-unused-vars
 import i18next, { t } from "i18next";
 import axios from "axios";
+
+
 function Departments() {
   const { getDepartments, getCities, getUserInfo } = useInfoCalls();
   const { departments, cities} = useSelector((state) => state.info);
@@ -95,6 +97,7 @@ const removeFromFavourites = (id) => {
 
   return (
     <>
+    
       <div className="flex flex-col">
         <ImageSection />
         <div className="xs:flex-col xs:justify-center xs:items-center md:flex md:flex-row md:justify-center md:items-start">

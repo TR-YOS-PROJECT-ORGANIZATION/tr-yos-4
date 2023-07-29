@@ -3,12 +3,19 @@ import i18next from "i18next";
 
 import React from "react";
 import Pagination from "../../pages/universitiesPages/Pagination";
+import { useNavigate } from "react-router-dom";
+
+
 
 
 const UniCard = ({ key,item,}) => {
+  const navigate = useNavigate()
     console.log(item)
+    
   return (
+    
     <div
+    
       className=" w-96  h-96 container flex flex-col justify-center items-center sm:flex-col sm:justify-start border-2 border-gray-400 rounded-md shadow-lg  lg:mx-auto my-10 sm:mx-auto md:m-20 "
       key={key}
     >
@@ -20,17 +27,19 @@ const UniCard = ({ key,item,}) => {
     (e)=>{
       e.target.src="https://img.freepik.com/premium-vector/luxury-university-logo-design_139869-120.jpg?w=740"
       e.target.alt="geçersiz"
+
     }
   }
-  className="w-full h-full object-cover"
+  className="w-full h-full object-cover cursor-pointer hover:shadow-lg"
+onClick={()=> navigate(`/univercitiesDetail/${item?.code}`,{state:item})}
 />
-
 
       </div>
       <div className="">
 
-        <p className="font-bold text-xl mb-2">                                        {
-                                        i18next.language== "tr" ? item.tr : item.en
+        <p className="font-bold text-xl mb-2 cursor-pointer hover:underline"
+        onClick={()=> navigate(`/univercitiesDetail/${item?.code}`,{state:item})}>                                        {
+                                        i18next.language== "tr" ? item.tr : item.en 
                                         }</p>
 
         <p className="text-xs mb-2">
