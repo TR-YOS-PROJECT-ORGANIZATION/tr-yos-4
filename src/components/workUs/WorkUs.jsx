@@ -15,17 +15,9 @@ const WorkUs = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     sendEmail(formEmail);
-    // setFormEmail("")
-    
-    
+
+    e.target.reset();
   };
-  // const handleChange = (e) => {
-  //   e.preventDefault();
-  //   const { name, value } = e.target;
-  //   // console.log(name,value);
-  //   setFormEmail({ ...formEmail, [name]: value });
-  //   console.log(formEmail);
-  // };
 
   const sendEmail = async (formEmail) => {
     try {
@@ -41,7 +33,6 @@ const WorkUs = () => {
       console.log(error);
     }
   };
-  // console.log(formEmail);
 
   return (
     <>
