@@ -13,7 +13,7 @@ const SubmitReview = ({ dept,uni }) => {
 
         <div className="">
           <div className="">
-            <div className=" p-7 border-2 m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
+            <div className=" p-7 border m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
               <div className="ml-5 text-left font-bold text-blue-950 text-xl">
                 <h4>{dept[0]?.department.en}</h4>
                 <h4>{dept[0]?.faculty.en}</h4>
@@ -33,7 +33,7 @@ const SubmitReview = ({ dept,uni }) => {
               </div>
             </div>
             {/* other */}
-            <div className="gap-2 border w-3/2 m-5 rounded-xl ">
+            <div className="gap-2 border w-3/2 m-5 rounded-xl shadow-lg">
               <div className="">
                 <h4 className="ml-6 mt-4 font-bold text-left">Other</h4>
               </div>
@@ -62,7 +62,7 @@ const SubmitReview = ({ dept,uni }) => {
               </div>
             </div>
             {/* About */}
-            <div className="w-3/2 border m-5 rounded-xl text-left ">
+            <div className="w-3/2 border m-5 rounded-xl text-left shadow-lg">
               <div className=" m-5">
                 <h4 className="font-bold">About Department</h4>
               </div>
@@ -140,7 +140,7 @@ const SubmitReview = ({ dept,uni }) => {
 
             {/* Dropdown */}
 
-            <div className="border w-3/2 m-5 rounded-xl ">
+            <div className="border w-3/2 m-5 rounded-xl shadow-lg">
               <div className="flex justify-between p-5">
                 <div className="">
                   <h4 className=" font-bold">Other</h4>
@@ -240,84 +240,11 @@ const SubmitReview = ({ dept,uni }) => {
                 </section>
               )}
             </div>
-
-            {/* submit review */}
-            <div className="border rounded-xl m-5  text-left">
-              <div className="m-5 ">
-                <h2 className="text-2xl font-bold">Submit Review</h2>
-                <div className="flex-none lg:flex gap-3 mt-3 ">
-                  <div className="w-full lg:w-1/2 ">
-                    <label htmlFor="" className="">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="w-full rounded-md mt-2 border-2 focus:outline-none p-3"
-                      placeholder="Your Name"
-                    />
-                  </div>
-                  <div className="w-full lg:w-1/2">
-                    <label htmlFor="" className="">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      className="w-full rounded-md mt-2 border-2  focus:outline-none p-3"
-                      placeholder="Your Email"
-                    />
-                  </div>
-                </div>
-                <div className="flex-none lg:flex gap-3 mt-4">
-                  <div className="w-full lg:w-1/2  ">
-                    <label htmlFor="" className="">
-                      Phone No.
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      className="w-full rounded-md mt-2 border-2 focus:outline-none p-3"
-                      placeholder="Your Contact"
-                    />
-                  </div>
-                  <div className="w-full lg:w-1/2">
-                    <p className="">Ratting</p>
-                    <select className="w-full rounded-md mt-2 p-3 border-2  focus:outline-none">
-                      <option value="option1">1 : Very Poor</option>
-                      <option value="option2">2 : Poor</option>
-                      <option value="option3">3 : Good</option>
-                      <option value="option2">4 : Very Good</option>
-                      <option value="option3">5 : Superb</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="mt-5 ">
-                  <div className=" w-full flex flex-col ">
-                    <label htmlFor="" className="">
-                      Your Message
-                    </label>
-                    <textarea
-                      type="text"
-                      required
-                      className="h-40 rounded-md mt-2 border-2 text-base"
-                      placeholder="Message"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-              <div className="">
-                <button className=" bg-red-warm  hover:bg-red-retro rounded-lg  p-4 m-5 text-white-500">
-                  Submit Review
-                </button>
-              </div>
-            </div>
           </div>
         </div>
         {/* add favourite and send message */}
-        <div className="w-2/3 mt-8">
-          <div className="border p-4 rounded-xl mb-12 shadow-2xl">
+        <div className="w-2/3 mt-8 ">
+          <div className="border p-4 rounded-xl mb-12 shadow-lg">
             <button
               style={{
                 backgroundColor: !show && "#00A372",
@@ -331,7 +258,7 @@ const SubmitReview = ({ dept,uni }) => {
           </div>
 
           {/* send message */}
-          {uni.map((item,id)=> <section key={id} className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-2xl">
+          {uni.map((item,id)=> <section key={id} className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-lg">
             <div className="container px-3 py-3 mx-auto flex justify-center">
               <div className="flex flex-col items-center">
                 <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
@@ -356,7 +283,7 @@ const SubmitReview = ({ dept,uni }) => {
                       fill="#0D0D0D"
                     ></path>
                   </svg>
-                  <p className="ml-1 text-sm text-gray-500">{item?.city.en}</p>
+                  <p className="ml-1 text-sm text-gray-500">{item?.city}</p>
                 </div>
 
                 <div className="mt-6 space-y-8 md:mt-8">
@@ -376,7 +303,7 @@ const SubmitReview = ({ dept,uni }) => {
                       />
                     </svg>
                     <a
-                      href="+90 (257) 563-7401"
+                      href={`tel:${item?.data?.phone}`}
                       className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
                     >
                       {item?.data?.phone}
