@@ -1,39 +1,40 @@
 import React from "react";
 import { useState } from "react";
-import ChangePassword from '../../components/modals/ChangePassword';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import ChangePassword from "../../components/modals/ChangePassword";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 import { toastSuccessNotify } from "../../helper/ToastNotify";
-import {fetchFail,fetchStart} from "../../features/authSlice"
+import { fetchFail, fetchStart } from "../../features/authSlice";
 
-
-const Dashboard = ({userInfo}) => {
-
+const Dashboard = ({ userInfo }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const dispatch = useDispatch();
 
-  const getChangePassword =  async (userID,info) => {
-    dispatch(fetchStart())
+  const getChangePassword = async (userID, info) => {
+    dispatch(fetchStart());
     try {
-      const {data} = await axios.post
-       ( `/api/v1/users/changepassword.php?user_id=${userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
-       info,
-       { headers: { "Content-Type": "multipart/form-data" }});
-       toastSuccessNotify("Password changed successfully");
-       console.log(data);
-      } 
-      catch (error) {
-        dispatch(fetchFail())
-        console.log(error);
-        toastErrorNotify("Change password can not be performed");
+      const { data } = await axios.post(
+        `/api/v1/users/changepassword.php?user_id=${userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
+        info,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      toastSuccessNotify("Password changed successfully");
+      console.log(data);
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(error);
+      toastErrorNotify("Change password can not be performed");
     }
-  }
-
+  };
 
   return (
     <div className="flex flex-col border justify-center p-6 mt-5 shadow-xl rounded-xl h-1/2 xs:w-full sm:px-12 ">
-    <ChangePassword open={openModal} setOpen={setOpenModal} getChangePassword={getChangePassword}/>
+      <ChangePassword
+        open={openModal}
+        setOpen={setOpenModal}
+        getChangePassword={getChangePassword}
+      />
       <img
         src="https://source.unsplash.com/150x150/?portrait?3"
         alt=""
@@ -42,10 +43,10 @@ const Dashboard = ({userInfo}) => {
       <div className="space-y-4 text-center divide-y divide-gray-700">
         <div className="my-2 space-y-1">
           <h2 className="text-xl font-semibold sm:text-2xl text-green-dark ">
-          {userInfo?.user?.name}
+            {userInfo?.user?.name}
           </h2>
           <p className="px-5 text-xs sm:text-base text-green-dark">
-          {userInfo?.user?.email}
+            {userInfo?.user?.email}
           </p>
         </div>
       </div>
@@ -97,12 +98,12 @@ const Dashboard = ({userInfo}) => {
                 <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
               </svg>
             </div>
-            <div >My Profile</div>
+            <div>My Profile</div>
           </a>
         </div>
 
-        <button onClick={()=>setOpenModal(!openModal)} className="mt-2 ">
-          <a className=" flex px-5 py-2 font-medium border-2 rounded-lg bg-gray-light text-gray-base  hover:bg-green-dark hover:text-white-cream">
+        <button onClick={() => setOpenModal(!openModal)} className="mt-2 ">
+          <a className=" flex px-7 py-2 font-medium border-2 rounded-lg bg-gray-light text-gray-base  hover:bg-green-dark hover:text-white-cream">
             <div className="pt-1 mr-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
