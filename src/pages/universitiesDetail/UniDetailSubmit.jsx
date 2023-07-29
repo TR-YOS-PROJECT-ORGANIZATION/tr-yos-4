@@ -830,6 +830,14 @@ const SubmitReview = () => {
                     >
                       +90 (257) 563-7401
                     </a>
+
+ {/* <a
+                      href={`tel:${item?.data?.phone}`}
+                      className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
+                    >
+                      {item?.data?.phone}
+                    </a> */}
+
                   </p>
                   <p className="flex items-start -mx-2">
                     <svg
