@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react'
-import i18next from 'i18next'
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
+// import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import image1 from "../../images/3d.jpg";
 import image2 from "../../images/dna.jpg";
@@ -10,25 +10,32 @@ import image3 from "../../images/lab.jpg";
 import image4 from "../../images/biology.jpg";
 // import useAuthCall from '../../hooks/useAuthCall';
 import useInfoCalls from '../../hooks/useInfoCalls';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+// import useInfoCalls from '../../hooks/useInfoCalls';
+// import SignInModal from '../modals/SignInModal';
 
 
-function OneCard(props) {
+function OneCard(props, {item}) {
 
     // eslint-disable-next-line react/prop-types
-    const { facultyCode, en, tr, id, isInCompare, isInFavourite, moveToSelectedDepartments, removeFromSelectedDepartments, removeFromFavourites, moveToFavourites } = props;
+    const { facultyTr, facultyEn, universityTr, universityEn, departmentEn,  departmentTr, cityTr, cityEn, code, price, id, isInCompare, isInFavourite, moveToSelectedDepartments, removeFromSelectedDepartments, removeFromFavourites, moveToFavourites } = props;
     const [isAdded, setIsAdded] = useState(isInCompare);
     const [isFavourited, setIsFavourited] = useState(isInFavourite);
     // eslint-disable-next-line no-unused-vars
-    const { t } = useTranslation();
     const { currentUser } = useSelector((state) => state?.auth);
     const { getUserInfo } = useInfoCalls();
+    const navigate = useNavigate();
+    const {t} = useTranslation()
 
     useEffect(() => {
-        getUserInfo(currentUser);
-    }, []);
+        currentUser &&  getUserInfo(currentUser?.userID);  
+    }, [currentUser]);
+
+
 
     //To Add and Remove from Compare List///
-    function addRemoveCompareList() {
+    function addRemoveCompareList(id) {
         if (isAdded) {
             removeFromSelectedDepartments(id);
         } else {
@@ -39,7 +46,7 @@ function OneCard(props) {
 
     //To Add and Remove from Favoruite List///
 
-function addRemoveFavouriteList() {
+function addRemoveFavouriteList(id) {
     if(isFavourited) {
 
         removeFromFavourites(id);
@@ -80,7 +87,7 @@ let heartIcon;
 
     return (
         <>
-            <div key={id} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
+            <div className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
                 <a
                     href="#"
                     className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
@@ -147,13 +154,17 @@ let heartIcon;
                                         <h2
                                             className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg"
                                             title="New York"
+                                            onClick={()=> navigate(`/departmentDetail/${code}`,{state:item})}
                                         >
-                                            {facultyCode}
+                                            {i18next.language === "tr" ? departmentTr : departmentEn}
+
+                                            {/* {facultyCode} */}
                                         </h2>
                                         <p
                                             className="mt-2 line-clamp-1 text-sm text-gray-800"
                                             title="Faculty"
                                         >
+                                            {i18next.language=== "tr" ? facultyTr : facultyEn}
 
                                         </p>
                                         <p
@@ -161,7 +172,7 @@ let heartIcon;
                                             title="University"
                                         >
                                             {
-                                                i18next.language == "tr" ? tr : en
+                                                i18next.language === "tr" ? universityTr : universityEn
                                             }
 
                                         </p>
@@ -169,7 +180,7 @@ let heartIcon;
                                 </div>
                             </div>
 
-                            <div onClick={() => addRemoveCompareList(id)} className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2">
+                            <div onClick={() => {currentUser ? addRemoveCompareList(id) : alert("Lütfen Giriş Yapın")}} className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2">
                                 <span className={`inline-flex select-none rounded-lg px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm ${isAdded ? "bg-green-dark" : "bg-red-500"}`}>
                                     {" "}
 
@@ -206,7 +217,7 @@ let heartIcon;
                                             fill="#0D0D0D"
                                         />
                                     </svg>
-                                    <span className="xl:mt-0"> Kayseri </span>
+                                    <span className="xl:mt-0"> {i18next.language== "tr" ? cityTr: cityEn} </span>
                                 </p>
                                 <p className="flex items-center text-gray-800 xl:flex-row xl:items-center">
                                     <svg
@@ -234,7 +245,7 @@ let heartIcon;
                                             />
                                         </g>
                                     </svg>
-                                    <span className="mt-0"> 15000/year </span>
+                                    <span className="mt-0"> {price}/{t("year")} </span>
                                 </p>
                             </div>
                         </div>
