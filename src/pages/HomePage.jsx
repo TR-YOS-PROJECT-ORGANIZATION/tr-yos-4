@@ -48,10 +48,6 @@ const HomePage = () => {
   }
 
 
-
-
-
-
   return (
     
     <div>

@@ -2,8 +2,8 @@
 import React, { useEffect } from "react";
 import ImageSection from "../components/departmentComponents/ImageSection";
 import Selections from "../components/departmentComponents/Selections";
-import PriceForm from "../components/departmentComponents/PriceForm";
-import "../components/departmentComponents/departments.css";
+// import PriceForm from "../components/departmentComponents/PriceForm";
+// import "../components/departmentComponents/departments.css";
 import Hamburger from "hamburger-react";
 import { useState } from "react";
 import useInfoCalls from "../hooks/useInfoCalls";
@@ -121,14 +121,10 @@ function Departments() {
                       className="border shadow-lg md:mt-36 rounded-lg "
                     >
                       <Selections />
-                      <PriceForm />
+                      {/* <PriceForm /> */}
 
-                      <div className="flex flex-row mx-2 justify-end xs:justify-start xs:mx-0  sm:justify-start md:justify-end departments_search_button_container">
-                        <button
-                          className="sm:mx-0 block xs:float-left float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:px-auto md:w-full"
-                          name="searchDepartments"
-                          type="submit"
-                        >
+                      <div className="flex flex-row  justify-end sm:justify-start md:justify-end bg-green-dark rounded ">
+                        <button name="searchDepartments" type="submit" className="max-sm:w-full max-sm:my-5 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-96 font-bold rounded  hover:bg-red-retro shadow-md  lg:p-8 md:p-4 ">
                           {t("Search")}
                         </button>
                       </div>
@@ -145,13 +141,9 @@ function Departments() {
               className="border shadow-lg md:mt-36 rounded-lg "
             >
               <Selections />
-              <PriceForm />
-              <div className="flex flex-row mx-2 justify-end sm:justify-start md:justify-end departments_search_button_container">
-                <button
-                  className="block float-right bg-red-warm m-2 w-1/4 py-1 rounded-md text-white departments_search_button md:px-auto md:w-full"
-                  name="searchDepartments"
-                  type="submit"
-                >
+              {/* <PriceForm /> */}
+              <div className="flex flex-row  justify-end sm:justify-start md:justify-center md: w-full bg-green-dark rounded ">
+                <button name="searchDepartments" type="submit" className="max-sm:w-full max-sm:my-5 lg:text-sm md:sm:text-sm  max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 sm:w-24 font-bold hover:bg-red-retro shadow-md md:p-4 md:w-full rounded-md">
                   {t("Search")}
                 </button>
               </div>
