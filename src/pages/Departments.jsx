@@ -33,7 +33,9 @@ function Departments() {
   useEffect(() => {
     getCompareList(currentUserId);
     getAllDepartments();
-  }, [])
+
+    currentUser &&  getUserInfo(currentUser?.userID); 
+  }, [currentUser]);
 
 
   const department = allDepartments?.slice(0, 51)
