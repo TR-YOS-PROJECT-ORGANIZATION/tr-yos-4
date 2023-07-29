@@ -28,7 +28,7 @@ const MyMenu = () => {
            
             <div className="h-10 flex p-2 bg-white-500 text-center rounded-t-lg hover:bg-slate-300">
               <Menu.Item>
-                <Link to="/MyProfile" className=" bg-white-500 w-full  hover:bg-slate-300">
+                <Link to="/myProfile" className=" bg-white-500 w-full  hover:bg-slate-300">
                   User Dashboard
                 </Link>
               </Menu.Item>
