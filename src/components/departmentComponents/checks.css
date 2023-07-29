@@ -1,8 +1,0 @@
-@media screen and (max-width: 418px) {
-  .departments_checks_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-}
