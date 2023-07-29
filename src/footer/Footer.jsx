@@ -6,8 +6,8 @@ import { toastWarnNotify } from "../helper/ToastNotify";
 
 const Footer = () => {
   const { t } = useTranslation();
-  const {currentUser} = useSelector((state)=>state.auth);
- 
+  const { currentUser } = useSelector((state) => state.auth);
+
   return (
     <div className="flex flex-col text-center  bg-gray-900">
       <div className="flex justify-evenly mt-8">
@@ -86,44 +86,41 @@ const Footer = () => {
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
-            {!currentUser && <button   className="hover:underline border rounded p-1" onClick={()=>
-              toastWarnNotify("Please Login")
-            }> 
-            {t("My Profile")}
-            </button>}
-             {currentUser && <Link
-                to="/myProfile"
-                className="hover:underline border rounded p-1"
-              >
-                {t("My Profile")}
-              </Link>}
-            </li>
-            <li className="mb-4">
-            {!currentUser && <button   className="hover:underline border rounded p-1" onClick={()=>
-              toastWarnNotify("Please Login")
-            }> 
-            {t("My Account")}
-            </button>}
-             {currentUser && <Link
-                to="/myProfile"
-                className="hover:underline border rounded p-1"
-              >
-                {t("My Account")}
-              </Link>}
+              {!currentUser && (
+                <button
+                  className="hover:underline border rounded p-1"
+                  onClick={() => toastWarnNotify("Please Login")}
+                >
+                  {t("My Profile")}
+                </button>
+              )}
+              {currentUser && (
+                <Link
+                  to="/myProfile"
+                  className="hover:underline border rounded p-1"
+                >
+                  {t("My Profile")}
+                </Link>
+              )}
             </li>
 
             <li className="mb-4">
-            {!currentUser && <button   className="hover:underline border rounded p-1" onClick={()=>
-              toastWarnNotify("Please Login")
-            }> 
-            {t("Favourites")}
-            </button>}
-             {currentUser && <Link
-                to="/favourites"
-                className="hover:underline border rounded p-1"
-              >
-                {t("Favourites")}
-              </Link>}
+              {!currentUser && (
+                <button
+                  className="hover:underline border rounded p-1"
+                  onClick={() => toastWarnNotify("Please Login")}
+                >
+                  {t("Favourites")}
+                </button>
+              )}
+              {currentUser && (
+                <Link
+                  to="/favourites"
+                  className="hover:underline border rounded p-1"
+                >
+                  {t("Favourites")}
+                </Link>
+              )}
             </li>
           </ul>
         </div>
