@@ -9,7 +9,7 @@ import image2 from "../../images/dna.jpg";
 import image3 from "../../images/lab.jpg";
 import image4 from "../../images/biology.jpg";
 // import useAuthCall from '../../hooks/useAuthCall';
-// import useInfoCalls from '../../hooks/useInfoCalls';
+import useInfoCalls from '../../hooks/useInfoCalls';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import useInfoCalls from '../../hooks/useInfoCalls';
@@ -24,7 +24,7 @@ function OneCard(props, {item}) {
     const [isFavourited, setIsFavourited] = useState(isInFavourite);
     // eslint-disable-next-line no-unused-vars
     const { currentUser } = useSelector((state) => state?.auth);
-    // const { getUserInfo } = useInfoCalls();
+    const { getUserInfo } = useInfoCalls();
     const navigate = useNavigate();
     const {t} = useTranslation()
 
