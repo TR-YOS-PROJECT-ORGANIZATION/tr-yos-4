@@ -4,6 +4,7 @@ const cardSlice = createSlice({
     initialState: {
         compareList: null,
         error: false,
+        favouriteList:null,
     },
     reducers: {
         fetchStart: (state) => {
@@ -12,13 +13,13 @@ const cardSlice = createSlice({
         fetchFail: (state) => {
             state.error = true
         },
-        getListSuccess: (state, {payload}) => {
+        getCompareListSuccess: (state, {payload}) => {
             state.compareList = payload
-        } 
-
+        } ,
+        getFavouriteListSuccess: (state, {payload}) => {
+            state.favouriteList = payload
+        }
     },
 });
-
-export const { fetchStart, fetchFail, getListSuccess} = cardSlice.actions;
-
+export const { fetchStart, fetchFail, getCompareListSuccess,getFavouriteListSuccess} = cardSlice.actions;
 export default cardSlice.reducer
