@@ -67,15 +67,6 @@ let heartIcon;
     }
 
 
-    // let heartIcon = "#fff";
-    // if (isFavourited) {
-    //     let heartIcon = "#e74c3c"
-    // } else {
-    //     let heartIcon = "#fff"
-    // }
-
-
-
     const settings = {
         dots: true,
         infinite: true,

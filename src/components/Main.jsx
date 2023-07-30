@@ -28,9 +28,6 @@ const Main = () => {
     (state) => state.info
   );
 
-  console.log(univercities, cities, departments);
-  console.log(selectedUnivercities);
-  console.log(selectedCities);
   const filteredUniversities =
     selectedCities?.length > 0
       ? univercities?.filter(
@@ -38,7 +35,7 @@ const Main = () => {
             selectedCities?.map((item) => item.id).indexOf(uni.city) !== -1
         )
       : univercities;
-  console.log(filteredUniversities);
+
   const filteredDepartments =
     selectedCities?.length > 0
       ? departments?.filter(
@@ -48,7 +45,6 @@ const Main = () => {
               .indexOf(department.id) !== -1
         )
       : departments;
-  console.log(filteredDepartments);
 
   const settings = {
     dots: true,

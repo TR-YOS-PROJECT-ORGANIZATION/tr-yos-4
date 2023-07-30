@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import useInfoCalls from "../hooks/useInfoCalls";
 import OneCard from "../components/card/OneCard";
 import useCardCalls from "../hooks/useCardCalls";
+
+
 function Compare() {
   // const { t } = useTranslation();
 
@@ -20,6 +22,7 @@ function Compare() {
   useEffect(() => {
     getUserInfo(currentUserId);
   }, []);
+
   useEffect(() => {
     getAllDepartments();
   }, [])
