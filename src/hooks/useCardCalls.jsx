@@ -1,42 +1,78 @@
 import axios from 'axios';
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
-import { fetchStart, fetchFail, getListSuccess } from '../features/cardSlice';
-import { useDispatch } from 'react-redux';
-
+import { fetchStart, fetchFail, getCompareListSuccess, getFavouriteListSuccess } from '../features/cardSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { toastErrorNotify } from '../helper/ToastNotify';
 const  useCardCalls = () => {
     const dispatch = useDispatch();
-
-    // const moveToSelectedDepartments = (id) => {
-    //     const currentUserId = currentUser.userID;
-    //     const departmentId = id
-
-    //     try {
-    //         axios.get(`https://tr-yös.com/api/v1/users/addcompare.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
-    //     }
-    //     catch (error) {
-    //         console.log(error);
-    //     }
-    //     setCompareList((prevState) => [...prevState, departmentId]);
-    //     console.log(compareList)
-    // }
-
-
-    const getCompareList = async (currentUserId) => {
-        dispatch(fetchStart())
-
+    const {currentUser} = useSelector((state)=>state.auth);
+    // Add or Remove to Compare
+    const moveToSelectedDepartments = async (id) => {
+        const currentUserId = currentUser?.userID;
+        const departmentId = id
         try {
-            
-            const {data} = await axios.get(`https://tr-yös.com/api/v1/users/allcompares.php?user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
-            dispatch(getListSuccess(data));
+          await axios.get(`https://tr-yös.com/api/v1/users/addcompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+        }
+        catch (error) {
+          console.log(error);
+          toastErrorNotify(error.response.data.message)
+        }
+      }
+      const removeFromSelectedDepartments = async (id) => {
+        const currentUserId = currentUser.userID;
+        const departmentId = id
+        try {
+          await axios.get(`https://tr-yös.com/api/v1/users/deletecompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+        } catch (error) {
+          console.log(error.response.data.message);
+          toastErrorNotify(error.response.data.message)
+        }
+      }
+      //Add to Favourites///
+      const moveToFavourites = async (id) => {
+        const currentUserId = currentUser.userID;
+        const departmentId = id
+        try {
+          await axios.get(`https://tr-yös.com/api/v1/users/addfavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+        }
+        catch (error) {
+          console.log(error);
+          toastErrorNotify(error.response.data.message)
+        }
+      }
+      const removeFromFavourites = async (id) => {
+        const currentUserId = currentUser.userID;
+        const departmentId = id
+        try {
+          await axios.get(`https://tr-yös.com/api/v1/users/deletefavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    // Fetch compare and favorite lists
+    const getCompareList = async () => {
+        dispatch(fetchStart())
+        try {
+            const {data} = await axios.get(`https://tr-yös.com/api/v1/users/allcompares.php?user_id=${currentUser.userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+            dispatch(getCompareListSuccess(data));
             console.log(data)
         } catch (error) {
             console.log(error);
             dispatch(fetchFail())
         }
     }
-
-    return { getCompareList }
+    const getFavouriteList = async () => {
+        dispatch(fetchStart())
+        try {
+            const {data} = await axios.get(`https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${currentUser.userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`);
+            dispatch(getFavouriteListSuccess(data));
+            console.log(data)
+        } catch (error) {
+            console.log(error);
+            dispatch(fetchFail())
+        }
+    }
+    return { getCompareList,moveToSelectedDepartments,removeFromSelectedDepartments ,moveToFavourites,removeFromFavourites,getFavouriteList}
 }
-
 export default useCardCalls
