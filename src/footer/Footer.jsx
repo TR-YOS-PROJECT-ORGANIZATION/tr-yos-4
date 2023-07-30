@@ -113,7 +113,8 @@ const Footer = () => {
             </li>
             <li className="mb-4">
             {!currentUser && <button   className="hover:underline border rounded p-1" onClick={()=>
-              toastWarnNotify("Please Login")
+             handleClick()
+    
             }> 
             {t("My Account")}
             </button>}
@@ -129,7 +130,7 @@ const Footer = () => {
               {!currentUser && (
                 <button
                   className="hover:underline border rounded p-1"
-                  onClick={() => toastWarnNotify("Please Login")}
+                  onClick={() => handleClick()}
                 >
                   {t("Favourites")}
                 </button>

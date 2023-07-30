@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import useInfoCalls from "../hooks/useInfoCalls";
 import OneCard from "../components/card/OneCard";
 import useCardCalls from "../hooks/useCardCalls";
+
+
 function Compare() {
   // const { t } = useTranslation();
 
@@ -16,21 +18,24 @@ function Compare() {
   const { getCompareList, removeFromSelectedDepartments, moveToFavourites, removeFromFavourites, getFavouriteList } = useCardCalls();
   const { compareList, favouriteList } = useSelector((state) => state?.card);
   const currentUserId = currentUser?.userID;
-  // const departmentId = id
+
+
+
   useEffect(() => {
     getUserInfo(currentUserId);
   }, []);
+
   useEffect(() => {
     getAllDepartments();
   }, [])
   console.log(currentUser);
 
   useEffect(() => {
-    getCompareList(currentUserId);
+    getCompareList();
   }, [])
 
   useEffect(() => {
-    getFavouriteList(currentUserId);
+    getFavouriteList();
   }, [])
 console.log(allDepartments);
 

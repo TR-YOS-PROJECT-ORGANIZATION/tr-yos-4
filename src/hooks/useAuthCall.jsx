@@ -29,7 +29,6 @@ const useAuthCall = () => {
 
         } catch (error) {
           console.log(error);
-          console.log(userInfo)
           dispatch(fetchFail());
           toastErrorNotify("Register can not be performed");
         }
@@ -46,12 +45,10 @@ const useAuthCall = () => {
           dispatch(loginSuccess(data));
           
           toastSuccessNotify("Login performed");
-          console.log(data)
          
 
         } catch (error) {
           console.log(error);
-          console.log(userInfo)
           dispatch(fetchFail());
           toastErrorNotify("Login can not be performed");
         }

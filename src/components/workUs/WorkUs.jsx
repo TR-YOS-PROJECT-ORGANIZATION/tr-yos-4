@@ -15,7 +15,6 @@ const WorkUs = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     sendEmail(formEmail);
-
     e.target.reset();
   };
 

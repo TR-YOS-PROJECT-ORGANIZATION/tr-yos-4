@@ -23,9 +23,10 @@ const HomePage = () => {
   useEffect(() => {
     getUni();
   }, []);
-console.log(univercities)
+
   useEffect(() => {
-    getCompareList(currentUserId);
+    currentUser &&
+    getCompareList();
     getFavouriteList();
   }, [])
 
@@ -33,7 +34,6 @@ console.log(univercities)
     getAllDepartments();
   }, []);
   const depart = allDepartments?.slice(71, 89)
-  console.log(depart);
 
   return (
     <div>

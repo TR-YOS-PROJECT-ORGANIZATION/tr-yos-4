@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toastSuccessNotify } from "../../helper/ToastNotify";
-const MyAccountSettings = ({ userInfo, currentUser }) => {
+
+
+const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
+
   const [country, setCountry] = useState();
   const [citiesbyCountry, setCitiesbyCountry] = useState();
-  const [info, setInfo] = useState();
-  console.log(info);
 
   const [newInfo, setNewInfo] = useState({});
+
   console.log(newInfo);
   console.log(currentUser);
-  const userID = currentUser.userID;
 
   const filteredCountry = country?.filter(
     (item) => item.en === newInfo.country
@@ -41,14 +42,17 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
     }
   };
   const sendInfo = async (newInfo) => {
+    const userID = currentUser?.userID;
+
     try {
       await axios
         .post(
           `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
           newInfo,
           { headers: { "Content-Type": "multipart/form-data" } }
-        )
-        .then(({ data }) => setInfo(data));
+        );
+        getUserInfo(userID);
+        
       toastSuccessNotify("User information updated");
     } catch (error) {
       console.log(error);
@@ -58,12 +62,17 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
   useEffect(() => {
     getCountry();
   }, []);
-  console.log(country);
+
+
   useEffect(() => {
     if (newInfo?.country) {
       getCitiesbyCountry(newInfo.country);
     }
   }, [newInfo?.country]);
+
+  useEffect(()=>{
+   getUserInfo(currentUser?.userID)
+  },[])
 
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
