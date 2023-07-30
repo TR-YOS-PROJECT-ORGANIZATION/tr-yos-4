@@ -8,6 +8,7 @@ import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 import OneCard from "../components/card/OneCard";
 import useCardCalls from "../hooks/useCardCalls";
+import i18next from "i18next";
 const HomePage = () => {
   const { t } = useTranslation();
   const { getAllDepartments } = useInfoCalls();
@@ -17,7 +18,6 @@ const HomePage = () => {
   const { compareList, favouriteList } = useSelector((state) => state?.card);
   const{ univercities} = useSelector((state) => state.info);
   const currentUserId = currentUser?.userID;
-
   const { getUni } = useInfoCalls();
   
   useEffect(() => {

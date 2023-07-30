@@ -1,12 +1,18 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 const SubmitReview = ({ dept, uni }) => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(true);
   console.log(dept);
 
   const mailtoLink = `mailto:${dept[0]?.data.email}`;
 
+const lang= i18next.language;
+const {t} = useTranslation();
   return (
     <div className="">
       <div className="flex-none lg:flex  mt-8 w-5/6 m-auto">
@@ -14,8 +20,8 @@ const SubmitReview = ({ dept, uni }) => {
           <div className="">
             <div className=" p-7 border m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
               <div className="ml-5 text-left font-bold text-blue-950 text-xl">
-                <h4>{dept[0]?.department.en}</h4>
-                <h4>{dept[0]?.faculty.en}</h4>
+                <h4> {lang == "en" ? dept[0]?.department.en : dept[0]?.department.tr}</h4>
+                <h4>{lang == "en" ? dept[0]?.faculty.en : dept[0]?.faculty.tr}</h4>
                 <span className="text-xs text-slate-500">
                   <i className="fa-solid fa-location-dot"></i>
                   <a href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL">
@@ -25,34 +31,34 @@ const SubmitReview = ({ dept, uni }) => {
               </div>
               <div className=" font-bold text-left ml-5 ">
                 <p className="text-xl text-blue-700 ">{dept[0]?.price}</p>
-                <span className="text-xs text-slate-500">Year</span>
+                <span className="text-xs text-slate-500">{t("Year")}</span>
               </div>
             </div>
             {/* other */}
             <div className="gap-2 border w-3/2 m-5 rounded-xl shadow-lg">
               <div className="">
-                <h4 className="ml-6 mt-4 font-bold text-left">Other</h4>
+                <h4 className="ml-6 mt-4 font-bold text-left">{t("Other")}</h4>
               </div>
 
               <div className="p-4 ">
                 <div className="grid-none grid-cols-1 md:grid-cols-2 grid lg:grid-cols-4   divide-x text-center bg-[#E5F8F2] border border-green-300 rounded-xl   divide-dotted divide-green-300">
                   <div className="p-10 ">
-                    <div className="text-xs">Language</div>
+                    <div className="text-xs">{t("Language")}</div>
                     <div className="font-bold text-[#00A372]">
                       {dept[0]?.language}
                     </div>
                   </div>
                   <div className="p-10 ">
-                    <div className="text-xs">Year</div>
+                    <div className="text-xs">{t("Year")}</div>
 
                     <div className="font-bold text-[#00A372]">4</div>
                   </div>
                   <div className="p-10 ">
-                    <div className="text-xs">Quota</div>
+                    <div className="text-xs">{t("Quota")}</div>
                     <div className="font-bold text-[#00A372]">40</div>
                   </div>
                   <div className="p-10  ">
-                    <div className="text-xs">internships</div>
+                    <div className="text-xs">{t("internships")}</div>
                     <div className="font-bold text-[#00A372]"></div>
                   </div>
                 </div>
@@ -61,7 +67,7 @@ const SubmitReview = ({ dept, uni }) => {
             {/* About */}
             <div className="w-3/2 border m-5 rounded-xl text-left shadow-lg">
               <div className=" m-5">
-                <h4 className="font-bold">About Department</h4>
+                <h4 className="font-bold">{t("About Department")}</h4>
               </div>
               <div className="m-3 ">
                 <p className="text-slate-500 text-xs indent-2 ">
@@ -140,11 +146,11 @@ const SubmitReview = ({ dept, uni }) => {
             <div className="border w-3/2 m-5 rounded-xl shadow-lg">
               <div className="flex justify-between p-5">
                 <div className="">
-                  <h4 className=" font-bold">Other</h4>
+                  <h4 className=" font-bold">{t("Other")}</h4>
                 </div>
                 <div>
                   <button onClick={() => setIsOpen(!isOpen)}>
-                    <i class="fa-solid fa-circle-chevron-down"></i>
+                    <i className="fa-solid fa-circle-chevron-down"></i>
                   </button>
                 </div>
               </div>
@@ -229,7 +235,7 @@ const SubmitReview = ({ dept, uni }) => {
                             <path d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z" />
                           </svg>
 
-                          <p className="leading-relaxed">Active</p>
+                          <p className="leading-relaxed">{t("Active")}</p>
                         </div>
                       </div>
                     </div>
@@ -250,7 +256,7 @@ const SubmitReview = ({ dept, uni }) => {
               className=" bg-red-200 border-2 border-red-warm py-3 p-3 rounded-xl hover:bg-red-warm hover:text-white-500 "
               onClick={() => setShow(!show)}
             >
-              {show ? "Add Favourite" : "Remove Favourite"}
+              {lang ==="en" ? (show ? "Add Favourite" : "Remove Favourite"): (show ? "Favoriye Ekle" : "Favoriden Çıkar") }
             </button>
           </div>
 
@@ -270,7 +276,7 @@ const SubmitReview = ({ dept, uni }) => {
                     />
                   </div>
                   <h1 className="text-lg font-semibold text-gray-800 capitalize dark:text-white lg:text-lg">
-                    {item?.en}
+                    {lang ==="en" ? item?.en : item?.tr}
                   </h1>
                   <div className="flex mt-2 justify-center border-b-2 w-full">
                     <svg
@@ -285,7 +291,7 @@ const SubmitReview = ({ dept, uni }) => {
                       ></path>
                     </svg>
                     <p className="ml-1 text-sm text-gray-500">
-                      {dept[0]?.city.en}
+                      { lang ==="en" ? dept[0]?.city.en : dept[0]?.city.tr}
                     </p>
                   </div>
 
@@ -359,7 +365,7 @@ const SubmitReview = ({ dept, uni }) => {
                     </p>
                     <div className="flex items-end -mx-2">
                       <button className="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-500 rounded-md hover:bg-green-400 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50">
-                        Send Message
+                        {t("Send Message")}
                       </button>
                     </div>
                   </div>
