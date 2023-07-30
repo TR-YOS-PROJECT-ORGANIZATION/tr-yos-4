@@ -89,7 +89,7 @@ function Departments() {
               {
                 department?.map((element) =>
                   <div key={element.id}>
-                    <OneCard element={element}
+                    <OneCard
                       facultyTr={element.faculty.tr}
                       facultyEn={element.faculty.en}
                       universityTr={element.university.tr}

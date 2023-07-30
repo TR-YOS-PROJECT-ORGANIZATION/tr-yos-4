@@ -12,9 +12,7 @@ import image4 from "../../images/biology.jpg";
 import useInfoCalls from '../../hooks/useInfoCalls';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import useInfoCalls from '../../hooks/useInfoCalls';
-// import useInfoCalls from '../../hooks/useInfoCalls';
-// import SignInModal from '../modals/SignInModal';
+
 
 
 function OneCard(props, {item}) {

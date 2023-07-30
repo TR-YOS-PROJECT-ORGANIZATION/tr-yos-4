@@ -38,7 +38,7 @@ function Favourites() {
                     {
                         filteredDepartments?.map((item) =>
                             <div key={item.id}>
-                                <OneCard item={item}
+                                <OneCard
                                     facultyTr={item.faculty.tr}
                                     facultyEn={item.faculty.en}
                                     universityTr={item.university.tr}
