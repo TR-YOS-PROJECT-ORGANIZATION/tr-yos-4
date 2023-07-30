@@ -42,10 +42,10 @@ console.log(allDepartments);
     <div>
       <div className="grid grid-cols-4">
         {
-          filteredDepartments.map((item, index) => {
+          filteredDepartments?.map((item) => {
             return (
-              <div key={index} >
-                <OneCard item={item}
+              <div key={item.id} >
+                <OneCard
                   facultyTr={item.faculty.tr}
                   facultyEn={item.faculty.en}
                   universityTr={item.university.tr}
@@ -62,7 +62,6 @@ console.log(allDepartments);
                   removeFromFavourites={removeFromFavourites}
                   isInFavourite={favouriteList?.departments.map((item) => item).includes(item.id)}
                   isInCompare={compareList?.departments.map((item) => item).includes(item.id)}
-                  // isAdded={isAdded}
                 />
               </div>
             )
