@@ -18,7 +18,9 @@ function Compare() {
   const { getCompareList, removeFromSelectedDepartments, moveToFavourites, removeFromFavourites, getFavouriteList } = useCardCalls();
   const { compareList, favouriteList } = useSelector((state) => state?.card);
   const currentUserId = currentUser?.userID;
-  // const departmentId = id
+
+
+
   useEffect(() => {
     getUserInfo(currentUserId);
   }, []);
