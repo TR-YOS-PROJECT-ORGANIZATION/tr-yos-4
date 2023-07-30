@@ -12,11 +12,11 @@ const MyProfile = () => {
 
   useEffect(() => {
     getUserInfo(currentUser?.userID);
-  }, []);
+  }, [currentUser]);
 
   const { userInfo } = useSelector((state) => state.info);
 
-  console.log(currentUser.userID);
+  console.log(currentUser?.userID);
   console.log(userInfo);
 
   return (
@@ -28,7 +28,7 @@ const MyProfile = () => {
         <p className="text-4xl font-bold p-5">My Account</p>
         <div className="flex justify-center h-full md:w-full xs:w-full xs:flex-col xs:items-center">
           <Dashboard userInfo={userInfo} />
-          <MyAccountSettings userInfo={userInfo} currentUser={currentUser} />
+          <MyAccountSettings userInfo={userInfo} currentUser={currentUser} getUserInfo={getUserInfo}/>
         </div>
       </div>
     </div>

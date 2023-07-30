@@ -23,8 +23,10 @@ const HomePage = () => {
   useEffect(() => {
     getUni();
   }, []);
+
   useEffect(() => {
-    getCompareList(currentUserId);
+    currentUser &&
+    getCompareList();
     getFavouriteList();
   }, [])
 

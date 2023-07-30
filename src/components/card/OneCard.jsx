@@ -12,6 +12,7 @@ import image4 from "../../images/biology.jpg";
 import useInfoCalls from '../../hooks/useInfoCalls';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { toastWarnNotify } from '../../helper/ToastNotify';
 
 
 
@@ -112,7 +113,7 @@ let heartIcon;
                                     </div>
                                 </Slider>
                             </div>
-                            <div onClick={() => addRemoveFavouriteList(id)} className="absolute top-0 right-0 px-2 py-1 m-2 rounded-md shadow-2xl">
+                            <div onClick={() => { currentUser ? addRemoveFavouriteList(id) : toastWarnNotify("Please Login") }} className="absolute top-0 right-0 px-2 py-1 m-2 rounded-md shadow-2xl">
                                 <svg
                                     width="20px"
                                     height="20px"
@@ -170,7 +171,7 @@ let heartIcon;
                                 </div>
                             </div>
 
-                            <div onClick={() => {currentUser ? addRemoveCompareList(id) : alert("Lütfen Giriş Yapın")}} className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2">
+                            <div onClick={() => {currentUser ? addRemoveCompareList(id) :  toastWarnNotify("Please Login")}} className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2">
                                 <span className={`inline-flex select-none rounded-lg px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm ${isAdded ? "bg-green-dark" : "bg-red-500"}`}>
                                     {" "}
 

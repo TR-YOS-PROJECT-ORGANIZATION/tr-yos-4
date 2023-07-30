@@ -29,11 +29,11 @@ function Compare() {
   console.log(currentUser);
 
   useEffect(() => {
-    getCompareList(currentUserId);
+    getCompareList();
   }, [])
 
   useEffect(() => {
-    getFavouriteList(currentUserId);
+    getFavouriteList();
   }, [])
 console.log(allDepartments);
 
