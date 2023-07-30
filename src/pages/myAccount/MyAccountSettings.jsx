@@ -79,7 +79,6 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
               defaultValue={userInfo?.user?.name}
               required
               className="w-full rounded-md mt-2 border-2"
-              placeholder={userInfo?.user.name}
               onChange={(e) => setNewInfo({ ...newInfo, name: e.target.value })}
             />
           </div>
@@ -92,7 +91,6 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
               defaultValue={userInfo?.user?.email}
               required
               className="w-full rounded-md mt-2 border-2"
-              placeholder={userInfo?.user.email}
               onChange={(e) =>
                 setNewInfo({ ...newInfo, email: e.target.value })
               }
@@ -124,6 +122,7 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
             <select
               className="w-full rounded-md mt-2 border-2"
               onChange={(e) => setNewInfo({ ...newInfo, city: e.target.value })}
+              defaultValue={userInfo?.user?.city}
             >
               <option>{userInfo?.user?.city}</option>
               {citiesbyCountry?.map((item) => (
@@ -140,9 +139,9 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
           </label>
           <input
             type="text"
+            defaultValue={userInfo?.user.phone}
             required
             className="w-full rounded-md mt-2 border-2"
-            placeholder={userInfo?.user.phone}
             onChange={(e) => setNewInfo({ ...newInfo, phone: e.target.value })}
           />
         </div>
@@ -155,7 +154,7 @@ const MyAccountSettings = ({ userInfo, currentUser }) => {
               type="text"
               required
               className="h-40 rounded-md mt-2 border-2  hover:border-green-dark"
-              placeholder={userInfo?.user.about}
+              defaultValue={userInfo?.user.about}
               onChange={(e) =>
                 setNewInfo({ ...newInfo, about: e.target.value })
               }

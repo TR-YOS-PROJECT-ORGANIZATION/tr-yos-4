@@ -9,11 +9,10 @@ import image2 from "../../images/dna.jpg";
 import image3 from "../../images/lab.jpg";
 import image4 from "../../images/biology.jpg";
 // import useAuthCall from '../../hooks/useAuthCall';
-// import useInfoCalls from '../../hooks/useInfoCalls';
+import useInfoCalls from '../../hooks/useInfoCalls';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import useInfoCalls from '../../hooks/useInfoCalls';
-// import SignInModal from '../modals/SignInModal';
+
 
 
 function OneCard(props, {item}) {
@@ -24,7 +23,7 @@ function OneCard(props, {item}) {
     const [isFavourited, setIsFavourited] = useState(isInFavourite);
     // eslint-disable-next-line no-unused-vars
     const { currentUser } = useSelector((state) => state?.auth);
-    // const { getUserInfo } = useInfoCalls();
+    const { getUserInfo } = useInfoCalls();
     const navigate = useNavigate();
     const {t} = useTranslation()
 
@@ -87,7 +86,7 @@ let heartIcon;
 
     return (
         <>
-            <div className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
+            <div key={id} className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 ">
                 <a
                     href="#"
                     className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"

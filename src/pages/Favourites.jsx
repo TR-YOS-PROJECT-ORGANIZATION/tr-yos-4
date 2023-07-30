@@ -1,58 +1,30 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import useInfoCalls from "../hooks/useInfoCalls";
 import OneCard from "../components/card/OneCard";
 import WorkUs from '../components/workUs/WorkUs'
-
+import useCardCalls from '../hooks/useCardCalls';
 function Favourites() {
     const { currentUser } = useSelector((state) => state?.auth);
     const { allDepartments } = useSelector((state) => state?.info);
     const { getUserInfo, getAllDepartments } = useInfoCalls();
-    const [favouriteList, setFavouriteList] = useState();
-
+    const { favouriteList, compareList } = useSelector((state) => state.card);
+    const { getCompareList, getFavouriteList, moveToSelectedDepartments, removeFromSelectedDepartments, removeFromFavourites} = useCardCalls();
     useEffect(() => {
         getUserInfo(currentUser.userID);
     }, [currentUser]);
-
     useEffect(() => {
         getAllDepartments();
     }, [])
-
-    async function getFavouriteList() {
-
-        const currentUserId = currentUser.userID;
-        try {
-            await axios.get(`https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(({ data }) => setFavouriteList(data))
-            console.log(favouriteList);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     useEffect(() => {
+        getCompareList();
         getFavouriteList();
-    }, [])
-
-
-    const removeFromFavourites = (id) => {
-        const currentUserId = currentUser.userID;
-        const departmentId = id
-
-        try {
-            axios.get(`https://tr-yös.com/api/v1/users/deletefavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`).then(() => getFavouriteList());
-        } catch (error) {
-            console.log(error);
-        }
-        // setFavouriteList(prevState => prevState.filter((item) => item !== departmentId));
-        console.log(favouriteList);
-    }
-
+    }, [favouriteList])
+    console.log(favouriteList);
     const filteredDepartments = allDepartments?.filter((department) => favouriteList?.departments.map((item) => item).includes(department.id));
-
-
     return (
         <div className='mt-20'>
             <div>
@@ -62,13 +34,11 @@ function Favourites() {
                         My Favorite Departments
                     </h2>
                 </div>
-
                 <div className="grid grid-cols-4">
                     {
                         filteredDepartments?.map((item) =>
                             <div key={item.id}>
-
-                                <OneCard item={item}
+                                <OneCard
                                     facultyTr={item.faculty.tr}
                                     facultyEn={item.faculty.en}
                                     universityTr={item.university.tr}
@@ -81,11 +51,11 @@ function Favourites() {
                                     price={item.price}
                                     id={item.id}
                                     removeFromFavourites={removeFromFavourites}
-                                    // isInCompare={compareList.includes(item.id)}
-                                    isInFavourite={true}
-
+                                    moveToSelectedDepartments={moveToSelectedDepartments}
+                                    removeFromSelectedDepartments={removeFromSelectedDepartments}
+                                    isInCompare={compareList?.departments.map((item) => item).includes(item.id)}
+                                    isInFavourite={favouriteList?.departments.map((item) =>item).includes(item.id)}
                                 />
-
                             </div>
                         )}
                 </div>
@@ -94,5 +64,4 @@ function Favourites() {
         </div>
     )
 }
-
 export default Favourites;
