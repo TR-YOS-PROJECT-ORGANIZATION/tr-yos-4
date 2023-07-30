@@ -20,7 +20,7 @@ export const registerSchema = yup.object().shape({
 
   password1: yup
     .string()
-    .required()
+    .required("Password must have min 8 chars,a number, a lowercase, an uppercase, a special char")
     .min(8, "Password must have min 8 chars")
     .max(16, "Password must have max 16 chars")
     .matches(/\d+/, "Password must have a number")
@@ -161,7 +161,7 @@ const SignUpModal = (props) => {
                           onChange={handleChange}
                           value={values.password1}
                         />
-                         {touched.password1 && errors.password1 ? <div className="text-red-retro mb-2 text-sm "> {errors.password}</div>
+                         {touched.password1 && errors.password1 ? <div className="text-red-retro mb-2 text-sm "> {errors.password1}</div>
                                    
                                    : null}
 

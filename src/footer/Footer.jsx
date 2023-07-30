@@ -3,13 +3,26 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toastWarnNotify } from "../helper/ToastNotify";
+import SignInModal from "../components/modals/SignInModal";
+import { useState } from "react";
 
 const Footer = () => {
   const { t } = useTranslation();
-  const { currentUser } = useSelector((state) => state.auth);
+  const {currentUser} = useSelector((state)=>state.auth);
 
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleClick = () => {
+    toastWarnNotify("Please Login");
+    setOpenModal(true);
+  }
+
+ 
   return (
     <div className="flex flex-col text-center  bg-gray-900">
+
+    <SignInModal open={openModal} setOpen={setOpenModal}/>
+
       <div className="flex justify-evenly mt-8">
         <div className="text-left">
           <h2 className="mb-6 text-md font-semibold text-gray-400 uppercase dark:text-white">
@@ -86,22 +99,30 @@ const Footer = () => {
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
-              {!currentUser && (
-                <button
-                  className="hover:underline border rounded p-1"
-                  onClick={() => toastWarnNotify("Please Login")}
-                >
-                  {t("My Profile")}
-                </button>
-              )}
-              {currentUser && (
-                <Link
-                  to="/myProfile"
-                  className="hover:underline border rounded p-1"
-                >
-                  {t("My Profile")}
-                </Link>
-              )}
+            {!currentUser && <button   className="hover:underline border rounded p-1" 
+            onClick={()=>handleClick()
+            }> 
+            {t("My Profile")}
+            </button>}
+             {currentUser && <Link
+                to="/myProfile"
+                className="hover:underline border rounded p-1"
+              >
+                {t("My Profile")}
+              </Link>}
+            </li>
+            <li className="mb-4">
+            {!currentUser && <button   className="hover:underline border rounded p-1" onClick={()=>
+              toastWarnNotify("Please Login")
+            }> 
+            {t("My Account")}
+            </button>}
+             {currentUser && <Link
+                to="/myProfile"
+                className="hover:underline border rounded p-1"
+              >
+                {t("My Account")}
+              </Link>}
             </li>
 
             <li className="mb-4">

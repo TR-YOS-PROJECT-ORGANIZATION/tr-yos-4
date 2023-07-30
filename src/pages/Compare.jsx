@@ -19,25 +19,24 @@ function Compare() {
   // const departmentId = id
   useEffect(() => {
     getUserInfo(currentUserId);
-  }, [currentUser]);
+  }, []);
   useEffect(() => {
     getAllDepartments();
   }, [])
   console.log(currentUser);
-  console.log(favouriteList);
 
   useEffect(() => {
     getCompareList(currentUserId);
-  }, [compareList])
+  }, [])
 
   useEffect(() => {
     getFavouriteList(currentUserId);
-  }, [favouriteList])
-  console.log(favouriteList);
+  }, [])
 console.log(allDepartments);
 
   const filteredDepartments = allDepartments?.filter((department) => compareList?.departments.map((item) => item).includes(department.id));
   console.log(filteredDepartments);
+  console.log(compareList);
   return (
     <div>
       <div className="grid grid-cols-4">
