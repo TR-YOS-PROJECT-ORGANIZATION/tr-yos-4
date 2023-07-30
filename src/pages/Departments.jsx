@@ -23,12 +23,13 @@ function Departments() {
     currentUser && getUserInfo(currentUser?.userID);
   }, [currentUser]);
   console.log(currentUser);
+
   useEffect(() => {
     getCompareList(currentUserId);
     getFavouriteList();
     getAllDepartments();
 
-  }, [compareList]);
+  }, []);
   const department = allDepartments?.slice(71, 89);
   console.log(favouriteList);
   return (

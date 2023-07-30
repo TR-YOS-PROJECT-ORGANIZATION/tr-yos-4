@@ -27,7 +27,7 @@ console.log(univercities)
   useEffect(() => {
     getCompareList(currentUserId);
     getFavouriteList();
-  }, [compareList])
+  }, [])
 
   useEffect(() => {
     getAllDepartments();
