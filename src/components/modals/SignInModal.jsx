@@ -11,6 +11,7 @@ import { toastErrorNotify, toastSuccessNotify } from "../../helper/ToastNotify";
 import * as yup from "yup";
 import close from '../../images/close.png'
 
+
 export const registerSchema = yup.object().shape({
   email: yup.string()
             .required()
@@ -30,9 +31,10 @@ export const registerSchema = yup.object().shape({
 const SignInModal = (props) => {
 
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state?.auth);
+  const { currentUser,loading } = useSelector((state) => state?.auth);
   const { login } = useAuthCall();
   const open = props.setOpen
+
 
   useEffect(() => {
     if (currentUser) {
@@ -115,13 +117,13 @@ const SignInModal = (props) => {
                   }) => (
                     <Form>
                       <div className="flex flex-col text-black">
-                        <label className=" text-red-700" htmlFor="email">
+                        <label className=" text-red-700" htmlFor="mail">
                           Email
                         </label>
 
                         <Field
                           className="border border-green-dark my-3 p-1 rounded"
-                          id="email"
+                          id="mail"
                           name="email"
                           placeholder="Enter your e-mail"
                           type="email"
@@ -129,7 +131,6 @@ const SignInModal = (props) => {
                           onChange={handleChange}
                           value={values?.email}
                           variant="outlined"
-                          helperText={touched.email && errors.email}
                           
                         />
                            {touched.email && errors.email ? 

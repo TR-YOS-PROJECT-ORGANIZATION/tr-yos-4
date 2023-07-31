@@ -6,13 +6,9 @@ import { useState,useEffect } from "react";
 
 const PrivateRouter = () => {
 
-   const [openModal, setOpenModal] = useState(false);
-   const [openUpModal, setOpenUpModal] = useState(false);
+
    
   let { currentUser } = useSelector((state) => state.auth);
-
-
- 
   return (<div>{ currentUser ? <Outlet/> :<Navigate to="/" />}</div>)
 
    
