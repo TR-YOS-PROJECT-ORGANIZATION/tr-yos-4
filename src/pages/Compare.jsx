@@ -66,6 +66,7 @@ console.log(allDepartments);
                   removeFromFavourites={removeFromFavourites}
                   isInFavourite={favouriteList?.departments.map((item) => item).includes(item.id)}
                   isInCompare={compareList?.departments.map((item) => item).includes(item.id)}
+                  compareList = {compareList}
                 />
               </div>
             )

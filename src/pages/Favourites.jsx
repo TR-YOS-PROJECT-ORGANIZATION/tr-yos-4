@@ -7,12 +7,16 @@ import useInfoCalls from "../hooks/useInfoCalls";
 import OneCard from "../components/card/OneCard";
 import WorkUs from '../components/workUs/WorkUs'
 import useCardCalls from '../hooks/useCardCalls';
+import { useTranslation } from 'react-i18next';
+
 function Favourites() {
     const { currentUser } = useSelector((state) => state?.auth);
     const { allDepartments } = useSelector((state) => state?.info);
     const { getUserInfo, getAllDepartments } = useInfoCalls();
     const { favouriteList, compareList } = useSelector((state) => state.card);
     const { getCompareList, getFavouriteList, moveToSelectedDepartments, removeFromSelectedDepartments, removeFromFavourites} = useCardCalls();
+
+    const {t} = useTranslation();
     useEffect(() => {
         getUserInfo(currentUser.userID);
     }, [currentUser]);
@@ -31,7 +35,7 @@ function Favourites() {
                 <div >
                     <h2 className="w-full h-36 bg-green-dark pl-28 pt-8 text-5xl text-left text-white-cream font-bold" >
                         {/*  */}
-                        My Favorite Departments
+                        {t("My Favorite Departments")}
                     </h2>
                 </div>
                 <div className="grid grid-cols-4">

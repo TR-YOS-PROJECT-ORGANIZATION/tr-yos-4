@@ -48,22 +48,22 @@ const Navbar = () => {
                 <ul className="md:flex-col absolute z-10 rounded md:-left-36 sm:-left-10  max-[600px]:-left-10 ">
                   <li className=" px-10  py-5 bg-white-500 hover:bg-red-retro ">
                     <Link to="/" className="mx-3">
-                      Home
+                    {t("Home")}
                     </Link>
                   </li>
                   <li className="  px-10  py-5  bg-white-500  hover:bg-red-retro">
-                    <Link to="/Universities" className="mx-3">
-                      Universities
+                    <Link to="/universities" className="mx-3">
+                    {t("Universities")}
                     </Link>
                   </li>
                   <li className="  px-10  py-5   bg-white-500  hover:bg-red-retro">
-                    <Link to="/Departments" className="mx-3">
-                      Departments
+                    <Link to="/departments" className="mx-3">
+                    {t("Departments")}
                     </Link>
                   </li>
                   <li className="  px-10  py-5   bg-white-500 hover:bg-red-retro">
-                    <Link to="/About" className="mx-3">
-                      About
+                    <Link to="/about" className="mx-3">
+                      {t("About")}
                     </Link>
                   </li>
                 </ul>
