@@ -31,7 +31,6 @@ function Departments() {
 
   }, []);
   const department = allDepartments?.slice(71, 89);
-  console.log(favouriteList);
   return (
     <>
       <div className="flex flex-col">

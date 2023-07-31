@@ -8,9 +8,14 @@ import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 import { MultiSelect, MultiSelectItem, SelectItem } from "@tremor/react";
 import { Dots } from "react-activity";
+import OneCard from "./card/OneCard";
 import "react-activity/dist/library.css";
 
 import "../../src/App.css";
+import UniCard from "./card/UniCard";
+import { useNavigate } from "react-router-dom";
+import i18next from "i18next";
+import { toast } from "react-toastify";
 
 const Main = () => {
   const { t, i18n } = useTranslation();
@@ -19,7 +24,10 @@ const Main = () => {
   const [selectedCities, setSelectedCities] = useState();
   const [selectedUnivercities, setSelectedUnivercities] = useState([]);
   const [selectedDepartments, setSelectedDepartments] = useState([]);
-
+  const [departmentStatus, setDepartmentStatus] = useState(false);
+  const [univercitiesStatus, setUnivercitiesStatus] = useState(false);
+  const [cityStatus, setCityStatus] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     getUni(), getCities(), getDepartments();
   }, []);
@@ -31,20 +39,32 @@ const Main = () => {
   const filteredUniversities =
     selectedCities?.length > 0
       ? univercities?.filter(
-          (uni) =>
-            selectedCities?.map((item) => item.id).indexOf(uni.city) !== -1
-        )
+        (uni) =>
+          selectedCities?.map((item) => item.id).indexOf(uni.city) !== -1
+      )
       : univercities;
 
   const filteredDepartments =
     selectedCities?.length > 0
       ? departments?.filter(
-          (department) =>
-            filteredUniversities
-              ?.map((item) => item.code)
-              .indexOf(department.id) !== -1
-        )
+        (department) =>
+          filteredUniversities
+            ?.map((item) => item.code)
+            .indexOf(department.id) !== -1
+      )
       : departments;
+
+  function handleClick() {
+    if (selectedDepartments.length > 0) {
+      setDepartmentStatus(true)
+    } else if (selectedUnivercities.length > 0 && selectedDepartments.length == 0) {
+      setUnivercitiesStatus(true)
+    }
+  }
+  console.log(univercitiesStatus)
+  console.log(departmentStatus);
+
+
 
   const settings = {
     dots: true,
@@ -54,38 +74,39 @@ const Main = () => {
     slidesToScroll: 1,
   };
   return (
-    <div className="w-full relative">
-      <Slider {...settings}>
-        <div className="relative">
-          <img
-            className="w-full h-[45rem] object-cover mt-20 "
-            src={image1}
-          ></img>
-          <div className="absolute bg-gray-base bg-opacity-50 leading-relaxed text-center left-20 text-2xl w-96  top-20 rounded pt-64 h-[45rem]">
-            <p className="leading-relaxed italic font-serif font-bold">
-              {t("Join this educational journey")} <br></br> {t("with us")}{" "}
-              <br></br> {t("and discover your data!")}
-            </p>
+    <>
+      <div className="w-full relative">
+        <Slider {...settings}>
+          <div className="relative">
+            <img
+              className="w-full h-[45rem] object-cover mt-20 "
+              src={image1}
+            ></img>
+            <div className="absolute bg-gray-base bg-opacity-50 leading-relaxed text-center left-20 text-2xl w-96  top-20 rounded pt-64 h-[45rem]">
+              <p className="leading-relaxed italic font-serif font-bold">
+                {t("Join this educational journey")} <br></br> {t("with us")}{" "}
+                <br></br> {t("and discover your data!")}
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="relative">
-          <img
-            className="w-full h-[45rem] object-cover mt-20"
-            src={image2}
-          ></img>
-          <div className="absolute bg-gray-base bg-opacity-50  text-center  left-20 text-2xl w-96  top-0 rounded pt-64 h-[45rem]">
-            <p className=" leading-relaxed italic font-serif font-bold">
-              {t("Join this educational journey")} <br></br> {t("with us")}{" "}
-              <br></br> {t("and discover your data!")}
-            </p>
+          <div className="relative">
+            <img
+              className="w-full h-[45rem] object-cover mt-20"
+              src={image2}
+            ></img>
+            <div className="absolute bg-gray-base bg-opacity-50  text-center  left-20 text-2xl w-96  top-0 rounded pt-64 h-[45rem]">
+              <p className=" leading-relaxed italic font-serif font-bold">
+                {t("Join this educational journey")} <br></br> {t("with us")}{" "}
+                <br></br> {t("and discover your data!")}
+              </p>
+            </div>
           </div>
-        </div>
-      </Slider>
-     
-     <div className="absolute bottom-20  md:right-36  flex md:flex-col sm:flex-row  sm:items-center lg:w-[38%] md:w-[70%] sm:w-full max-sm:w-full bg-green-dark rounded lg:p-8 md:p-4 sm:p-1 shadow-xl ">
-       
-      
-        
+        </Slider>
+
+        <div className="absolute bottom-20  md:right-36  flex md:flex-col sm:flex-row  sm:items-center lg:w-[38%] md:w-[70%] sm:w-full max-sm:w-full bg-green-dark rounded lg:p-8 md:p-4 sm:p-1 shadow-xl ">
+
+
+
           <MultiSelect
             className="max-w-full rounded-lg sm:max-w-md bg-white-500 p-2  border border-green-dark"
             onValueChange={"" || setSelectedCities}
@@ -117,14 +138,14 @@ const Main = () => {
               </MultiSelectItem>
             ))}
           </MultiSelect>
-   
-    
+
+
           <MultiSelect
             className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-10 p-2 border border-green-dark mb-5"
             onValueChange={"" || setSelectedDepartments}
             placeholder="Select Department"
           >
-            {filteredDepartments?.map((item,index) => (
+            {filteredDepartments?.map((item, index) => (
               <MultiSelectItem
                 className="bg-white-500 "
                 key={index}
@@ -134,20 +155,29 @@ const Main = () => {
               </MultiSelectItem>
             ))}
           </MultiSelect>
-        
+          <div>
+            <button onClick={() => handleClick()} className="mx-auto   max-sm:m-12 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-24 font-bold rounded  hover:bg-red-retro shadow-md">
+              {t("Search")}
+            </button>
 
+          </div>
 
-
-        <div>
-          <button className="mx-auto   max-sm:m-12 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-24 font-bold rounded  hover:bg-red-retro shadow-md">
-            {t("Search")}
-          </button>
-        
         </div>
-
-        
       </div>
-    </div>
+      <div className="flex">
+        {
+          departmentStatus ? selectedDepartments.map((d, index) => (
+            <div key={index}>
+              <OneCard key={d.id} departmentEn={d.en} code={d.code} />
+            </div>
+          )) : univercitiesStatus ? selectedUnivercities.map((item, index) => (
+            <div key={index}>
+              <UniCard item={item} />
+            </div>
+          )) : null
+        }
+      </div>
+    </>
   );
 };
 
