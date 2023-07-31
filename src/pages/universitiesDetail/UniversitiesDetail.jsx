@@ -50,6 +50,7 @@ import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import useInfoCalls from "../../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
+import UniDetailSubmit from "./UniDetailSubmit";
 
 const UniversitiesDetail = () => {
   const { code } = useParams();
@@ -64,7 +65,7 @@ const UniversitiesDetail = () => {
     getUni();
   }, []);
 
-  const dept = allDepartments?.filter((item) => item.department.code === code);
+  const dept = allDepartments?.filter((item) => item.university.code === code);
   console.log(dept);
   const uni = univercities?.filter((item)=> item.code === dept[0].university.code)
   console.log(uni);
@@ -72,7 +73,7 @@ const UniversitiesDetail = () => {
     <div>
       <Slider />
 
-      <SubmitReview dept={dept} uni={uni}/>
+      <UniDetailSubmit dept={dept} uni={uni}/>
       {/* <WorkUs /> */}
     </div>
   );

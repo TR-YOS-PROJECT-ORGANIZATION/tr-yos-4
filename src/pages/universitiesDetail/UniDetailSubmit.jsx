@@ -486,19 +486,26 @@ const UniDetailSubmit = ({ dept, uni }) => {
           <div className="">
             <div className=" p-7 border m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
               <div className="ml-5 text-left font-bold text-blue-950 text-xl">
-                {/* <h4>{dept[0]?.department.en}</h4>
-                <h4>{dept[0]?.faculty.en}</h4>
+                <h4>{dept[0]?.university.en}</h4>
+                {/* <h4>{dept[0]?.faculty.en}</h4> */}
                 <span className="text-xs text-slate-500">
                   <i className="fa-solid fa-location-dot"></i>
                   <a href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL">
                     {dept[0]?.data?.adress}
                   </a>
-                </span> */}
+                </span>
+
+
+                
               </div>
               {/* <div className=" font-bold text-left ml-5 ">
                 <p className="text-xl text-blue-700 ">{dept[0]?.price}</p>
                 <span className="text-xs text-slate-500">Year</span>
               </div> */}
+
+
+
+              
             </div>
             {/* other */}
             <div className="gap-2 border w-3/2 m-5 rounded-xl shadow-lg">
