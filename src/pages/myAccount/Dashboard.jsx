@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import ChangePassword from "../../components/modals/ChangePassword";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -8,24 +9,8 @@ import { Link } from "react-router-dom";
 
 const Dashboard = ({ userInfo }) => {
   const [openModal, setOpenModal] = useState(false);
-  const [userPhoto, setUserPhoto] = useState(null); // Kullanıcının fotoğrafını saklayacak state
 
   const dispatch = useDispatch();
-
-  // Fotoğrafı değiştirmek için kullanılacak fonksiyon
-  const handlePhotoChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    // Fotoğrafın URL'ini alıp state'e kaydet
-    reader.onloadend = () => {
-      setUserPhoto(reader.result);
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
 
   const getChangePassword = async (userID, info) => {
     dispatch(fetchStart());
@@ -51,21 +36,11 @@ const Dashboard = ({ userInfo }) => {
         setOpen={setOpenModal}
         getChangePassword={getChangePassword}
       />
-
-      <div className="flex justify-center items-center">
-        {userPhoto ? (
-          <img
-            src={userPhoto}
-            alt="User Photo"
-            className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
-          />
-        ) : (
-          <div className="w-32 h-32 mx-auto rounded-full border-2 border-gray-300 dark:bg-gray-500 aspect-square"></div>
-        )}
-      </div>
-
-      <input type="file" onChange={handlePhotoChange} />
-
+      <img
+        src="https://source.unsplash.com/150x150/?portrait?3"
+        alt=""
+        className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
+      />
       <div className="space-y-4 text-center divide-y divide-gray-700">
         <div className="my-2 space-y-1">
           <h2 className="text-xl font-semibold sm:text-2xl text-green-dark ">
@@ -124,12 +99,12 @@ const Dashboard = ({ userInfo }) => {
                 <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
               </svg>
             </div>
-            <div>My Profile</div>
+            <Link to="/myProfile">My Profile</Link>
           </a>
         </div>
 
         <button onClick={() => setOpenModal(!openModal)} className="mt-2 ">
-          <a className=" flex px-20 py-2 font-medium border-2 rounded-lg bg-gray-light text-gray-base  hover:bg-green-dark hover:text-white-cream">
+          <a className=" flex px-7 py-2 font-medium border-2 rounded-lg bg-gray-light text-gray-base  hover:bg-green-dark hover:text-white-cream">
             <div className="pt-1 mr-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -146,5 +121,4 @@ const Dashboard = ({ userInfo }) => {
     </div>
   );
 };
-
 export default Dashboard;
