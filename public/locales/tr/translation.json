@@ -37,5 +37,14 @@
     "Compare": "Karşılaştır",
     "Compare Departments": "Bölümleri Karşılaştır",
     "Remove": "Geri Al",
-    "year": "Yıl"
+    "year": "Yıl",
+    "You can't compare more than 4 department": "4'den fazla bölüm karşılaştıramazsınız",
+    "My Favorite Departments": "Favori Bölümlerim",
+    "Year": "Yıl",
+    "Other": "Diğer",
+    "Language":"Dil",
+    "Quota": "Kontenjan",
+    "internships": "stajlar",
+    "About Department": "Bölüm Hakkında",
+    "Active": "Aktif"
 }
