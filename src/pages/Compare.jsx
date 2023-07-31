@@ -9,26 +9,20 @@ import OneCard from "../components/card/OneCard";
 import useCardCalls from "../hooks/useCardCalls";
 
 
-function Compare() {
+const Compare = () => {
   // const { t } = useTranslation();
 
-  const { getUserInfo, getAllDepartments } = useInfoCalls();
+  const { getAllDepartments } = useInfoCalls();
   const { currentUser } = useSelector((state) => state?.auth);
   const { allDepartments } = useSelector((state) => state?.info);
   const { getCompareList, removeFromSelectedDepartments, moveToFavourites, removeFromFavourites, getFavouriteList } = useCardCalls();
   const { compareList, favouriteList } = useSelector((state) => state?.card);
-  const currentUserId = currentUser?.userID;
 
 
-
-  useEffect(() => {
-    getUserInfo(currentUserId);
-  }, []);
 
   useEffect(() => {
     getAllDepartments();
   }, [])
-  console.log(currentUser);
 
   useEffect(() => {
     getCompareList();
@@ -37,18 +31,15 @@ function Compare() {
   useEffect(() => {
     getFavouriteList();
   }, [])
-console.log(allDepartments);
 
   const filteredDepartments = allDepartments?.filter((department) => compareList?.departments.map((item) => item).includes(department.id));
-  console.log(filteredDepartments);
-  console.log(compareList);
   return (
     <div>
       <div className="grid grid-cols-4">
         {
-          filteredDepartments?.map((item) => {
+          filteredDepartments?.map((item,index) => {
             return (
-              <div key={item.id} >
+              <div key={index} >
                 <OneCard
                   facultyTr={item.faculty.tr}
                   facultyEn={item.faculty.en}

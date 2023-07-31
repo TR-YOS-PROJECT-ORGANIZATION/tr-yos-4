@@ -10,14 +10,10 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
 
   const [newInfo, setNewInfo] = useState({});
 
-  console.log(newInfo);
-  console.log(currentUser);
-
   const filteredCountry = country?.filter(
     (item) => item.en === newInfo.country
   );
 
-  console.log(filteredCountry);
 
   const getCountry = async () => {
     try {
@@ -172,7 +168,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
         </div>
       </div>
       <button
-        onClick={() => sendInfo(newInfo)}
+        onClick={() => {sendInfo(newInfo); e.prevent.default()}}
         className="bg-red-warm text-white-500 hover:bg-green-dark hover:text-green-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4"
       >
         Save Changes

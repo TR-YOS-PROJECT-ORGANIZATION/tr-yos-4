@@ -10,12 +10,10 @@ import useCardCalls from '../hooks/useCardCalls';
 function Favourites() {
     const { currentUser } = useSelector((state) => state?.auth);
     const { allDepartments } = useSelector((state) => state?.info);
-    const { getUserInfo, getAllDepartments } = useInfoCalls();
+    const {  getAllDepartments } = useInfoCalls();
     const { favouriteList, compareList } = useSelector((state) => state.card);
     const { getCompareList, getFavouriteList, moveToSelectedDepartments, removeFromSelectedDepartments, removeFromFavourites} = useCardCalls();
-    useEffect(() => {
-        getUserInfo(currentUser.userID);
-    }, [currentUser]);
+
     useEffect(() => {
         getAllDepartments();
     }, [])
@@ -36,8 +34,8 @@ function Favourites() {
                 </div>
                 <div className="grid grid-cols-4">
                     {
-                        filteredDepartments?.map((item) =>
-                            <div key={item.id}>
+                        filteredDepartments?.map((item,index) =>
+                            <div key={index}>
                                 <OneCard
                                     facultyTr={item.faculty.tr}
                                     facultyEn={item.faculty.en}
