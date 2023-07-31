@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import image4 from "../../images/business.jpg";
 import axios from "axios";
-import { toastSuccessNotify } from "../../helper/ToastNotify";
+import { toastErrorNotify, toastSuccessNotify } from "../../helper/ToastNotify";
 
 // const initialValues = {
 //   email: "",
@@ -30,6 +30,7 @@ const WorkUs = () => {
       toastSuccessNotify("Email sent performed");
     } catch (error) {
       console.log(error);
+      toastErrorNotify("Email already exists")
     }
   };
 
