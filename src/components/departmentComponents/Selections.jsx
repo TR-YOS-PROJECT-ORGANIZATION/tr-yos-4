@@ -6,7 +6,6 @@ import useInfoCalls from "../../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 import PriceForm from "./PriceForm";
 
-
 function Selections() {
   const [selectedCities, setSelectedCities] = useState();
   const [selectedUnivercities, setSelectedUnivercities] = useState([]);
@@ -19,28 +18,24 @@ function Selections() {
   const filteredUniversities =
     selectedCities?.length > 0
       ? univercities?.filter(
-        (uni) =>
-          selectedCities?.map((item) => item.id).indexOf(uni.city) !== -1
-      )
+          (uni) =>
+            selectedCities?.map((item) => item.id).indexOf(uni.city) !== -1
+        )
       : univercities;
-  console.log(filteredUniversities);
   const filteredDepartments =
     selectedCities?.length > 0
       ? departments?.filter(
-        (department) =>
-          filteredUniversities
-            ?.map((item) => item.code)
-            .indexOf(department.id) !== -1
-      )
+          (department) =>
+            filteredUniversities
+              ?.map((item) => item.code)
+              .indexOf(department.id) !== -1
+        )
       : departments;
-  console.log(filteredDepartments);
-
 
   const { t } = useTranslation();
   useEffect(() => {
     getUni(), getCities(), getDepartments();
   }, []);
-
 
   return (
     <>
@@ -67,16 +62,11 @@ function Selections() {
           placeholder="Select Univercity"
         >
           {filteredUniversities?.map((item, index) => (
-            <MultiSelectItem
-              className="bg-white-500 "
-              key={index}
-              value={item}
-            >
+            <MultiSelectItem className="bg-white-500 " key={index} value={item}>
               {item.en}
             </MultiSelectItem>
           ))}
         </MultiSelect>
-
 
         <MultiSelect
           className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-5 p-2 border border-green-dark mb-5"
@@ -84,24 +74,14 @@ function Selections() {
           placeholder="Select Department"
         >
           {filteredDepartments?.map((item, index) => (
-            <MultiSelectItem
-              className="bg-white-500 "
-              key={index}
-              value={item}
-            >
+            <MultiSelectItem className="bg-white-500 " key={index} value={item}>
               {item.en}
             </MultiSelectItem>
           ))}
         </MultiSelect>
 
-
         {/* ///////////////// */}
         <PriceForm />
-
-
-
-
-
       </div>
     </>
   );
@@ -109,25 +89,15 @@ function Selections() {
 
 export default Selections;
 
-
-
-
-
-
-
-
-
 // eslint-disable-next-line no-unused-vars
 // import React, { useEffect } from "react";
 // import Select from "react-select";
 // import "./selections.css";
 // import { useTranslation } from "react-i18next";
 
-
 // function Selections( ) {
 
 //   const { t } = useTranslation();
-
 
 //   const cities = [
 //     { value: "ankara", label: "Ankara" },
