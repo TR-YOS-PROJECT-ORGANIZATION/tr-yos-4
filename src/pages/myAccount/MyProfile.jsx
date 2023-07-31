@@ -16,8 +16,6 @@ const MyProfile = () => {
 
   const { userInfo } = useSelector((state) => state.info);
 
-  console.log(currentUser?.userID);
-  console.log(userInfo);
 
   return (
     <div>

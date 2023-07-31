@@ -50,14 +50,6 @@ function OneCard(props, { item }) {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const handleClick = () => {
-    toastWarnNotify("Please Login");
-    setOpenModal(true);
-  };
-
-  useEffect(() => {
-    currentUser && getUserInfo(currentUser?.userID);
-  }, [currentUser]);
 
   //To Add and Remove from Compare List///
   function addRemoveCompareList(id) {
@@ -81,6 +73,14 @@ function OneCard(props, { item }) {
     setIsFavourited((previous) => !previous);
   }
 
+  const handleClick = () => {
+    if(currentUser){
+      addRemoveFavouriteList(id)
+    }
+    toastWarnNotify("Please Login");
+    setOpenModal(true);
+  };
+  
   let heartIcon;
 
   if (isFavourited) {
@@ -99,12 +99,14 @@ function OneCard(props, { item }) {
 
   return (
     <>
-      <SignInModal open={openModal} setOpen={setOpenModal} />
 
       <div
         key={id}
         className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 "
+
       >
+       {!currentUser && <SignInModal open={openModal} setOpen={setOpenModal} />
+}
         <a
           href="#"
           className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
@@ -140,9 +142,7 @@ function OneCard(props, { item }) {
                 </Slider>
               </div>
               <div
-                onClick={() => {
-                  currentUser ? addRemoveFavouriteList(id) : handleClick();
-                }}
+                onClick={handleClick}
                 className="absolute top-0 right-0 px-2 py-1 m-2 rounded-md shadow-2xl"
               >
                 <svg
