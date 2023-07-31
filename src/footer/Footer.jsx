@@ -114,24 +114,6 @@ const Footer = () => {
                 </Link>
               )}
             </li>
-            <li className="mb-4">
-              {!currentUser && (
-                <button
-                  className="hover:underline border rounded p-1"
-                  onClick={() => handleClick()}
-                >
-                  {t("Compare")}
-                </button>
-              )}
-              {currentUser && (
-                <Link
-                  to="/compare"
-                  className="hover:underline border rounded p-1"
-                >
-                  {t("Compare")}
-                </Link>
-              )}
-            </li>
 
             <li className="mb-4">
               {!currentUser && (
@@ -148,6 +130,25 @@ const Footer = () => {
                   className="hover:underline border rounded p-1"
                 >
                   {t("Favourites")}
+                </Link>
+              )}
+            </li>
+
+            <li className="mb-4">
+              {!currentUser && (
+                <button
+                  className="hover:underline border rounded p-1"
+                  onClick={() => handleClick()}
+                >
+                  {t("Compare")}
+                </button>
+              )}
+              {currentUser && (
+                <Link
+                  to="/compare"
+                  className="hover:underline border rounded p-1"
+                >
+                  {t("Compare")}
                 </Link>
               )}
             </li>
