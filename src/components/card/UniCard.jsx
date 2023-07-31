@@ -63,10 +63,10 @@ onClick={()=> navigate(`/univercitiesDetail/${item?.code}`,{state:item})}
 
         <div className="my-4 ">
           <div className="flex justify-center">
-            <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md  bg-red-warm text-gray-base">
+            <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-green-dark text-blue-base hover:bg-red-warm">
               1 Faculties
             </p>
-            <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-blue-base">
+            <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-blue-base hover:bg-red-warm">
               2 Departments
 
 
@@ -89,10 +89,10 @@ onClick={()=> navigate(`/univercitiesDetail/${item?.code}`,{state:item})}
             </button> */}
 
 {item?.data?.phone && ( // Telefon numarası varsa butonu göster
-  <button className="flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-red-warm text-gray-base hover:bg-red-retro hover:text-gray">
+  <button className="flex text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-red-warm text-blue-base hover:bg-gray-base hover:text-blue-base">
     <div className="pt-1 m-0.5">
       <svg
-        className="fill-gray-base"
+        className="fill-blue-base"
         xmlns="http://www.w3.org/2000/svg"
         height="0.9em"
         viewBox="0 0 512 512"
@@ -104,7 +104,7 @@ onClick={()=> navigate(`/univercitiesDetail/${item?.code}`,{state:item})}
     {/* <div>{item.data.phone}</div> */}
     <div> <a
                       href={`tel:${item?.data?.phone}`}
-                      className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
+                      className="mx-2 text-blue-base truncate w-72 dark:text-gray-400 no-underline hover:underline hover:text-blue-base"
                     >
                       {item?.data?.phone}
                     </a></div>
