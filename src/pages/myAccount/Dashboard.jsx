@@ -6,11 +6,14 @@ import { useDispatch } from "react-redux";
 import { toastSuccessNotify } from "../../helper/ToastNotify";
 import { fetchFail, fetchStart } from "../../features/authSlice";
 import { Link } from "react-router-dom";
+import { toastErrorNotify } from "../../helper/ToastNotify";
 
-const Dashboard = ({ userInfo }) => {
+const Dashboard = ({ userInfo, dept }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const dispatch = useDispatch();
+
+  const mailtoLink = `mailto:info@tryos.com`;
 
   const getChangePassword = async (userID, info) => {
     dispatch(fetchStart());
@@ -53,7 +56,7 @@ const Dashboard = ({ userInfo }) => {
       </div>
       <div>
         <a
-          href="#"
+          href={`tel:+90 555 555 55 55`}
           className="bg-red-warm text-white-500 hover:underline flex mt-5 border-2 rounded-lg p-2"
         >
           <div className="pt-1.5 mr-2">
@@ -71,7 +74,7 @@ const Dashboard = ({ userInfo }) => {
       </div>
       <div className="mt-2">
         <a
-          href="#"
+          href={mailtoLink}
           className="bg-red-warm text-white-500 hover:underline flex border-2 rounded-lg p-2"
         >
           <div className="pt-1 mr-2">
