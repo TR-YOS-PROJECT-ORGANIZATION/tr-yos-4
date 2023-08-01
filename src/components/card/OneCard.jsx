@@ -51,7 +51,7 @@ function OneCard({ item }) {
    } else if (!isAdded && compareList?.departments.length < 4) {
      moveToSelectedDepartments(id);
      setIsAdded((previous) => !previous);
-   } else {
+   } else if(compareList?.departments.length === 4) {
      toast.warn(t("You can't compare more than 4 department"));
    }
  }

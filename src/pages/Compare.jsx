@@ -12,13 +12,7 @@ const Compare = () => {
   const { getAllDepartments } = useInfoCalls();
   const { currentUser } = useSelector((state) => state?.auth);
   const { allDepartments } = useSelector((state) => state?.info);
-  const {
-    getCompareList,
-    removeFromSelectedDepartments,
-    moveToFavourites,
-    removeFromFavourites,
-    getFavouriteList,
-  } = useCardCalls();
+  const { getCompareList } = useCardCalls();
   const { compareList, favouriteList } = useSelector((state) => state?.card);
 
   useEffect(() => {
@@ -27,10 +21,6 @@ const Compare = () => {
 
   useEffect(() => {
     getCompareList();
-  }, []);
-
-  useEffect(() => {
-    getFavouriteList();
   }, []);
 
   const filteredDepartments = allDepartments?.filter((department) =>
@@ -45,7 +35,6 @@ const Compare = () => {
               <OneCard
                 item={item}
                 isInCompare={compareList?.departments.includes(item.id)}
-             
               />
             </div>
           );

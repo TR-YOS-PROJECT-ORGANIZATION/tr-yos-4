@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useTransition } from "react";
+import React, { useEffect, useState} from "react";
 import Slider from "react-slick";
 import image1 from "../images/studentG.jpg";
 import image2 from "../images/graduate.jpg";
@@ -6,8 +6,7 @@ import "../index.css";
 import { useTranslation } from "react-i18next";
 import useInfoCalls from "../hooks/useInfoCalls";
 import { useDispatch, useSelector } from "react-redux";
-import { MultiSelect, MultiSelectItem, SelectItem } from "@tremor/react";
-import { Dots } from "react-activity";
+import { MultiSelect, MultiSelectItem} from "@tremor/react";
 import "react-activity/dist/library.css";
 
 import "../../src/App.css";
