@@ -47,5 +47,7 @@
     "Quota": "Quota",
     "internships": "internships",
     "About Department": "About Department",
-    "Active": "Active"
+    "Active": "Active",
+    "Email already exists":"Email already exists"
+
 }

@@ -33,7 +33,7 @@ const HomePage = () => {
   useEffect(() => {
     getAllDepartments();
   }, []);
-  const depart = allDepartments?.slice(71, 89)
+  const depart = allDepartments?.slice(71, 79)
 
   return (
     <div>
