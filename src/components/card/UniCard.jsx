@@ -21,7 +21,7 @@ const UniCard = ({ key,item,}) => {
     >
       <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
       <img
-  src={item.logo}
+  src={item?.logo}
   alt=""
   onError={
     (e)=>{
