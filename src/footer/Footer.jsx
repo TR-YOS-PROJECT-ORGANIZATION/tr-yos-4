@@ -8,20 +8,18 @@ import { useState } from "react";
 
 const Footer = () => {
   const { t } = useTranslation();
-  const {currentUser} = useSelector((state)=>state.auth);
+  const { currentUser } = useSelector((state) => state.auth);
 
   const [openModal, setOpenModal] = useState(false);
 
   const handleClick = () => {
     toastWarnNotify("Please Login");
     setOpenModal(true);
-  }
+  };
 
- 
   return (
     <div className="flex flex-col text-center  bg-gray-900">
-
-    <SignInModal open={openModal} setOpen={setOpenModal}/>
+      <SignInModal open={openModal} setOpen={setOpenModal} />
 
       <div className="flex justify-evenly mt-8">
         <div className="text-left">
@@ -99,31 +97,22 @@ const Footer = () => {
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
-            {!currentUser && <button   className="hover:underline border rounded p-1" 
-            onClick={()=>handleClick()
-            }> 
-            {t("My Profile")}
-            </button>}
-             {currentUser && <Link
-                to="/myProfile"
-                className="hover:underline border rounded p-1"
-              >
-                {t("My Profile")}
-              </Link>}
-            </li>
-            <li className="mb-4">
-            {!currentUser && <button   className="hover:underline border rounded p-1" onClick={()=>
-             handleClick()
-    
-            }> 
-            {t("My Account")}
-            </button>}
-             {currentUser && <Link
-                to="/myProfile"
-                className="hover:underline border rounded p-1"
-              >
-                {t("My Account")}
-              </Link>}
+              {!currentUser && (
+                <button
+                  className="hover:underline border rounded p-1"
+                  onClick={() => handleClick()}
+                >
+                  {t("My Profile")}
+                </button>
+              )}
+              {currentUser && (
+                <Link
+                  to="/myProfile"
+                  className="hover:underline border rounded p-1"
+                >
+                  {t("My Profile")}
+                </Link>
+              )}
             </li>
 
             <li className="mb-4">
@@ -141,6 +130,25 @@ const Footer = () => {
                   className="hover:underline border rounded p-1"
                 >
                   {t("Favourites")}
+                </Link>
+              )}
+            </li>
+
+            <li className="mb-4">
+              {!currentUser && (
+                <button
+                  className="hover:underline border rounded p-1"
+                  onClick={() => handleClick()}
+                >
+                  {t("Compare")}
+                </button>
+              )}
+              {currentUser && (
+                <Link
+                  to="/compare"
+                  className="hover:underline border rounded p-1"
+                >
+                  {t("Compare")}
                 </Link>
               )}
             </li>
