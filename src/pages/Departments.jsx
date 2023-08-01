@@ -14,13 +14,16 @@ import useCardCalls from "../hooks/useCardCalls";
 function Departments() {
   const { getAllDepartments, getUserInfo } = useInfoCalls();
   // const { compareList, favouriteList } = useSelector((state) => state?.card);
-  const { allDepartments } = useSelector((state) => state.info);
+  const { allDepartments, univercities } = useSelector((state) => state.info);
   const { currentUser } = useSelector((state) => state?.auth);
 
   const [department, setDepartment] = useState([]);
   const { searchParameters } = useSelector((state) => state.card);
 
   const [isOpen, setOpen] = useState(false);
+
+  console.log(" allDeps  ", allDepartments);
+  console.log(" unis  ", univercities);
 
   const currentUserId = currentUser?.userID;
   const {

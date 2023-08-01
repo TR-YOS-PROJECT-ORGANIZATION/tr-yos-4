@@ -17,14 +17,14 @@ import SignInModal from "../modals/SignInModal";
 import { toast } from "react-toastify";
 import useCardCalls from "../../hooks/useCardCalls";
 
-function OneCard({item}) {
+function OneCard({ item }) {
   // eslint-disable-next-line react/prop-types
   const {
     moveToSelectedDepartments,
     removeFromSelectedDepartments,
     removeFromFavourites,
-    moveToFavourites,  
-  } = useCardCalls()
+    moveToFavourites,
+  } = useCardCalls();
 
   if (!item) return null;
 
@@ -110,7 +110,7 @@ function OneCard({item}) {
                   <div className="relative">
                     <img
                       className="w-full h-[25rem] object-cover"
-                      src={image1}
+                      src={item?.dummyImage || image1}
                     ></img>
                   </div>
                   <div className="relative">
