@@ -10,77 +10,73 @@ import image2 from "../../images/dna.jpg";
 import image3 from "../../images/lab.jpg";
 import image4 from "../../images/biology.jpg";
 // import useAuthCall from '../../hooks/useAuthCall';
-import useInfoCalls from "../../hooks/useInfoCalls";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toastWarnNotify } from "../../helper/ToastNotify";
 import SignInModal from "../modals/SignInModal";
 import { toast } from "react-toastify";
+import useCardCalls from "../../hooks/useCardCalls";
 
-
-function OneCard(props, { item }) {
+function OneCard({item}) {
   // eslint-disable-next-line react/prop-types
   const {
-    facultyTr,
-    facultyEn,
-    universityTr,
-    universityEn,
-    departmentEn,
-    departmentTr,
-    cityTr,
-    cityEn,
-    code,
-    price,
-    id,
-    isInCompare,
-    isInFavourite,
     moveToSelectedDepartments,
     removeFromSelectedDepartments,
     removeFromFavourites,
-    moveToFavourites,
-  } = props;
+    moveToFavourites,  
+  } = useCardCalls()
+
+  if (!item) return null;
+
+  const { compareList, favouriteList } = useSelector((state) => state?.card);
+
+  const isInCompare = compareList?.departments.includes(item?.id);
+  const isFavourited = favouriteList?.departments.includes(item?.id);
+
   const [isAdded, setIsAdded] = useState(isInCompare);
-  const [isFavourited, setIsFavourited] = useState(isInFavourite);
   // eslint-disable-next-line no-unused-vars
   const { currentUser } = useSelector((state) => state?.auth);
-  const { compareList } = useSelector((state) => state?.card);
-  const { getUserInfo } = useInfoCalls();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [openModal, setOpenModal] = useState(false);
 
-
   //To Add and Remove from Compare List///
-  function addRemoveCompareList(id) {
+  function addRemoveCompareList() {
+    const id = item.id;
+
     if (isAdded) {
       removeFromSelectedDepartments(id);
-      setIsAdded(previous => !previous);
+      setIsAdded((previous) => !previous);
     } else if (!isAdded && compareList?.departments.length < 4) {
       moveToSelectedDepartments(id);
-      setIsAdded(previous => !previous);
-    } else { toast.warn(t("You can't compare more than 4 department")) }
+      setIsAdded((previous) => !previous);
+    } else {
+      toast.warn(t("You can't compare more than 4 department"));
+    }
   }
 
   //To Add and Remove from Favoruite List///
 
-  function addRemoveFavouriteList(id) {
+  function addRemoveFavouriteList() {
+    const id = item.id;
+
     if (isFavourited) {
       removeFromFavourites(id);
     } else {
       moveToFavourites(id);
     }
-    setIsFavourited((previous) => !previous);
   }
 
-  const handleClick = () => {
-    if(currentUser){
-      addRemoveFavouriteList(id)
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (currentUser) {
+      return addRemoveFavouriteList(item.id);
     }
     toastWarnNotify("Please Login");
     setOpenModal(true);
   };
-  
+
   let heartIcon;
 
   if (isFavourited) {
@@ -99,18 +95,14 @@ function OneCard(props, { item }) {
 
   return (
     <>
-
       <div
-        key={id}
+        key={item.id}
         className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 "
-
       >
-       {!currentUser && <SignInModal open={openModal} setOpen={setOpenModal} />
-}
-        <a
-          href="#"
-          className="relative inline-block w-full transform transition-transform duration-300 ease-in-out"
-        >
+        {!currentUser && (
+          <SignInModal open={openModal} setOpen={setOpenModal} />
+        )}
+        <div className="relative inline-block w-full transform transition-transform duration-300 ease-in-out">
           <div className="rounded-lg border shadow-2xl">
             <div className="relative flex h-60 justify-center overflow-hidden rounded-lg order">
               <div className="relative w-full">
@@ -143,20 +135,20 @@ function OneCard(props, { item }) {
               </div>
               <div
                 onClick={handleClick}
-                className="absolute top-0 right-0 px-2 py-1 m-2 rounded-md shadow-2xl"
+                className="absolute top-0 right-0 px-2 py-1 m-2 rounded-md shadow-2xl cursor-pointer"
               >
                 <svg
                   width="20px"
                   height="20px"
                   viewBox="0 0 24 24"
                   // eslint-disable-next-line react/no-unknown-property
-                  xmlns: rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                   xmlns="http://www.w3.org/2000/svg"
                   version="1.1"
                   // eslint-disable-next-line react/no-unknown-property
-                  xmlns: cc="http://creativecommons.org/ns#"
+                  xmlns:cc="http://creativecommons.org/ns#"
                   // eslint-disable-next-line react/no-unknown-property
-                  xmlns: dc="http://purl.org/dc/elements/1.1/"
+                  xmlns:dc="http://purl.org/dc/elements/1.1/"
                 >
                   <g transform="translate(0 -1028.4)">
                     <path
@@ -175,10 +167,14 @@ function OneCard(props, { item }) {
                       className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg"
                       title="New York"
                       onClick={() =>
-                        navigate(`/departmentDetail/${code}`, { state: item })
+                        navigate(`/departmentDetail/${item.department.code}`, {
+                          state: item,
+                        })
                       }
                     >
-                      {i18next.language === "tr" ? departmentTr : departmentEn}
+                      {i18next.language === "tr"
+                        ? item.department.tr
+                        : item.department.en}
 
                       {/* {facultyCode} */}
                     </h2>
@@ -186,13 +182,17 @@ function OneCard(props, { item }) {
                       className="mt-2 line-clamp-1 text-sm text-gray-800"
                       title="Faculty"
                     >
-                      {i18next.language === "tr" ? facultyTr : facultyEn}
+                      {i18next.language === "tr"
+                        ? item.faculty.tr
+                        : item.faculty.en}
                     </p>
                     <p
                       className="mt-2 line-clamp-1 text-sm text-gray-800"
                       title="University"
                     >
-                      {i18next.language === "tr" ? universityTr : universityEn}
+                      {i18next.language === "tr"
+                        ? item.university.tr
+                        : item.university.en}
                     </p>
                   </div>
                 </div>
@@ -200,13 +200,14 @@ function OneCard(props, { item }) {
 
               <div
                 onClick={() => {
-                  currentUser ? addRemoveCompareList(id) : handleClick();
+                  currentUser ? addRemoveCompareList() : handleClick();
                 }}
                 className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2"
               >
                 <span
-                  className={`inline-flex select-none rounded-lg px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm ${isAdded ? "bg-green-dark" : "bg-red-500"
-                    }`}
+                  className={`inline-flex select-none rounded-lg px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm ${
+                    isAdded ? "bg-green-dark" : "bg-red-500"
+                  }`}
                 >
                   {" "}
                   {i18next.language == "en"
@@ -214,12 +215,12 @@ function OneCard(props, { item }) {
                       ? "Remove"
                       : "Compare"
                     : i18next.language == "tr"
-                      ? isAdded
-                        ? "GERİ AL"
-                        : "KARŞILAŞTIR"
-                      : isAdded
-                        ? "Remove"
-                        : "Compare"}{" "}
+                    ? isAdded
+                      ? "GERİ AL"
+                      : "KARŞILAŞTIR"
+                    : isAdded
+                    ? "Remove"
+                    : "Compare"}{" "}
                   <svg
                     fill="#f2e9e9"
                     width="20px"
@@ -248,7 +249,9 @@ function OneCard(props, { item }) {
                   </svg>
                   <span className="xl:mt-0">
                     {" "}
-                    {i18next.language == "tr" ? cityTr : cityEn}{" "}
+                    {i18next.language == "tr"
+                      ? item.city.tr
+                      : item.city.en}{" "}
                   </span>
                 </p>
                 <p className="flex items-center text-gray-800 xl:flex-row xl:items-center">
@@ -279,17 +282,16 @@ function OneCard(props, { item }) {
                   </svg>
                   <span className="mt-0">
                     {" "}
-                    {price}/{t("year")}{" "}
+                    {item.price}/{t("year")}{" "}
                   </span>
                 </p>
               </div>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </>
   );
 }
 
 export default OneCard;
-

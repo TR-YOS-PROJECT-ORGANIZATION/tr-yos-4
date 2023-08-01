@@ -9,15 +9,16 @@ import { Dots } from "react-activity";
 
 function App() {
   return (
-<Suspense fallback={ <Dots color="#FFFFFF" size={32} speed={1} animating={true} />}>
+    <Suspense
+      fallback={<Dots color="#FFFFFF" size={32} speed={1} animating={true} />}
+    >
       <Provider store={store}>
-        <PersistGate  persistor={persistor}>
+        <PersistGate persistor={persistor}>
           <AppRouter />
           <ToastContainer />
         </PersistGate>
       </Provider>
-      </Suspense>
-    
+    </Suspense>
   );
 }
 
