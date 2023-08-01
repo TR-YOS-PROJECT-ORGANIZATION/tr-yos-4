@@ -43,22 +43,10 @@ const Compare = () => {
           return (
             <div key={index}>
               <OneCard
-                // facultyTr={item.faculty.tr}
-                // facultyEn={item.faculty.en}
-                // universityTr={item.university.tr}
-                // universityEn={item.university.en}
-                // departmentTr={item.department.tr}
-                // departmentEn={item.department.en}
-                // cityTr={item.city.tr}
-                // cityEn={item.city.en}
-                // code={item.department.code}
-                // price={item.price}
-                // id={item.id}
                 item={item}
                 removeFromSelectedDepartments={removeFromSelectedDepartments}
                 moveToFavourites={moveToFavourites}
                 removeFromFavourites={removeFromFavourites}
-                // isInFavourite={favouriteList?.departments.map((item) => item).includes(item.id)}
                 isInCompare={compareList?.departments.includes(item.id)}
                 compareList={compareList}
               />

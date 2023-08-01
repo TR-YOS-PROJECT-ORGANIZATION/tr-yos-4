@@ -15,16 +15,16 @@ import { useSelector } from "react-redux";
 import { toastWarnNotify } from "../../helper/ToastNotify";
 import SignInModal from "../modals/SignInModal";
 import { toast } from "react-toastify";
+import useCardCalls from "../../hooks/useCardCalls";
 
-function OneCard(props) {
+function OneCard({item}) {
   // eslint-disable-next-line react/prop-types
   const {
     moveToSelectedDepartments,
     removeFromSelectedDepartments,
     removeFromFavourites,
-    moveToFavourites,
-    item,
-  } = props;
+    moveToFavourites,  
+  } = useCardCalls()
 
   if (!item) return null;
 

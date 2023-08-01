@@ -16,7 +16,12 @@ function Departments() {
   // const { compareList, favouriteList } = useSelector((state) => state?.card);
   const { allDepartments } = useSelector((state) => state.info);
   const { currentUser } = useSelector((state) => state?.auth);
+
+  const [department, setDepartment] = useState([]);
+  const { searchParameters } = useSelector((state) => state.card);
+
   const [isOpen, setOpen] = useState(false);
+
   const currentUserId = currentUser?.userID;
   const {
     moveToSelectedDepartments,
@@ -37,7 +42,34 @@ function Departments() {
     getAllDepartments();
   }, []);
 
-  const department = allDepartments?.slice(71, 89);
+  useEffect(() => {
+    if (false) {
+      // if (
+      //   searchParameters?.selectedCities &&
+      //   searchParameters?.selectedDepartments
+      // ) {
+      const selectedDepartments = searchParameters.selectedDepartments;
+      const selectedCities = searchParameters.selectedCities;
+
+      console.log(" sc ", selectedCities);
+      console.log(
+        " all ",
+        allDepartments.find((d) => d.city.code === "4123")
+      );
+
+      const filteredDepartments = allDepartments.filter((d) => {
+        return (
+          selectedDepartments.map((sd) => sd.id).indexOf(d.department.code) !==
+            -1 && selectedCities.map((sc) => sc.id).indexOf(d.city.code) !== -1
+        );
+      });
+
+      console.log(" filtered ", filteredDepartments);
+      setDepartment(filteredDepartments);
+    } else {
+      setDepartment(allDepartments?.slice(71, 89));
+    }
+  }, [searchParameters]);
 
   return (
     <>
@@ -58,17 +90,20 @@ function Departments() {
                     method="POST"
                     className="border shadow-lg md:mt-36 rounded-lg "
                   >
-                    <Selections />
-                    {/* <PriceForm /> */}
-                    <div className="flex flex-row  justify-end sm:justify-start md:justify-end bg-green-dark rounded ">
-                      <button
-                        name="searchDepartments"
-                        type="submit"
-                        className="max-sm:w-full max-sm:my-5 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-96 font-bold rounded  hover:bg-red-retro shadow-md  lg:p-8 md:p-4 "
-                      >
-                        {t("Search")}
-                      </button>
-                    </div>
+                    {!(searchParameters?.selectedCities?.length > 0) && (
+                      <>
+                        <Selections />
+                        <div className="flex flex-row  justify-end sm:justify-start md:justify-end bg-green-dark rounded ">
+                          <button
+                            name="searchDepartments"
+                            type="submit"
+                            className="max-sm:w-full max-sm:my-5 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-96 font-bold rounded  hover:bg-red-retro shadow-md  lg:p-8 md:p-4 "
+                          >
+                            {t("Search")}
+                          </button>
+                        </div>
+                      </>
+                    )}
                   </form>
                 </div>
               )}
@@ -79,17 +114,20 @@ function Departments() {
               method="POST"
               className="border shadow-lg md:mt-36 rounded-lg "
             >
-              <Selections />
-              {/* <PriceForm /> */}
-              <div className="flex flex-row  justify-end sm:justify-start md:justify-center md: w-full bg-green-dark rounded ">
-                <button
-                  name="searchDepartments"
-                  type="submit"
-                  className="max-sm:w-full max-sm:my-5 lg:text-sm md:sm:text-sm  max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 sm:w-24 font-bold hover:bg-red-retro shadow-md md:p-4 md:w-full rounded-md"
-                >
-                  {t("Search")}
-                </button>
-              </div>
+              {!(searchParameters?.selectedCities?.length > 0) && (
+                <>
+                  <Selections />
+                  <div className="flex flex-row  justify-end sm:justify-start md:justify-center md: w-full bg-green-dark rounded ">
+                    <button
+                      name="searchDepartments"
+                      type="submit"
+                      className="max-sm:w-full max-sm:my-5 lg:text-sm md:sm:text-sm  max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 sm:w-24 font-bold hover:bg-red-retro shadow-md md:p-4 md:w-full rounded-md"
+                    >
+                      {t("Search")}
+                    </button>
+                  </div>
+                </>
+              )}
             </form>
           </div>
           <div className="xs:flex xs:flex-col xs:justify-center xs:items-center sm:flex sm:flex-col sm:justify-center sm:items-center md:px-0">

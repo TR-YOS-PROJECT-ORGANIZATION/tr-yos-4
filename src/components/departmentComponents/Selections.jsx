@@ -10,6 +10,7 @@ function Selections() {
   const [selectedCities, setSelectedCities] = useState();
   const [selectedUnivercities, setSelectedUnivercities] = useState([]);
   const [selectedDepartments, setSelectedDepartments] = useState([]);
+
   const { getUni, getCities, getDepartments } = useInfoCalls();
   const { univercities, cities, departments, loading } = useSelector(
     (state) => state.info
@@ -22,6 +23,7 @@ function Selections() {
             selectedCities?.map((item) => item.id).indexOf(uni.city) !== -1
         )
       : univercities;
+
   const filteredDepartments =
     selectedCities?.length > 0
       ? departments?.filter(
@@ -32,7 +34,6 @@ function Selections() {
         )
       : departments;
 
-  const { t } = useTranslation();
   useEffect(() => {
     getUni(), getCities(), getDepartments();
   }, []);
@@ -44,6 +45,7 @@ function Selections() {
           className="max-w-full rounded-lg sm:max-w-md bg-white-500 p-2  border border-green-dark"
           onValueChange={"" || setSelectedCities}
           placeholder="Select City"
+          value={selectedCities}
         >
           {cities?.map((item, index) => (
             <MultiSelectItem
@@ -80,7 +82,6 @@ function Selections() {
           ))}
         </MultiSelect>
 
-        {/* ///////////////// */}
         <PriceForm />
       </div>
     </>

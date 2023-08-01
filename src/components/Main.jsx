@@ -5,12 +5,13 @@ import image2 from "../images/graduate.jpg";
 import "../index.css";
 import { useTranslation } from "react-i18next";
 import useInfoCalls from "../hooks/useInfoCalls";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MultiSelect, MultiSelectItem, SelectItem } from "@tremor/react";
 import { Dots } from "react-activity";
 import "react-activity/dist/library.css";
 
 import "../../src/App.css";
+import { setSearchParameters } from "../features/cardSlice";
 
 const Main = () => {
   const { t, i18n } = useTranslation();
@@ -19,6 +20,7 @@ const Main = () => {
   const [selectedCities, setSelectedCities] = useState();
   const [selectedUnivercities, setSelectedUnivercities] = useState([]);
   const [selectedDepartments, setSelectedDepartments] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getUni(), getCities(), getDepartments();
@@ -37,14 +39,19 @@ const Main = () => {
       : univercities;
 
   const filteredDepartments =
-    selectedCities?.length > 0
+    selectedUnivercities?.length > 0
       ? departments?.filter(
+          (department) =>
+            selectedUnivercities
+              ?.map((item) => item.code)
+              .indexOf(department.id) !== -1
+        )
+      : departments?.filter(
           (department) =>
             filteredUniversities
               ?.map((item) => item.code)
               .indexOf(department.id) !== -1
-        )
-      : departments;
+        );
 
   const settings = {
     dots: true,
@@ -53,6 +60,17 @@ const Main = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
+  const handleSearchClick = () => {
+    const searchObject = {
+      selectedCities,
+      selectedUnivercities,
+      selectedDepartments,
+    };
+
+    dispatch(setSearchParameters(searchObject));
+  };
+
   return (
     <div className="w-full relative">
       <Slider {...settings}>
@@ -81,75 +99,59 @@ const Main = () => {
           </div>
         </div>
       </Slider>
-     
-     <div className="absolute bottom-20  md:right-36  flex md:flex-col sm:flex-row  sm:items-center lg:w-[38%] md:w-[70%] sm:w-full max-sm:w-full bg-green-dark rounded lg:p-8 md:p-4 sm:p-1 shadow-xl ">
-       
-      
-        
-          <MultiSelect
-            className="max-w-full rounded-lg sm:max-w-md bg-white-500 p-2  border border-green-dark"
-            onValueChange={"" || setSelectedCities}
-            placeholder="Select City"
-          >
-            {cities?.map((item, index) => (
-              <MultiSelectItem
-                className="rounded-md bg-white-500"
-                key={index}
-                value={item}
-              >
-                {item.en}
-              </MultiSelectItem>
-            ))}
-          </MultiSelect>
 
-          <MultiSelect
-            className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-10 p-2  border border-green-dark"
-            onValueChange={"" || setSelectedUnivercities}
-            placeholder="Select Univercity"
-          >
-            {filteredUniversities?.map((item, index) => (
-              <MultiSelectItem
-                className="bg-white-500 "
-                key={index}
-                value={item}
-              >
-                {item.en}
-              </MultiSelectItem>
-            ))}
-          </MultiSelect>
-   
-    
-          <MultiSelect
-            className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-10 p-2 border border-green-dark mb-5"
-            onValueChange={"" || setSelectedDepartments}
-            placeholder="Select Department"
-          >
-            {filteredDepartments?.map((item,index) => (
-              <MultiSelectItem
-                className="bg-white-500 "
-                key={index}
-                value={item}
-              >
-                {item.en}
-              </MultiSelectItem>
-            ))}
-          </MultiSelect>
-        
+      <div className="absolute bottom-20  md:right-36  flex md:flex-col sm:flex-row  sm:items-center lg:w-[38%] md:w-[70%] sm:w-full max-sm:w-full bg-green-dark rounded lg:p-8 md:p-4 sm:p-1 shadow-xl ">
+        <MultiSelect
+          className="max-w-full rounded-lg sm:max-w-md bg-white-500 p-2  border border-green-dark"
+          onValueChange={"" || setSelectedCities}
+          placeholder="Select City"
+        >
+          {cities?.map((item, index) => (
+            <MultiSelectItem
+              className="rounded-md bg-white-500"
+              key={index}
+              value={item}
+            >
+              {item.en}
+            </MultiSelectItem>
+          ))}
+        </MultiSelect>
 
+        <MultiSelect
+          className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-10 p-2  border border-green-dark"
+          onValueChange={"" || setSelectedUnivercities}
+          placeholder="Select Univercity"
+        >
+          {filteredUniversities?.map((item, index) => (
+            <MultiSelectItem className="bg-white-500 " key={index} value={item}>
+              {item.en}
+            </MultiSelectItem>
+          ))}
+        </MultiSelect>
 
+        <MultiSelect
+          className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-10 p-2 border border-green-dark mb-5"
+          onValueChange={"" || setSelectedDepartments}
+          placeholder="Select Department"
+        >
+          {filteredDepartments?.map((item, index) => (
+            <MultiSelectItem className="bg-white-500 " key={index} value={item}>
+              {item.en}
+            </MultiSelectItem>
+          ))}
+        </MultiSelect>
 
         <div>
-          <button className="mx-auto   max-sm:m-12 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-24 font-bold rounded  hover:bg-red-retro shadow-md">
+          <button
+            onClick={handleSearchClick}
+            className="mx-auto   max-sm:m-12 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-24 font-bold rounded  hover:bg-red-retro shadow-md"
+          >
             {t("Search")}
           </button>
-        
         </div>
-
-        
       </div>
     </div>
   );
 };
 
 export default Main;
-

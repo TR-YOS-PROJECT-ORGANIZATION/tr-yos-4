@@ -13,7 +13,7 @@ import { toastErrorNotify } from "../helper/ToastNotify";
 const useCardCalls = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.auth);
-  const { favouriteList } = useSelector((state) => state.card);
+  const { favouriteList, compareList } = useSelector((state) => state.card);
 
   // Add or Remove to Compare
   const moveToSelectedDepartments = async (id) => {
@@ -23,6 +23,9 @@ const useCardCalls = () => {
       await axios.get(
         `https://tr-yös.com/api/v1/users/addcompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
+      const newDeps = compareList?.departments?.concat([res.data.id]);
+
+      dispatch(getCompareListSuccess({ departments: newDeps }));
     } catch (error) {
       console.log(error);
       toastErrorNotify(error.response.data.message);
@@ -32,10 +35,14 @@ const useCardCalls = () => {
     const currentUserId = currentUser.userID;
     const departmentId = id;
     try {
-      await axios.get(
+      const res =  await axios.get(
         `https://tr-yös.com/api/v1/users/deletecompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
-      getCompareList();
+      const newDeps = compareList?.departments?.filter(
+        (f) => f !== res.data.id
+      );
+
+      dispatch(getCompareListSuccess({ departments: newDeps }));
     } catch (error) {
       console.log(error);
     }
