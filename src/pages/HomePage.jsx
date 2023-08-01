@@ -34,6 +34,9 @@ const HomePage = () => {
     getAllDepartments();
   }, []);
 
+ 
+
+
   useEffect(() => {
     if (univercities && allDepartments && !listState) {
       setListState(true);

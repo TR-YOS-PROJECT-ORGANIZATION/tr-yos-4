@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import image4 from "../../images/business.jpg";
 import axios from "axios";
-import { toastErrorNotify, toastSuccessNotify } from "../../helper/ToastNotify";
+
+import { toast } from "react-toastify";
+toast
 
 // const initialValues = {
 //   email: "",
@@ -27,10 +29,10 @@ const WorkUs = () => {
           { headers: { "Content-Type": "multipart/form-data" } }
         )
         .then(({ data }) => setFormEmail(data));
-      toastSuccessNotify("Email sent performed");
+      toast.success(t("Email sent performed"));
     } catch (error) {
       console.log(error);
-      toastErrorNotify("Email already exists")
+      toast.error(t("Email already exists"))
     }
   };
 
