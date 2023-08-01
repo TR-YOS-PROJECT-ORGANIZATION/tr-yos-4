@@ -42,6 +42,7 @@ function Departments() {
     getAllDepartments();
   }, []);
 
+
   useEffect(() => {
     if (false) {
       // if (
@@ -70,6 +71,8 @@ function Departments() {
       setDepartment(allDepartments?.slice(71, 89));
     }
   }, [searchParameters]);
+
+
 
   return (
     <>

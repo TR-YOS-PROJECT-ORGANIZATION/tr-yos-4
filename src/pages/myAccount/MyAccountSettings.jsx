@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toastSuccessNotify } from "../../helper/ToastNotify";
 
-
 const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
-
   const [country, setCountry] = useState();
   const [citiesbyCountry, setCitiesbyCountry] = useState();
 
@@ -13,7 +11,6 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   const filteredCountry = country?.filter(
     (item) => item.en === newInfo.country
   );
-
 
   const getCountry = async () => {
     try {
@@ -41,14 +38,13 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
     const userID = currentUser?.userID;
 
     try {
-      await axios
-        .post(
-          `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
-          newInfo,
-          { headers: { "Content-Type": "multipart/form-data" } }
-        );
-        getUserInfo(userID);
-        
+      await axios.post(
+        `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
+        newInfo,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      getUserInfo(userID);
+
       toastSuccessNotify("User information updated");
     } catch (error) {
       console.log(error);
@@ -59,16 +55,15 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
     getCountry();
   }, []);
 
-
   useEffect(() => {
     if (newInfo?.country) {
       getCitiesbyCountry(newInfo.country);
     }
   }, [newInfo?.country]);
 
-  useEffect(()=>{
-   getUserInfo(currentUser?.userID)
-  },[])
+  useEffect(() => {
+    getUserInfo(currentUser?.userID);
+  }, []);
 
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
@@ -81,7 +76,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
             </label>
             <input
               type="text"
-              defaultValue={userInfo?.user?.name}
+              value={newInfo.name || userInfo?.user?.name || ""}
               required
               className="w-full rounded-md mt-2 border-2"
               onChange={(e) => setNewInfo({ ...newInfo, name: e.target.value })}
@@ -93,7 +88,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
             </label>
             <input
               type="email"
-              defaultValue={userInfo?.user?.email}
+              value={newInfo.email || userInfo?.user?.email || ""}
               required
               className="w-full rounded-md mt-2 border-2"
               onChange={(e) =>
@@ -110,7 +105,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
               onChange={(e) =>
                 setNewInfo({ ...newInfo, country: e.target.value })
               }
-              defaultValue={userInfo?.user?.country}
+              value={newInfo.country || userInfo?.user?.country || ""}
             >
               <option>{userInfo?.user?.country}</option>
               {country?.map((item) => (
@@ -127,7 +122,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
             <select
               className="w-full rounded-md mt-2 border-2"
               onChange={(e) => setNewInfo({ ...newInfo, city: e.target.value })}
-              defaultValue={userInfo?.user?.city}
+              value={newInfo.city || userInfo?.user?.city || ""}
             >
               <option>{userInfo?.user?.city}</option>
               {citiesbyCountry?.map((item) => (
@@ -144,7 +139,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
           </label>
           <input
             type="text"
-            defaultValue={userInfo?.user.phone}
+            value={newInfo.phone || userInfo?.user.phone || ""}
             required
             className="w-full rounded-md mt-2 border-2"
             onChange={(e) => setNewInfo({ ...newInfo, phone: e.target.value })}
@@ -159,7 +154,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
               type="text"
               required
               className="h-40 rounded-md mt-2 border-2  hover:border-green-dark"
-              defaultValue={userInfo?.user.about}
+              value={newInfo.about || userInfo?.user.about || ""}
               onChange={(e) =>
                 setNewInfo({ ...newInfo, about: e.target.value })
               }
@@ -168,7 +163,10 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
         </div>
       </div>
       <button
-        onClick={() => {sendInfo(newInfo); e.prevent.default()}}
+        onClick={() => {
+          sendInfo(newInfo);
+          e.prevent.default();
+        }}
         className="bg-red-warm text-white-500 hover:bg-green-dark hover:text-green-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4"
       >
         Save Changes
