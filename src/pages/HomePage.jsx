@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Main from "../components/Main";
 import WorkUs from "../components/workUs/WorkUs";
 import { useTranslation } from "react-i18next";
@@ -8,11 +8,12 @@ import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 import OneCard from "../components/card/OneCard";
 import useCardCalls from "../hooks/useCardCalls";
-import i18next from "i18next";
+import dummyUniImage from "../assets/dummyImages/3d.jpg";
+
 const HomePage = () => {
   const { t } = useTranslation();
   const { getAllDepartments } = useInfoCalls();
-  const { allDepartments } = useSelector((state) => state.info);
+  const { allDepartments, univercities } = useSelector((state) => state.info);
   const { currentUser } = useSelector((state) => state?.auth);
   const {
     getCompareList,
@@ -24,7 +25,10 @@ const HomePage = () => {
   } = useCardCalls();
   const { compareList } = useSelector((state) => state?.card);
   const { getUni } = useInfoCalls();
-
+  //
+  const [depart, setDepart] = useState([]);
+  const [listState, setListState] = useState(false);
+  //
   useEffect(() => {
     getUni();
   }, []);
@@ -38,8 +42,37 @@ const HomePage = () => {
     getAllDepartments();
   }, []);
 
-  const depart = allDepartments?.slice(71, 89);
+  useEffect(() => {
+    if (univercities && allDepartments && !listState) {
+      setListState(true);
+      // 8 random index oluşturduk
+      const randomNumbers = Array.from({ length: 8 }, () =>
+        Math.floor(Math.random() * allDepartments.length - 2)
+      );
 
+      // allDepartments tan bu indextekileri çektik
+      // univercities datasından
+      // ilk resimleri objeye ekledik
+      const departmentList = randomNumbers
+        .map((rn) => {
+          return allDepartments[rn];
+        })
+        ?.map((d) => {
+          const departmentUni = univercities.find(
+            (u) => u.code === d.university?.code
+          );
+          const uniImage =
+            departmentUni?.images?.length > 0
+              ? departmentUni.images[0]
+              : dummyUniImage;
+          return {
+            ...d,
+            dummyImage: uniImage,
+          };
+        });
+      setDepart(departmentList);
+    }
+  }, [allDepartments, univercities]);
   return (
     <div>
       <Main />
