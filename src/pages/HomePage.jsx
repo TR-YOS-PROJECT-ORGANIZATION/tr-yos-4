@@ -33,10 +33,10 @@ const HomePage = () => {
     getUni();
   }, []);
 
-  useEffect(() => {
-    currentUser && getCompareList();
-    getFavouriteList();
-  }, []);
+ useEffect(() => {
+   currentUser && getCompareList();
+   getFavouriteList();
+ }, []);
 
   useEffect(() => {
     getAllDepartments();

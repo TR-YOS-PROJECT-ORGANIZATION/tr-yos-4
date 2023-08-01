@@ -44,11 +44,8 @@ const Compare = () => {
             <div key={index}>
               <OneCard
                 item={item}
-                removeFromSelectedDepartments={removeFromSelectedDepartments}
-                moveToFavourites={moveToFavourites}
-                removeFromFavourites={removeFromFavourites}
                 isInCompare={compareList?.departments.includes(item.id)}
-                compareList={compareList}
+             
               />
             </div>
           );
