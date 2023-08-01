@@ -42,33 +42,47 @@ function OneCard({ item }) {
   const [openModal, setOpenModal] = useState(false);
 
   //To Add and Remove from Compare List///
-  function addRemoveCompareList() {
-    const id = item.id;
+ function addRemoveCompareList() {
+   const id = item.id;
 
-    if (isAdded) {
-      removeFromSelectedDepartments(id);
-      setIsAdded((previous) => !previous);
-    } else if (!isAdded && compareList?.departments.length < 4) {
-      moveToSelectedDepartments(id);
-      setIsAdded((previous) => !previous);
-    } else {
-      toast.warn(t("You can't compare more than 4 department"));
-    }
-  }
+   if (isAdded) {
+     removeFromSelectedDepartments(id);
+     setIsAdded((previous) => !previous);
+   } else if (!isAdded && compareList?.departments.length < 4) {
+     moveToSelectedDepartments(id);
+     setIsAdded((previous) => !previous);
+   } else if(compareList?.departments.length === 4) {
+     toast.warn(t("You can't compare more than 4 department"));
+   }
+ }
 
-  //To Add and Remove from Favoruite List///
+  //To Add and Remove from Favourite List///
 
   function addRemoveFavouriteList() {
-    const id = item.id;
+    const id = item?.id;
 
     if (isFavourited) {
       removeFromFavourites(id);
     } else {
       moveToFavourites(id);
     }
-  }
+  };
 
-  const handleClick = (e) => {
+
+
+  const handleClickCompare = (e) => {
+    e.preventDefault();
+    if (currentUser) {
+      return addRemoveCompareList(item.id);
+    }
+    toastWarnNotify("Please Login");
+    setOpenModal(true);
+  };
+
+
+
+
+  const handleClickFavourite = (e) => {
     e.preventDefault();
     if (currentUser) {
       return addRemoveFavouriteList(item.id);
@@ -133,8 +147,8 @@ function OneCard({ item }) {
                   </div>
                 </Slider>
               </div>
-              <div
-                onClick={handleClick}
+              <button
+                onClick={handleClickFavourite}
                 className="absolute top-0 right-0 px-2 py-1 m-2 rounded-md shadow-2xl cursor-pointer"
               >
                 <svg
@@ -157,7 +171,7 @@ function OneCard({ item }) {
                     />
                   </g>
                 </svg>
-              </div>
+              </button>
             </div>
             <div className="">
               <div className="mt-3 grid grid-cols-2">
@@ -199,10 +213,8 @@ function OneCard({ item }) {
               </div>
 
               <div
-                onClick={() => {
-                  currentUser ? addRemoveCompareList() : handleClick();
-                }}
-                className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2"
+                onClick={handleClickCompare}
+                className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2 cursor-pointer"
               >
                 <span
                   className={`inline-flex select-none rounded-lg px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm ${

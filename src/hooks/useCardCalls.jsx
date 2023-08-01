@@ -14,25 +14,22 @@ const useCardCalls = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.auth);
   const { favouriteList, compareList } = useSelector((state) => state.card);
+  const currentUserId = currentUser.userID
 
   // Add or Remove to Compare
   const moveToSelectedDepartments = async (id) => {
-    const currentUserId = currentUser?.userID;
     const departmentId = id;
     try {
-      await axios.get(
+     const res = await axios.get(
         `https://tr-yös.com/api/v1/users/addcompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
       const newDeps = compareList?.departments?.concat([res.data.id]);
-
       dispatch(getCompareListSuccess({ departments: newDeps }));
     } catch (error) {
       console.log(error);
-      toastErrorNotify(error.response.data.message);
     }
   };
   const removeFromSelectedDepartments = async (id) => {
-    const currentUserId = currentUser.userID;
     const departmentId = id;
     try {
       const res =  await axios.get(
@@ -49,7 +46,6 @@ const useCardCalls = () => {
   };
   //Add to Favourites///
   const moveToFavourites = async (id) => {
-    const currentUserId = currentUser.userID;
     const departmentId = id;
     try {
       const res = await axios.get(
@@ -64,7 +60,6 @@ const useCardCalls = () => {
     }
   };
   const removeFromFavourites = async (id) => {
-    const currentUserId = currentUser.userID;
     const departmentId = id;
 
     try {

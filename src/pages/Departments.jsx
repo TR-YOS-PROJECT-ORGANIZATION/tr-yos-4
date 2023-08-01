@@ -8,12 +8,10 @@ import { useState } from "react";
 import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 import OneCard from "../components/card/OneCard";
-// eslint-disable-next-line no-unused-vars
 import i18next, { t } from "i18next";
 import useCardCalls from "../hooks/useCardCalls";
 function Departments() {
   const { getAllDepartments, getUserInfo } = useInfoCalls();
-  // const { compareList, favouriteList } = useSelector((state) => state?.card);
   const { allDepartments, univercities } = useSelector((state) => state.info);
   const { currentUser } = useSelector((state) => state?.auth);
 

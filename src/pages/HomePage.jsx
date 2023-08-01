@@ -15,15 +15,7 @@ const HomePage = () => {
   const { getAllDepartments } = useInfoCalls();
   const { allDepartments, univercities } = useSelector((state) => state.info);
   const { currentUser } = useSelector((state) => state?.auth);
-  const {
-    getCompareList,
-    getFavouriteList,
-    moveToFavourites,
-    moveToSelectedDepartments,
-    removeFromFavourites,
-    removeFromSelectedDepartments,
-  } = useCardCalls();
-  const { compareList } = useSelector((state) => state?.card);
+  const { getCompareList, getFavouriteList } = useCardCalls();
   const { getUni } = useInfoCalls();
   //
   const [depart, setDepart] = useState([]);
@@ -87,14 +79,7 @@ const HomePage = () => {
       <div className="xs:m-0 xs:px-0 xs:w-full sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20">
         {depart?.map((item, index) => (
           <div key={index}>
-            <OneCard
-              item={item}
-              moveToSelectedDepartments={moveToSelectedDepartments}
-              removeFromSelectedDepartments={removeFromSelectedDepartments}
-              moveToFavourites={moveToFavourites}
-              removeFromFavourites={removeFromFavourites}
-              isInCompare={compareList?.departments.includes(item.id)}
-            />
+            <OneCard item={item} />
           </div>
         ))}
       </div>
