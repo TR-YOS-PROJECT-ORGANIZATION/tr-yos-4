@@ -8,6 +8,7 @@ import useInfoCalls from "../hooks/useInfoCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { MultiSelect, MultiSelectItem} from "@tremor/react";
 import "react-activity/dist/library.css";
+import { useNavigate } from "react-router-dom";
 
 import "../../src/App.css";
 import { setSearchParameters } from "../features/cardSlice";
@@ -20,6 +21,7 @@ const Main = () => {
   const [selectedUnivercities, setSelectedUnivercities] = useState([]);
   const [selectedDepartments, setSelectedDepartments] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
     getUni(), getCities(), getDepartments();
@@ -68,6 +70,8 @@ const Main = () => {
     };
 
     dispatch(setSearchParameters(searchObject));
+
+    navigate('/departments')
   };
 
   return (

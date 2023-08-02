@@ -8,9 +8,14 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const UniCard = ({ key,item,}) => {
+const UniCard = ({ key,item,departmentsLength, facultiesLength }) => {
+
+   
+  if (!item) return <Dots/>;
+
+
   const navigate = useNavigate()
-    console.log(item)
+    
     
   return (
     
@@ -64,10 +69,10 @@ onClick={()=> navigate(`/univercitiesDetail/${item?.code}`,{state:item})}
         <div className="my-4 ">
           <div className="flex justify-center">
             <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md   bg-green-dark text-blue-base hover:bg-red-warm">
-              1 Faculties
+              {facultiesLength} Faculties
             </p>
             <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-dark text-blue-base hover:bg-red-warm">
-              2 Departments
+              {departmentsLength} Departments
 
 
 

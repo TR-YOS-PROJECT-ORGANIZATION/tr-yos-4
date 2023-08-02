@@ -10,68 +10,56 @@ import { useSelector } from "react-redux";
 import OneCard from "../components/card/OneCard";
 import i18next, { t } from "i18next";
 import useCardCalls from "../hooks/useCardCalls";
+import { Dots } from "react-activity";
+
 function Departments() {
-  const { getAllDepartments, getUserInfo } = useInfoCalls();
+
   const { allDepartments, univercities } = useSelector((state) => state.info);
-  const { currentUser } = useSelector((state) => state?.auth);
+  const { getAllDepartments } = useInfoCalls();
+
+  if(!allDepartments ) return <Dots />
+
 
   const [department, setDepartment] = useState([]);
+
   const { searchParameters } = useSelector((state) => state.card);
 
   const [isOpen, setOpen] = useState(false);
 
-  console.log(" allDeps  ", allDepartments);
-  console.log(" unis  ", univercities);
-
-  const currentUserId = currentUser?.userID;
-  const {
-    moveToSelectedDepartments,
-    removeFromSelectedDepartments,
-    removeFromFavourites,
-    moveToFavourites,
-    getCompareList,
-    getFavouriteList,
-  } = useCardCalls();
-
   useEffect(() => {
-    currentUser && getUserInfo(currentUser?.userID);
-  }, [currentUser]);
-
-  useEffect(() => {
-    getCompareList(currentUserId);
-    getFavouriteList();
     getAllDepartments();
   }, []);
 
 
   useEffect(() => {
-    if (false) {
-      // if (
-      //   searchParameters?.selectedCities &&
-      //   searchParameters?.selectedDepartments
-      // ) {
+    
+    if (searchParameters?.selectedCities &&
+      searchParameters?.selectedDepartments) {
+       
       const selectedDepartments = searchParameters.selectedDepartments;
       const selectedCities = searchParameters.selectedCities;
 
       console.log(" sc ", selectedCities);
-      console.log(
-        " all ",
-        allDepartments.find((d) => d.city.code === "4123")
-      );
 
-      const filteredDepartments = allDepartments.filter((d) => {
-        return (
-          selectedDepartments.map((sd) => sd.id).indexOf(d.department.code) !==
-            -1 && selectedCities.map((sc) => sc.id).indexOf(d.city.code) !== -1
-        );
-      });
+      // const filteredDepartments = allDepartments.filter((d) => {
+      //   return (
+      //     selectedDepartments.map((sd) => sd.id).indexOf(d.department.code) !==
+      //       -1 && selectedCities.map((sc) => sc.id).indexOf(d.city.code) !== -1
+      //   );
+      // });
 
-      console.log(" filtered ", filteredDepartments);
-      setDepartment(filteredDepartments);
+      // console.log(" filtered ", filteredDepartments);
+      // setDepartment(filteredDepartments);
+
+      setDepartment(selectedDepartments);
+
     } else {
+
       setDepartment(allDepartments?.slice(71, 89));
     }
   }, [searchParameters]);
+
+
 
 
 
@@ -152,12 +140,6 @@ function Departments() {
                   <OneCard
                     key={element.id}
                     item={element}
-                    moveToSelectedDepartments={moveToSelectedDepartments}
-                    removeFromSelectedDepartments={
-                      removeFromSelectedDepartments
-                    }
-                    moveToFavourites={moveToFavourites}
-                    removeFromFavourites={removeFromFavourites}
                   />
                 );
               })}

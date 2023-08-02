@@ -14,9 +14,8 @@ const HomePage = () => {
   const { t } = useTranslation();
   const { getAllDepartments } = useInfoCalls();
   const { allDepartments, univercities } = useSelector((state) => state.info);
-  const { currentUser } = useSelector((state) => state?.auth);
-  const { getCompareList, getFavouriteList } = useCardCalls();
   const { getUni } = useInfoCalls();
+ 
   //
   const [depart, setDepart] = useState([]);
   const [listState, setListState] = useState(false);
@@ -25,10 +24,6 @@ const HomePage = () => {
     getUni();
   }, []);
 
-  useEffect(() => {
-    currentUser && getCompareList();
-    getFavouriteList();
-  }, []);
 
   useEffect(() => {
     getAllDepartments();
@@ -38,7 +33,7 @@ const HomePage = () => {
     if (univercities && allDepartments && !listState) {
       setListState(true);
       // 8 random index oluşturduk
-      const randomNumbers = Array.from({ length: 8 }, () =>
+      const randomNumbers = Array?.from({ length: 8 }, () =>
         Math.floor(Math.random() * allDepartments.length - 2)
       );
 
@@ -65,6 +60,7 @@ const HomePage = () => {
       setDepart(departmentList);
     }
   }, [allDepartments, univercities]);
+
   return (
     <div>
       <Main />
