@@ -1,24 +1,20 @@
-/* eslint-disable react/prop-types */
-// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
-// import { useSelector } from 'react-redux';
 import Slider from "react-slick";
 import image1 from "../../images/3d.jpg";
 import image2 from "../../images/dna.jpg";
 import image3 from "../../images/lab.jpg";
 import image4 from "../../images/biology.jpg";
-// import useAuthCall from '../../hooks/useAuthCall';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toastWarnNotify } from "../../helper/ToastNotify";
 import SignInModal from "../modals/SignInModal";
 import { toast } from "react-toastify";
 import useCardCalls from "../../hooks/useCardCalls";
+import { Dots } from "react-activity";
 
 function OneCard({ item }) {
-  // eslint-disable-next-line react/prop-types
   const {
     moveToSelectedDepartments,
     removeFromSelectedDepartments,
@@ -26,7 +22,8 @@ function OneCard({ item }) {
     moveToFavourites,
   } = useCardCalls();
 
-  if (!item) return null;
+
+  if(!item) return <Dots/>
 
   const { compareList, favouriteList } = useSelector((state) => state?.card);
 
@@ -34,7 +31,6 @@ function OneCard({ item }) {
   const isFavourited = favouriteList?.departments.includes(item?.id);
 
   const [isAdded, setIsAdded] = useState(isInCompare);
-  // eslint-disable-next-line no-unused-vars
   const { currentUser } = useSelector((state) => state?.auth);
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -55,7 +51,7 @@ function OneCard({ item }) {
      toast.warn(t("You can't compare more than 4 department"));
    }
  }
-
+console.log(item);
   //To Add and Remove from Favourite List///
 
   function addRemoveFavouriteList() {
@@ -78,9 +74,6 @@ function OneCard({ item }) {
     toastWarnNotify("Please Login");
     setOpenModal(true);
   };
-
-
-
 
   const handleClickFavourite = (e) => {
     e.preventDefault();
@@ -189,8 +182,7 @@ function OneCard({ item }) {
                       {i18next.language === "tr"
                         ? item.department.tr
                         : item.department.en}
-
-                      {/* {facultyCode} */}
+           
                     </h2>
                     <p
                       className="mt-2 line-clamp-1 text-sm text-gray-800"

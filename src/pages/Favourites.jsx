@@ -43,7 +43,6 @@ function Favourites() {
       <div>
         <div>
           <h2 className="w-full h-36 bg-green-dark pl-28 pt-8 text-5xl text-left text-white-cream font-bold">
-            {/*  */}
             {t("My Favorite Departments")}
           </h2>
         </div>
