@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 import { setSearchParameters } from "../../features/cardSlice";
 import { useNavigate } from 'react-router-dom';
+import PriceForm from "./PriceForm";
 
 const Selections = () => {
   const { getUni, getCities, getAllDepartments } = useInfoCalls();
@@ -124,10 +125,11 @@ const Selections = () => {
         );
       })}
     </MultiSelect>
-    <div>
+    <PriceForm/>
+    <div className=''>
       <button
         onClick={handleSearchClick}
-        className="max-sm:w-full max-sm:my-5 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-96 font-bold rounded  hover:bg-red-retro shadow-md  lg:p-4 md:p-4 mt-5"
+        className="max-sm:w-full max-sm:my-5 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-96 font-bold rounded  hover:bg-red-retro shadow-md  lg:p-4 md:p-4 mt-5 lg:w-64"
       >
         {t("Search")}
       </button>
