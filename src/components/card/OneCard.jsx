@@ -22,7 +22,8 @@ function OneCard({ item }) {
     moveToFavourites,
   } = useCardCalls();
 
-  if (!item) return <Dots/>;
+
+  if(!item) return <Dots/>
 
   const { compareList, favouriteList } = useSelector((state) => state?.card);
 
@@ -50,7 +51,7 @@ function OneCard({ item }) {
      toast.warn(t("You can't compare more than 4 department"));
    }
  }
-
+console.log(item);
   //To Add and Remove from Favourite List///
 
   function addRemoveFavouriteList() {
@@ -73,9 +74,6 @@ function OneCard({ item }) {
     toastWarnNotify("Please Login");
     setOpenModal(true);
   };
-
-
-
 
   const handleClickFavourite = (e) => {
     e.preventDefault();
@@ -184,8 +182,7 @@ function OneCard({ item }) {
                       {i18next.language === "tr"
                         ? item.department.tr
                         : item.department.en}
-
-                      {/* {facultyCode} */}
+           
                     </h2>
                     <p
                       className="mt-2 line-clamp-1 text-sm text-gray-800"

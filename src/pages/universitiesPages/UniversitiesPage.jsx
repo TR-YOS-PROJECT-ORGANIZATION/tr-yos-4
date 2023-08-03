@@ -16,21 +16,24 @@ import { Dots } from "react-activity";
 
 
 const UniversitiesPage = () => {
+  
   const { getUni, getAllDepartments } = useInfoCalls();
+  const { univercities, allDepartments } = useSelector((state) => state.info);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [universitiesPerPage, setuniversitiesPerPage] = useState(20);
+  const [faculties, setFaculties] = useState();
+
 
   const { t } = useTranslation();
 
   useEffect(() => {
     getUni();
     getAllDepartments();
-    getFaculties();
+ 
   }, []);
 
-  const { univercities, allDepartments } = useSelector((state) => state.info);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [universitiesPerPage, setuniversitiesPerPage] = useState(20);
-  const [faculties, setFaculties] = useState();
 
+ 
 
   if (!allDepartments) return <Dots/>;
 
@@ -47,6 +50,10 @@ const UniversitiesPage = () => {
       console.log(error);
     }
   };
+
+  useEffect(()=>{
+    getFaculties();
+  },[])
 
   console.log(faculties);
 
