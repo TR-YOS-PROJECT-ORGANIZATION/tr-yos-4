@@ -34,8 +34,9 @@ const AppRouter = () => {
             <Route path="" element={<DepartmentDetail />} />
           </Route>
 
-          <Route path="/compare" element={<Compare/>} />
-          
+          <Route path="/compare" element={<PrivateRouter />}>
+          <Route path="" element={<Compare/>} />
+          </Route>          
 
           <Route path="/myProfile" element={<PrivateRouter />}>
           <Route path="" element={<MyProfile />} />
