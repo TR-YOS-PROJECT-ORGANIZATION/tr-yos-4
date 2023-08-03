@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect } from "react";
 import ImageSection from "../components/departmentComponents/ImageSection";
@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import OneCard from "../components/card/OneCard";
 import { t } from "i18next";
 import useCardCalls from "../hooks/useCardCalls";
-import { useNavigate } from "react-router-dom";
+
 function Departments() {
   const { getAllDepartments, getUserInfo } = useInfoCalls();
   const { allDepartments, univercities } = useSelector((state) => state?.info);
@@ -18,7 +18,7 @@ function Departments() {
   const { searchParameters } = useSelector((state) => state?.card);
   // eslint-disable-next-line no-unused-vars
   const [department, setDepartment] = useState([]);
-  // const { searchParameters } = useSelector((state) => state?.card);
+
   const [isOpen, setOpen] = useState(false);
 
   console.log(" allDeps  ", allDepartments);
@@ -34,14 +34,6 @@ function Departments() {
     getFavouriteList,
   } = useCardCalls();
 
-  // const [selectedDepartments, setSelectedDepartments] = useState(["Software Engineering (MTOK) (EE)"]);
-  // const [selectedCities, setSelectedCities] = useState("Adiyaman");
-  // const [selectedUnivercities, setSelectedUnivercities] = useState(["ABDULLAH GUL UNIVERSITY"]);
-  // const [departmentStatus, setDepartmentStatus] = useState(false);
-  // const [univercitiesStatus, setUnivercitiesStatus] = useState(false);
-  // const [cityStatus, setCityStatus] = useState(false);
-  // const navigate = useNavigate();
-  // setDepartment(allDepartments.slice(0, 21))
   useEffect(() => {
     currentUser && getUserInfo(currentUser?.userID);
   }, [currentUser]);
@@ -66,20 +58,6 @@ function Departments() {
     }
   }, [searchParameters]);
 
-  //     console.log(" filtered ", filteredDepartments);
-  //     setDepartment(filteredDepartments);
-  //   } else {
-  //     setDepartment(allDepartments?.slice(71, 89));
-  //   }
-  // }, [searchParameters]);
-  //  const handleSearchClick = () => {
-  //   if (selectedDepartments.length > 0) {
-  //     setDepartment(selectedDepartments)
-  //   } else {
-  //     setDepartment(allDepartments)
-  //   }
-  //  }
-
 
   return (
     <>
@@ -98,16 +76,7 @@ function Departments() {
                 <div className="md:visible md:flex md:flex-row md:justify-center md:items-center md:ml-3">
                   <> 
                     <Selections />
-                  
-                    {/* <div className="flex flex-row  justify-end sm:justify-start md:justify-end bg-green-dark rounded ">
-                          <button
-                            name="searchDepartments"
-                            type="submit"
-                            className="max-sm:w-full max-sm:my-5 lg:text-sm md:sm:text-sm max-sm:text-xs bg-red-warm text-white-cream sm:p-2  max-sm:p-3 md:w-48 sm:w-96 font-bold rounded  hover:bg-red-retro shadow-md  lg:p-8 md:p-4 "
-                          >
-                            {t("Search")}
-                          </button>
-                        </div> */}
+                
                   </>
 
                 </div>

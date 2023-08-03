@@ -1,3 +1,4 @@
+
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect} from "react";
 import Slider from "react-slick";
@@ -6,8 +7,8 @@ import image2 from "../images/graduate.jpg";
 import "../index.css";
 import { useTranslation } from "react-i18next";
 import useInfoCalls from "../hooks/useInfoCalls";
-
 import "react-activity/dist/library.css";
+import { useNavigate } from "react-router-dom";
 
 import "../../src/App.css";
 import Selections from "./departmentComponents/Selections";
@@ -19,8 +20,6 @@ const Main = () => {
   useEffect(() => {
     getUni(), getCities(), getAllDepartments();
   }, []);
-
-
 
   const settings = {
     dots: true,
@@ -58,7 +57,13 @@ const Main = () => {
           </div>
         </div>
       </Slider>
-      <Selections />
+
+      <div className="absolute bottom-20  md:right-36  flex md:flex-col sm:flex-row  sm:items-center lg:w-[38%] md:w-[70%] sm:w-full max-sm:w-full bg-green-dark rounded lg:p-8 md:p-4 sm:p-1 shadow-xl ">
+   
+     <Selections />
+    
+      </div>
+
     </div>
   );
 };
