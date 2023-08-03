@@ -70,7 +70,6 @@ function OneCard({ item }) {
   }
 
 
-
   const handleClickCompare = (e) => {
     e.preventDefault();
     if (currentUser) {
