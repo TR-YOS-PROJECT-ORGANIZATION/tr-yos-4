@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
+
+// eslint-disable-next-line no-unused-vars
+import React, { useEffect} from "react";
 import Slider from "react-slick";
 import image1 from "../images/studentG.jpg";
 import image2 from "../images/graduate.jpg";
 import "../index.css";
 import { useTranslation } from "react-i18next";
 import useInfoCalls from "../hooks/useInfoCalls";
-import { useDispatch, useSelector } from "react-redux";
-import { MultiSelect, MultiSelectItem } from "@tremor/react";
 import "react-activity/dist/library.css";
 import { useNavigate } from "react-router-dom";
 
 import "../../src/App.css";
-import { setSearchParameters } from "../features/cardSlice";
 import Selections from "./departmentComponents/Selections";
 
 const Main = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { getUni, getCities, getAllDepartments } = useInfoCalls();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
+  useEffect(() => {
+    getUni(), getCities(), getAllDepartments();
+  }, []);
 
   const settings = {
     dots: true,
@@ -28,9 +28,6 @@ const Main = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-
-
-
 
   return (
     <div className="w-full relative">
@@ -66,6 +63,7 @@ const Main = () => {
      <Selections />
     
       </div>
+
     </div>
   );
 };

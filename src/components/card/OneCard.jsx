@@ -22,9 +22,6 @@ function OneCard({ item }) {
     moveToFavourites,
   } = useCardCalls();
 
-
-  if(!item) return <Dots/>
-
   const { compareList, favouriteList } = useSelector((state) => state?.card);
 
   const isInCompare = compareList?.departments.includes(item?.id);
@@ -37,21 +34,25 @@ function OneCard({ item }) {
 
   const [openModal, setOpenModal] = useState(false);
 
-  //To Add and Remove from Compare List///
- function addRemoveCompareList() {
-   const id = item.id;
 
-   if (isAdded) {
-     removeFromSelectedDepartments(id);
-     setIsAdded((previous) => !previous);
-   } else if (!isAdded && compareList?.departments.length < 4) {
-     moveToSelectedDepartments(id);
-     setIsAdded((previous) => !previous);
-   } else if(compareList?.departments.length === 4) {
-     toast.warn(t("You can't compare more than 4 department"));
-   }
- }
-console.log(item);
+  if (!item) return <Dots/>;
+  
+  //To Add and Remove from Compare List///
+  function addRemoveCompareList() {
+    const id = item.id;
+
+    if (isAdded) {
+      removeFromSelectedDepartments(id);
+      setIsAdded((previous) => !previous);
+    } else if (!isAdded && compareList?.departments.length < 5) {
+      moveToSelectedDepartments(id);
+      setIsAdded((previous) => !previous);
+    } else if (compareList?.departments.length === 5) {
+      toast.warn(t("You can't compare more than 4 department"));
+    }
+  }
+
+
   //To Add and Remove from Favourite List///
 
   function addRemoveFavouriteList() {
@@ -62,8 +63,7 @@ console.log(item);
     } else {
       moveToFavourites(id);
     }
-  };
-
+  }
 
 
   const handleClickCompare = (e) => {
@@ -149,13 +149,13 @@ console.log(item);
                   height="20px"
                   viewBox="0 0 24 24"
                   // eslint-disable-next-line react/no-unknown-property
-                  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                  xmlns: rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                   xmlns="http://www.w3.org/2000/svg"
                   version="1.1"
                   // eslint-disable-next-line react/no-unknown-property
-                  xmlns:cc="http://creativecommons.org/ns#"
+                  xmlns: cc="http://creativecommons.org/ns#"
                   // eslint-disable-next-line react/no-unknown-property
-                  xmlns:dc="http://purl.org/dc/elements/1.1/"
+                  xmlns: dc="http://purl.org/dc/elements/1.1/"
                 >
                   <g transform="translate(0 -1028.4)">
                     <path
@@ -209,9 +209,8 @@ console.log(item);
                 className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2 cursor-pointer"
               >
                 <span
-                  className={`inline-flex select-none rounded-lg px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm ${
-                    isAdded ? "bg-green-dark" : "bg-red-500"
-                  }`}
+                  className={`inline-flex select-none rounded-lg px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm ${isAdded ? "bg-green-dark" : "bg-red-500"
+                    }`}
                 >
                   {" "}
                   {i18next.language == "en"
@@ -219,12 +218,12 @@ console.log(item);
                       ? "Remove"
                       : "Compare"
                     : i18next.language == "tr"
-                    ? isAdded
-                      ? "GERİ AL"
-                      : "KARŞILAŞTIR"
-                    : isAdded
-                    ? "Remove"
-                    : "Compare"}{" "}
+                      ? isAdded
+                        ? "GERİ AL"
+                        : "KARŞILAŞTIR"
+                      : isAdded
+                        ? "Remove"
+                        : "Compare"}{" "}
                   <svg
                     fill="#f2e9e9"
                     width="20px"

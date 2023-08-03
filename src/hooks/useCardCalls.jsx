@@ -14,7 +14,7 @@ const useCardCalls = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.auth);
   const { favouriteList, compareList } = useSelector((state) => state.card);
-  const currentUserId = currentUser.userID
+  const currentUserId = currentUser?.userID
 
   // Add or Remove to Compare
   const moveToSelectedDepartments = async (id) => {
