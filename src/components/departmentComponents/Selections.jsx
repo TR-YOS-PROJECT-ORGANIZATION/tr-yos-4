@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react'
 import useInfoCalls from "../../hooks/useInfoCalls";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { setSearchParameters } from "../../features/cardSlice";
 import { useNavigate } from 'react-router-dom';
 import PriceForm from "./PriceForm";
+import i18next from 'i18next';
 
 const Selections = () => {
   const { getUni, getCities, getAllDepartments } = useInfoCalls();
@@ -14,9 +16,11 @@ const Selections = () => {
   const [selectedCities, setSelectedCities] = useState();
   const [selectedUnivercities, setSelectedUnivercities] = useState([]);
   const [selectedDepartments, setSelectedDepartments] = useState([]);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const lang = i18next.language;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
 
   useEffect(() => {
@@ -46,18 +50,7 @@ const Selections = () => {
             .indexOf(department?.university.code) !== -1
       )
       : allDepartments?.filter(
-        (department) => department.en);
-
-  // allDepartments?.filter((department)=>department.department.en)
-  // allDepartments?.filter(
-  //   (department) =>
-  //     filteredUniversities
-  //       ?.map((item) => {
-  //         return item?.code;
-  //       })
-  //       .indexOf(department?.university.code) !== -1
-  // );
-
+        (department) => lang === "en" ? department.en: department.tr);
 
   const handleSearchClick = () => {
     const searchObject = {
@@ -74,7 +67,7 @@ const Selections = () => {
     <MultiSelect
       className="max-w-full rounded-lg sm:max-w-md bg-white-500 p-2  border border-green-dark"
       onValueChange={"" || setSelectedCities}
-      placeholder="Select City"
+      placeholder={t("Select City")}
     >
       {cities?.map((item, index) => {
         return (
@@ -83,7 +76,7 @@ const Selections = () => {
             key={index}
             value={item}
           >
-            {item.en}
+            {lang === "en" ? item.en : item.tr}
           </MultiSelectItem>
         );
       })}
@@ -92,7 +85,7 @@ const Selections = () => {
     <MultiSelect
       className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-10 p-2  border border-green-dark"
       onValueChange={"" || setSelectedUnivercities}
-      placeholder="Select Univercity"
+      placeholder={t("Select Univercity")}
     >
       {filteredUniversities?.map((item, index) => {
         return (
@@ -101,7 +94,7 @@ const Selections = () => {
             key={index}
             value={item}
           >
-            {item.en}
+            {lang === "en" ? item.en : item.tr}
           </MultiSelectItem>
         );
       })}
@@ -111,7 +104,7 @@ const Selections = () => {
     <MultiSelect
       className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-10 p-2 border border-green-dark mb-5"
       onValueChange={"" || setSelectedDepartments}
-      placeholder="Select Department"
+      placeholder={t("Select Department")}
     >
       {filteredDepartments?.map((item, index) => {
         return (
@@ -120,7 +113,7 @@ const Selections = () => {
             key={index}
             value={item}
           >
-            {item.department.en}
+            {lang === "en" ? item.department.en : item.department.tr}
           </MultiSelectItem>
         );
       })}

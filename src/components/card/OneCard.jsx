@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from "react";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import Slider from "react-slick";

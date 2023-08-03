@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import image4 from "../../images/business.jpg";
@@ -6,9 +7,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 toast
 
-// const initialValues = {
-//   email: "",
-// };
 const WorkUs = () => {
   const { t } = useTranslation();
 
@@ -55,12 +53,6 @@ const WorkUs = () => {
                     <br />{" "}
                   </p>
                   <form onSubmit={handleSubmit}>
-                    {/* <label
-                      htmlFor="search"
-                      className="mb-2 text-sm font-medium text-gray-900 sr-only"
-                    >
-                      Search
-                    </label> */}
                     <div className="relative">
                       <input
                         type="email"
@@ -71,7 +63,7 @@ const WorkUs = () => {
                         }
                         defaultValue={""}
                         className="block w-full p-4 pl-5 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Enter your email"
+                        placeholder={t("Enter your email")}
                         required=""
                       />
                       <button
