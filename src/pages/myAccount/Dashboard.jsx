@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useState } from "react";
 import ChangePassword from "../../components/modals/ChangePassword";
@@ -7,11 +9,13 @@ import { toastSuccessNotify } from "../../helper/ToastNotify";
 import { fetchFail, fetchStart } from "../../features/authSlice";
 import { Link } from "react-router-dom";
 import { toastErrorNotify } from "../../helper/ToastNotify";
+import { useTranslation } from "react-i18next";
 
-const Dashboard = ({ userInfo, dept }) => {
+const Dashboard = ({ userInfo }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const dispatch = useDispatch();
+  const {t} = useTranslation();
 
   const mailtoLink = `mailto:info@tryos.com`;
 
@@ -102,7 +106,7 @@ const Dashboard = ({ userInfo, dept }) => {
                 <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
               </svg>
             </div>
-            <Link to="/myProfile">My Profile</Link>
+            <Link to="/myProfile">{t("My Profile")}</Link>
           </a>
         </div>
 
@@ -117,7 +121,7 @@ const Dashboard = ({ userInfo, dept }) => {
                 <path d="M144 144c0-44.2 35.8-80 80-80c31.9 0 59.4 18.6 72.3 45.7c7.6 16 26.7 22.8 42.6 15.2s22.8-26.7 15.2-42.6C331 33.7 281.5 0 224 0C144.5 0 80 64.5 80 144v48H64c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64H144V144z" />
               </svg>
             </div>
-            <div>Change Password</div>
+            <div>{t("Change Password")}</div>
           </a>
         </button>
       </div>
