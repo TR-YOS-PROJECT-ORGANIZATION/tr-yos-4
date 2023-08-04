@@ -30,13 +30,12 @@ function Favourites() {
   }, []);
 
   useEffect(() => {
-    console.log(' ilk ayaa kalk');
     getCompareList();
     getFavouriteList();
   }, []);
 
   const filteredDepartments = allDepartments?.filter((department) =>
-    favouriteList?.departments.map((item) => item).includes(department.id)
+    favouriteList?.departments?.map((item) => item)?.includes(department.id)
   );
   return (
     <div className="mt-20">
