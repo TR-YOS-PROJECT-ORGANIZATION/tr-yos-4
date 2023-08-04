@@ -2,14 +2,37 @@
 import React, { useState } from "react";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import useCardCalls from "../../hooks/useCardCalls";
+import { useSelector } from "react-redux";
+import { toastWarnNotify } from "../../helper/ToastNotify";
 
 const SubmitReview = ({ dept, uni }) => {
 
   const [isOpen, setIsOpen] = useState(false);
-  const [show, setShow] = useState(true);
+  // const [show, setShow] = useState(true);
   console.log(dept);
+  const {removeFromFavourites, moveToFavourites}= useCardCalls();
+  const {favouriteList}=useSelector((state)=> state.card)
+  const isFavourited = favouriteList?.departments?.includes(dept[0]?.id)
+  const {currentUser}= useSelector((state)=> state.auth)
 
-  const mailtoLink = `mailto:${dept[0]?.data.email}`;
+  function addRemoveFavouriteList() {
+    const id = dept[0]?.id;
+
+    if (isFavourited) {
+      removeFromFavourites(id);
+    } else {
+      moveToFavourites(id);
+    }
+  };
+
+  const handleClickFavourite = (e) => {
+    e.preventDefault();
+    currentUser ? addRemoveFavouriteList(dept[0].id) : toastWarnNotify("Please Login")
+
+  };
+
+  const mailtoLink = `mailto:${dept[0]?.data?.email}`;
 
 const lang= i18next.language;
 const {t} = useTranslation();
@@ -71,7 +94,7 @@ const {t} = useTranslation();
               </div>
               <div className="m-3 ">
                 <p className="text-slate-500 text-xs indent-2 ">
-                  The Acıbadem University School of Medicine was established in
+                  University School of Medicine was established in
                   2007 and accepted its first students into the academic year
                   starting in 2009 following a two year period where the
                   curriculum was devised. <br />
@@ -126,7 +149,7 @@ const {t} = useTranslation();
                   excellent communication skills and who respect their fellow
                   medical professional co-workers and who have embraced the
                   importance of ethical values and team work. <br />
-                  Acıbadem University School of Medicine invests in science and
+                  University School of Medicine invests in science and
                   encourages its students to carry out research and publish
                   research papers. We emphasize the importance of training in
                   society in addition to internships and we aim to train
@@ -190,7 +213,7 @@ const {t} = useTranslation();
                             <style type="text/css"></style>
                             <g>
                               <polygon
-                                class="st0"
+                                className="st0"
                                 points="256,381.424 104.628,328.845 0,365.186 256,454.114 512,365.186 407.373,328.845 	"
                               />
                               <polygon
@@ -250,13 +273,13 @@ const {t} = useTranslation();
           <div className="border p-4 rounded-xl mb-12 shadow-lg">
             <button
               style={{
-                backgroundColor: !show && "#00A372",
-                borderStyle: !show && "none",
+                backgroundColor: !isFavourited && "#00A372",
+                borderStyle: !isFavourited && "none",
               }}
               className=" bg-red-200 border-2 border-red-warm py-3 p-3 rounded-xl hover:bg-red-warm hover:text-white-500 "
-              onClick={() => setShow(!show)}
+              onClick={handleClickFavourite}
             >
-              {lang ==="en" ? (show ? "Add Favourite" : "Remove Favourite"): (show ? "Favoriye Ekle" : "Favoriden Çıkar") }
+              {lang ==="en" ? (!isFavourited ? "Add Favourite" : "Remove Favourite"): (!isFavourited ? "Favoriye Ekle" : "Favoriden Çıkar") }
             </button>
           </div>
 
