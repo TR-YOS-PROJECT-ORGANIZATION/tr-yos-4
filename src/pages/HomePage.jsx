@@ -63,7 +63,7 @@ const HomePage = () => {
   }, [allDepartments, univercities]);
 
   return (
-    <div>
+    <div className="flex flex-col">
       <Main />
       <div className="row mt-16 justify-center-center">
         <div className="sec-heading center">
@@ -73,14 +73,15 @@ const HomePage = () => {
           </p>
         </div>
       </div>
-      <div className="xs:m-0 xs:px-0 xs:w-full sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20">
+      <div className="xs:m-0 xs:px-0 xs:w-full sm:m-0 sm:px-0 sm:w-full  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20">
         {depart?.map((item, index) => (
           <div key={index}>
             <OneCard item={item} />
           </div>
         ))}
       </div>
-      <WorkUs />
+      <div>
+      <WorkUs /></div>
     </div>
   );
 };

@@ -34,9 +34,8 @@ function OneCard({ item }) {
 
   const [openModal, setOpenModal] = useState(false);
 
+  if (!item) return <Dots />;
 
-  if (!item) return <Dots/>;
-  
   //To Add and Remove from Compare List///
   function addRemoveCompareList() {
     const id = item.id;
@@ -52,7 +51,6 @@ function OneCard({ item }) {
     }
   }
 
-
   //To Add and Remove from Favourite List///
 
   function addRemoveFavouriteList() {
@@ -64,7 +62,6 @@ function OneCard({ item }) {
       moveToFavourites(id);
     }
   }
-
 
   const handleClickCompare = (e) => {
     e.preventDefault();
@@ -92,53 +89,33 @@ function OneCard({ item }) {
     heartIcon = "#fff";
   }
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
   return (
     <>
       <div
         key={item.id}
-        className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 "
+        className="xs:m-0 sm:m-auto relative mx-auto w-full h-full  max-w-sm pt-6 ml-6 md:px-2 md:mx-2 "
       >
         {!currentUser && (
           <SignInModal open={openModal} setOpen={setOpenModal} />
         )}
-        <div className="relative inline-block w-full transform transition-transform duration-300 ease-in-out">
-          <div className="rounded-lg border shadow-2xl">
+        <div className="relative inline-block w-full h-full transform transition-transform duration-300 ease-in-out">
+          <div className="rounded-lg border shadow-2xl h-full">
             <div className="relative flex h-60 justify-center overflow-hidden rounded-lg order">
-              <div className="relative w-full">
-                <Slider {...settings}>
-                  <div className="relative">
-                    <img
-                      className="w-full h-[25rem] object-cover"
-                      src={item?.dummyImage || image1}
-                    ></img>
-                  </div>
-                  <div className="relative">
-                    <img
-                      className="w-full h-[25rem] object-cover"
-                      src={image2}
-                    ></img>
-                  </div>
-                  <div className="relative">
-                    <img
-                      className="w-full h-[25rem] object-cover"
-                      src={image3}
-                    ></img>
-                  </div>
-                  <div className="relative">
-                    <img
-                      className="w-full h-[25rem] object-cover"
-                      src={image4}
-                    ></img>
-                  </div>
-                </Slider>
+              <div
+                className="relative w-full cursor-pointer"
+                onClick={(e) =>
+                  {e.preventDefault();
+                  navigate(`/departmentDetail/${item.department.code}`, {
+                    state: item,
+                  })}
+                }
+              >
+                <div className="relative">
+                  <img
+                    className="w-full h-[25rem] object-cover"
+                    src={item?.dummyImage || image1}
+                  ></img>
+                </div>
               </div>
               <button
                 onClick={handleClickFavourite}
@@ -149,13 +126,13 @@ function OneCard({ item }) {
                   height="20px"
                   viewBox="0 0 24 24"
                   // eslint-disable-next-line react/no-unknown-property
-                  xmlns: rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                   xmlns="http://www.w3.org/2000/svg"
                   version="1.1"
                   // eslint-disable-next-line react/no-unknown-property
-                  xmlns: cc="http://creativecommons.org/ns#"
+                  xmlns:cc="http://creativecommons.org/ns#"
                   // eslint-disable-next-line react/no-unknown-property
-                  xmlns: dc="http://purl.org/dc/elements/1.1/"
+                  xmlns:dc="http://purl.org/dc/elements/1.1/"
                 >
                   <g transform="translate(0 -1028.4)">
                     <path
@@ -171,7 +148,7 @@ function OneCard({ item }) {
                 <div className="flex text-left ml-3">
                   <div className="relative">
                     <h2
-                      className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg"
+                      className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg cursor-pointer"
                       title="New York"
                       onClick={() =>
                         navigate(`/departmentDetail/${item.department.code}`, {
@@ -182,7 +159,6 @@ function OneCard({ item }) {
                       {i18next.language === "tr"
                         ? item.department.tr
                         : item.department.en}
-           
                     </h2>
                     <p
                       className="mt-2 line-clamp-1 text-sm text-gray-800"
@@ -209,8 +185,9 @@ function OneCard({ item }) {
                 className="flex items-left mt-2 ml-3 border-t border-gray-200 pt-2 cursor-pointer"
               >
                 <span
-                  className={`inline-flex select-none rounded-lg px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm ${isAdded ? "bg-green-dark" : "bg-red-500"
-                    }`}
+                  className={`inline-flex select-none rounded-lg px-3 py-2 text-sm font-medium text-white-cream hover:bg-red-warm ${
+                    isAdded ? "bg-green-dark" : "bg-red-500"
+                  }`}
                 >
                   {" "}
                   {i18next.language == "en"
@@ -218,12 +195,12 @@ function OneCard({ item }) {
                       ? "Remove"
                       : "Compare"
                     : i18next.language == "tr"
-                      ? isAdded
-                        ? "GERİ AL"
-                        : "KARŞILAŞTIR"
-                      : isAdded
-                        ? "Remove"
-                        : "Compare"}{" "}
+                    ? isAdded
+                      ? "GERİ AL"
+                      : "KARŞILAŞTIR"
+                    : isAdded
+                    ? "Remove"
+                    : "Compare"}{" "}
                   <svg
                     fill="#f2e9e9"
                     width="20px"
