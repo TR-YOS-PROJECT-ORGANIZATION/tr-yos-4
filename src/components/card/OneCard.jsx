@@ -161,9 +161,9 @@ const OneCard = ({ item }) => {
               </button>
             </div>
             <div className="">
-              <div className="mt-3 grid grid-cols-2">
+              <div className="mt-3 grid grid-cols-1">
                 <div className="flex text-left ml-3">
-                  <div className="relative">
+                  <div className="relative ">
                     <h2
                       className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg cursor-pointer"
                       title="New York"
@@ -186,7 +186,7 @@ const OneCard = ({ item }) => {
                         : item.faculty.en}
                     </p>
                     <p
-                      className="mt-2 line-clamp-1 text-sm text-gray-800"
+                      className="mt-2 line-clamp-1 text-sm text-gray-800 "
                       title="University"
                     >
                       {i18next.language === "tr"
