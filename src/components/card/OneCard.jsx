@@ -38,7 +38,7 @@ const OneCard = ({ item }) => {
 
   const [openModal, setOpenModal] = useState(false);
 
-  if (!item) return <Dots />;
+  if (!item) return <Dots  size={32}/>;
 
   //To Add and Remove from Compare List///
   function addRemoveCompareList() {

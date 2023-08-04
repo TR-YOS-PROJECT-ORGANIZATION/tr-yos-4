@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Formik, Field, Form } from "formik";
@@ -10,6 +11,8 @@ import { ErrorMessage } from "formik";
 import { toastErrorNotify, toastSuccessNotify } from "../../helper/ToastNotify";
 import * as yup from "yup";
 import close from '../../images/close.png'
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 
 export const registerSchema = yup.object().shape({
@@ -28,6 +31,7 @@ export const registerSchema = yup.object().shape({
     .matches(/[!,?{}><%&$#£+-.]+/, " Password must have a special char"),
 });
 
+
 const SignInModal = (props) => {
 
   const navigate = useNavigate();
@@ -36,11 +40,12 @@ const SignInModal = (props) => {
   const open = props.setOpen
 
 
-  useEffect(() => {
-    if (currentUser) {
-      navigate("/");
-    }
-  }, [currentUser]);
+
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     navigate("/");
+  //   }
+  // }, [currentUser]);
 
   const copyDeployerWallet = () => {
     navigator.clipboard.writeText("0x49AE63056b3A0Be0B166813eE687309Ab653c07c");
@@ -88,7 +93,7 @@ const SignInModal = (props) => {
 
             </button>
 
-              <h3 className="text-green-dark text-bold text-lg">Sign In</h3>
+              <h3 className="text-green-dark text-bold text-lg">{t("Sign In")}</h3>
               <div className="m-5 rounded items-start text-start">
                 <Formik
                   initialValues={{
@@ -118,14 +123,14 @@ const SignInModal = (props) => {
                     <Form>
                       <div className="flex flex-col text-black">
                         <label className=" text-red-700" htmlFor="mail">
-                          Email
+                          {t("E-mail")}
                         </label>
 
                         <Field
                           className="border border-green-dark my-3 p-1 rounded"
                           id="mail"
                           name="email"
-                          placeholder="Enter your e-mail"
+                          placeholder={t("Enter your e-mail")}
                           type="email"
                           onBlur={handleBlur}
                           onChange={handleChange}
@@ -140,14 +145,14 @@ const SignInModal = (props) => {
 
 
                         <label className=" text-red-700" htmlFor="password">
-                          Password
+                          {t("Password")}
                         </label>
 
                         <Field
                           className="border border-green-dark my-3 p-1 rounded"
                           id="password"
                           name="password"
-                          placeholder="Enter your password"
+                          placeholder={t("Enter your password")}
                           type="password"
                           onBlur={handleBlur}
                           onChange={handleChange}
@@ -165,15 +170,15 @@ const SignInModal = (props) => {
                           type="submit"
                           disabled={isSubmitting}
                         >
-                          Submit
+                          {t("Submit")}
                         </button>
 
                         <div className="flex justify-center mt-5">
-                          <p className="text-sm mx-1">Don't have an account yet?</p>
+                          <p className="text-sm mx-1">{t("Don't have an account yet?")}</p>
                           <a onClick={()=>{open(false);
                           props.setOpenUp(true)}}
                           className="text-sm text-red-retro cursor-pointer hover:text-red-warm font-bold underline"> 
-                          Sign Up
+                          {t("Sign Up")}
                           </a>
                         </div>
                       </div>

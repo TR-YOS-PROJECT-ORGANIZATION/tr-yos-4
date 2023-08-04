@@ -1,15 +1,20 @@
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toastSuccessNotify } from "../../helper/ToastNotify";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   const [country, setCountry] = useState();
   const [citiesbyCountry, setCitiesbyCountry] = useState();
 
   const [newInfo, setNewInfo] = useState({});
-
+const {t} = useTranslation();
+const lang = i18next.language;
   const filteredCountry = country?.filter(
-    (item) => item.en === newInfo.country
+    (item) => lang === "en" ? item.en === newInfo.country : item.tr === newInfo.country
   );
 
   const getCountry = async () => {
@@ -68,11 +73,11 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
       <div className="mt-2 p-5 ">
-        <h2 className="text-2xl font-bold">My Account</h2>
+        <h2 className="text-2xl font-bold">{t("My Account")}</h2>
         <div className="flex ">
           <div className=" w-1/2 mr-2 mt-3">
             <label htmlFor="" className="font-bold">
-              Your Name*
+              {t("Your Name*")}
             </label>
             <input
               type="text"
@@ -84,7 +89,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
           </div>
           <div className="w-1/2 mt-3">
             <label htmlFor="" className="font-bold">
-              E-mail*
+              {t("E-mail*")}
             </label>
             <input
               type="email"
@@ -99,7 +104,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
         </div>
         <div className="flex">
           <div className=" w-1/2 mt-3 mr-2">
-            <p className="font-bold">Country*</p>
+            <p className="font-bold">{t("Country*")}</p>
             <select
               className="w-full rounded-md mt-2 border-2"
               onChange={(e) =>
@@ -109,15 +114,15 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
             >
               <option>{userInfo?.user?.country}</option>
               {country?.map((item) => (
-                <option key={item.en} value={item.en}>
-                  {item.en}
+                <option key={lang === "en" ? item.en : item.tr} value={lang === "en" ? item.en : item.tr}>
+                  {lang === "en" ? item.en : item.tr}
                 </option>
               ))}
             </select>
           </div>
           <div className="w-1/2 mt-3">
             <label htmlFor="" className="font-bold">
-              City
+              {t("City")}
             </label>
             <select
               className="w-full rounded-md mt-2 border-2"
@@ -126,8 +131,8 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
             >
               <option>{userInfo?.user?.city}</option>
               {citiesbyCountry?.map((item) => (
-                <option key={item.en} value={item.en}>
-                  {item.en}
+                <option key={lang === "en" ? item.en : item.tr} value={lang === "en" ? item.en : item.tr}>
+                  {lang === "en" ? item.en : item.tr}
                 </option>
               ))}
             </select>
@@ -135,7 +140,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
         </div>
         <div className=" w-5/12 mt-3">
           <label htmlFor="" className="font-bold">
-            Phone
+            {t("Phone")}
           </label>
           <input
             type="text"
@@ -148,7 +153,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
         <div className="mt-3">
           <div className=" w-full flex flex-col">
             <label htmlFor="" className="font-bold">
-              About
+              {t("About")}
             </label>
             <textarea
               type="text"
@@ -163,13 +168,13 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
         </div>
       </div>
       <button
-        onClick={() => {
+        onClick={(e) => {
           sendInfo(newInfo);
           e.prevent.default();
         }}
         className="bg-red-warm text-white-500 hover:bg-green-dark hover:text-green-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4"
       >
-        Save Changes
+        {t("Save Changes")}
       </button>
     </div>
   );

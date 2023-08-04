@@ -60,6 +60,27 @@
     "Favourites":"Favourites",
     "Faculty":"Faculty",
     "Department":"Department",
-    "About Univercities":"About Univercities"
+    "About Univercities":"About Univercities",
+    "Your Name*":"Your Name*",
+    "E-mail*":"E-mail*",
+    "Country*":"Country*",
+    "City":"City",
+    "Phone":"Phone",
+    "Save Changes":"Save Changes",
+    "Change Password":"Change Password",
+    "Edit Password":"Edit Password",
+    "Password":"Password",
+    "Enter your password":"Enter your password",
+    "New Password":"New Password",
+    "Enter your new password":"Enter your new password",
+    "Confirm New Password":"Confirm New Password",
+    "Enter your new password again":"Enter your new password again",
+    "Submit":"Submit",
+    "E-mail":"E-mail",
+    "Enter your e-mail":"Enter your e-mail",
+    "Don't have an account yet?":"Don't have an account yet?",
+    "Username":"Username",
+    "Enter your username":"Enter your username"
+    
 
 }
