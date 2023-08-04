@@ -10,9 +10,10 @@ import { useSelector } from "react-redux";
 import OneCard from "../components/card/OneCard";
 import useCardCalls from "../hooks/useCardCalls";
 import { useTranslation } from "react-i18next";
+import { Dots } from "react-activity";
 
 function Departments() {
-  const { getAllDepartments, getUserInfo } = useInfoCalls();
+  const { getAllDepartments} = useInfoCalls();
   const { allDepartments} = useSelector((state) => state?.info);
   const { currentUser } = useSelector((state) => state?.auth);
   const { searchParameters } = useSelector((state) => state?.card);
@@ -22,26 +23,18 @@ function Departments() {
 
   const {t} = useTranslation();
   const currentUserId = currentUser?.userID;
-  const {
-    moveToSelectedDepartments,
-    removeFromSelectedDepartments,
-    removeFromFavourites,
-    moveToFavourites,
-    getCompareList,
-    getFavouriteList,
-  } = useCardCalls();
+
+
+
 
   useEffect(() => {
-    currentUser && getUserInfo(currentUser?.userID);
-  }, [currentUser]);
 
-  useEffect(() => {
-    getCompareList(currentUserId);
-    getFavouriteList();
+
     getAllDepartments();
   }, []);
 
   console.log(department)
+
   useEffect(() => {
 
     if (searchParameters?.selectedDepartments) {
@@ -54,6 +47,8 @@ function Departments() {
       return setDepartment(allDepartments?.slice(71, 89));
     }
   }, [searchParameters]);
+
+  if(!department) return <Dots size={32}/>
 
 
   return (
@@ -105,12 +100,7 @@ function Departments() {
                   <OneCard
                     key={item.id}
                     item={item}
-                    moveToSelectedDepartments={moveToSelectedDepartments}
-                    removeFromSelectedDepartments={
-                      removeFromSelectedDepartments
-                    }
-                    moveToFavourites={moveToFavourites}
-                    removeFromFavourites={removeFromFavourites}
+               
                   />
                 );
               })}

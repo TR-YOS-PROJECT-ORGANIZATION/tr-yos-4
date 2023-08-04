@@ -38,12 +38,14 @@ const SignInModal = (props) => {
   const { currentUser,loading } = useSelector((state) => state?.auth);
   const { login } = useAuthCall();
   const open = props.setOpen
-  const {t} = useTranslation();
-  useEffect(() => {
-    if (currentUser) {
-      navigate("/");
-    }
-  }, [currentUser]);
+
+
+
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     navigate("/");
+  //   }
+  // }, [currentUser]);
 
   const copyDeployerWallet = () => {
     navigator.clipboard.writeText("0x49AE63056b3A0Be0B166813eE687309Ab653c07c");

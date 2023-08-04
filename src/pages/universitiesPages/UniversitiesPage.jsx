@@ -19,6 +19,18 @@ const UniversitiesPage = () => {
   const [universitiesPerPage, setuniversitiesPerPage] = useState(20);
   const [faculties, setFaculties] = useState();
 
+  const getFaculties = async () => {
+    try {
+      const data = await axios.get(
+        `https://tr-yös.com/api/v1/education/allfaculties.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
+      );
+      setFaculties(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   useEffect(() => {
     getUni();
     getAllDepartments();
@@ -30,21 +42,11 @@ const UniversitiesPage = () => {
 
   const { t } = useTranslation();
 
-  if (!allDepartments) return <Dots />;
+  if (!allDepartments) return <Dots  size={32}/>;
 
   console.log("unis", univercities);
   console.log("deps", allDepartments);
 
-  const getFaculties = async () => {
-    try {
-      const data = await axios.get(
-        `https://tr-yös.com/api/v1/education/allfaculties.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
-      );
-      setFaculties(data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   console.log(faculties);
 
