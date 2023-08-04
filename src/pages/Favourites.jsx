@@ -30,7 +30,6 @@ function Favourites() {
   }, []);
 
   useEffect(() => {
-    console.log(' ilk ayaa kalk');
     getCompareList();
     getFavouriteList();
   }, []);
@@ -38,6 +37,7 @@ function Favourites() {
   const filteredDepartments = favouriteList ? allDepartments?.filter((department) =>
     favouriteList?.departments?.map((item) => item)?.includes(department.id)
   ) : "favourite list is null"
+
   return (
     <div className="mt-20">
       <div>

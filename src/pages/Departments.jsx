@@ -8,22 +8,19 @@ import { useState } from "react";
 import useInfoCalls from "../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
 import OneCard from "../components/card/OneCard";
-import { t } from "i18next";
 import useCardCalls from "../hooks/useCardCalls";
+import { useTranslation } from "react-i18next";
 
 function Departments() {
   const { getAllDepartments, getUserInfo } = useInfoCalls();
-  const { allDepartments, univercities } = useSelector((state) => state?.info);
+  const { allDepartments} = useSelector((state) => state?.info);
   const { currentUser } = useSelector((state) => state?.auth);
   const { searchParameters } = useSelector((state) => state?.card);
   // eslint-disable-next-line no-unused-vars
   const [department, setDepartment] = useState([]);
-
   const [isOpen, setOpen] = useState(false);
 
-  console.log(" allDeps  ", allDepartments);
-  console.log(" unis  ", univercities);
-
+  const {t} = useTranslation();
   const currentUserId = currentUser?.userID;
   const {
     moveToSelectedDepartments,

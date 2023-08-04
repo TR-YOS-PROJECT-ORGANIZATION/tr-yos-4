@@ -1,41 +1,36 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useState } from "react";
-// import backgroundImage from "../images/university.jpg";
 import university from "../../images/university.jpg";
 import { useEffect } from "react";
 import useInfoCalls from "../../hooks/useInfoCalls";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchFail, fetchStart, getUniSuccess } from "../../features/infoSlice";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import UniCard from "../../components/card/UniCard";
 import { useTranslation } from "react-i18next";
 import Pagination from "./Pagination";
 import { Dots } from "react-activity";
 
-
-
 const UniversitiesPage = () => {
-  
   const { getUni, getAllDepartments } = useInfoCalls();
   const { univercities, allDepartments } = useSelector((state) => state.info);
   const [currentPage, setCurrentPage] = useState(1);
+  // eslint-disable-next-line no-unused-vars
   const [universitiesPerPage, setuniversitiesPerPage] = useState(20);
   const [faculties, setFaculties] = useState();
-
-
-  const { t } = useTranslation();
 
   useEffect(() => {
     getUni();
     getAllDepartments();
- 
   }, []);
 
+  useEffect(() => {
+    getFaculties();
+  }, []);
 
- 
+  const { t } = useTranslation();
 
-  if (!allDepartments) return <Dots/>;
+  if (!allDepartments) return <Dots />;
 
   console.log("unis", univercities);
   console.log("deps", allDepartments);
@@ -50,10 +45,6 @@ const UniversitiesPage = () => {
       console.log(error);
     }
   };
-
-  useEffect(()=>{
-    getFaculties();
-  },[])
 
   console.log(faculties);
 
@@ -81,18 +72,15 @@ const UniversitiesPage = () => {
           </div>
         </div>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-2">
-
           {currentUniversities?.map((item) => (
             <div key={item.id}>
               <UniCard
                 item={item}
-               
                 departmentsLength={
                   allDepartments?.filter(
                     (d) => d?.university.code === item.code
                   ).length
                 }
-
                 facultiesLength={
                   faculties?.filter(
                     (f) =>

@@ -23,8 +23,10 @@ const useCardCalls = () => {
      const res = await axios.get(
         `https://tr-yös.com/api/v1/users/addcompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
-      const newDeps = compareList?.departments?.concat([res.data.id]);
+      console.log("move c",res);
+      const newDeps = compareList?.departments ? compareList?.departments?.concat([res.data.id]) : [res?.data.id];
       dispatch(getCompareListSuccess({ departments: newDeps }));
+
     } catch (error) {
       console.log(error);
     }
@@ -35,6 +37,7 @@ const useCardCalls = () => {
       const res =  await axios.get(
         `https://tr-yös.com/api/v1/users/deletecompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
+      console.log("rem c",res);
       const newDeps = compareList?.departments?.filter(
         (f) => f !== res.data.id
       );
@@ -51,7 +54,12 @@ const useCardCalls = () => {
       const res = await axios.get(
         `https://tr-yös.com/api/v1/users/addfavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
-      const newDeps = favouriteList?.departments?.concat([res.data.id]);
+      console.log("move f",res);
+
+      const newDeps = favouriteList?.departments ? favouriteList?.departments?.concat([res.data.id])
+      :[ res.data.id];
+      console.log("fl",favouriteList);
+      console.log("newdeps",newDeps);
 
       dispatch(getFavouriteListSuccess({ departments: newDeps }));
     } catch (error) {
@@ -66,6 +74,8 @@ const useCardCalls = () => {
       const res = await axios.get(
         `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
+      console.log("rem f",res);
+
       const newDeps = favouriteList?.departments?.filter(
         (f) => f !== res.data.id
       );
@@ -85,6 +95,16 @@ const useCardCalls = () => {
       dispatch(getCompareListSuccess(data));
     } catch (error) {
       console.log(error);
+      if (
+        error.response.data.message
+          ?.toString()
+          .toLowerCase()
+          .indexOf("no record") !== -1
+      ) {
+        // no record found hatası döndüğünde; favouriteList.department = [] yapıyoruz.
+        dispatch(getCompareListSuccess({ departments: [] }));
+      }
+
       dispatch(fetchFail());
     }
   };
@@ -96,6 +116,7 @@ const useCardCalls = () => {
       );
       dispatch(getFavouriteListSuccess(data));
     } catch (error) {
+      console.log(error);
       if (
         error.response.data.message
           ?.toString()

@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from "react";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import Slider from "react-slick";
@@ -14,7 +16,7 @@ import { toast } from "react-toastify";
 import useCardCalls from "../../hooks/useCardCalls";
 import { Dots } from "react-activity";
 
-function OneCard({ item }) {
+const OneCard = ({ item }) => {
   const {
     moveToSelectedDepartments,
     removeFromSelectedDepartments,
@@ -24,7 +26,9 @@ function OneCard({ item }) {
 
   const { compareList, favouriteList } = useSelector((state) => state?.card);
 
-  const isInCompare = compareList?.departments.includes(item?.id);
+  const isInCompare = compareList
+    ? compareList?.departments.includes(item?.id)
+    : false;
   const isFavourited = favouriteList?.departments.includes(item?.id);
 
   const [isAdded, setIsAdded] = useState(isInCompare);
@@ -39,16 +43,22 @@ function OneCard({ item }) {
   //To Add and Remove from Compare List///
   function addRemoveCompareList() {
     const id = item.id;
+    console.log("cv", isInCompare);
+    console.log("cl", compareList);
 
-    if (isAdded) {
+    if (isInCompare) {
       removeFromSelectedDepartments(id);
-      setIsAdded((previous) => !previous);
-    } else if (!isAdded && compareList?.departments.length < 5) {
+      setIsAdded(!isInCompare);
+
+
+    } else if (!isInCompare && compareList?.departments?.length !== 5 ) {
       moveToSelectedDepartments(id);
-      setIsAdded((previous) => !previous);
-    } else if (compareList?.departments.length === 5) {
-      toast.warn(t("You can't compare more than 4 department"));
-    }
+      setIsAdded(!isInCompare);
+
+    };
+
+
+
   }
 
   //To Add and Remove from Favourite List///
@@ -63,8 +73,10 @@ function OneCard({ item }) {
     }
   }
 
+
   const handleClickCompare = (e) => {
     e.preventDefault();
+    compareList?.departments?.length === 5 && toastWarnNotify("You can make up to 4 comparisons.");
     if (currentUser) {
       return addRemoveCompareList(item.id);
     }
@@ -73,13 +85,18 @@ function OneCard({ item }) {
   };
 
   const handleClickFavourite = (e) => {
+    
     e.preventDefault();
     if (currentUser) {
       return addRemoveFavouriteList(item.id);
+
     }
     toastWarnNotify("Please Login");
     setOpenModal(true);
+
   };
+
+
 
   let heartIcon;
 
@@ -272,6 +289,6 @@ function OneCard({ item }) {
       </div>
     </>
   );
-}
+};
 
 export default OneCard;
