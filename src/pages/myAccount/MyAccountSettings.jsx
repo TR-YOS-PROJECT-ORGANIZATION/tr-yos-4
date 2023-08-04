@@ -1,27 +1,69 @@
-// eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { toastSuccessNotify } from "../../helper/ToastNotify";
 
-import { useSelector } from "react-redux";
-import useInfoCalls from "../../hooks/useInfoCalls";
-import { useEffect } from "react";
+const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
+  const [country, setCountry] = useState();
+  const [citiesbyCountry, setCitiesbyCountry] = useState();
 
+  const [newInfo, setNewInfo] = useState({});
 
-const MyAccountSettings = () => {
+  const filteredCountry = country?.filter(
+    (item) => item.en === newInfo.country
+  );
 
-  const { currentUser } = useSelector((state) => state?.auth);
-  const { userInfo } = useSelector((state) => state?.info);
-  const { getUserInfo } = useInfoCalls();
+  const getCountry = async () => {
+    try {
+      await axios
+        .get(
+          `https://tr-yös.com/api/v1/location/allcountries.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
+        )
+        .then(({ data }) => setCountry(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getCitiesbyCountry = async () => {
+    try {
+      await axios
+        .get(
+          `https://tr-yös.com/api/v1/location/citiesbycountry.php?country_id=${filteredCountry[0].id}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
+        )
+        .then(({ data }) => setCitiesbyCountry(data));
+    } catch (error) {
+      console.log("Error fetching cities:", error);
+    }
+  };
+  const sendInfo = async (newInfo) => {
+    const userID = currentUser?.userID;
 
-  
+    try {
+      await axios.post(
+        `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
+        newInfo,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      getUserInfo(userID);
+
+      toastSuccessNotify("User information updated");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    getUserInfo();
+    getCountry();
   }, []);
 
-  getUserInfo(currentUser);
-  console.log(currentUser);
+  useEffect(() => {
+    if (newInfo?.country) {
+      getCitiesbyCountry(newInfo.country);
+    }
+  }, [newInfo?.country]);
 
-const MyAccountSettings = () => {
+  useEffect(() => {
+    getUserInfo(currentUser?.userID);
+  }, []);
 
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
@@ -34,8 +76,10 @@ const MyAccountSettings = () => {
             </label>
             <input
               type="text"
+              value={newInfo.name || userInfo?.user?.name || ""}
               required
               className="w-full rounded-md mt-2 border-2"
+              onChange={(e) => setNewInfo({ ...newInfo, name: e.target.value })}
             />
           </div>
           <div className="w-1/2 mt-3">
@@ -44,29 +88,49 @@ const MyAccountSettings = () => {
             </label>
             <input
               type="email"
+              value={newInfo.email || userInfo?.user?.email || ""}
               required
               className="w-full rounded-md mt-2 border-2"
+              onChange={(e) =>
+                setNewInfo({ ...newInfo, email: e.target.value })
+              }
             />
           </div>
         </div>
         <div className="flex">
           <div className=" w-1/2 mt-3 mr-2">
             <p className="font-bold">Country*</p>
-            <select className="w-full rounded-md mt-2 border-2">
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
+            <select
+              className="w-full rounded-md mt-2 border-2"
+              onChange={(e) =>
+                setNewInfo({ ...newInfo, country: e.target.value })
+              }
+              value={newInfo.country || userInfo?.user?.country || ""}
+            >
+              <option>{userInfo?.user?.country}</option>
+              {country?.map((item) => (
+                <option key={item.en} value={item.en}>
+                  {item.en}
+                </option>
+              ))}
             </select>
           </div>
           <div className="w-1/2 mt-3">
             <label htmlFor="" className="font-bold">
               City
             </label>
-            <input
-              type="email"
-              required
+            <select
               className="w-full rounded-md mt-2 border-2"
-            />
+              onChange={(e) => setNewInfo({ ...newInfo, city: e.target.value })}
+              value={newInfo.city || userInfo?.user?.city || ""}
+            >
+              <option>{userInfo?.user?.city}</option>
+              {citiesbyCountry?.map((item) => (
+                <option key={item.en} value={item.en}>
+                  {item.en}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className=" w-5/12 mt-3">
@@ -75,8 +139,10 @@ const MyAccountSettings = () => {
           </label>
           <input
             type="text"
+            value={newInfo.phone || userInfo?.user.phone || ""}
             required
             className="w-full rounded-md mt-2 border-2"
+            onChange={(e) => setNewInfo({ ...newInfo, phone: e.target.value })}
           />
         </div>
         <div className="mt-3">
@@ -87,12 +153,22 @@ const MyAccountSettings = () => {
             <textarea
               type="text"
               required
-              className="h-40 rounded-md mt-2 border-2  hover:border-blue-dark"
+              className="h-40 rounded-md mt-2 border-2  hover:border-green-dark"
+              value={newInfo.about || userInfo?.user.about || ""}
+              onChange={(e) =>
+                setNewInfo({ ...newInfo, about: e.target.value })
+              }
             ></textarea>
           </div>
         </div>
       </div>
-      <button className="bg-blue-light text-blue-dark hover:bg-blue-dark hover:text-blue-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4">
+      <button
+        onClick={() => {
+          sendInfo(newInfo);
+          e.prevent.default();
+        }}
+        className="bg-red-warm text-white-500 hover:bg-green-dark hover:text-green-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4"
+      >
         Save Changes
       </button>
     </div>

@@ -25,14 +25,11 @@ import { useNavigate } from "react-router-dom";
 const Card1 = ({item,key}) => {
   const navigate = useNavigate()
   // console.log(item);
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-   
-  };
+  const images = [
+    {img:image1},{img:image2},{img:image3},{img:image4},{img:image1},{img:image2},{img:image3},{img:image4}
+  ]
+  console.log(images);
+
   return (
     <>
     {/* className="xs:m-0 xs:px-0 xs:w-full sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-10 md:px-20" */}
@@ -48,32 +45,19 @@ const Card1 = ({item,key}) => {
             <div className="rounded-lg border shadow-2xl">
               <div className="relative flex h-60 justify-center overflow-hidden rounded-lg">
                 <div className="relative w-full">
-                  <Slider {...settings}>
-                    <div className="relative">
+                 
+                    {images.map((img)=> 
+                    (<div className="relative">
                       <img
                         className="w-full h-[25rem] object-cover"
-                        src={image1}
+                        src={img.img}
                       ></img>
-                    </div>
-                    <div className="relative">
-                      <img
-                        className="w-full h-[25rem] object-cover"
-                        src={image2}
-                      ></img>
-                    </div>
-                    <div className="relative">
-                      <img
-                        className="w-full h-[25rem] object-cover"
-                        src={image3}
-                      ></img>
-                    </div>
-                    <div className="relative">
-                      <img
-                        className="w-full h-[25rem] object-cover"
-                        src={image4}
-                      ></img>
-                    </div>
-                  </Slider>
+                    </div>)
+                    )}
+                    
+                    
+                    
+                 
                 </div>
 
                 <div class="absolute top-0 right-0 px-2 py-1 m-2 rounded-md shadow-2xl">

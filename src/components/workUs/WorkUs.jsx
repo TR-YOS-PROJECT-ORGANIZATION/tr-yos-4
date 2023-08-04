@@ -1,10 +1,39 @@
-import React from "react";
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import image4 from "../../images/business.jpg"
+import image4 from "../../images/business.jpg";
+import axios from "axios";
 
+import { toast } from "react-toastify";
+toast
 
 const WorkUs = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
+
+  const [formEmail, setFormEmail] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendEmail(formEmail);
+    e.target.reset();
+  };
+
+  const sendEmail = async (formEmail) => {
+    try {
+      await axios
+        .post(
+          `/api/v1/record/addemail.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
+          formEmail,
+          { headers: { "Content-Type": "multipart/form-data" } }
+        )
+        .then(({ data }) => setFormEmail(data));
+      toast.success(t("Email sent performed"));
+    } catch (error) {
+      console.log(error);
+      toast.error(t("Email already exists"))
+    }
+  };
+
   return (
     <>
       {/* Section: Design Block */}
@@ -19,22 +48,22 @@ const WorkUs = () => {
                     {t("Are You Already")} <br /> {t("Working With Us?")}
                   </h1>
                   <p className="mb-20">
-                    {t("At vero eos et accusamus et iusto odio dignissimos")} <br />{" "}
-                    {t("ducimus qui blanditiis praesentium voluptatum")} <br />{" "}
+                    {t("At vero eos et accusamus et iusto odio dignissimos")}{" "}
+                    <br /> {t("ducimus qui blanditiis praesentium voluptatum")}{" "}
+                    <br />{" "}
                   </p>
-                  <form>
-                    <label
-                      htmlFor="search"
-                      className="mb-2 text-sm font-medium text-gray-900 sr-only"
-                    >
-                      Search
-                    </label>
+                  <form onSubmit={handleSubmit}>
                     <div className="relative">
                       <input
-                        type="search"
-                        id="search"
+                        type="email"
+                        id="email"
+                        name="email"
+                        onChange={(e) =>
+                          setFormEmail({ ...formEmail, email: e.target.value })
+                        }
+                        defaultValue={""}
                         className="block w-full p-4 pl-5 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Enter your email"
+                        placeholder={t("Enter your email")}
                         required=""
                       />
                       <button
@@ -57,7 +86,6 @@ const WorkUs = () => {
             </div>
           </div>
         </div>
-        
       </section>
     </>
   );

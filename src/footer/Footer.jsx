@@ -1,11 +1,27 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { toastWarnNotify } from "../helper/ToastNotify";
+import SignInModal from "../components/modals/SignInModal";
+import { useState } from "react";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const { currentUser } = useSelector((state) => state.auth);
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleClick = () => {
+    toastWarnNotify("Please Login");
+    setOpenModal(true);
+  };
 
   return (
     <div className="flex flex-col text-center  bg-gray-900">
+      <SignInModal open={openModal} setOpen={setOpenModal} />
+
       <div className="flex justify-evenly mt-8">
         <div className="text-left">
           <h2 className="mb-6 text-md font-semibold text-gray-400 uppercase dark:text-white">
@@ -82,28 +98,60 @@ const Footer = () => {
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
-              <a
-                href="/myProfile"
-                className="hover:underline border rounded p-1"
-              >
-                {t("My Profile")}
-              </a>
+              {!currentUser && (
+                <button
+                  className="hover:underline border rounded p-1"
+                  onClick={() => handleClick()}
+                >
+                  {t("My Profile")}
+                </button>
+              )}
+              {currentUser && (
+                <Link
+                  to="/myProfile"
+                  className="hover:underline border rounded p-1"
+                >
+                  {t("My Profile")}
+                </Link>
+              )}
             </li>
+
             <li className="mb-4">
-              <a
-                href="/myProfile"
-                className="hover:underline border rounded p-1"
-              >
-                {t("My Account")}
-              </a>
+              {!currentUser && (
+                <button
+                  className="hover:underline border rounded p-1"
+                  onClick={() => handleClick()}
+                >
+                  {t("Favourites")}
+                </button>
+              )}
+              {currentUser && (
+                <Link
+                  to="/favourites"
+                  className="hover:underline border rounded p-1"
+                >
+                  {t("Favourites")}
+                </Link>
+              )}
             </li>
+
             <li className="mb-4">
-              <a
-                href="/favourites"
-                className="hover:underline border rounded p-1"
-              >
-                {t("Favorites")}
-              </a>
+              {!currentUser && (
+                <button
+                  className="hover:underline border rounded p-1"
+                  onClick={() => handleClick()}
+                >
+                  {t("Compare")}
+                </button>
+              )}
+              {currentUser && (
+                <Link
+                  to="/compare"
+                  className="hover:underline border rounded p-1"
+                >
+                  {t("Compare")}
+                </Link>
+              )}
             </li>
           </ul>
         </div>

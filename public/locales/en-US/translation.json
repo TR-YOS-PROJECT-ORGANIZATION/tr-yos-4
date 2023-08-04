@@ -37,5 +37,15 @@
     "Price": "Price",
     "Compare": "Compare",
     "Compare Departments": "Compare Departments",
-    "Remove": "Remove"
+    "Remove": "Remove",
+    "year": "year",
+    "You can't compare more than 4 department": "You can't compare more than 4 department",
+    "My Favorite Departments": "My Favorite Departments",
+    "Year":"Year",
+    "Other":"Other",
+    "Language":"Language",
+    "Quota":"Quota",
+    "internships":"internships",
+    "About Department":"About Department",
+    "Active":"Active"
 }

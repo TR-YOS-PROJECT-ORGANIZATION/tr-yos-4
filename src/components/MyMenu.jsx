@@ -1,17 +1,20 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment} from "react";
 import useAuthCall from "../hooks/useAuthCall";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const MyMenu = () => {
   const { logout } = useAuthCall();
+  const {t} = useTranslation();
   return (
     <div className="fixed top-10 right-36  w-32 text-start ">
       <Menu as="div" className="inline-block text-left">
         <div>
           <Menu.Button className="font-bold  w-full rounded-md px-4 py-3 underline  text-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            My Account
+            {t("My Account")}
         
           </Menu.Button>
         </div>
@@ -28,8 +31,8 @@ const MyMenu = () => {
            
             <div className="h-10 flex p-2 bg-white-500 text-center rounded-t-lg hover:bg-slate-300">
               <Menu.Item>
-                <Link to="/MyProfile" className=" bg-white-500 w-full  hover:bg-slate-300">
-                  User Dashboard
+                <Link to="/myProfile" className=" bg-white-500 w-full  hover:bg-slate-300">
+                  {t("User Dashboard")}
                 </Link>
               </Menu.Item>
             </div>
@@ -37,7 +40,7 @@ const MyMenu = () => {
             <div className="h-10 flex  p-2 bg-white-500  text-center  hover:bg-slate-300">
               <Menu.Item>
                 <Link to="/favourites" className=" bg-white-500 w-full  hover:bg-slate-300">
-                  Favorite Departments
+                  {t("Favourite Departments")}
                 </Link>
               </Menu.Item>
             </div>
@@ -45,7 +48,7 @@ const MyMenu = () => {
             <div className="h-10 flex text-center p-2  bg-white-500  hover:bg-slate-300">
               <Menu.Item>
                 <Link to="/compare" className=" bg-white-500 w-full  hover:bg-slate-300">
-                  Compare Departments
+                  {t("Compare Departments")}
                 </Link>
               </Menu.Item>
             </div>
@@ -53,7 +56,7 @@ const MyMenu = () => {
             <div className="h-10 flex rounded-b-lg  hover:bg-slate-300">
               <Menu.Item>
                 <button className=" bg-white-500 w-full  hover:bg-slate-300" onClick={logout}>
-                  Logout
+                  {t("Logout")}
                 </button>
               </Menu.Item>
             </div>

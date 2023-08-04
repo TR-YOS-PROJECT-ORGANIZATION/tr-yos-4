@@ -6,6 +6,8 @@ import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import useInfoCalls from "../../hooks/useInfoCalls";
 import { useSelector } from "react-redux";
+import { Dots } from "react-activity";
+
 
 const DepartmentDetail = () => {
   const { code } = useParams();
@@ -24,6 +26,9 @@ const DepartmentDetail = () => {
   console.log(dept);
   const uni = univercities?.filter((item)=> item.code === dept[0].university.code)
   console.log(uni);
+
+  if(!allDepartments) return <Dots/>
+
   return (
     <div>
       <Slider />
