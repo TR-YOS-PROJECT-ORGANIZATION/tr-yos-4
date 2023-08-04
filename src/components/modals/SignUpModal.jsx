@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
@@ -7,6 +8,7 @@ import useAuthCall from "../../hooks/useAuthCall";
 import { useSelector } from "react-redux";
 import { ErrorMessage } from "formik";
 import close from '../../images/close.png'
+import { useTranslation } from "react-i18next";
 
 export const registerSchema = yup.object().shape({
   name: yup
@@ -33,6 +35,7 @@ export const registerSchema = yup.object().shape({
 const SignUpModal = (props) => {
   const { currentUser } = useSelector((state) => state?.auth);
   const { register } = useAuthCall();
+  const {t} = useTranslation();
 
 
 
@@ -85,7 +88,7 @@ const SignUpModal = (props) => {
 
             </button>
 
-              <p className="text-black font-bold text-lg">Sign Up</p>
+              <p className="text-black font-bold text-lg">{t("Sign Up")}</p>
               <div className="m-5 rounded items-start text-start">
                 <Formik
                   initialValues={{
@@ -114,13 +117,13 @@ const SignUpModal = (props) => {
                   }) => (
                     <Form>
                       <div className="flex flex-col text-black ">
-                        <label className="mt-2 font-bold" htmlFor="name">Username</label>
+                        <label className="mt-2 font-bold" htmlFor="name">{t("Username")}</label>
 
                         <Field
                           className="border border-green-dark my-1 p-1 rounded "
                           id="name"
                           name="name"
-                          placeholder="Enter your username"
+                          placeholder={t("Enter your username")}
                           onBlur={handleBlur}
                           onChange={handleChange}
                           value={values.name}
@@ -132,13 +135,13 @@ const SignUpModal = (props) => {
 
                         {/* <ErrorMessage name="name" /> */}
 
-                        <label className="mt-2 font-bold" htmlFor="email">Email</label>
+                        <label className="mt-2 font-bold" htmlFor="email">{t("Email")}</label>
 
                         <Field
                           className="border border-green-dark my-1 p-1 rounded"
                           id="email"
                           name="email"
-                          placeholder="Enter your e-mail"
+                          placeholder={t("Enter your e-mail")}
                           type="email"
                           onBlur={handleBlur}
                           onChange={handleChange}
@@ -149,13 +152,13 @@ const SignUpModal = (props) => {
                                    
                                    : null}
 
-                        <label className="mt-2 font-bold" htmlFor="password">Password</label>
+                        <label className="mt-2 font-bold" htmlFor="password">{t("Password")}</label>
 
                         <Field
                           className="border border-green-dark my-1 p-1 rounded"
                           id="password1"
                           name="password1"
-                          placeholder="Enter your password"
+                          placeholder={t("Enter your password")}
                           type="password"
                           onBlur={handleBlur}
                           onChange={handleChange}
@@ -169,7 +172,7 @@ const SignUpModal = (props) => {
                           className="border border-green-dark my-3 p-1 rounded"
                           id="password2"
                           name="password2"
-                          placeholder="Enter your password"
+                          placeholder={t("Enter your password")}
                           type="password"
                           onBlur={handleBlur}
                           onChange={handleChange}
@@ -182,7 +185,7 @@ const SignUpModal = (props) => {
                           type="submit"
                           disabled={isSubmitting}
                         >
-                          Submit
+                          {t("Submit")}
                         </button>
                       </div>
                     </Form>

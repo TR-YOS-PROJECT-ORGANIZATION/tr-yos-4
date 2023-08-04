@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Formik, Field, Form } from "formik";
@@ -6,6 +7,8 @@ import useAuthCall from "../../hooks/useAuthCall";
 import { useSelector } from "react-redux";
 import { ErrorMessage } from "formik";
 import close from '../../images/close.png'
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 
 
@@ -49,7 +52,8 @@ const ChangePassword= (props) => {
   const { currentUser } = useSelector((state) => state.auth);
   const userID = currentUser.userID
 
-
+const {t} = useTranslation();
+const lang = i18next.language;
 
   // const copyDeployerWallet = () => {
   //   navigator.clipboard.writeText("0x49AE63056b3A0Be0B166813eE687309Ab653c07c");
@@ -75,13 +79,6 @@ const ChangePassword= (props) => {
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
-          {/* This element is to trick the browser into centering the modal contents. */}
-          {/* <span
-            className="hidden sm:inline-block sm:align-middle sm:h-screen"
-            aria-hidden="true"
-          >
-            &#8203;
-          </span> */}
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -100,7 +97,7 @@ const ChangePassword= (props) => {
 
             </button>
 
-              <p className="text-green-dark font-bold text-lg">Edit Password</p>
+              <p className="text-green-dark font-bold text-lg">{t("Edit Password")}</p>
               <div className="m-5 rounded items-start text-start">
                 <Formik
                   initialValues={{
@@ -130,13 +127,13 @@ const ChangePassword= (props) => {
                     <Form>
                       <div className="flex flex-col text-black ">
 
-                        <label htmlFor="password_current">Password</label>
+                        <label htmlFor="password_current">{t("Password")}</label>
 
                         <Field
                           className="border border-green-dark my-3 p-1 rounded"
                           id="password_current"
                           name="password_current"
-                          placeholder="Enter your password"
+                          placeholder= {t("Enter your password")}
                           type="password"
                           onBlur={handleBlur}
                           onChange={handleChange}
@@ -144,26 +141,26 @@ const ChangePassword= (props) => {
                         />
                         <ErrorMessage name="password_current" />
 
-                        <label htmlFor="password_new1">New Password</label>
+                        <label htmlFor="password_new1">{t("New Password")}</label>
 
                         <Field
                           className="border border-green-dark my-3 p-1 rounded"
                           id="password_new1"
                           name="password_new1"
-                          placeholder="Enter your new password"
+                          placeholder={t("Enter your new password")}
                           type="password"
                           onBlur={handleBlur}
                           onChange={handleChange}
                           value={values.password_new1}
                         />
 
-                        <label htmlFor="password_new2">Confirm New Password</label>
+                        <label htmlFor="password_new2">{t("Confirm New Password")}</label>
 
                         <Field
                           className="border border-green-dark my-3 p-1 rounded"
                           id="password_new2"
                           name="password_new2"
-                          placeholder="Enter your new password again"
+                          placeholder={t("Enter your new password again")}
                           type="password"
                           onBlur={handleBlur}
                           onChange={handleChange}
@@ -177,7 +174,7 @@ const ChangePassword= (props) => {
                           type="submit"
                           disabled={isSubmitting}
                         >
-                          Submit
+                          {t("Submit")}
                         </button>
                       </div>
                     </Form>
