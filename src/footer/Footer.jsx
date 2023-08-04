@@ -19,7 +19,7 @@ const Footer = () => {
   };
 
   return (
-    <div className="flex flex-col text-center  bg-gray-900">
+    <div className="flex flex-col text-center  bg-gray-900 mt-20">
       <SignInModal open={openModal} setOpen={setOpenModal} />
 
       <div className="flex justify-evenly mt-8">

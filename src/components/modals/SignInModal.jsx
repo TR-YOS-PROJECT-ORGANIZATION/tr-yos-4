@@ -36,11 +36,11 @@ const SignInModal = (props) => {
   const open = props.setOpen
 
 
-  useEffect(() => {
-    if (currentUser) {
-      navigate("/");
-    }
-  }, [currentUser]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     navigate("/");
+  //   }
+  // }, [currentUser]);
 
   const copyDeployerWallet = () => {
     navigator.clipboard.writeText("0x49AE63056b3A0Be0B166813eE687309Ab653c07c");
