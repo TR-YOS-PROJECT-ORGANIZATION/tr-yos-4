@@ -104,13 +104,13 @@ const Navbar = () => {
                   onClick={() => setOpenModal(!openModal)}
                   className="border rounded lg:text-sm md:text-sm max-sm:text-xs sm:text-xs  hover:bg-red-retro bg-red-warm text-white-cream px-4 py-2 shadow-md "
                 >
-                  Sign In
+                  {t("Sign In")}
                 </button>
                 <button
                   onClick={() => setOpenUpModal(!openUpModal)}
                   className="border rounded lg:text-sm md:text-sm max-sm:text-xs  sm:text-xs  hover:bg-red-retro bg-red-warm   text-white-cream px-4 py-2 shadow-md"
                 >
-                  Sign Up
+                  {t("Sign Up")}
                 </button>
 
               </div>
