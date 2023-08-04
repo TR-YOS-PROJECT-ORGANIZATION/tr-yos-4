@@ -1,16 +1,22 @@
+/* eslint-disable react/prop-types */
 
+import i18next from "i18next";
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-
+import { useTranslation } from "react-i18next";
 const UniDetailSubmit = ({ dept, uni }) => {
+
+  const lang = i18next.language;
+  const {t} = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [show, setShow] = useState(true);
+  // const [show, setShow] = useState(true);
   console.log(dept);
 
   const mailtoLink = `mailto:${dept[0]?.data?.email}`;
 
 
-  
- 
+
+
 
   return (
     <div className="">
@@ -19,8 +25,7 @@ const UniDetailSubmit = ({ dept, uni }) => {
           <div className="">
             <div className=" p-7 border m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
               <div className="ml-5 text-left font-bold text-blue-950 text-xl">
-                <h4>{dept[0]?.university.en}</h4>
-                {/* <h4>{dept[0]?.faculty.en}</h4> */} 
+                <h4>{lang === "en" ? dept[0]?.university.en : dept[0]?.university.tr}</h4>
                 <span className="text-xs text-slate-500">{dept[0]?.data?.adress && (
                   <i className="fa-solid fa-location-dot"></i>)}
                   <a href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL">
@@ -29,44 +34,36 @@ const UniDetailSubmit = ({ dept, uni }) => {
                 </span>
 
 
-                
+
               </div>
-              {/* <div className=" font-bold text-left ml-5 ">
-                <p className="text-xl text-blue-700 ">{dept[0]?.price}</p>
-                <span className="text-xs text-slate-500">Year</span>
-              </div> */}
 
 
-
-              
             </div>
             {/* other */}
             <div className="gap-2 border w-3/2 m-5 rounded-xl shadow-lg">
               <div className="">
-                <h4 className="ml-6 mt-4 font-bold text-left">Other</h4>
+                <h4 className="ml-6 mt-4 font-bold text-left">{t("Other")}</h4>
               </div>
 
               <div className="p-4 ">
                 <div className="grid-none grid-cols-1 md:grid-cols-2 grid lg:grid-cols-2   divide-x text-center bg-[#E5F8F2] border border-green-300 rounded-xl   divide-dotted divide-green-300">
                   <div className="p-10 ">
-                    <div className="text-xs">Faculties</div>
+                    <div className="text-xs">{t("Faculties")}</div>
                     <div className="font-bold text-[#00A372]">
                       {dept[0]?.language}
                     </div>
                   </div>
                   <div className="p-10 ">
-                    <div className="text-xs">Departments</div>
-
-                   
+                    <div className="text-xs">{t("Departments")}</div>
                   </div>
-                 
+
                 </div>
               </div>
             </div>
             {/* About */}
             <div className="w-3/2 border m-5 rounded-xl text-left shadow-lg">
               <div className=" m-5">
-                <h4 className="font-bold">About Univercities</h4>
+                <h4 className="font-bold">{t("About Univercities")}</h4>
               </div>
               <div className="m-3 ">
                 <p className="text-slate-500 text-xs indent-2 ">
@@ -145,11 +142,11 @@ const UniDetailSubmit = ({ dept, uni }) => {
             <div className="border w-3/2 m-5 rounded-xl shadow-lg">
               <div className="flex justify-between p-5">
                 <div className="">
-                  <h4 className=" font-bold">Other</h4>
+                  <h4 className=" font-bold">{t("Other")}</h4>
                 </div>
                 <div>
                   <button onClick={() => setIsOpen(!isOpen)}>
-                    <i class="fa-solid fa-circle-chevron-down"></i>
+                    <i className="fa-solid fa-circle-chevron-down"></i>
                   </button>
                 </div>
               </div>
@@ -181,23 +178,23 @@ const UniDetailSubmit = ({ dept, uni }) => {
                             version="1.1"
                             id="_x32_"
                             xmlns="http://www.w3.org/2000/svg"
-                            xmlns-xlink="http://www.w3.org/1999/xlink"
+                            xmlnsXlink="http://www.w3.org/1999/xlink"
                             viewBox="0 0 512 512"
-                            xml-space="preserve"
+                            xmlSpace="preserve"
                             className=" w-12 h-12 mb-3 inline-block"
                           >
                             <style type="text/css"></style>
                             <g>
                               <polygon
-                                class="st0"
+                                className="st0"
                                 points="256,381.424 104.628,328.845 0,365.186 256,454.114 512,365.186 407.373,328.845 	"
                               />
                               <polygon
-                                class="st0"
+                                className="st0"
                                 points="256,272.235 104.628,219.655 0,255.996 256,344.924 512,255.996 407.373,219.655 	"
                               />
                               <polygon
-                                class="st0"
+                                className="st0"
                                 points="512,146.806 256,57.886 0,146.806 256,235.734 	"
                               />
                             </g>
@@ -247,7 +244,7 @@ const UniDetailSubmit = ({ dept, uni }) => {
         {/* add favourite and send message */}
         <div className="w-2/3 mt-8 ">
           {/* <div className="border p-4 rounded-xl mb-12 shadow-lg"> */}
-            {/* <button
+          {/* <button
               style={{
                 backgroundColor: !show && "#00A372",
                 borderStyle: !show && "none",
@@ -277,119 +274,119 @@ const UniDetailSubmit = ({ dept, uni }) => {
 
 
 
-<div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
-      <img
-  src={item.logo}
-  alt=""
-  onError={
-    (e)=>{
-      e.target.src="https://img.freepik.com/premium-vector/luxury-university-logo-design_139869-120.jpg?w=740"
-      e.target.alt="geçersiz"
+                  <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
+                    <img
+                      src={item.logo}
+                      alt=""
+                      onError={
+                        (e) => {
+                          e.target.src = "https://img.freepik.com/premium-vector/luxury-university-logo-design_139869-120.jpg?w=740"
+                          e.target.alt = "geçersiz"
 
-    }
-  }
-//   className="w-full h-full object-cover cursor-pointer hover:shadow-lg"
-// onClick={()=> navigate(`/univercitiesDetail/${item?.code}`,{state:item})}
-/>
+                        }
+                      }
+                    //   className="w-full h-full object-cover cursor-pointer hover:shadow-lg"
+                    // onClick={()=> navigate(`/univercitiesDetail/${item?.code}`,{state:item})}
+                    />
 
-      </div>
+                  </div>
 
 
                   <h1 className="text-lg font-semibold text-gray-800 capitalize dark:text-white lg:text-lg">
-                    {item?.en}
+                    {lang === "en" ? item?.en : item?.tr}
                   </h1>
-                  {dept[0]?.city.en && (
-                  <div className="flex mt-2 justify-center border-b-2 w-full">
-                    <svg
-                      className="h-4 w-4 text-gray-400 inline-block"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
-                        fill="#0D0D0D"
-                      ></path>
-                    </svg>
-                    <p className="ml-1 text-sm text-gray-500">
-                      {dept[0]?.city.en}
-                    </p>
-                  </div>)}
+                  {lang === "en" ? dept[0]?.city.en : dept[0]?.city.tr && (
+                    <div className="flex mt-2 justify-center border-b-2 w-full">
+                      <svg
+                        className="h-4 w-4 text-gray-400 inline-block"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                          fill="#0D0D0D"
+                        ></path>
+                      </svg>
+                      <p className="ml-1 text-sm text-gray-500">
+                        {lang === "en" ? dept[0]?.city.en : dept[0]?.city.tr}
+                      </p>
+                    </div>)}
 
                   <div className="mt-6 space-y-8 md:mt-8">
                     {item?.data?.phone && (
-                    <p className="flex items-start -mx-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6 mx-2 text-blue-500 dark:text-blue-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                        />
-                      </svg>
-                      <a
-                        href={`tel:${item?.data?.phone}`}
-                        className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
-                      >
-                        {item?.data?.phone}
-                      </a>
-                      
-                    </p>)} {item?.data?.email &&(
-                    <p className="flex items-start -mx-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6 mx-2 text-blue-500 dark:text-blue-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                        />
-                      </svg>
+                      <p className="flex items-start -mx-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-6 h-6 mx-2 text-blue-500 dark:text-blue-400"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                          />
+                        </svg>
+                        <a
+                          href={`tel:${item?.data?.phone}`}
+                          className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
+                        >
+                          {item?.data?.phone}
+                        </a>
+
+                      </p>)} {item?.data?.email && (
+                        <p className="flex items-start -mx-2">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="w-6 h-6 mx-2 text-blue-500 dark:text-blue-400"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                            />
+                          </svg>
 
 
 
-                      <a
-                        href={mailtoLink}
-                        className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
-                      >
-                        {item?.data?.email}
-                      </a>
-                    </p>)}
+                          <a
+                            href={mailtoLink}
+                            className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
+                          >
+                            {item?.data?.email}
+                          </a>
+                        </p>)}
                     {item?.data?.web && (
-                    <p className="flex items-start -mx-2">
-                      <svg
-                        width="20px"
-                        height="20px"
-                        className="w-6 h-6 mx-2 text-blue-500 dark:text-blue-400"
-                        viewBox="0 0 73.768 73.768"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          id="Path_10"
-                          data-name="Path 10"
-                          d="M117.606,385.2a36.884,36.884,0,1,0,36.884,36.884A36.926,36.926,0,0,0,117.606,385.2Zm33.846,35.383H136.366a48.681,48.681,0,0,0-3.047-16.068,36.786,36.786,0,0,0,8.781-5.808A33.752,33.752,0,0,1,151.452,420.586Zm-32.346-31.072a36.534,36.534,0,0,1,6.069,6.387,39.467,39.467,0,0,1,4.176,7.028,33.843,33.843,0,0,1-10.245,2.061Zm3.534-.935a33.762,33.762,0,0,1,17.292,8.051,33.809,33.809,0,0,1-7.772,5.116A41.252,41.252,0,0,0,122.64,388.579ZM110.19,395.9a36.615,36.615,0,0,1,5.916-6.261v15.35a33.789,33.789,0,0,1-10.116-2.013A39.5,39.5,0,0,1,110.19,395.9Zm-7.013,5.906a33.8,33.8,0,0,1-7.9-5.177,33.757,33.757,0,0,1,17.469-8.074A41.244,41.244,0,0,0,103.177,401.807Zm12.929,6.183v12.6H102a45.607,45.607,0,0,1,2.835-14.838A36.83,36.83,0,0,0,116.106,407.99Zm0,15.6v12.386a36.8,36.8,0,0,0-11.018,2.146A42.373,42.373,0,0,1,102,423.587Zm0,15.386v15.252a47.106,47.106,0,0,1-9.792-13.361A33.819,33.819,0,0,1,116.106,438.973Zm-2.86,16.708a33.755,33.755,0,0,1-18.084-8.24,33.786,33.786,0,0,1,8.306-5.426A48.955,48.955,0,0,0,113.246,455.681Zm5.86-1.313v-15.4a33.8,33.8,0,0,1,9.922,1.94A47.081,47.081,0,0,1,119.106,454.368Zm12.762-12.294a33.846,33.846,0,0,1,8.182,5.367,33.759,33.759,0,0,1-17.909,8.217A48.888,48.888,0,0,0,131.868,442.074Zm-12.762-6.1V423.587h14.257a42.352,42.352,0,0,1-3.106,14.582A36.818,36.818,0,0,0,119.106,435.973Zm0-15.386v-12.6a36.806,36.806,0,0,0,11.4-2.291,45.562,45.562,0,0,1,2.854,14.888ZM93.112,398.711a36.8,36.8,0,0,0,8.91,5.871A48.7,48.7,0,0,0,99,420.587H83.76A33.757,33.757,0,0,1,93.112,398.711ZM83.76,423.587H99a45.675,45.675,0,0,0,3.256,15.683A36.807,36.807,0,0,0,93,445.35,33.755,33.755,0,0,1,83.76,423.587Zm58.447,21.764a36.8,36.8,0,0,0-9.122-6.022,45.69,45.69,0,0,0,3.279-15.742h15.088A33.759,33.759,0,0,1,142.207,445.351Z"
-                          transform="translate(-80.722 -385.203)"
-                          fill="#0c2c67"
-                        />
-                      </svg>
-                      <a
-                        href={item?.data?.web}
-                        className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
-                      >
-                        {item?.data?.web}
-                      </a>
-                    </p>) }
+                      <p className="flex items-start -mx-2">
+                        <svg
+                          width="20px"
+                          height="20px"
+                          className="w-6 h-6 mx-2 text-blue-500 dark:text-blue-400"
+                          viewBox="0 0 73.768 73.768"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            id="Path_10"
+                            data-name="Path 10"
+                            d="M117.606,385.2a36.884,36.884,0,1,0,36.884,36.884A36.926,36.926,0,0,0,117.606,385.2Zm33.846,35.383H136.366a48.681,48.681,0,0,0-3.047-16.068,36.786,36.786,0,0,0,8.781-5.808A33.752,33.752,0,0,1,151.452,420.586Zm-32.346-31.072a36.534,36.534,0,0,1,6.069,6.387,39.467,39.467,0,0,1,4.176,7.028,33.843,33.843,0,0,1-10.245,2.061Zm3.534-.935a33.762,33.762,0,0,1,17.292,8.051,33.809,33.809,0,0,1-7.772,5.116A41.252,41.252,0,0,0,122.64,388.579ZM110.19,395.9a36.615,36.615,0,0,1,5.916-6.261v15.35a33.789,33.789,0,0,1-10.116-2.013A39.5,39.5,0,0,1,110.19,395.9Zm-7.013,5.906a33.8,33.8,0,0,1-7.9-5.177,33.757,33.757,0,0,1,17.469-8.074A41.244,41.244,0,0,0,103.177,401.807Zm12.929,6.183v12.6H102a45.607,45.607,0,0,1,2.835-14.838A36.83,36.83,0,0,0,116.106,407.99Zm0,15.6v12.386a36.8,36.8,0,0,0-11.018,2.146A42.373,42.373,0,0,1,102,423.587Zm0,15.386v15.252a47.106,47.106,0,0,1-9.792-13.361A33.819,33.819,0,0,1,116.106,438.973Zm-2.86,16.708a33.755,33.755,0,0,1-18.084-8.24,33.786,33.786,0,0,1,8.306-5.426A48.955,48.955,0,0,0,113.246,455.681Zm5.86-1.313v-15.4a33.8,33.8,0,0,1,9.922,1.94A47.081,47.081,0,0,1,119.106,454.368Zm12.762-12.294a33.846,33.846,0,0,1,8.182,5.367,33.759,33.759,0,0,1-17.909,8.217A48.888,48.888,0,0,0,131.868,442.074Zm-12.762-6.1V423.587h14.257a42.352,42.352,0,0,1-3.106,14.582A36.818,36.818,0,0,0,119.106,435.973Zm0-15.386v-12.6a36.806,36.806,0,0,0,11.4-2.291,45.562,45.562,0,0,1,2.854,14.888ZM93.112,398.711a36.8,36.8,0,0,0,8.91,5.871A48.7,48.7,0,0,0,99,420.587H83.76A33.757,33.757,0,0,1,93.112,398.711ZM83.76,423.587H99a45.675,45.675,0,0,0,3.256,15.683A36.807,36.807,0,0,0,93,445.35,33.755,33.755,0,0,1,83.76,423.587Zm58.447,21.764a36.8,36.8,0,0,0-9.122-6.022,45.69,45.69,0,0,0,3.279-15.742h15.088A33.759,33.759,0,0,1,142.207,445.351Z"
+                            transform="translate(-80.722 -385.203)"
+                            fill="#0c2c67"
+                          />
+                        </svg>
+                        <a
+                          href={item?.data?.web}
+                          className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
+                        >
+                          {item?.data?.web}
+                        </a>
+                      </p>)}
                     <div className="flex items-end -mx-2">
                       <button className="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-500 rounded-md hover:bg-green-400 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50">
                         Send Message

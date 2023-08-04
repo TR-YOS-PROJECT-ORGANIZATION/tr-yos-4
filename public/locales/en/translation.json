@@ -2,7 +2,7 @@
     "Home": "Home",
     "Universities": "Universities",
     "Departments": "Departments",
-    "All Departments": "All Departments",
+    "All Departments":"All Departments",
     "About": "About",
     "Sign In": "Sign In",
     "Sign Up": "Sign Up",
@@ -48,6 +48,17 @@
     "internships": "internships",
     "About Department": "About Department",
     "Active": "Active",
-    "Email already exists":"Email already exists"
+    "Email already exists":"Email already exists",
+    "Select Univercity":"Select Univercity",
+    "Min Price...": "Min Price...",
+    "Max Price...": "Max Price...",
+    "User Dashboard":"User Dashboard",
+    "Favourite Departments":"Favourite Departments",
+    "Logout":"Logout",
+    "Enter your email":"Enter your email",
+    "Favourites":"Favourites",
+    "Faculty":"Faculty",
+    "Department":"Department",
+    "About Univercities":"About Univercities"
 
 }

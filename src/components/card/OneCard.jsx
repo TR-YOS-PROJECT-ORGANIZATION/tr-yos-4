@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from "react";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import Slider from "react-slick";
@@ -59,8 +61,6 @@ const OneCard = ({ item }) => {
 
   }
 
-
-
   //To Add and Remove from Favourite List///
 
   function addRemoveFavouriteList() {
@@ -73,9 +73,10 @@ const OneCard = ({ item }) => {
     }
   }
 
-  const handleClickCompare = () => {
-    compareList?.departments?.length === 5 && toastWarnNotify("You can make up to 4 comparisons.")
 
+  const handleClickCompare = (e) => {
+    e.preventDefault();
+    compareList?.departments?.length === 5 && toastWarnNotify("You can make up to 4 comparisons.");
     if (currentUser) {
       return addRemoveCompareList(item.id);
     }
@@ -105,53 +106,33 @@ const OneCard = ({ item }) => {
     heartIcon = "#fff";
   }
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
   return (
     <>
       <div
         key={item.id}
-        className="xs:m-0 sm:m-auto relative mx-auto w-full max-w-sm pt-6 ml-6 md:px-2 md:mx-2 "
+        className="xs:m-0 sm:m-auto relative mx-auto w-full h-full  max-w-sm pt-6 ml-6 md:px-2 md:mx-2 "
       >
         {!currentUser && (
           <SignInModal open={openModal} setOpen={setOpenModal} />
         )}
-        <div className="relative inline-block w-full transform transition-transform duration-300 ease-in-out">
-          <div className="rounded-lg border shadow-2xl">
+        <div className="relative inline-block w-full h-full transform transition-transform duration-300 ease-in-out">
+          <div className="rounded-lg border shadow-2xl h-full">
             <div className="relative flex h-60 justify-center overflow-hidden rounded-lg order">
-              <div className="relative w-full">
-                <Slider {...settings}>
-                  <div className="relative">
-                    <img
-                      className="w-full h-[25rem] object-cover"
-                      src={item?.dummyImage || image1}
-                    ></img>
-                  </div>
-                  <div className="relative">
-                    <img
-                      className="w-full h-[25rem] object-cover"
-                      src={image2}
-                    ></img>
-                  </div>
-                  <div className="relative">
-                    <img
-                      className="w-full h-[25rem] object-cover"
-                      src={image3}
-                    ></img>
-                  </div>
-                  <div className="relative">
-                    <img
-                      className="w-full h-[25rem] object-cover"
-                      src={image4}
-                    ></img>
-                  </div>
-                </Slider>
+              <div
+                className="relative w-full cursor-pointer"
+                onClick={(e) =>
+                  {e.preventDefault();
+                  navigate(`/departmentDetail/${item.department.code}`, {
+                    state: item,
+                  })}
+                }
+              >
+                <div className="relative">
+                  <img
+                    className="w-full h-[25rem] object-cover"
+                    src={item?.dummyImage || image1}
+                  ></img>
+                </div>
               </div>
               <button
                 onClick={handleClickFavourite}
@@ -184,7 +165,7 @@ const OneCard = ({ item }) => {
                 <div className="flex text-left ml-3">
                   <div className="relative">
                     <h2
-                      className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg"
+                      className="line-clamp-1 text-base font-medium text-gray-800 md:text-lg cursor-pointer"
                       title="New York"
                       onClick={() =>
                         navigate(`/departmentDetail/${item.department.code}`, {

@@ -1,4 +1,5 @@
 
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import UniDetailSlider from "react-slick";
 
@@ -9,17 +10,6 @@ import image3 from "../../images/unidet4.jpeg"
 import image4 from "../../images/unidet3.jpeg"
 
 
-
-// function Arrow(props) {
-//   const { className, style, onClick } = props;
-//   return (
-//     <div
-//       className={className}
-//       style={{ ...style, display: "inline", background: "red" }}
-//       onClick={onClick}
-//     />
-//   );
-// }
 const UniSlider = () => {
   const settings = {
     dots: false,
@@ -27,8 +17,6 @@ const UniSlider = () => {
     speed: 600,
     slidesToShow: 2,
     slidesToScroll: 1,
-    
-    // initialSlide: 0,
     
   };
   return (
