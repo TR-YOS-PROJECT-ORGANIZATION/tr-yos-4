@@ -284,7 +284,7 @@ const {t} = useTranslation();
           </div>
 
           {/* send message */}
-          {uni.map((item, id) => (
+          {uni?.map((item, id) => (
             <section
               key={id}
               className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-lg"
