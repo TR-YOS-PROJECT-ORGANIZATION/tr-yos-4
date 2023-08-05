@@ -11,10 +11,10 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   const [citiesbyCountry, setCitiesbyCountry] = useState();
 
   const [newInfo, setNewInfo] = useState({});
-const {t} = useTranslation();
-const lang = i18next.language;
-  const filteredCountry = country?.filter(
-    (item) => lang === "en" ? item.en === newInfo.country : item.tr === newInfo.country
+  const { t } = useTranslation();
+  const lang = i18next.language;
+  const filteredCountry = country?.filter((item) =>
+    lang === "en" ? item.en === newInfo.country : item.tr === newInfo.country
   );
 
   const getCountry = async () => {
@@ -114,7 +114,10 @@ const lang = i18next.language;
             >
               <option>{userInfo?.user?.country}</option>
               {country?.map((item) => (
-                <option key={lang === "en" ? item.en : item.tr} value={lang === "en" ? item.en : item.tr}>
+                <option
+                  key={lang === "en" ? item.en : item.tr}
+                  value={lang === "en" ? item.en : item.tr}
+                >
                   {lang === "en" ? item.en : item.tr}
                 </option>
               ))}
@@ -131,7 +134,10 @@ const lang = i18next.language;
             >
               <option>{userInfo?.user?.city}</option>
               {citiesbyCountry?.map((item) => (
-                <option key={lang === "en" ? item.en : item.tr} value={lang === "en" ? item.en : item.tr}>
+                <option
+                  key={lang === "en" ? item.en : item.tr}
+                  value={lang === "en" ? item.en : item.tr}
+                >
                   {lang === "en" ? item.en : item.tr}
                 </option>
               ))}
