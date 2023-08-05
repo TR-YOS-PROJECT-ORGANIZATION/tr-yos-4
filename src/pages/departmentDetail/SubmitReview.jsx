@@ -15,6 +15,8 @@ const SubmitReview = ({ dept, uni }) => {
   const {favouriteList}=useSelector((state)=> state.card)
   const isFavourited = favouriteList?.departments?.includes(dept[0]?.id)
   const {currentUser}= useSelector((state)=> state.auth)
+  const {t} = useTranslation()
+  const lang = i18next.language;
 
   function addRemoveFavouriteList() {
     const id = dept[0]?.id;
@@ -34,8 +36,7 @@ const SubmitReview = ({ dept, uni }) => {
 
   const mailtoLink = `mailto:${dept[0]?.data?.email}`;
 
-const lang= i18next.language;
-const {t} = useTranslation();
+
   return (
     <div className="">
       <div className="flex-none lg:flex  mt-8 w-5/6 m-auto">
@@ -47,40 +48,40 @@ const {t} = useTranslation();
                 <h4>{lang == "en" ? dept[0]?.faculty.en : dept[0]?.faculty.tr}</h4>
                 <span className="text-xs text-slate-500">
                   <i className="fa-solid fa-location-dot"></i>
-                  <a href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL">
+                  <a href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL" className="ml-2">
                     {dept[0]?.data?.adress}
                   </a>
                 </span>
               </div>
-              <div className=" font-bold text-left ml-5 ">
+              <div className=" font-bold text-auto ml-5  ">
                 <p className="text-xl text-blue-700 ">{dept[0]?.price}</p>
-                <span className="text-xs text-slate-500">{t("Year")}</span>
+                <span className="text-xs text-slate-500 ">/{t("Year")}</span>
               </div>
             </div>
             {/* other */}
-            <div className="gap-2 border w-3/2 m-5 rounded-xl shadow-lg">
+            <div className="gap-2 border  w-3/2 m-5 rounded-xl shadow-lg">
               <div className="">
                 <h4 className="ml-6 mt-4 font-bold text-left">{t("Other")}</h4>
               </div>
 
-              <div className="p-4 ">
-                <div className="grid-none grid-cols-1 md:grid-cols-2 grid lg:grid-cols-4   divide-x text-center bg-[#E5F8F2] border border-green-300 rounded-xl   divide-dotted divide-green-300">
-                  <div className="p-10 ">
+              <div className="p-4">
+                <div className="grid-none grid-cols-1 md:grid-cols-2 grid lg:grid-cols-4 h-28 divide-x text-center bg-[#E5F8F2] border border-green-300 rounded-xl   divide-dotted divide-green-300">
+                  <div className="p-8 h-28 ">
                     <div className="text-xs">{t("Language")}</div>
-                    <div className="font-bold text-[#00A372]">
-                      {dept[0]?.language}
+                    <div className="font-bold text-2xl text-[#00A372]">
+                    {lang === "en" ? (dept[0]?.language === "1" ? "Turkish" : dept[0]?.language === "2" ? "English" : ""):(dept[0]?.language === "1" ? "Türkçe" : dept[0]?.language === "2" ? "İngilizce" : "")}
                     </div>
                   </div>
-                  <div className="p-10 ">
+                  <div className="p-8 h-28">
                     <div className="text-xs">{t("Year")}</div>
 
-                    <div className="font-bold text-[#00A372]">4</div>
+                    <div className="font-bold text-2xl text-[#00A372]">4</div>
                   </div>
-                  <div className="p-10 ">
+                  <div className="p-8 h-28 ">
                     <div className="text-xs">{t("Quota")}</div>
-                    <div className="font-bold text-[#00A372]">40</div>
+                    <div className="font-bold text-2xl text-[#00A372]">40</div>
                   </div>
-                  <div className="p-10  ">
+                  <div className="p-8 h-28 ">
                     <div className="text-xs">{t("internships")}</div>
                     <div className="font-bold text-[#00A372]"></div>
                   </div>
@@ -94,72 +95,7 @@ const {t} = useTranslation();
               </div>
               <div className="m-3 ">
                 <p className="text-slate-500 text-xs indent-2 ">
-                  University School of Medicine was established in
-                  2007 and accepted its first students into the academic year
-                  starting in 2009 following a two year period where the
-                  curriculum was devised. <br />
-                  The school was initially established on a modest campus
-                  located in Maltepe. In 2013, it moved to the purpose-built
-                  Kerem Aydınlar Campus, one of the most developed science
-                  campuses in Turkey. The campus features a Center of Advanced
-                  Simulation and Education (CASE) while practical applications
-                  take place at Acıbadem Atakent and Acıbadem Maslak Education
-                  and Research Hospitals and the Education Research Regions
-                  whose affiliation with the Council of Higher Education (YÖK)
-                  is complete. <br />
-                  Education at the School of Medicine is in English and our
-                  education program features three phases. Phase I is integrated
-                  Basic and Clinical Sciences, Phase II is Clinical Clerkships
-                  and Phase III is Internships.Our education is based on an
-                  integrated curriculum. <br />
-                  In the program for Phase I systems in organisms ranging from
-                  the simplest units such as cells to more complex systems
-                  including pathologies are taught as a whole. Phase I also
-                  includes Clinical Medicine and Professional Skills (CMPS)
-                  which is a program designed to be an initial introduction to
-                  medical professionalism providing students with relevant
-                  knowledge and skills. This program includes applied
-                  communication courses designed to help students with honing
-                  their skills prior to meeting patients during the Clinical
-                  Clerkship phase. Additionally, Phase I is enriched with
-                  practical applications at Family and Society Health Centers.
-                  This phase involves training settings which support the
-                  development of intellectual skills and human values. <br />
-                  During the 1-year Clinical Clerkships of Phase II, students
-                  continue to develop their existing clinical knowledge and
-                  skills by caring for inpatients and outpatients in a hospital
-                  setting. <br />
-                  During the 1-year Internship of Phase III students undertake
-                  the responsibility of patient care in a hospital or primary
-                  care setting under the supervision of teaching staff where
-                  they are able to apply their knowledge and skill in full.{" "}
-                  <br />
-                  Students develop their clinical skills through participation
-                  in programs at the Center of Advanced Simulation and Education
-                  (CASE) for six terms. <br />
-                  Our faculty boasts a strong academic staff. Our mission is to
-                  ensure young people from Turkey and around the world who
-                  choose to study medicine at our establishment are nurtured to
-                  become universal physicians who are sensitive to the needs of
-                  the society they live in and the world, who fully comprehend
-                  the importance of knowledge and academic thought, who are
-                  curious and inquisitive, with an excellent command of
-                  technology. We strive to ensure our students understand that
-                  patients are our priority, who are humanitarian, who have
-                  excellent communication skills and who respect their fellow
-                  medical professional co-workers and who have embraced the
-                  importance of ethical values and team work. <br />
-                  University School of Medicine invests in science and
-                  encourages its students to carry out research and publish
-                  research papers. We emphasize the importance of training in
-                  society in addition to internships and we aim to train
-                  universal physicians who strive for great achievements in all
-                  fields of medicine on a national and international scale. We
-                  are proud of the superior levels of competence and awareness
-                  displayed by our graduates in specialist programs in the field
-                  of primary healthcare. We continue to stride confidently
-                  towards our goal of training the best physicians in Turkey.{" "}
-                  <br />
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Si quicquam extra virtutem habeatur in bonis. In qua si nihil est praeter rationem, sit in una virtute finis bonorum; Sed haec in pueris; Namque ii horum posteri meliores illi quidem mea sententia quam reliquarum philosophi disciplinarum, sed ita degenerant, ut ipsi ex se nati esse videantur. Quod etsi ingeniis magnis praediti quidam dicendi copiam sine ratione consequuntur, ars tamen est dux certior quam natura. Duo Reges: constructio interrete. Haec est nec omnia spernentis praeter virtutem et virtutem ipsam suis laudibus amplificantis oratio, denique haec est undique completa et perfecta explicatio summi boni. Voluptatem cum summum bonum diceret, primum in eo ipso parum vidit, deinde hoc quoque alienum; </p><br/><p>Et ego: Piso, inquam, si est quisquam, qui acute in causis videre soleat quae res agatur. Etsi ea quidem, quae adhuc dixisti, quamvis ad aetatem recte isto modo dicerentur. Ergo infelix una molestia, fellx rursus, cum is ipse anulus in praecordiis piscis inventus est? Facit enim ille duo seiuncta ultima bonorum, quae ut essent vera, coniungi debuerunt; Cum praesertim illa perdiscere ludus esset. Quibus natura iure responderit non esse verum aliunde finem beate vivendi, a se principia rei gerendae peti; Illa enim, quae prosunt aut quae nocent, aut bona sunt aut mala, quae sint paria necesse est. Quo modo igitur, inquies, verum esse poterit omnia referri ad summum bonum, si amicítiae, si propinquitates, si reliqua externa summo bono non continentur? Quasi vero aut concedatur in omnibus stultis aeque magna esse vitia, et eadem inbecillitate et inconstantia L. Ergo in bestiis erunt secreta e voluptate humanarum quaedam simulacra virtutum, in ipsis hominibus virtus nisi voluptatis causa nulla erit? Quid tibi, Torquate, quid huic Triario litterae, quid historiae cognitioque rerum, quid poetarum evolutio, quid tanta tot versuum memoria voluptatis affert? Summum ením bonum exposuit vacuitatem doloris; Hoc dictum in una re latissime patet, ut in omnibus factis re, non teste moveamur. Satis est tibi in te, satis in legibus, satis in mediocribus amicitiis praesidii. </p>"
                 </p>
               </div>
             </div>
@@ -169,7 +105,7 @@ const {t} = useTranslation();
             <div className="border w-3/2 m-5 rounded-xl shadow-lg">
               <div className="flex justify-between p-5">
                 <div className="">
-                  <h4 className=" font-bold">{t("Other")}</h4>
+                  <h4 className=" font-bold">{t("Basic Detail")}</h4>
                 </div>
                 <div>
                   <button onClick={() => setIsOpen(!isOpen)}>
@@ -217,11 +153,11 @@ const {t} = useTranslation();
                                 points="256,381.424 104.628,328.845 0,365.186 256,454.114 512,365.186 407.373,328.845 	"
                               />
                               <polygon
-                                class="st0"
+                                className="st0"
                                 points="256,272.235 104.628,219.655 0,255.996 256,344.924 512,255.996 407.373,219.655 	"
                               />
                               <polygon
-                                class="st0"
+                                className="st0"
                                 points="512,146.806 256,57.886 0,146.806 256,235.734 	"
                               />
                             </g>
@@ -279,7 +215,7 @@ const {t} = useTranslation();
               className=" bg-red-200 border-2 border-red-warm py-3 p-3 rounded-xl hover:bg-red-warm hover:text-white-500 "
               onClick={handleClickFavourite}
             >
-              {lang ==="en" ? (!isFavourited ? "Add Favourite" : "Remove Favourite"): (!isFavourited ? "Favoriye Ekle" : "Favoriden Çıkar") }
+              {lang == "en" ? (!isFavourited ? "Add Favourite" : "Remove Favourite"): (!isFavourited ? "Favoriye Ekle" : "Favoriden Çıkar") }
             </button>
           </div>
 
