@@ -42,6 +42,7 @@ const SignInModal = (props) => {
 
 
 
+
   // useEffect(() => {
   //   if (currentUser) {
   //     navigate("/");
