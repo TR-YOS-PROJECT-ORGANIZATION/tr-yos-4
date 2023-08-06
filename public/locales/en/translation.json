@@ -82,7 +82,17 @@
     "Username":"Username",
     "Enter your username":"Enter your username",
     "Previous":"Previous",
-    "Next":"Next"
+    "Next":"Next",
+    "Email sent performed":"Email sent performed",
+    "Register performed":"Register performed",
+    "Register can not be performed":"Register can not be performed",
+    "Login performed":"Login performed",
+    "Login can not be performed":"Login can not be performed",
+    "Logout performed":"Logout performed",
+    "Please Login":"Please Login",
+    "Password changed successfully":"Password changed successfully",
+    "Change password can not be performed":"Change password can not be performed",
+    "User information updated":"User information updated"
     
 
 }
