@@ -90,7 +90,7 @@ const useCardCalls = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios.get(
-        `https://tr-yös.com/api/v1/users/allcompares.php?user_id=${currentUser.userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
+        `https://tr-yös.com/api/v1/users/allcompares.php?user_id=${currentUser?.userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
       dispatch(getCompareListSuccess(data));
     } catch (error) {
