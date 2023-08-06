@@ -6,19 +6,14 @@ import { useSelector } from "react-redux";
 import useInfoCalls from "../../hooks/useInfoCalls";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-
 const MyProfile = () => {
   const { currentUser } = useSelector((state) => state.auth);
   const { getUserInfo } = useInfoCalls();
   const {t} = useTranslation();
-
   useEffect(() => {
-    getUserInfo(currentUser?.userID);
+    getUserInfo(currentUser?.user.userId);
   }, [currentUser]);
-
   const { userInfo } = useSelector((state) => state.info);
-
-
   return (
     <div>
       <div className="bg-green-dark text-white-cream w-full flex-auto h-28 flex items-center justify-start text-5xl pl-20 sm:w-full xs:w-full">
