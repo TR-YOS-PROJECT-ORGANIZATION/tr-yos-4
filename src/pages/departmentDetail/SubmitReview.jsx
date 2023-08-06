@@ -11,11 +11,12 @@ const SubmitReview = ({ dept, uni }) => {
   const [isOpen, setIsOpen] = useState(false);
   // const [show, setShow] = useState(true);
   console.log(dept);
-  const {removeFromFavourites, moveToFavourites}= useCardCalls();
-  const {favouriteList}=useSelector((state)=> state.card)
+  const { removeFromFavourites, moveToFavourites } = useCardCalls();
+  const { favouriteList } = useSelector((state) => state.card)
   const isFavourited = favouriteList?.departments?.includes(dept[0]?.id)
-  const {currentUser}= useSelector((state)=> state.auth)
-
+  const { currentUser } = useSelector((state) => state.auth)
+  const { t } = useTranslation();
+  const lang = i18next.language;
   function addRemoveFavouriteList() {
     const id = dept[0]?.id;
 
@@ -24,18 +25,18 @@ const SubmitReview = ({ dept, uni }) => {
     } else {
       moveToFavourites(id);
     }
-  };
+  }
 
   const handleClickFavourite = (e) => {
     e.preventDefault();
-    currentUser ? addRemoveFavouriteList(dept[0].id) : toastWarnNotify("Please Login")
+    currentUser ? addRemoveFavouriteList(dept[0].id) : toastWarnNotify(t("Please Login"))
 
   };
 
   const mailtoLink = `mailto:${dept[0]?.data?.email}`;
 
-const lang= i18next.language;
-const {t} = useTranslation();
+
+
   return (
     <div className="">
       <div className="flex-none lg:flex  mt-8 w-5/6 m-auto">
@@ -279,7 +280,7 @@ const {t} = useTranslation();
               className=" bg-red-200 border-2 border-red-warm py-3 p-3 rounded-xl hover:bg-red-warm hover:text-white-500 "
               onClick={handleClickFavourite}
             >
-              {lang ==="en" ? (!isFavourited ? "Add Favourite" : "Remove Favourite"): (!isFavourited ? "Favoriye Ekle" : "Favoriden Çıkar") }
+              {lang === "en" ? (!isFavourited ? "Add Favourite" : "Remove Favourite") : (!isFavourited ? "Favoriye Ekle" : "Favoriden Çıkar")}
             </button>
           </div>
 
@@ -299,7 +300,7 @@ const {t} = useTranslation();
                     />
                   </div>
                   <h1 className="text-lg font-semibold text-gray-800 capitalize dark:text-white lg:text-lg">
-                    {lang ==="en" ? item?.en : item?.tr}
+                    {lang === "en" ? item?.en : item?.tr}
                   </h1>
                   <div className="flex mt-2 justify-center border-b-2 w-full">
                     <svg
@@ -314,7 +315,7 @@ const {t} = useTranslation();
                       ></path>
                     </svg>
                     <p className="ml-1 text-sm text-gray-500">
-                      { lang ==="en" ? dept[0]?.city.en : dept[0]?.city.tr}
+                      {lang === "en" ? dept[0]?.city.en : dept[0]?.city.tr}
                     </p>
                   </div>
 

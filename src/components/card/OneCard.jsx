@@ -25,7 +25,7 @@ const OneCard = ({ item }) => {
   } = useCardCalls();
 
   const { compareList, favouriteList } = useSelector((state) => state?.card);
-
+const lang = i18next.language;
   const isInCompare = compareList
     ? compareList?.departments.includes(item?.id)
     : false;
@@ -76,11 +76,11 @@ const OneCard = ({ item }) => {
 
   const handleClickCompare = (e) => {
     e.preventDefault();
-    compareList?.departments?.length === 5 && toastWarnNotify("You can make up to 4 comparisons.");
+    compareList?.departments?.length === 5 && toastWarnNotify(lang === "en" ? "You can make up to 4 comparisons." : "4 ürün karşılaştırabilirsiniz");
     if (currentUser) {
       return addRemoveCompareList(item.id);
     }
-    toastWarnNotify("Please Login");
+    toastWarnNotify(lang === "en" ? "Please Login" : "Lütfen Giriş Yapın");
     setOpenModal(true);
   };
 
@@ -91,7 +91,7 @@ const OneCard = ({ item }) => {
       return addRemoveFavouriteList(item.id);
 
     }
-    toastWarnNotify("Please Login");
+    toastWarnNotify(lang === "en" ? "Please Login" : "Lütfen Giriş Yapın");
     setOpenModal(true);
 
   };

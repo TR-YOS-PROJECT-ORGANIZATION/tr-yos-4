@@ -4,6 +4,8 @@ import { registerSuccess, fetchFail,fetchStart, loginSuccess, logoutSuccess} fro
 import { useDispatch } from 'react-redux';
 import { toastErrorNotify,toastSuccessNotify } from '../helper/ToastNotify';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const useAuthCall = () => {
 
@@ -14,6 +16,7 @@ const useAuthCall = () => {
 
 
    const navigate = useNavigate();
+   const {t} = useTranslation();
 
 
     const register = async (userInfo) => {
@@ -24,13 +27,13 @@ const useAuthCall = () => {
           userInfo
           );
           dispatch(registerSuccess(data));
-          toastSuccessNotify("Register performed");
+          toast.success(t("Register performed"));
          
 
         } catch (error) {
           console.log(error);
           dispatch(fetchFail());
-          toastErrorNotify("Register can not be performed");
+          toast.error(t("Register can not be performed"));
         }
       };
 
@@ -44,20 +47,20 @@ const useAuthCall = () => {
           );
           dispatch(loginSuccess(data));
           
-          toastSuccessNotify("Login performed");
+          toast.success(t("Login performed"));
          
 
         } catch (error) {
           console.log(error);
           dispatch(fetchFail());
-          toastErrorNotify("Login can not be performed");
+          toast.error(t("Login can not be performed"));
         }
       };
 
       const logout = () => {
         dispatch(logoutSuccess());
         navigate('/');
-        toastSuccessNotify("Logout performed");
+        toast.success(t("Logout performed"));
       };
 
     
