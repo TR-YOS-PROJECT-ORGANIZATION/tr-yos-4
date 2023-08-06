@@ -12,8 +12,11 @@ const MyProfile = () => {
   const { getUserInfo } = useInfoCalls();
   const {t} = useTranslation();
 
+
+
+
   useEffect(() => {
-    getUserInfo(currentUser?.userID);
+    getUserInfo(currentUser?.user.userId);
   }, [currentUser]);
 
   const { userInfo } = useSelector((state) => state.info);

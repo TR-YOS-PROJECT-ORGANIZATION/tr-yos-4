@@ -44,11 +44,7 @@ const UniversitiesPage = () => {
 
   if (!allDepartments) return <Dots  size={32}/>;
 
-  console.log("unis", univercities);
-  console.log("deps", allDepartments);
 
-
-  console.log(faculties);
 
   const indexOfLastUni = currentPage * universitiesPerPage;
 

@@ -14,7 +14,7 @@ const useCardCalls = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.auth);
   const { favouriteList, compareList } = useSelector((state) => state.card);
-  const currentUserId = currentUser?.userID
+  const currentUserId = currentUser?.user.userId
 
   // Add or Remove to Compare
   const moveToSelectedDepartments = async (id) => {
@@ -23,7 +23,6 @@ const useCardCalls = () => {
      const res = await axios.get(
         `https://tr-yös.com/api/v1/users/addcompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
-      console.log("move c",res);
       const newDeps = compareList?.departments ? compareList?.departments?.concat([res.data.id]) : [res?.data.id];
       dispatch(getCompareListSuccess({ departments: newDeps }));
 
@@ -37,7 +36,6 @@ const useCardCalls = () => {
       const res =  await axios.get(
         `https://tr-yös.com/api/v1/users/deletecompare.php?user_id=${currentUserId}&id=${departmentId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
-      console.log("rem c",res);
       const newDeps = compareList?.departments?.filter(
         (f) => f !== res.data.id
       );
@@ -54,12 +52,9 @@ const useCardCalls = () => {
       const res = await axios.get(
         `https://tr-yös.com/api/v1/users/addfavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
-      console.log("move f",res);
 
       const newDeps = favouriteList?.departments ? favouriteList?.departments?.concat([res.data.id])
       :[ res.data.id];
-      console.log("fl",favouriteList);
-      console.log("newdeps",newDeps);
 
       dispatch(getFavouriteListSuccess({ departments: newDeps }));
     } catch (error) {
@@ -74,7 +69,6 @@ const useCardCalls = () => {
       const res = await axios.get(
         `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${departmentId}&user_id=${currentUserId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
-      console.log("rem f",res);
 
       const newDeps = favouriteList?.departments?.filter(
         (f) => f !== res.data.id
@@ -90,7 +84,7 @@ const useCardCalls = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios.get(
-        `https://tr-yös.com/api/v1/users/allcompares.php?user_id=${currentUser.userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
+        `https://tr-yös.com/api/v1/users/allcompares.php?user_id=${currentUser?.user.userId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
       dispatch(getCompareListSuccess(data));
     } catch (error) {
@@ -112,7 +106,7 @@ const useCardCalls = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios.get(
-        `https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${currentUser.userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
+        `https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${currentUser.user.userId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
       dispatch(getFavouriteListSuccess(data));
     } catch (error) {

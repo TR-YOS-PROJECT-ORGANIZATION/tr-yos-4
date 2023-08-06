@@ -48,17 +48,14 @@ password_new1: yup
 });
 
 
-const ChangePassword= (props) => {
+const ChangePassword = (props) => {
   const { currentUser } = useSelector((state) => state.auth);
-  const userID = currentUser.userID
+  const userID = currentUser.user.userId
 
 const {t} = useTranslation();
 const lang = i18next.language;
 
-  // const copyDeployerWallet = () => {
-  //   navigator.clipboard.writeText("0x49AE63056b3A0Be0B166813eE687309Ab653c07c");
-  //   // toast.success("Address copied");
-  // };
+ 
   return (
     <Transition.Root show={props.open} as={Fragment}>
       <Dialog

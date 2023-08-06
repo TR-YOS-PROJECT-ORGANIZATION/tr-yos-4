@@ -23,14 +23,9 @@ const UniversitiesDetail = () => {
   const { code } = useParams();
 
   const dept = allDepartments?.filter((item) => item.university.code === code);
-  console.log(dept);
   const uni = univercities?.filter(
     (item) => item?.code === dept[0].university.code
   );
-  console.log(uni);
-
-  console.log("code", code);
-
   const getUniversityDetail = async () => {
     try {
       await axios.get(
@@ -42,7 +37,6 @@ const UniversitiesDetail = () => {
     }
   };
 
-  console.log(details);
 
 
  

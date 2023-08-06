@@ -11,7 +11,6 @@ import { Dots } from "react-activity";
 
 const DepartmentDetail = () => {
   const { code } = useParams();
-  console.log(code);
 
   const { getAllDepartments, getUni } = useInfoCalls();
   const { allDepartments, univercities } = useSelector((state) => state.info);
@@ -23,9 +22,7 @@ const DepartmentDetail = () => {
   }, []);
 
   const dept = allDepartments?.filter((item) => item.department.code === code);
-  console.log(dept);
   const uni = univercities?.filter((item)=> item.code === dept[0].university.code)
-  console.log(uni);
 
   if(!allDepartments) return <Dots/>
 

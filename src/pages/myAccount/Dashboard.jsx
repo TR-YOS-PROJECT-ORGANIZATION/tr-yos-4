@@ -28,7 +28,6 @@ const Dashboard = ({ userInfo }) => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       toastSuccessNotify("Password changed successfully");
-      console.log(data);
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);

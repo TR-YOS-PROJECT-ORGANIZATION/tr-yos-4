@@ -18,7 +18,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   );
 
   useEffect(() => {
-    getUserInfo(currentUser?.userID);
+    getUserInfo(currentUser?.user.userId);
   }, []);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   };
 
   const sendInfo = async (newInfo) => {
-    const userID = currentUser?.userID;
+    const userID = currentUser?.user.userId;
 
     try {
       await axios.post(
@@ -76,7 +76,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   }, [newInfo?.country]);
 
   useEffect(() => {
-    getUserInfo(currentUser?.userID);
+    getUserInfo(currentUser?.user.userId);
   }, []);
 
 

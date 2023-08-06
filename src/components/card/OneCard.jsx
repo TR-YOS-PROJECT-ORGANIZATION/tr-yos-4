@@ -44,15 +44,13 @@ const OneCard = ({ item }) => {
   //To Add and Remove from Compare List///
   function addRemoveCompareList() {
     const id = item.id;
-    console.log("cv", isInCompare);
-    console.log("cl", compareList);
 
     if (isInCompare) {
       removeFromSelectedDepartments(id);
       setIsAdded(!isInCompare);
 
 
-    } else if (!isInCompare && compareList?.departments?.length !== 5 ) {
+    } else if (!isInCompare && compareList?.departments?.length !== 4 ) {
       moveToSelectedDepartments(id);
       setIsAdded(!isInCompare);
 
@@ -77,7 +75,7 @@ const OneCard = ({ item }) => {
 
   const handleClickCompare = (e) => {
     e.preventDefault();
-    compareList?.departments?.length === 5 && toastWarnNotify("You can make up to 4 comparisons.");
+    compareList?.departments?.length === 4 && toastWarnNotify("You can make up to 4 comparisons.");
     if (currentUser) {
       return addRemoveCompareList(item.id);
     }

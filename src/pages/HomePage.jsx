@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import OneCard from "../components/card/OneCard";
 import useCardCalls from "../hooks/useCardCalls";
 import dummyUniImage from "../assets/dummyImages/3d.jpg";
+import { current } from "@reduxjs/toolkit";
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -27,6 +28,7 @@ const HomePage = () => {
 
   useEffect(() => {
     getAllDepartments();
+   
   }, []);
 
 

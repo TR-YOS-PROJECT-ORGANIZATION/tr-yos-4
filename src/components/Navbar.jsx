@@ -23,7 +23,6 @@ const Navbar = () => {
 
   const { currentUser } = useSelector((state) => state?.auth);
   
-  console.log(currentUser);
 
   const { t, i18n } = useTranslation();
   const clickHandle = (lng) => {

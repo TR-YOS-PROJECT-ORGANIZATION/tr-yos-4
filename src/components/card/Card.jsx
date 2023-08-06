@@ -24,11 +24,9 @@ import { useNavigate } from "react-router-dom";
 
 const Card1 = ({item,key}) => {
   const navigate = useNavigate()
-  // console.log(item);
   const images = [
     {img:image1},{img:image2},{img:image3},{img:image4},{img:image1},{img:image2},{img:image3},{img:image4}
   ]
-  console.log(images);
 
   return (
     <>

@@ -112,7 +112,7 @@ const SignInModal = (props) => {
                     props.setOpen(false);
 
 
-                    console.log(values);
+                   
                   }}
                 >
                   {({

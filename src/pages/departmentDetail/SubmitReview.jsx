@@ -10,7 +10,6 @@ const SubmitReview = ({ dept, uni }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   // const [show, setShow] = useState(true);
-  console.log(dept);
   const {removeFromFavourites, moveToFavourites}= useCardCalls();
   const {favouriteList}=useSelector((state)=> state.card)
   const isFavourited = favouriteList?.departments?.includes(dept[0]?.id)
