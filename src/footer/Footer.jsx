@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 const Footer = () => {
   const { t } = useTranslation();
-  const { currentUser } = useSelector((state) => state.auth);
+  const { userId } = useSelector((state) => state.auth);
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -99,7 +99,7 @@ const Footer = () => {
           </h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
-              {!currentUser && (
+              {!userId && (
                 <button
                   className="hover:underline border rounded p-1"
                   onClick={() => handleClick()}
@@ -107,7 +107,7 @@ const Footer = () => {
                   {t("My Profile")}
                 </button>
               )}
-              {currentUser && (
+              {userId && (
                 <Link
                   to="/myProfile"
                   className="hover:underline border rounded p-1"
@@ -118,7 +118,7 @@ const Footer = () => {
             </li>
 
             <li className="mb-4">
-              {!currentUser && (
+              {!userId && (
                 <button
                   className="hover:underline border rounded p-1"
                   onClick={() => handleClick()}
@@ -126,7 +126,7 @@ const Footer = () => {
                   {t("Favourites")}
                 </button>
               )}
-              {currentUser && (
+              {userId && (
                 <Link
                   to="/favourites"
                   className="hover:underline border rounded p-1"
@@ -137,7 +137,7 @@ const Footer = () => {
             </li>
 
             <li className="mb-4">
-              {!currentUser && (
+              {!userId && (
                 <button
                   className="hover:underline border rounded p-1"
                   onClick={() => handleClick()}
@@ -145,7 +145,7 @@ const Footer = () => {
                   {t("Compare")}
                 </button>
               )}
-              {currentUser && (
+              {userId && (
                 <Link
                   to="/compare"
                   className="hover:underline border rounded p-1"

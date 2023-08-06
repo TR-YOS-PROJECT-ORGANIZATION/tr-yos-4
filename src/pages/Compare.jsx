@@ -10,7 +10,7 @@ const Compare = () => {
   // const { t } = useTranslation();
 
   const { getAllDepartments } = useInfoCalls();
-  const { currentUser } = useSelector((state) => state?.auth);
+  const { userId } = useSelector((state) => state?.auth);
   const { allDepartments } = useSelector((state) => state?.info);
   const { getCompareList } = useCardCalls();
   const { compareList, favouriteList } = useSelector((state) => state?.card);

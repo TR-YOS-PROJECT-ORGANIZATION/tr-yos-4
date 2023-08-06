@@ -26,7 +26,7 @@ export const registerSchema = yup.object().shape({
     .matches(/[!,?{}><%&$#£+-.]+/, " Password must have a special char"),
 });
 const SignUpModal = (props) => {
-  const { currentUser } = useSelector((state) => state?.auth);
+  const { userId } = useSelector((state) => state?.auth);
   const { register } = useAuthCall();
   const {t} = useTranslation();
   // const copyDeployerWallet = () => {
