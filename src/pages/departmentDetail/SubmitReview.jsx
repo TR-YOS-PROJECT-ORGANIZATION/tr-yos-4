@@ -260,7 +260,7 @@ const SubmitReview = ({ dept, uni }) => {
 
 
           {/* send message */}
-          {uni?.map((item, id) => (
+          
 
             <section
               key={id}
