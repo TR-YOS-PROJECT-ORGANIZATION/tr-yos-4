@@ -1,22 +1,23 @@
-/* eslint-disable react/prop-types */
-// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toastSuccessNotify } from "../../helper/ToastNotify";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-
 const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   const [country, setCountry] = useState();
   const [citiesbyCountry, setCitiesbyCountry] = useState();
-
-  const [newInfo, setNewInfo] = useState({});
-const {t} = useTranslation();
-const lang = i18next.language;
-  const filteredCountry = country?.filter(
-    (item) => lang === "en" ? item.en === newInfo.country : item.tr === newInfo.country
+  const [newInfo, setNewInfo] = useState(userInfo?.user);
+  const { t } = useTranslation();
+  const lang = i18next.language;
+  const filteredCountry = country?.filter((item) =>
+    lang === "en" ? item.en === newInfo?.country : item.tr === newInfo?.country
   );
-
+  useEffect(() => {
+    getUserInfo(currentUser?.user.userId);
+  }, []);
+  useEffect(() => {
+    setNewInfo(userInfo?.user)
+  }, [userInfo]);
   const getCountry = async () => {
     try {
       await axios
@@ -40,8 +41,7 @@ const lang = i18next.language;
     }
   };
   const sendInfo = async (newInfo) => {
-    const userID = currentUser?.userID;
-
+    const userID = currentUser?.user.userId;
     try {
       await axios.post(
         `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
@@ -49,27 +49,21 @@ const lang = i18next.language;
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       getUserInfo(userID);
-
       toastSuccessNotify(t("User information updated"));
     } catch (error) {
-      console.log(error);
     }
   };
-
   useEffect(() => {
     getCountry();
   }, []);
-
   useEffect(() => {
     if (newInfo?.country) {
       getCitiesbyCountry(newInfo.country);
     }
   }, [newInfo?.country]);
-
   useEffect(() => {
-    getUserInfo(currentUser?.userID);
+    getUserInfo(currentUser?.user.userId);
   }, []);
-
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
       <div className="mt-2 p-5 ">
@@ -81,9 +75,10 @@ const lang = i18next.language;
             </label>
             <input
               type="text"
-              value={newInfo.name || userInfo?.user?.name || ""}
+              defaultValue={userInfo?.user.name}
+              value={newInfo?.name}
               required
-              className="w-full rounded-md mt-2 border-2"
+              className="w-full rounded-md mt-2 border-2 p-2 "
               onChange={(e) => setNewInfo({ ...newInfo, name: e.target.value })}
             />
           </div>
@@ -93,9 +88,9 @@ const lang = i18next.language;
             </label>
             <input
               type="email"
-              value={newInfo.email || userInfo?.user?.email || ""}
+              value={newInfo?.email}
               required
-              className="w-full rounded-md mt-2 border-2"
+              className="w-full rounded-md mt-2 border-2 p-2 "
               onChange={(e) =>
                 setNewInfo({ ...newInfo, email: e.target.value })
               }
@@ -106,15 +101,18 @@ const lang = i18next.language;
           <div className=" w-1/2 mt-3 mr-2">
             <p className="font-bold">{t("Country*")}</p>
             <select
-              className="w-full rounded-md mt-2 border-2"
+              className="w-full rounded-md mt-2 border-2 p-2 "
               onChange={(e) =>
                 setNewInfo({ ...newInfo, country: e.target.value })
               }
-              value={newInfo.country || userInfo?.user?.country || ""}
+              value={newInfo?.country || userInfo?.user?.country || ""}
             >
               <option>{userInfo?.user?.country}</option>
               {country?.map((item) => (
-                <option key={lang === "en" ? item.en : item.tr} value={lang === "en" ? item.en : item.tr}>
+                <option
+                  key={lang === "en" ? item.en : item.tr}
+                  value={lang === "en" ? item.en : item.tr}
+                >
                   {lang === "en" ? item.en : item.tr}
                 </option>
               ))}
@@ -125,13 +123,16 @@ const lang = i18next.language;
               {t("City")}
             </label>
             <select
-              className="w-full rounded-md mt-2 border-2"
+              className="w-full rounded-md mt-2 border-2 p-2 "
               onChange={(e) => setNewInfo({ ...newInfo, city: e.target.value })}
-              value={newInfo.city || userInfo?.user?.city || ""}
+              value={newInfo?.city || userInfo?.user?.city || ""}
             >
               <option>{userInfo?.user?.city}</option>
               {citiesbyCountry?.map((item) => (
-                <option key={lang === "en" ? item.en : item.tr} value={lang === "en" ? item.en : item.tr}>
+                <option
+                  key={lang === "en" ? item.en : item.tr}
+                  value={lang === "en" ? item.en : item.tr}
+                >
                   {lang === "en" ? item.en : item.tr}
                 </option>
               ))}
@@ -144,9 +145,9 @@ const lang = i18next.language;
           </label>
           <input
             type="text"
-            value={newInfo.phone || userInfo?.user.phone || ""}
+            value={newInfo?.phone || userInfo?.user.phone || ""}
             required
-            className="w-full rounded-md mt-2 border-2"
+            className="w-full rounded-md mt-2 border-2 p-2 "
             onChange={(e) => setNewInfo({ ...newInfo, phone: e.target.value })}
           />
         </div>
@@ -159,7 +160,7 @@ const lang = i18next.language;
               type="text"
               required
               className="h-40 rounded-md mt-2 border-2  hover:border-green-dark"
-              value={newInfo.about || userInfo?.user.about || ""}
+              value={newInfo?.about || userInfo?.user.about || ""}
               onChange={(e) =>
                 setNewInfo({ ...newInfo, about: e.target.value })
               }
@@ -170,7 +171,7 @@ const lang = i18next.language;
       <button
         onClick={(e) => {
           sendInfo(newInfo);
-          e.prevent.default();
+          e.preventDefault();
         }}
         className="bg-red-warm text-white-500 hover:bg-green-dark hover:text-green-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4"
       >
