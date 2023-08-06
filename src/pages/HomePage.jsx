@@ -9,13 +9,12 @@ import { useSelector } from "react-redux";
 import OneCard from "../components/card/OneCard";
 import useCardCalls from "../hooks/useCardCalls";
 import dummyUniImage from "../assets/dummyImages/3d.jpg";
-
+import { current } from "@reduxjs/toolkit";
 const HomePage = () => {
   const { t } = useTranslation();
   const { getAllDepartments } = useInfoCalls();
   const { allDepartments, univercities } = useSelector((state) => state.info);
   const { getUni } = useInfoCalls();
- 
   //
   const [depart, setDepart] = useState([]);
   const [listState, setListState] = useState(false);
@@ -23,13 +22,9 @@ const HomePage = () => {
   useEffect(() => {
     getUni();
   }, []);
-
-
   useEffect(() => {
     getAllDepartments();
   }, []);
-
-
   useEffect(() => {
     if (univercities && allDepartments && !listState) {
       setListState(true);
@@ -37,7 +32,6 @@ const HomePage = () => {
       const randomNumbers = Array?.from({ length: 8 }, () =>
         Math.floor(Math.random() * allDepartments.length - 2)
       );
-
       // allDepartments tan bu indextekileri çektik
       // univercities datasından
       // ilk resimleri objeye ekledik
@@ -61,9 +55,6 @@ const HomePage = () => {
       setDepart(departmentList);
     }
   }, [allDepartments, univercities]);
-
-  console.log(depart)
-  console.log(allDepartments)
   return (
     <div className="flex flex-col">
       <Main />
@@ -88,3 +79,10 @@ const HomePage = () => {
   );
 };
 export default HomePage;
+
+
+
+
+
+
+
