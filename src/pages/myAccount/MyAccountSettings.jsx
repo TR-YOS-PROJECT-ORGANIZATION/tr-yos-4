@@ -1,11 +1,8 @@
-/* eslint-disable react/prop-types */
-// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toastSuccessNotify } from "../../helper/ToastNotify";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-
 const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   const [country, setCountry] = useState();
   const [citiesbyCountry, setCitiesbyCountry] = useState();
@@ -16,6 +13,11 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   const filteredCountry = country?.filter((item) =>
     lang === "en" ? item.en === newInfo?.country : item.tr === newInfo?.country
   );
+
+  useEffect(() => {
+    getUserInfo(currentUser?.user.userId);
+  }, []);
+
 
   useEffect(() => {
     getUserInfo(currentUser?.userID);
@@ -50,8 +52,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   };
 
   const sendInfo = async (newInfo) => {
-    const userID = currentUser?.userID;
-
+    const userID = currentUser?.user.userId;
     try {
       await axios.post(
         `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
@@ -59,26 +60,21 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       getUserInfo(userID);
-
       toastSuccessNotify(t("User information updated"));
     } catch (error) {
     }
   };
-
   useEffect(() => {
     getCountry();
   }, []);
-
   useEffect(() => {
     if (newInfo?.country) {
       getCitiesbyCountry(newInfo.country);
     }
   }, [newInfo?.country]);
-
   useEffect(() => {
-    getUserInfo(currentUser?.userID);
+    getUserInfo(currentUser?.user.userId);
   }, []);
-
 
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
