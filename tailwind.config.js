@@ -25,7 +25,7 @@ module.exports = {
           500: "#FFFFFF",
         },
         green: {
-          dark: "#1A4731",
+          dark: "#7AA874",
           light: "#51D88A",
           base: "#D1FAE5",
         },

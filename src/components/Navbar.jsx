@@ -46,22 +46,22 @@ const Navbar = () => {
               />
               {isOpen && (
                 <ul className="md:flex-col absolute z-10 rounded md:-left-36 sm:-left-10  max-[600px]:-left-10 ">
-                  <li className=" px-10  py-5 bg-white-500 hover:bg-red-retro ">
+                  <li className=" px-10  py-5 bg-white-500 hover:bg-red-retro text-slate-500">
                     <Link to="/" className="mx-3">
                     {t("Home")}
                     </Link>
                   </li>
-                  <li className="  px-10  py-5  bg-white-500  hover:bg-red-retro">
+                  <li className="  px-10  py-5  bg-white-500  hover:bg-red-retro  text-slate-500">
                     <Link to="/universities" className="mx-3">
                     {t("Universities")}
                     </Link>
                   </li>
-                  <li className="  px-10  py-5   bg-white-500  hover:bg-red-retro">
+                  <li className="  px-10  py-5   bg-white-500  hover:bg-red-retro  text-slate-500 ">
                     <Link to="/departments" className="mx-3">
                     {t("Departments")}
                     </Link>
                   </li>
-                  <li className="  px-10  py-5   bg-white-500 hover:bg-red-retro">
+                  <li className="  px-10  py-5   bg-white-500 hover:bg-red-retro  text-slate-500">
                     <Link to="/about" className="mx-3">
                       {t("About")}
                     </Link>
@@ -70,13 +70,13 @@ const Navbar = () => {
               )}
             </button>
             <div className="lg:visible md:invisible sm:invisible sr-only sm:not-sr-only md:m-0 sm:m-0 ">
-              <Link to="/" className="mx-3">
+              <Link to="/" className="mx-3  text-slate-700">
                 {t("Home")}
               </Link>
-              <Link to="/universities" className="mx-3">
+              <Link to="/universities" className="mx-3  text-slate-700  hover:text-slate-500">
                 {t("Universities")}
               </Link>
-              <Link to="/departments" className="mx-3">
+              <Link to="/departments" className="mx-3  text-slate-700  hover:text-slate-500">
                 {t("Departments")}
               </Link>
             </div>
@@ -92,7 +92,7 @@ const Navbar = () => {
             </button>
           </div>
           {currentUser ? (
-            <div className="flex m-2 ">
+            <div className="flex m-2  text-slate-700 hover:text-slate-500">
 
               <MyMenu />
 

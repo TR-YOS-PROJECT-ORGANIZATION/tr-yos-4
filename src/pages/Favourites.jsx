@@ -8,6 +8,7 @@ import OneCard from "../components/card/OneCard";
 import WorkUs from "../components/workUs/WorkUs";
 import useCardCalls from "../hooks/useCardCalls";
 import { useTranslation } from "react-i18next";
+import { Dots } from "react-activity";
 
 function Favourites() {
   const { currentUser } = useSelector((state) => state?.auth);
@@ -34,9 +35,11 @@ function Favourites() {
     getFavouriteList();
   }, []);
 
+  if(!favouriteList) return <Dots/>
+
   const filteredDepartments = favouriteList ? allDepartments?.filter((department) =>
     favouriteList?.departments?.map((item) => item)?.includes(department.id)
-  ) : "favourite list is null"
+  ) : console.log("favourite list is null")
 
   return (
     <div className="mt-20">
