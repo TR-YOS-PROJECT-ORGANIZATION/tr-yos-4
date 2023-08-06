@@ -38,7 +38,9 @@ const SignInModal = (props) => {
   const { currentUser,loading } = useSelector((state) => state?.auth);
   const { login } = useAuthCall();
   const open = props.setOpen
-  const {t} = useTranslation();
+
+  const { t } = useTranslation();
+
 
 
 
