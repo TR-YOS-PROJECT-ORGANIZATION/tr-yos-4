@@ -50,10 +50,10 @@ const Dashboard = ({ userInfo }) => {
       />
       <div className="space-y-4 text-center divide-y divide-gray-700">
         <div className="my-2 space-y-1">
-          <h2 className="text-xl font-semibold sm:text-2xl text-green-dark ">
+          <h2 className="text-xl font-semibold sm:text-2xl text-slate-900 ">
             {userInfo?.user?.name}
           </h2>
-          <p className="px-5 text-xs sm:text-base text-green-dark">
+          <p className="px-5 text-xs sm:text-base text-slate-700">
             {userInfo?.user?.email}
           </p>
         </div>

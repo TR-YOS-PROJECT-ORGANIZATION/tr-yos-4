@@ -19,6 +19,7 @@ const Selections = () => {
   const lang = i18next.language;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     getUni();
     getCities();
@@ -46,31 +47,7 @@ const Selections = () => {
         )
         : allDepartments?.filter(
           (department) => lang === "en" ? department.en: department.tr);
-      // useEffect(()=>{
-      //   if( selectedUnivercities?.length > 0){
-      //     setFilteredDepartments( allDepartments?.filter(
-      //       (department) =>
-      //         selectedUnivercities
-      //           ?.map((item) => {
-      //             return item.code;
-      //           })
-      //           .indexOf(department?.university.code) !== -1
-      //     ))}
-      //     else if(selectedCities?.length > 0 && selectedUnivercities?.length === 0){
-      //        setFilteredDepartments(
-      //         allDepartments?.filter((dep)=>
-      //         filteredUniversities?.map((uni)=>{
-      //           return uni.code;
-      //         })
-      //         .indexOf(dep.university.code) !== -1
-      //         )
-      //        )
-      //     }
-      //     else{
-      //       setFilteredDepartments( allDepartments?.filter(
-      //             (department) => lang === "en" ? department.en: department.tr))
-      //     }
-      // },[searchParametres]);
+          
      selectedUnivercities?.length > 0
        ? allDepartments?.filter(
          (department) =>

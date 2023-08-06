@@ -19,7 +19,8 @@ function Departments() {
   const [isOpen, setOpen] = useState(false);
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
-  const [departmentPerPage, setDepartmentPerPage] = useState(100);
+  const [departmentPerPage, setDepartmentPerPage] = useState(200);
+
   useEffect(() => {
     getAllDepartments();
     getUni();
@@ -79,33 +80,7 @@ function Departments() {
   const indexOfFirstDep = indexOfLastDep - departmentPerPage;
   const totalPagesNum = Math.ceil(allDepartments?.length / departmentPerPage);
   if (!searchParameters) return <Dots size={32} />;
-  // const currentDepartments = allDepartments?.slice(
-  //   indexOfFirstDep,
-  //   indexOfLastDep
-  // );
-  // useEffect(() => {
-  //   const filteredDepartmentsbyUni = allDepartments?.filter(
-  //     (dep) =>
-  //       searchParameters?.selectedUnivercities
-  //         ?.map((item) => {
-  //           return item.code;
-  //         })
-  //         .indexOf(dep?.university?.code) !== -1
-  //   );
-  //   const indexOfLastDep = currentPage * departmentPerPage;
-  //   const indexOfFirstDep = indexOfLastDep - departmentPerPage;
-  //   if (searchParameters?.selectedDepartments) {
-  //     return setCurrentDepartments(searchParameters?.selectedDepartments);
-  //   }
-  //   else if (searchParameters?.selectedUnivercities && !searchParameters?.selectedDepartments ){
-  //     return setCurrentDepartments(filteredDepartmentsbyUni);
-  //   }
-  //   else {
-  //     return setCurrentDepartments(
-  //       allDepartments?.slice(indexOfFirstDep, indexOfLastDep)
-  //     );
-  //   }
-  // }, []);
+  
   return (
     <>
       <div className="flex flex-col">
