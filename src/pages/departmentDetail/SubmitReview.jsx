@@ -46,7 +46,7 @@ const SubmitReview = ({ dept, uni }) => {
       .replace(/^\s*TR/gm, ""); // "TR" ifadesini temizle
   };
 
-  const mailtoLink = `mailto:${dept[0]?.data?.email}`;
+  const mailtoLink = `mailto:${dept?.[0]?.data?.email}`;
 
   return (
     <div className="">
@@ -76,7 +76,7 @@ const SubmitReview = ({ dept, uni }) => {
                   </span>
                 </div>
                 <div className=" font-bold text-auto ml-5  ">
-                  <p className="text-xl text-blue-700 ">{dept[0]?.price}</p>
+                  <p className="text-xl text-blue-700 ">{dept[0]?.price}₺</p>
                   <span className="text-xs text-slate-500 ">/{t("Year")}</span>
                 </div>
               </div>

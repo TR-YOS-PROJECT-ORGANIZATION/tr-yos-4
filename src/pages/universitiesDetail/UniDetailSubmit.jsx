@@ -4,6 +4,7 @@ import axios from "axios";
 import i18next from "i18next";
 
 import React, { useEffect, useState } from "react";
+import { Dots } from "react-activity";
 import { useTranslation } from "react-i18next";
 
 const UniDetailSubmit = ({ dept, uni, det }) => {
@@ -29,7 +30,9 @@ const UniDetailSubmit = ({ dept, uni, det }) => {
   }, []);
   console.log(dept);
 
-  const mailtoLink = `mailto:${dept[0]?.data?.email}`;
+  const mailtoLink = `mailto:${dept?.[0]?.data?.email}`;
+  if (!dept)
+  return <Dots/>
 
   console.log("uni", uni);
   console.log("det", det);
@@ -37,7 +40,7 @@ const UniDetailSubmit = ({ dept, uni, det }) => {
   console.log(faculties);
 
   const departmentsLength = dept?.filter(
-    (d) => d?.university.code === uni[0]?.code
+    (d) => d?.university.code === uni?.[0]?.code
   ).length;
 
   console.log(departmentsLength);
@@ -45,7 +48,7 @@ const UniDetailSubmit = ({ dept, uni, det }) => {
   const facultiesLength = faculties?.filter(
     (f) =>
       dept
-        ?.filter((d) => d?.university.code === uni[0]?.code)
+        ?.filter((d) => d?.university.code === uni?.[0]?.code)
         ?.map((d) => d.faculty.code)
         .indexOf(f.id) !== -1
   ).length;
@@ -89,13 +92,13 @@ const UniDetailSubmit = ({ dept, uni, det }) => {
                 <div className="grid-none grid-cols-1 md:grid-cols-2 grid lg:grid-cols-2   divide-x text-center bg-[#E5F8F2] border border-green-300 rounded-xl   divide-dotted divide-green-300">
                   <div className="p-10 ">
                     <div className="text-xs">{t("Faculties")}</div>
-                    <div className="font-bold text-[#00A372]">
+                    <div className="font-bold text-2xl text-[#00A372]">
                       {facultiesLength}
                     </div>
                   </div>
                   <div className="p-10 ">
                     <div className="text-xs">{t("Departments")}</div>
-                    <div className="font-bold text-[#00A372]">
+                    <div className="font-bold text-2xl text-[#00A372]">
                       {departmentsLength}
                     </div>
                   </div>
@@ -119,7 +122,7 @@ const UniDetailSubmit = ({ dept, uni, det }) => {
             <div className="border w-3/2 m-5 rounded-xl shadow-lg">
               <div className="flex justify-between p-5">
                 <div className="">
-                  <h4 className=" font-bold">{t("Other")}</h4>
+                  <h4 className=" font-bold">{t("Basic Detail")}</h4>
                 </div>
                 <div>
                   <button onClick={() => setIsOpen(!isOpen)}>
