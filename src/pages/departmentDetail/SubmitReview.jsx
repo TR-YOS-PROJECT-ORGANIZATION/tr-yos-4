@@ -14,7 +14,7 @@ const SubmitReview = ({ dept, uni }) => {
 
   const { favouriteList } = useSelector((state) => state.card);
   const isFavourited = favouriteList?.departments?.includes(dept[0]?.id);
-  const { currentUser } = useSelector((state) => state.auth);
+  const { userId } = useSelector((state) => state.auth);
 
   const { t } = useTranslation();
   const lang = i18next.language;
@@ -32,7 +32,7 @@ const SubmitReview = ({ dept, uni }) => {
   const handleClickFavourite = (e) => {
     e.preventDefault();
 
-    currentUser
+    userId
       ? addRemoveFavouriteList(dept[0].id)
       : toastWarnNotify("Please Login");
   };

@@ -3,7 +3,7 @@ import axios from "axios";
 import { toastSuccessNotify } from "../../helper/ToastNotify";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
+const MyAccountSettings = ({ userInfo, userId, getUserInfo }) => {
   const [country, setCountry] = useState();
   const [citiesbyCountry, setCitiesbyCountry] = useState();
 
@@ -15,12 +15,12 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   );
 
   useEffect(() => {
-    getUserInfo(currentUser?.user.userId);
+    getUserInfo(userId);
   }, []);
 
 
   useEffect(() => {
-    getUserInfo(currentUser?.userID);
+    getUserInfo(userId);
   }, []);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   };
 
   const sendInfo = async (newInfo) => {
-    const userID = currentUser?.user.userId;
+    const userID = userId;
     try {
       await axios.post(
         `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
@@ -73,7 +73,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
     }
   }, [newInfo?.country]);
   useEffect(() => {
-    getUserInfo(currentUser?.user.userId);
+    getUserInfo(userId);
   }, []);
 
   return (
