@@ -38,8 +38,8 @@ password_new1: yup
     .matches(/[!,?{}><%&$#£+-.]+/, " Password must have a special char"),
 });
 const ChangePassword = (props) => {
-  const { currentUser } = useSelector((state) => state.auth);
-  const userID = currentUser.user.userId
+  const { userId } = useSelector((state) => state.auth);
+  const userID = userId;
 const {t} = useTranslation();
 const lang = i18next.language;
   return (

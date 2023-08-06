@@ -21,9 +21,9 @@ const Navbar = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openUpModal, setOpenUpModal] = useState(false);
 
-  const { currentUser } = useSelector((state) => state?.auth);
+  const { userId } = useSelector((state) => state?.auth);
   
-  console.log(currentUser);
+  console.log(userId);
 
   const { t, i18n } = useTranslation();
   const clickHandle = (lng) => {
@@ -91,7 +91,7 @@ const Navbar = () => {
               <img src={eng} className="w-14"></img>
             </button>
           </div>
-          {currentUser ? (
+          {userId ? (
             <div className="flex m-2  text-slate-700 hover:text-slate-500">
 
               <MyMenu />

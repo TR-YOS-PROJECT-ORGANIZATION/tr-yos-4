@@ -35,7 +35,7 @@ export const registerSchema = yup.object().shape({
 const SignInModal = (props) => {
 
   const navigate = useNavigate();
-  const { currentUser,loading } = useSelector((state) => state?.auth);
+  const { userId,loading } = useSelector((state) => state?.auth);
   const { login } = useAuthCall();
   const open = props.setOpen
 
@@ -45,10 +45,10 @@ const SignInModal = (props) => {
 
 
   // useEffect(() => {
-  //   if (currentUser) {
+  //   if (userId) {
   //     navigate("/");
   //   }
-  // }, [currentUser]);
+  // }, [userId]);
 
   const copyDeployerWallet = () => {
     navigator.clipboard.writeText("0x49AE63056b3A0Be0B166813eE687309Ab653c07c");

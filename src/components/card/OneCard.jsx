@@ -32,7 +32,7 @@ const lang = i18next.language;
   const isFavourited = favouriteList?.departments.includes(item?.id);
 
   const [isAdded, setIsAdded] = useState(isInCompare);
-  const { currentUser } = useSelector((state) => state?.auth);
+  const { userId } = useSelector((state) => state?.auth);
   const navigate = useNavigate();
 
   const { t } = useTranslation();
@@ -78,7 +78,7 @@ const lang = i18next.language;
   const handleClickCompare = (e) => {
     e.preventDefault();
     compareList?.departments?.length === 5 && toastWarnNotify(lang === "en" ? "You can make up to 4 comparisons." : "4 ürün karşılaştırabilirsiniz");
-    if (currentUser) {
+    if (userId) {
       return addRemoveCompareList(item.id);
     }
     toastWarnNotify(lang === "en" ? "Please Login" : "Lütfen Giriş Yapın");
@@ -88,7 +88,7 @@ const lang = i18next.language;
   const handleClickFavourite = (e) => {
     
     e.preventDefault();
-    if (currentUser) {
+    if (userId) {
       return addRemoveFavouriteList(item.id);
 
     }
@@ -113,7 +113,7 @@ const lang = i18next.language;
         key={item.id}
         className="xs:m-0 sm:m-auto relative mx-auto w-full h-full  max-w-sm pt-6 ml-6 md:px-2 md:mx-2 "
       >
-        {!currentUser && (
+        {!userId && (
           <SignInModal open={openModal} setOpen={setOpenModal} />
         )}
         <div className="relative inline-block w-full h-full transform transition-transform duration-300 ease-in-out">

@@ -7,12 +7,12 @@ import useInfoCalls from "../../hooks/useInfoCalls";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 const MyProfile = () => {
-  const { currentUser } = useSelector((state) => state.auth);
+  const { userId } = useSelector((state) => state.auth);
   const { getUserInfo } = useInfoCalls();
   const {t} = useTranslation();
   useEffect(() => {
-    getUserInfo(currentUser?.user.userId);
-  }, [currentUser]);
+    getUserInfo(userId);
+  }, [userId]);
   const { userInfo } = useSelector((state) => state.info);
   return (
     <div>
@@ -23,7 +23,7 @@ const MyProfile = () => {
         <p className="text-4xl font-bold p-5">{t("My Account")}</p>
         <div className="flex justify-center h-full md:w-full xs:w-full xs:flex-col xs:items-center">
           <Dashboard userInfo={userInfo} />
-          <MyAccountSettings userInfo={userInfo} currentUser={currentUser} getUserInfo={getUserInfo}/>
+          <MyAccountSettings userInfo={userInfo} userId={userId} getUserInfo={getUserInfo}/>
         </div>
       </div>
     </div>

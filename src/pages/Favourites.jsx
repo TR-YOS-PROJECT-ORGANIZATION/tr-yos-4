@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import { Dots } from "react-activity";
 
 function Favourites() {
-  const { currentUser } = useSelector((state) => state?.auth);
+  const { userId } = useSelector((state) => state?.auth);
   const { allDepartments } = useSelector((state) => state?.info);
   const { getAllDepartments } = useInfoCalls();
   const { favouriteList, compareList } = useSelector((state) => state.card);
