@@ -50,7 +50,7 @@ const lang = i18next.language;
       );
       getUserInfo(userID);
 
-      toastSuccessNotify("User information updated");
+      toastSuccessNotify(t("User information updated"));
     } catch (error) {
       console.log(error);
     }
