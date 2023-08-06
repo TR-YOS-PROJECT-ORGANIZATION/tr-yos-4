@@ -82,5 +82,15 @@
     "Username":"Kullanıcı adı",
     "Enter your username":"Kullanıcı adınızı giriniz",
     "Previous":"Önceki",
-    "Next":"Sonraki"
+    "Next":"Sonraki",
+    "Email sent performed":"Email gönderildi",
+    "Register performed":"Kayıt yapıldı",
+    "Register can not be performed":"Kayıt işlemi yapılamıyor!",
+    "Login performed":"Giriş yapıldı",
+    "Login can not be performed":"Giriş yapılamıyor",
+    "Logout performed":"Çıkış yapıldı",
+    "Please Login":"Lütfen giriş yapınız",
+    "Password changed successfully":"Şifre başarıyla değiştirildi",
+    "Change password can not be performed":"Şifre değiştirilemedi",
+    "User information updated":"Kullanıcı bilgileri güncellendi"
 }

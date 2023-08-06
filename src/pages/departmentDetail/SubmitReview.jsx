@@ -11,9 +11,11 @@ const SubmitReview = ({ dept, uni }) => {
 
   console.log(dept);
   const { removeFromFavourites, moveToFavourites } = useCardCalls();
+
   const { favouriteList } = useSelector((state) => state.card);
   const isFavourited = favouriteList?.departments?.includes(dept[0]?.id);
   const { currentUser } = useSelector((state) => state.auth);
+
   const { t } = useTranslation();
   const lang = i18next.language;
 
@@ -29,10 +31,12 @@ const SubmitReview = ({ dept, uni }) => {
 
   const handleClickFavourite = (e) => {
     e.preventDefault();
+
     currentUser
       ? addRemoveFavouriteList(dept[0].id)
       : toastWarnNotify("Please Login");
   };
+
 
   const cleanText = (html) => {
     return html
@@ -235,6 +239,7 @@ const SubmitReview = ({ dept, uni }) => {
               </div>
             </div>
           </div>
+
           {/* add favourite and send message */}
           <div className="w-2/3 mt-8 ">
             <div className="border p-4 rounded-xl mb-12 shadow-lg">
@@ -259,7 +264,8 @@ const SubmitReview = ({ dept, uni }) => {
             {/* send message */}
 
 
-          {/* send message */}
+
+          
           
 
             <section

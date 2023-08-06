@@ -27,12 +27,12 @@ const Dashboard = ({ userInfo }) => {
         info,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-      toastSuccessNotify("Password changed successfully");
+      toastSuccessNotify(t("Password changed successfully"));
       console.log(data);
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
-      toastErrorNotify("Change password can not be performed");
+      toastErrorNotify(t("Change password can not be performed"));
     }
   };
 
