@@ -8,8 +8,8 @@ const PrivateRouter = () => {
 
 
    
-  let { currentUser } = useSelector((state) => state.auth);
-  return (<div>{ currentUser ? <Outlet/> :<Navigate to="/" />}</div>)
+  let { userId } = useSelector((state) => state.auth);
+  return (<div>{ userId ? <Outlet/> :<Navigate to="/" />}</div>)
 
    
 };

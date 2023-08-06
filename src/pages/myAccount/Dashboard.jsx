@@ -17,6 +17,8 @@ const Dashboard = ({ userInfo }) => {
   const dispatch = useDispatch();
   const {t} = useTranslation();
 
+  console.log(userInfo)
+
   const mailtoLink = `mailto:info@tryos.com`;
 
   const getChangePassword = async (userID, info) => {
