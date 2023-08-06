@@ -10,38 +10,34 @@ import { useSelector } from "react-redux";
 import OneCard from "../components/card/OneCard";
 import useCardCalls from "../hooks/useCardCalls";
 import { useTranslation } from "react-i18next";
+import { Dots } from "react-activity";
+import Pagination from "./universitiesPages/Pagination";
 
 function Departments() {
-  const { getAllDepartments, getUserInfo } = useInfoCalls();
+  const { getAllDepartments} = useInfoCalls();
   const { allDepartments} = useSelector((state) => state?.info);
   const { currentUser } = useSelector((state) => state?.auth);
   const { searchParameters } = useSelector((state) => state?.card);
   // eslint-disable-next-line no-unused-vars
   const [department, setDepartment] = useState([]);
   const [isOpen, setOpen] = useState(false);
-
+  
   const {t} = useTranslation();
   const currentUserId = currentUser?.userID;
-  const {
-    moveToSelectedDepartments,
-    removeFromSelectedDepartments,
-    removeFromFavourites,
-    moveToFavourites,
-    getCompareList,
-    getFavouriteList,
-  } = useCardCalls();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  // eslint-disable-next-line no-unused-vars
+  const [departmentPerPage, setDepartmentPerPage] = useState(200);
+
 
   useEffect(() => {
-    currentUser && getUserInfo(currentUser?.userID);
-  }, [currentUser]);
 
-  useEffect(() => {
-    getCompareList(currentUserId);
-    getFavouriteList();
+
     getAllDepartments();
   }, []);
 
   console.log(department)
+
   useEffect(() => {
 
     if (searchParameters?.selectedDepartments) {
@@ -54,6 +50,19 @@ function Departments() {
       return setDepartment(allDepartments?.slice(71, 89));
     }
   }, [searchParameters]);
+
+  if(!department) return <Dots size={32}/>
+
+
+
+  const indexOfLastDep = currentPage * departmentPerPage;
+
+  const indexOfFirstDep = indexOfLastDep - departmentPerPage;
+  const currentDepartments = allDepartments?.slice(
+    indexOfFirstDep,
+    indexOfLastDep
+  );
+  const totalPagesNum = Math.ceil(allDepartments?.length / departmentPerPage);
 
 
   return (
@@ -100,17 +109,12 @@ function Departments() {
             </div>
             <div className="xs:m-0 xs:px-0 sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 md:px-4 lg:grid-cols-3">
 
-              {department?.map((item) => {
+              {currentDepartments?.map((item) => {
                 return (
                   <OneCard
                     key={item.id}
                     item={item}
-                    moveToSelectedDepartments={moveToSelectedDepartments}
-                    removeFromSelectedDepartments={
-                      removeFromSelectedDepartments
-                    }
-                    moveToFavourites={moveToFavourites}
-                    removeFromFavourites={removeFromFavourites}
+               
                   />
                 );
               })}
@@ -118,6 +122,12 @@ function Departments() {
           </div>
         </div>
       </div>
+      <Pagination
+        pages={totalPagesNum}
+        setCurrentPage={setCurrentPage}
+        currentDepartments={currentDepartments}
+        allDepartments={allDepartments}
+      />
     </>
   );
 }

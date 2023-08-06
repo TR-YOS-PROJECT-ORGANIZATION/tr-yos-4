@@ -3,9 +3,10 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { toastWarnNotify } from "../helper/ToastNotify";
+
 import SignInModal from "../components/modals/SignInModal";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -14,12 +15,12 @@ const Footer = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const handleClick = () => {
-    toastWarnNotify("Please Login");
+    toast.success(t("Please Login"));
     setOpenModal(true);
   };
 
   return (
-    <div className="flex flex-col text-center  bg-gray-900">
+    <div className="flex flex-col text-center  bg-gray-900 mt-20">
       <SignInModal open={openModal} setOpen={setOpenModal} />
 
       <div className="flex justify-evenly mt-8">

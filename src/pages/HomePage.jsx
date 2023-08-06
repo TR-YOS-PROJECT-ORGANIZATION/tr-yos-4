@@ -62,6 +62,8 @@ const HomePage = () => {
     }
   }, [allDepartments, univercities]);
 
+  console.log(depart)
+  console.log(allDepartments)
   return (
     <div className="flex flex-col">
       <Main />
