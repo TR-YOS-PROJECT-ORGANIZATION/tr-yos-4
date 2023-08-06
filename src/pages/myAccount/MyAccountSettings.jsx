@@ -6,18 +6,28 @@ import i18next from "i18next";
 const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   const [country, setCountry] = useState();
   const [citiesbyCountry, setCitiesbyCountry] = useState();
+
   const [newInfo, setNewInfo] = useState(userInfo?.user);
   const { t } = useTranslation();
   const lang = i18next.language;
   const filteredCountry = country?.filter((item) =>
     lang === "en" ? item.en === newInfo?.country : item.tr === newInfo?.country
   );
+
   useEffect(() => {
     getUserInfo(currentUser?.user.userId);
   }, []);
+
+
+  useEffect(() => {
+    getUserInfo(currentUser?.userID);
+  }, []);
+
   useEffect(() => {
     setNewInfo(userInfo?.user)
   }, [userInfo]);
+
+
   const getCountry = async () => {
     try {
       await axios
@@ -40,6 +50,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
       console.log("Error fetching cities:", error);
     }
   };
+
   const sendInfo = async (newInfo) => {
     const userID = currentUser?.user.userId;
     try {
@@ -64,6 +75,7 @@ const MyAccountSettings = ({ userInfo, currentUser, getUserInfo }) => {
   useEffect(() => {
     getUserInfo(currentUser?.user.userId);
   }, []);
+
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
       <div className="mt-2 p-5 ">
