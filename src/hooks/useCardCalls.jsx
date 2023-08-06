@@ -1,4 +1,5 @@
 import axios from "axios";
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import {
   fetchStart,
@@ -12,9 +13,9 @@ const useCardCalls = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.auth);
   const { favouriteList, compareList } = useSelector((state) => state.card);
-  const currentUserId = currentUser?.user.userId
+  const currentUserId = currentUser?.user?.userId
   console.log(currentUser);
-  
+
   // Add or Remove to Compare
   const moveToSelectedDepartments = async (id) => {
     const departmentId = id;
