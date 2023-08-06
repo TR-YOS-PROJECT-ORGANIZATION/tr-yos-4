@@ -1,4 +1,3 @@
-
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect } from "react";
 import ImageSection from "../components/departmentComponents/ImageSection";
@@ -12,58 +11,128 @@ import useCardCalls from "../hooks/useCardCalls";
 import { useTranslation } from "react-i18next";
 import { Dots } from "react-activity";
 import Pagination from "./universitiesPages/Pagination";
+import { all } from "axios";
 
 function Departments() {
-  const { getAllDepartments} = useInfoCalls();
-  const { allDepartments} = useSelector((state) => state?.info);
-  const { currentUser } = useSelector((state) => state?.auth);
+  const { getAllDepartments, getUni } = useInfoCalls();
+  const { allDepartments, univercities } = useSelector((state) => state?.info);
   const { searchParameters } = useSelector((state) => state?.card);
-  // eslint-disable-next-line no-unused-vars
-  const [department, setDepartment] = useState([]);
+  const [currentDepartments, setCurrentDepartments] = useState();
   const [isOpen, setOpen] = useState(false);
-  
-  const {t} = useTranslation();
-  const currentUserId = currentUser?.userID;
+
+  const { t } = useTranslation();
 
   const [currentPage, setCurrentPage] = useState(1);
-  // eslint-disable-next-line no-unused-vars
-  const [departmentPerPage, setDepartmentPerPage] = useState(200);
-
+  const [departmentPerPage, setDepartmentPerPage] = useState(100);
 
   useEffect(() => {
-
-
     getAllDepartments();
+    getUni();
   }, []);
 
-  console.log(department)
+  const filteredUni = univercities?.filter(
+    (uni) =>
+      searchParameters?.selectedCities
+        ?.map((item) => {
+          return item.id;
+        })
+        .indexOf(uni.city) !== -1
+  );
+
+  const filteredDepartmentsbyCity = allDepartments?.filter(
+    (dep) =>
+      filteredUni
+        ?.map((item) => {
+          return item.code;
+        })
+        .indexOf(dep?.university.code) !== -1
+  );
+
+  const filteredDepartmentsbyUni = allDepartments?.filter(
+    (dep) =>
+      searchParameters?.selectedUnivercities
+        ?.map((item) => {
+          return item.code;
+        })
+        .indexOf(dep?.university?.code) !== -1
+  );
+
+  const handleSearch = () => {
+    console.log("girdi");
+    if (
+      searchParameters.selectedUnivercities &&
+      searchParameters.selectedDepartments?.length === 0
+    ) {
+      console.log("src1", searchParameters);
+
+      return setCurrentDepartments(filteredDepartmentsbyUni);
+    } else if (searchParameters.selectedDepartments) {
+      console.log("src2", searchParameters);
+
+      return setCurrentDepartments(searchParameters?.selectedDepartments);
+    } else {
+      console.log("currentD", allDepartments);
+      setCurrentDepartments(
+        allDepartments?.slice(indexOfFirstDep, indexOfLastDep)
+      );
+    }
+  };
 
   useEffect(() => {
-
-    if (searchParameters?.selectedDepartments) {
-
-
-      return setDepartment(searchParameters?.selectedDepartments);
-
-    } else {
-
-      return setDepartment(allDepartments?.slice(71, 89));
+    if(!!allDepartments){
+      handleSearch();
     }
-  }, [searchParameters]);
-
-  if(!department) return <Dots size={32}/>
-
-
+  }, [searchParameters,allDepartments]);
 
   const indexOfLastDep = currentPage * departmentPerPage;
 
   const indexOfFirstDep = indexOfLastDep - departmentPerPage;
-  const currentDepartments = allDepartments?.slice(
-    indexOfFirstDep,
-    indexOfLastDep
-  );
   const totalPagesNum = Math.ceil(allDepartments?.length / departmentPerPage);
 
+  if (!searchParameters) return <Dots size={32} />;
+
+  console.log("currnt", currentDepartments);
+
+  // const currentDepartments = allDepartments?.slice(
+  //   indexOfFirstDep,
+  //   indexOfLastDep
+  // );
+
+  // useEffect(() => {
+
+  //   const filteredDepartmentsbyUni = allDepartments?.filter(
+  //     (dep) =>
+  //       searchParameters?.selectedUnivercities
+  //         ?.map((item) => {
+  //           return item.code;
+  //         })
+  //         .indexOf(dep?.university?.code) !== -1
+  //   );
+
+  //   const indexOfLastDep = currentPage * departmentPerPage;
+
+  //   const indexOfFirstDep = indexOfLastDep - departmentPerPage;
+
+  //   if (searchParameters?.selectedDepartments) {
+
+  //     return setCurrentDepartments(searchParameters?.selectedDepartments);
+
+  //   }
+
+  //   else if (searchParameters?.selectedUnivercities && !searchParameters?.selectedDepartments ){
+
+  //     return setCurrentDepartments(filteredDepartmentsbyUni);
+
+  //   }
+
+  //   else {
+
+  //     return setCurrentDepartments(
+
+  //       allDepartments?.slice(indexOfFirstDep, indexOfLastDep)
+  //     );
+  //   }
+  // }, []);
 
   return (
     <>
@@ -80,17 +149,14 @@ function Departments() {
               />
               {isOpen && (
                 <div className="md:visible md:flex md:flex-row md:justify-center md:items-center md:ml-3">
-                  <> 
+                  <>
                     <Selections />
-                
                   </>
-
                 </div>
               )}
             </button>
           </div>
           <div className="xs:hidden sm:hidden md:visible md:flex md:flex-row md:justify-center md:items-center md:ml-3">
-
             <div className="mt-36">
               <Selections />
             </div>
@@ -108,26 +174,21 @@ function Departments() {
               </div>
             </div>
             <div className="xs:m-0 xs:px-0 sm:m-0 sm:px-0 sm:w-full grid grid-cols-1 md:grid-cols-2 md:px-4 lg:grid-cols-3">
-
-              {currentDepartments?.map((item) => {
-                return (
-                  <OneCard
-                    key={item.id}
-                    item={item}
-               
-                  />
-                );
+              {currentDepartments?.map((item, index) => {
+                return <OneCard key={index} item={item} />;
               })}
             </div>
           </div>
         </div>
       </div>
-      <Pagination
-        pages={totalPagesNum}
-        setCurrentPage={setCurrentPage}
-        currentDepartments={currentDepartments}
-        allDepartments={allDepartments}
-      />
+      {Object.keys(searchParameters).length === 0 && (
+        <Pagination
+          pages={totalPagesNum}
+          setCurrentPage={setCurrentPage}
+          currentDepartments={currentDepartments}
+          allDepartments={allDepartments}
+        />
+      )}
     </>
   );
 }
