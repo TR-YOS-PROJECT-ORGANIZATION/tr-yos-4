@@ -39,6 +39,7 @@ const lang = i18next.language;
       console.log("Error fetching cities:", error);
     }
   };
+
   const sendInfo = async (newInfo) => {
     const userID = currentUser?.userID;
 
@@ -66,9 +67,12 @@ const lang = i18next.language;
     }
   }, [newInfo?.country]);
 
-  useEffect(() => {
-    getUserInfo(currentUser?.userID);
-  }, []);
+   useEffect(() => {
+     getUserInfo(currentUser?.userID);
+   }, []);
+
+  console.log('new info', newInfo);
+  console.log('user info', userInfo);
 
   return (
     <div className="border rounded-xl shadow-xl xl:w-1/2 md:w-3/2 m-5 xs:w-full">
@@ -81,9 +85,9 @@ const lang = i18next.language;
             </label>
             <input
               type="text"
-              value={newInfo.name || userInfo?.user?.name || ""}
+              value={newInfo.name || userInfo?.user.name}
               required
-              className="w-full rounded-md mt-2 border-2"
+              className="w-full rounded-md mt-2 border-2 p-2 "
               onChange={(e) => setNewInfo({ ...newInfo, name: e.target.value })}
             />
           </div>
@@ -95,7 +99,7 @@ const lang = i18next.language;
               type="email"
               value={newInfo.email || userInfo?.user?.email || ""}
               required
-              className="w-full rounded-md mt-2 border-2"
+              className="w-full rounded-md mt-2 border-2 p-2 "
               onChange={(e) =>
                 setNewInfo({ ...newInfo, email: e.target.value })
               }
@@ -106,7 +110,7 @@ const lang = i18next.language;
           <div className=" w-1/2 mt-3 mr-2">
             <p className="font-bold">{t("Country*")}</p>
             <select
-              className="w-full rounded-md mt-2 border-2"
+              className="w-full rounded-md mt-2 border-2 p-2 "
               onChange={(e) =>
                 setNewInfo({ ...newInfo, country: e.target.value })
               }
@@ -125,7 +129,7 @@ const lang = i18next.language;
               {t("City")}
             </label>
             <select
-              className="w-full rounded-md mt-2 border-2"
+              className="w-full rounded-md mt-2 border-2 p-2 "
               onChange={(e) => setNewInfo({ ...newInfo, city: e.target.value })}
               value={newInfo.city || userInfo?.user?.city || ""}
             >
@@ -146,7 +150,7 @@ const lang = i18next.language;
             type="text"
             value={newInfo.phone || userInfo?.user.phone || ""}
             required
-            className="w-full rounded-md mt-2 border-2"
+            className="w-full rounded-md mt-2 border-2 p-2 "
             onChange={(e) => setNewInfo({ ...newInfo, phone: e.target.value })}
           />
         </div>
@@ -170,7 +174,7 @@ const lang = i18next.language;
       <button
         onClick={(e) => {
           sendInfo(newInfo);
-          e.prevent.default();
+          e.preventDefault();
         }}
         className="bg-red-warm text-white-500 hover:bg-green-dark hover:text-green-base rounded-lg font-bold p-4 mr-4 ml-5 mb-4"
       >

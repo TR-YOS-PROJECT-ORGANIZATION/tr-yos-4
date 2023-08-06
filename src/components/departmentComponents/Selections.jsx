@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react'
 import useInfoCalls from "../../hooks/useInfoCalls";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,31 +8,23 @@ import { setSearchParameters } from "../../features/cardSlice";
 import { useNavigate } from 'react-router-dom';
 import PriceForm from "./PriceForm";
 import i18next from 'i18next';
-
+import { all } from 'axios';
 const Selections = () => {
-  
   const { getUni, getCities, getAllDepartments } = useInfoCalls();
-
+  const { searchParametres } = useSelector((state)=> state.card)
   const [selectedCities, setSelectedCities] = useState([]);
   const [selectedUnivercities, setSelectedUnivercities] = useState([]);
   const [selectedDepartments, setSelectedDepartments] = useState([]);
-
-
   const { t } = useTranslation();
   const lang = i18next.language;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-
-
   useEffect(() => {
     getUni();
     getCities();
     getAllDepartments();
   }, []);
-
   const { univercities, cities, allDepartments } = useSelector((state) => state.info);
-  
   const filteredUniversities =
     selectedCities?.length > 0
       ? univercities?.filter(
@@ -43,20 +34,54 @@ const Selections = () => {
           })
             .indexOf(uni.city) !== -1
       ) : univercities;
-
-  const filteredDepartments =
-    selectedUnivercities?.length > 0
-      ? allDepartments?.filter(
-        (department) =>
-          selectedUnivercities
-            ?.map((item) => {
-              return item.code;
-            })
-            .indexOf(department?.university.code) !== -1
-      )
-      : allDepartments?.filter(
-        (department) => lang === "en" ? department.en: department.tr);
-
+      const filteredDepartments =
+      selectedUnivercities?.length > 0
+        ? allDepartments?.filter(
+          (department) =>
+            selectedUnivercities
+              ?.map((item) => {
+                return item.code;
+              })
+              .indexOf(department?.university.code) !== -1
+        )
+        : allDepartments?.filter(
+          (department) => lang === "en" ? department.en: department.tr);
+      // useEffect(()=>{
+      //   if( selectedUnivercities?.length > 0){
+      //     setFilteredDepartments( allDepartments?.filter(
+      //       (department) =>
+      //         selectedUnivercities
+      //           ?.map((item) => {
+      //             return item.code;
+      //           })
+      //           .indexOf(department?.university.code) !== -1
+      //     ))}
+      //     else if(selectedCities?.length > 0 && selectedUnivercities?.length === 0){
+      //        setFilteredDepartments(
+      //         allDepartments?.filter((dep)=>
+      //         filteredUniversities?.map((uni)=>{
+      //           return uni.code;
+      //         })
+      //         .indexOf(dep.university.code) !== -1
+      //         )
+      //        )
+      //     }
+      //     else{
+      //       setFilteredDepartments( allDepartments?.filter(
+      //             (department) => lang === "en" ? department.en: department.tr))
+      //     }
+      // },[searchParametres]);
+     selectedUnivercities?.length > 0
+       ? allDepartments?.filter(
+         (department) =>
+           selectedUnivercities
+             ?.map((item) => {
+               return item.code;
+             })
+             .indexOf(department?.university.code) !== -1
+       )
+       : allDepartments?.filter(
+         (department) => lang === "en" ? department.en: department.tr);
   const handleSearchClick = () => {
     const searchObject = {
       selectedCities,
@@ -66,8 +91,6 @@ const Selections = () => {
     dispatch(setSearchParameters(searchObject));
     navigate("/departments")
   };
-
-
   return (
   <div className="bottom-20 md:flex md:flex-col md:justify-center md:items-center sm:flex-col  sm:items-center md:w-[100%] sm:w-full max-sm:w-full bg-green-dark rounded lg:p-8 md:p-4 sm:p-1 shadow-xl ">
     <MultiSelect
@@ -87,7 +110,6 @@ const Selections = () => {
         );
       })}
     </MultiSelect>
-
     <MultiSelect
       className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-10 p-2  border border-green-dark"
       onValueChange={"" || setSelectedUnivercities}
@@ -105,8 +127,6 @@ const Selections = () => {
         );
       })}
     </MultiSelect>
-
-
     <MultiSelect
       className="max-w-full rounded-md sm:max-w-md bg-white-500 mt-10 p-2 border border-green-dark mb-5"
       onValueChange={"" || setSelectedDepartments}
