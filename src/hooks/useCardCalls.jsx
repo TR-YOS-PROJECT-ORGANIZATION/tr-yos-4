@@ -11,10 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { toastErrorNotify } from "../helper/ToastNotify";
 const useCardCalls = () => {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.auth);
+  const { userId } = useSelector((state) => state.auth);
   const { favouriteList, compareList } = useSelector((state) => state.card);
-  const currentUserId = currentUser?.user?.userId
-  console.log(currentUser);
+  const currentUserId = userId
+  console.log(currentUserId);
 
   // Add or Remove to Compare
   const moveToSelectedDepartments = async (id) => {
@@ -77,7 +77,7 @@ const useCardCalls = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios.get(
-        `https://tr-yös.com/api/v1/users/allcompares.php?user_id=${currentUser?.user.userId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
+        `https://tr-yös.com/api/v1/users/allcompares.php?user_id=${userId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
       dispatch(getCompareListSuccess(data));
     } catch (error) {
@@ -98,7 +98,7 @@ const useCardCalls = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios.get(
-        `https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${currentUser.user.userId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
+        `https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${userId}&token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
       );
       dispatch(getFavouriteListSuccess(data));
     } catch (error) {

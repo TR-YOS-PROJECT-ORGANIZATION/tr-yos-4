@@ -1,10 +1,10 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
   name: "auth",
 
   initialState: {
-    currentUser: null,
+    userId: null,
     error: false,
     loading:false,
   },
@@ -15,7 +15,7 @@ const authSlice = createSlice({
       state.loading = true;
     },
     registerSuccess: (state, { payload }) => {
-      state.currentUser = payload;
+      state.userId = payload;
       state.error = false;
       state.loading = false;
     },
@@ -24,13 +24,13 @@ const authSlice = createSlice({
       state.loading = false;
     },
     loginSuccess: (state, { payload }) => {
-      state.currentUser = payload;
+      state.userId= payload;
       state.loading = false;
 
 
     },
     logoutSuccess: (state) => {
-      state.currentUser = null;
+      state.userId = null;
       state.loading = false;
 
     },

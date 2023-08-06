@@ -26,7 +26,9 @@ const useAuthCall = () => {
             `/api/v1/users/newuser2.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`,
           userInfo
           );
-          dispatch(registerSuccess(data));
+       
+          dispatch(registerSuccess(data.user.userId));
+          console.log("register", data);
           toast.success(t("Register performed"));
          
 
@@ -35,8 +37,9 @@ const useAuthCall = () => {
           dispatch(fetchFail());
           toast.error(t("Register can not be performed"));
         }
+        
       };
-
+      
       const login = async (userInfo) => {
         dispatch(fetchStart());
         try {
@@ -45,10 +48,10 @@ const useAuthCall = () => {
             userInfo,
             { headers: { "Content-Type": "multipart/form-data" }}
           );
-          dispatch(loginSuccess(data));
+          dispatch(loginSuccess(data.userID));
           
           toast.success(t("Login performed"));
-         
+          console.log("login", data)
 
         } catch (error) {
           console.log(error);
