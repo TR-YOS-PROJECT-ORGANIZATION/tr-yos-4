@@ -1,22 +1,63 @@
 /* eslint-disable react/prop-types */
 
+import axios from "axios";
 import i18next from "i18next";
-// eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const UniDetailSubmit = ({dept, uni,det }) => {
-
+const UniDetailSubmit = ({ dept, uni, det }) => {
   const lang = i18next.language;
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
+  const [faculties, setFaculties] = useState();
+
+  const getFaculties = async () => {
+    try {
+      const data = await axios.get(
+        `https://tr-yös.com/api/v1/education/allfaculties.php?token=KE4ekFg1YPngkIbjMP/5JdBtisNVE076kWUW7TPz8iGaHT8te/i2nrAycAGnwAL5ZRitK5Rb4VwDp6JEfab5b0d5dfc31a7d39edf5370b8a067a`
+      );
+      setFaculties(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(faculties);
+  useEffect(() => {
+    getFaculties();
+  }, []);
+  console.log(dept);
 
   const mailtoLink = `mailto:${dept[0]?.data?.email}`;
 
+  console.log("uni", uni);
+  console.log("det", det);
+  // console.log(uni[0]?.code);
+  console.log(faculties);
 
+  const departmentsLength = dept?.filter(
+    (d) => d?.university.code === uni[0]?.code
+  ).length;
 
+  console.log(departmentsLength);
 
+  const facultiesLength = faculties?.filter(
+    (f) =>
+      dept
+        ?.filter((d) => d?.university.code === uni[0]?.code)
+        ?.map((d) => d.faculty.code)
+        .indexOf(f.id) !== -1
+  ).length;
+  console.log(facultiesLength);
+
+  const cleanText = (html) => {
+    return html
+      ?.replace(/<[^>]+>/g, "") // HTML etiketlerini temizle
+      ?.replace(/\d+/g, "") // Sayı ifadelerini temizle
+      ?.replace(/^\s*EN/gm, "") // "EN" ifadesini temizle
+      ?.replace(/^\s*TR/gm, ""); // "TR" ifadesini temizle
+  };
 
   return (
     <div className="">
@@ -25,19 +66,18 @@ const UniDetailSubmit = ({dept, uni,det }) => {
           <div className="">
             <div className=" p-7 border m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
               <div className="ml-5 text-left font-bold text-blue-950 text-xl">
-                <h4>{lang === "en" ? det?.university.en : det?.university.tr}</h4>
-                <span className="text-xs text-slate-500">{det?.data?.adress && (
-                  <i className="fa-solid fa-location-dot"></i>)}
+                <h4>
+                  {lang === "en" ? det?.university?.en : det?.university?.tr}
+                </h4>
+                <span className="text-xs text-slate-500">
+                  {det?.data?.adress && (
+                    <i className="fa-solid fa-location-dot"></i>
+                  )}
                   <a href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL">
                     {det?.data?.adress}
                   </a>
                 </span>
-
-
-
               </div>
-
-
             </div>
             {/* other */}
             <div className="gap-2 border w-3/2 m-5 rounded-xl shadow-lg">
@@ -50,13 +90,15 @@ const UniDetailSubmit = ({dept, uni,det }) => {
                   <div className="p-10 ">
                     <div className="text-xs">{t("Faculties")}</div>
                     <div className="font-bold text-[#00A372]">
-                      {dept[0]?.language}
+                      {facultiesLength}
                     </div>
                   </div>
                   <div className="p-10 ">
                     <div className="text-xs">{t("Departments")}</div>
+                    <div className="font-bold text-[#00A372]">
+                      {departmentsLength}
+                    </div>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -67,7 +109,7 @@ const UniDetailSubmit = ({dept, uni,det }) => {
               </div>
               <div className="m-3 ">
                 <p className="text-slate-500 text-xs indent-2 ">
-                {det?.content.en}
+                  {cleanText(det?.content?.en)}
                 </p>
               </div>
             </div>
@@ -155,7 +197,6 @@ const UniDetailSubmit = ({dept, uni,det }) => {
                       </div>
                       <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                          {/* className="text-indigo-500 w-12 h-12 mb-3 inline-block" */}
                           <svg
                             width="640px"
                             height="640px"
@@ -176,77 +217,53 @@ const UniDetailSubmit = ({dept, uni,det }) => {
             </div>
           </div>
         </div>
-        {/* add favourite and send message */}
-        <div className="w-2/3 mt-8 ">
-          {/* <div className="border p-4 rounded-xl mb-12 shadow-lg"> */}
-          {/* <button
-              style={{
-                backgroundColor: !show && "#00A372",
-                borderStyle: !show && "none",
-              }}
-              className=" bg-red-200 border-2 border-red-warm py-3 p-3 rounded-xl hover:bg-red-warm hover:text-white-500 "
-              onClick={() => setShow(!show)}
-            >
-              {show ? "Add Favourite" : "Remove Favourite"}
-            </button> */}
-          {/* </div> */}
 
+        <div className="w-2/3 mt-8 ">
           {/* send message */}
-          {uni.map((item, id) => (
+          {uni?.map((item, id) => (
             <section
               key={id}
               className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-lg"
             >
               <div className="container px-3 py-3 mx-auto flex justify-center">
                 <div className="flex flex-col items-center">
-                  {/* <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
+                  <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
                     <img
                       src={item?.logo}
                       alt=""
-                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.src =
+                          "https://img.freepik.com/premium-vector/luxury-university-logo-design_139869-120.jpg?w=740";
+                        e.target.alt = "geçersiz";
+                      }}
                     />
-                  </div> */}
-
-
-
-                  <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
-                    <img
-                      src={item.logo}
-                      alt=""
-                      onError={
-                        (e) => {
-                          e.target.src = "https://img.freepik.com/premium-vector/luxury-university-logo-design_139869-120.jpg?w=740"
-                          e.target.alt = "geçersiz"
-
-                        }
-                      }
-                    //   className="w-full h-full object-cover cursor-pointer hover:shadow-lg"
-                    // onClick={()=> navigate(`/univercitiesDetail/${item?.code}`,{state:item})}
-                    />
-
                   </div>
-
 
                   <h1 className="text-lg font-semibold text-gray-800 capitalize dark:text-white lg:text-lg">
                     {lang === "en" ? item?.en : item?.tr}
                   </h1>
-                  {lang === "en" ? dept[0]?.city.en : dept[0]?.city.tr && (
-                    <div className="flex mt-2 justify-center border-b-2 w-full">
-                      <svg
-                        className="h-4 w-4 text-gray-400 inline-block"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
-                          fill="#0D0D0D"
-                        ></path>
-                      </svg>
-                      <p className="ml-1 text-sm text-gray-500">
-                        {lang === "en" ? dept[0]?.city.en : dept[0]?.city.tr}
-                      </p>
-                    </div>)}
+                  {lang === "en"
+                    ? dept[0]?.city.en
+                    : dept[0]?.city.tr && (
+                        <div className="flex mt-2 justify-center border-b-2 w-full">
+                          <svg
+                            className="h-4 w-4 text-gray-400 inline-block"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              d="M12 2c-4.4 0-8 3.6-8 8 0 5.4 7 11.5 7.3 11.8.2.1.5.2.7.2.2 0 .5-.1.7-.2.3-.3 7.3-6.4 7.3-11.8 0-4.4-3.6-8-8-8zm0 17.7c-2.1-2-6-6.3-6-9.7 0-3.3 2.7-6 6-6s6 2.7 6 6-3.9 7.7-6 9.7zM12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                              fill="#0D0D0D"
+                            ></path>
+                          </svg>
+                          <p className="ml-1 text-sm text-gray-500">
+                            {lang === "en"
+                              ? dept[0]?.city.en
+                              : dept[0]?.city.tr}
+                          </p>
+                        </div>
+                      )}
 
                   <div className="mt-6 space-y-8 md:mt-8">
                     {item?.data?.phone && (
@@ -271,33 +288,33 @@ const UniDetailSubmit = ({dept, uni,det }) => {
                         >
                           {item?.data?.phone}
                         </a>
+                      </p>
+                    )}{" "}
+                    {item?.data?.email && (
+                      <p className="flex items-start -mx-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-6 h-6 mx-2 text-blue-500 dark:text-blue-400"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                          />
+                        </svg>
 
-                      </p>)} {item?.data?.email && (
-                        <p className="flex items-start -mx-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="w-6 h-6 mx-2 text-blue-500 dark:text-blue-400"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                            />
-                          </svg>
-
-
-
-                          <a
-                            href={mailtoLink}
-                            className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
-                          >
-                            {item?.data?.email}
-                          </a>
-                        </p>)}
+                        <a
+                          href={mailtoLink}
+                          className="mx-2 text-gray-700 truncate w-72 dark:text-gray-400 no-underline hover:underline"
+                        >
+                          {item?.data?.email}
+                        </a>
+                      </p>
+                    )}
                     {item?.data?.web && (
                       <p className="flex items-start -mx-2">
                         <svg
@@ -321,10 +338,11 @@ const UniDetailSubmit = ({dept, uni,det }) => {
                         >
                           {item?.data?.web}
                         </a>
-                      </p>)}
+                      </p>
+                    )}
                     <div className="flex items-end -mx-2">
                       <button className="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-500 rounded-md hover:bg-green-400 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50">
-                        Send Message
+                        <a href={mailtoLink}>{t("Send Message")}</a>
                       </button>
                     </div>
                   </div>
@@ -339,12 +357,3 @@ const UniDetailSubmit = ({dept, uni,det }) => {
 };
 
 export default UniDetailSubmit;
-
-
-
-
-
-
-
-
-

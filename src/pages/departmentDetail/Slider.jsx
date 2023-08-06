@@ -7,16 +7,6 @@ import image4 from "../../images/uni7.jpg"
 
 
 
-// function Arrow(props) {
-//   const { className, style, onClick } = props;
-//   return (
-//     <div
-//       className={className}
-//       style={{ ...style, display: "inline", background: "red" }}
-//       onClick={onClick}
-//     />
-//   );
-// }
 const SliderPage = () => {
   const settings = {
     dots: false,
