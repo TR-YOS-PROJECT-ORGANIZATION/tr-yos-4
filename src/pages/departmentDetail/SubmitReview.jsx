@@ -14,11 +14,9 @@ const SubmitReview = ({ dept, uni }) => {
   const { removeFromFavourites, moveToFavourites } = useCardCalls();
   const { favouriteList } = useSelector((state) => state.card)
   const isFavourited = favouriteList?.departments?.includes(dept[0]?.id)
+
   const { currentUser } = useSelector((state) => state.auth)
   const { t } = useTranslation();
-  const lang = i18next.language;
-  const {currentUser}= useSelector((state)=> state.auth)
-  const {t} = useTranslation()
   const lang = i18next.language;
 
   function addRemoveFavouriteList() {
@@ -219,7 +217,6 @@ const SubmitReview = ({ dept, uni }) => {
               onClick={handleClickFavourite}
             >
               {lang === "en" ? (!isFavourited ? "Add Favourite" : "Remove Favourite") : (!isFavourited ? "Favoriye Ekle" : "Favoriden Çıkar")}
-              {lang == "en" ? (!isFavourited ? "Add Favourite" : "Remove Favourite"): (!isFavourited ? "Favoriye Ekle" : "Favoriden Çıkar") }
             </button>
           </div>
 
