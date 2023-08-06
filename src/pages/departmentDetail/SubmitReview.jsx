@@ -7,15 +7,15 @@ import { useSelector } from "react-redux";
 import { toastWarnNotify } from "../../helper/ToastNotify";
 
 const SubmitReview = ({ dept, uni }) => {
-
   const [isOpen, setIsOpen] = useState(false);
-  // const [show, setShow] = useState(true);
+
   console.log(dept);
   const { removeFromFavourites, moveToFavourites } = useCardCalls();
-  const { favouriteList } = useSelector((state) => state.card)
-  const isFavourited = favouriteList?.departments?.includes(dept[0]?.id)
 
-  const { currentUser } = useSelector((state) => state.auth)
+  const { favouriteList } = useSelector((state) => state.card);
+  const isFavourited = favouriteList?.departments?.includes(dept[0]?.id);
+  const { currentUser } = useSelector((state) => state.auth);
+
   const { t } = useTranslation();
   const lang = i18next.language;
 
@@ -31,208 +31,258 @@ const SubmitReview = ({ dept, uni }) => {
 
   const handleClickFavourite = (e) => {
     e.preventDefault();
-    currentUser ? addRemoveFavouriteList(dept[0].id) : toastWarnNotify(t("Please Login"))
 
+    currentUser
+      ? addRemoveFavouriteList(dept[0].id)
+      : toastWarnNotify("Please Login");
+  };
+
+
+  const cleanText = (html) => {
+    return html
+      .replace(/<[^>]+>/g, "") // HTML etiketlerini temizle
+      .replace(/\d+/g, "") // Sayı ifadelerini temizle
+      .replace(/^\s*EN/gm, "") // "EN" ifadesini temizle
+      .replace(/^\s*TR/gm, ""); // "TR" ifadesini temizle
   };
 
   const mailtoLink = `mailto:${dept[0]?.data?.email}`;
 
-
   return (
     <div className="">
-      <div className="flex-none lg:flex  mt-8 w-5/6 m-auto">
-        <div className="">
+      {uni?.map((item, id) => (
+        <div className="flex-none lg:flex  mt-8 w-5/6 m-auto">
           <div className="">
-            <div className=" p-7 border m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
-              <div className="ml-5 text-left font-bold text-blue-950 text-xl">
-                <h4> {lang == "en" ? dept[0]?.department.en : dept[0]?.department.tr}</h4>
-                <h4>{lang == "en" ? dept[0]?.faculty.en : dept[0]?.faculty.tr}</h4>
-                <span className="text-xs text-slate-500">
-                  <i className="fa-solid fa-location-dot"></i>
-                  <a href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL" className="ml-2">
-                    {dept[0]?.data?.adress}
-                  </a>
-                </span>
-              </div>
-              <div className=" font-bold text-auto ml-5  ">
-                <p className="text-xl text-blue-700 ">{dept[0]?.price}</p>
-                <span className="text-xs text-slate-500 ">/{t("Year")}</span>
-              </div>
-            </div>
-            {/* other */}
-            <div className="gap-2 border  w-3/2 m-5 rounded-xl shadow-lg">
-              <div className="">
-                <h4 className="ml-6 mt-4 font-bold text-left">{t("Other")}</h4>
-              </div>
-
-              <div className="p-4">
-                <div className="grid-none grid-cols-1 md:grid-cols-2 grid lg:grid-cols-4 h-28 divide-x text-center bg-[#E5F8F2] border border-green-300 rounded-xl   divide-dotted divide-green-300">
-                  <div className="p-8 h-28 ">
-                    <div className="text-xs">{t("Language")}</div>
-                    <div className="font-bold text-2xl text-[#00A372]">
-                    {lang === "en" ? (dept[0]?.language === "1" ? "Turkish" : dept[0]?.language === "2" ? "English" : ""):(dept[0]?.language === "1" ? "Türkçe" : dept[0]?.language === "2" ? "İngilizce" : "")}
-                    </div>
-                  </div>
-                  <div className="p-8 h-28">
-                    <div className="text-xs">{t("Year")}</div>
-
-                    <div className="font-bold text-2xl text-[#00A372]">4</div>
-                  </div>
-                  <div className="p-8 h-28 ">
-                    <div className="text-xs">{t("Quota")}</div>
-                    <div className="font-bold text-2xl text-[#00A372]">40</div>
-                  </div>
-                  <div className="p-8 h-28 ">
-                    <div className="text-xs">{t("internships")}</div>
-                    <div className="font-bold text-[#00A372]"></div>
-                  </div>
+            <div className="">
+              <div className=" p-7 border m-5 rounded-xl flex-none lg:flex  lg:justify-between shadow-lg">
+                <div className="ml-5 text-left font-bold text-blue-950 text-xl">
+                  <h4>
+                    
+                    {lang == "en"
+                      ? dept[0]?.department.en
+                      : dept[0]?.department.tr}
+                  </h4>
+                  <h4>
+                    {lang == "en" ? dept[0]?.faculty.en : dept[0]?.faculty.tr}
+                  </h4>
+                  <span className="text-xs text-slate-500">
+                    <i className="fa-solid fa-location-dot"></i>
+                    <a
+                      href="https://www.google.com/maps/place/Kay%C4%B1%C5%9Fda%C4%9F%C4%B1%20Cad.%20No:32%20Ata%C5%9Fehir/%C4%B0STANBUL"
+                      className="ml-2"
+                    >
+                      {dept[0]?.data?.adress}
+                    </a>
+                  </span>
+                </div>
+                <div className=" font-bold text-auto ml-5  ">
+                  <p className="text-xl text-blue-700 ">{dept[0]?.price}</p>
+                  <span className="text-xs text-slate-500 ">/{t("Year")}</span>
                 </div>
               </div>
-            </div>
-            {/* About */}
-            <div className="w-3/2 border m-5 rounded-xl text-left shadow-lg">
-              <div className=" m-5">
-                <h4 className="font-bold">{t("About Department")}</h4>
-              </div>
-              <div className="m-3 ">
-                <p className="text-slate-500 text-xs indent-2 ">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Si quicquam extra virtutem habeatur in bonis. In qua si nihil est praeter rationem, sit in una virtute finis bonorum; Sed haec in pueris; Namque ii horum posteri meliores illi quidem mea sententia quam reliquarum philosophi disciplinarum, sed ita degenerant, ut ipsi ex se nati esse videantur. Quod etsi ingeniis magnis praediti quidam dicendi copiam sine ratione consequuntur, ars tamen est dux certior quam natura. Duo Reges: constructio interrete. Haec est nec omnia spernentis praeter virtutem et virtutem ipsam suis laudibus amplificantis oratio, denique haec est undique completa et perfecta explicatio summi boni. Voluptatem cum summum bonum diceret, primum in eo ipso parum vidit, deinde hoc quoque alienum; </p><br/><p>Et ego: Piso, inquam, si est quisquam, qui acute in causis videre soleat quae res agatur. Etsi ea quidem, quae adhuc dixisti, quamvis ad aetatem recte isto modo dicerentur. Ergo infelix una molestia, fellx rursus, cum is ipse anulus in praecordiis piscis inventus est? Facit enim ille duo seiuncta ultima bonorum, quae ut essent vera, coniungi debuerunt; Cum praesertim illa perdiscere ludus esset. Quibus natura iure responderit non esse verum aliunde finem beate vivendi, a se principia rei gerendae peti; Illa enim, quae prosunt aut quae nocent, aut bona sunt aut mala, quae sint paria necesse est. Quo modo igitur, inquies, verum esse poterit omnia referri ad summum bonum, si amicítiae, si propinquitates, si reliqua externa summo bono non continentur? Quasi vero aut concedatur in omnibus stultis aeque magna esse vitia, et eadem inbecillitate et inconstantia L. Ergo in bestiis erunt secreta e voluptate humanarum quaedam simulacra virtutum, in ipsis hominibus virtus nisi voluptatis causa nulla erit? Quid tibi, Torquate, quid huic Triario litterae, quid historiae cognitioque rerum, quid poetarum evolutio, quid tanta tot versuum memoria voluptatis affert? Summum ením bonum exposuit vacuitatem doloris; Hoc dictum in una re latissime patet, ut in omnibus factis re, non teste moveamur. Satis est tibi in te, satis in legibus, satis in mediocribus amicitiis praesidii. </p>"
-                </p>
-              </div>
-            </div>
-
-            {/* Dropdown */}
-
-            <div className="border w-3/2 m-5 rounded-xl shadow-lg">
-              <div className="flex justify-between p-5">
+              {/* other */}
+              <div className="gap-2 border  w-3/2 m-5 rounded-xl shadow-lg">
                 <div className="">
-                  <h4 className=" font-bold">{t("Basic Detail")}</h4>
+                  <h4 className="ml-6 mt-4 font-bold text-left">
+                    {t("Other")}
+                  </h4>
                 </div>
-                <div>
-                  <button onClick={() => setIsOpen(!isOpen)}>
-                    <i className="fa-solid fa-circle-chevron-down"></i>
-                  </button>
+
+                <div className="p-4">
+                  <div className="grid-none grid-cols-1 md:grid-cols-2 grid lg:grid-cols-4 h-28 divide-x text-center bg-[#E5F8F2] border border-green-300 rounded-xl   divide-dotted divide-green-300">
+                    <div className="p-8 h-28 ">
+                      <div className="text-xs">{t("Language")}</div>
+                      <div className="font-bold text-2xl text-[#00A372]">
+                        {lang === "en"
+                          ? dept[0]?.language === "1"
+                            ? "Turkish"
+                            : dept[0]?.language === "2"
+                            ? "English"
+                            : ""
+                          : dept[0]?.language === "1"
+                          ? "Türkçe"
+                          : dept[0]?.language === "2"
+                          ? "İngilizce"
+                          : ""}
+                      </div>
+                    </div>
+                    <div className="p-8 h-28">
+                      <div className="text-xs">{t("Year")}</div>
+
+                      <div className="font-bold text-2xl text-[#00A372]">4</div>
+                    </div>
+                    <div className="p-8 h-28 ">
+                      <div className="text-xs">{t("Quota")}</div>
+                      <div className="font-bold text-2xl text-[#00A372]">
+                        40
+                      </div>
+                    </div>
+                    <div className="p-8 h-28 ">
+                      <div className="text-xs">{t("internships")}</div>
+                      <div className="font-bold text-[#00A372]"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* About */}
+              <div className="w-3/2 border m-5 rounded-xl text-left shadow-lg">
+                <div className=" m-5">
+                  <h4 className="font-bold">{t("About Department")}</h4>
+                </div>
+                <div className="m-3 ">
+                  <p className="text-slate-500 text-xs indent-2 ">
+                    <p>{cleanText(item.content.en)}</p>
+                  </p>
                 </div>
               </div>
 
-              {!isOpen && (
-                <section className="text-gray-600 body-font">
-                  <div className="container px-5 py-5 mx-auto">
-                    <div className="flex flex-wrap -m-4 text-center">
-                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-                        <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                          <svg
-                            width="640px"
-                            height="640px"
-                            viewBox="0 -64 640 640"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="text-indigo-500 w-12 h-12 mb-3 inline-block"
-                          >
-                            <path d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z" />
-                          </svg>
+              {/* Dropdown */}
 
-                          <p className="leading-relaxed">3</p>
+              <div className="border w-3/2 m-5 rounded-xl shadow-lg">
+                <div className="flex justify-between p-5">
+                  <div className="">
+                    <h4 className=" font-bold">{t("Basic Detail")}</h4>
+                  </div>
+                  <div>
+                    <button onClick={() => setIsOpen(!isOpen)}>
+                      <i className="fa-solid fa-circle-chevron-down"></i>
+                    </button>
+                  </div>
+                </div>
+
+                {!isOpen && (
+                  <section className="text-gray-600 body-font">
+                    <div className="container px-5 py-5 mx-auto">
+                      <div className="flex flex-wrap -m-4 text-center">
+                        <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+                          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                            <svg
+                              width="640px"
+                              height="640px"
+                              viewBox="0 -64 640 640"
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="text-indigo-500 w-12 h-12 mb-3 inline-block"
+                            >
+                              <path d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z" />
+                            </svg>
+
+                            <p className="leading-relaxed">3</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-                        <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                          <svg
-                            height="800px"
-                            width="800px"
-                            version="1.1"
-                            id="_x32_"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns-xlink="http://www.w3.org/1999/xlink"
-                            viewBox="0 0 512 512"
-                            xml-space="preserve"
-                            className=" w-12 h-12 mb-3 inline-block"
-                          >
-                            <style type="text/css"></style>
-                            <g>
-                              <polygon
-                                className="st0"
-                                points="256,381.424 104.628,328.845 0,365.186 256,454.114 512,365.186 407.373,328.845 	"
-                              />
-                              <polygon
-                                className="st0"
-                                points="256,272.235 104.628,219.655 0,255.996 256,344.924 512,255.996 407.373,219.655 	"
-                              />
-                              <polygon
-                                className="st0"
-                                points="512,146.806 256,57.886 0,146.806 256,235.734 	"
-                              />
-                            </g>
-                          </svg>
+                        <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+                          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                            <svg
+                              height="800px"
+                              width="800px"
+                              version="1.1"
+                              id="_x32_"
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns-xlink="http://www.w3.org/1999/xlink"
+                              viewBox="0 0 512 512"
+                              xml-space="preserve"
+                              className=" w-12 h-12 mb-3 inline-block"
+                            >
+                              <style type="text/css"></style>
+                              <g>
+                                <polygon
+                                  className="st0"
+                                  points="256,381.424 104.628,328.845 0,365.186 256,454.114 512,365.186 407.373,328.845 	"
+                                />
+                                <polygon
+                                  className="st0"
+                                  points="256,272.235 104.628,219.655 0,255.996 256,344.924 512,255.996 407.373,219.655 	"
+                                />
+                                <polygon
+                                  className="st0"
+                                  points="512,146.806 256,57.886 0,146.806 256,235.734 	"
+                                />
+                              </g>
+                            </svg>
 
-                          <p className="leading-relaxed">4,240</p>
+                            <p className="leading-relaxed">4,240</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-                        <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                          <svg
-                            width="640px"
-                            height="640px"
-                            viewBox="0 -64 640 640"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className=" w-12 h-12 mb-3 inline-block"
-                          >
-                            <path d="M504 352H136.4c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8H504c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm0 96H136.1c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm0-192H136.6c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8H504c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm106.5-139L338.4 3.7a48.15 48.15 0 0 0-36.9 0L29.5 117C11.7 124.5 0 141.9 0 161.3V504c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8V256c0-17.6 14.6-32 32.6-32h382.8c18 0 32.6 14.4 32.6 32v248c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8V161.3c0-19.4-11.7-36.8-29.5-44.3z" />
-                          </svg>
+                        <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+                          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                            <svg
+                              width="640px"
+                              height="640px"
+                              viewBox="0 -64 640 640"
+                              xmlns="http://www.w3.org/2000/svg"
+                              className=" w-12 h-12 mb-3 inline-block"
+                            >
+                              <path d="M504 352H136.4c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8H504c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm0 96H136.1c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm0-192H136.6c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8H504c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm106.5-139L338.4 3.7a48.15 48.15 0 0 0-36.9 0L29.5 117C11.7 124.5 0 141.9 0 161.3V504c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8V256c0-17.6 14.6-32 32.6-32h382.8c18 0 32.6 14.4 32.6 32v248c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8V161.3c0-19.4-11.7-36.8-29.5-44.3z" />
+                            </svg>
 
-                          <p className="leading-relaxed">1</p>
+                            <p className="leading-relaxed">1</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-                        <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                          {/* className="text-indigo-500 w-12 h-12 mb-3 inline-block" */}
-                          <svg
-                            width="640px"
-                            height="640px"
-                            viewBox="0 -64 640 640"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="text-indigo-500 w-12 h-12 mb-3 inline-block"
-                          >
-                            <path d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z" />
-                          </svg>
+                        <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+                          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                                                      <svg
+                              width="640px"
+                              height="640px"
+                              viewBox="0 -64 640 640"
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="text-indigo-500 w-12 h-12 mb-3 inline-block"
+                            >
+                              <path d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z" />
+                            </svg>
 
-                          <p className="leading-relaxed">{t("Active")}</p>
+                            <p className="leading-relaxed">{t("Active")}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </section>
-              )}
+                  </section>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-        {/* add favourite and send message */}
-        <div className="w-2/3 mt-8 ">
-          <div className="border p-4 rounded-xl mb-12 shadow-lg">
-            <button
-              style={{
-                backgroundColor: !isFavourited && "#00A372",
-                borderStyle: !isFavourited && "none",
-              }}
-              className=" bg-red-200 border-2 border-red-warm py-3 p-3 rounded-xl hover:bg-red-warm hover:text-white-500 "
-              onClick={handleClickFavourite}
-            >
-              {lang === "en" ? (!isFavourited ? "Add Favourite" : "Remove Favourite") : (!isFavourited ? "Favoriye Ekle" : "Favoriden Çıkar")}
-            </button>
-          </div>
 
-          {/* send message */}
-          {uni?.map((item, id) => (
+          {/* add favourite and send message */}
+          <div className="w-2/3 mt-8 ">
+            <div className="border p-4 rounded-xl mb-12 shadow-lg">
+              <button
+                style={{
+                  backgroundColor: !isFavourited && "#00A372",
+                  borderStyle: !isFavourited && "none",
+                }}
+                className=" bg-red-200 border-2 border-red-warm py-3 p-3 rounded-xl hover:bg-red-warm hover:text-white-500 "
+                onClick={handleClickFavourite}
+              >
+                {lang == "en"
+                  ? !isFavourited
+                    ? "Add Favourite"
+                    : "Remove Favourite"
+                  : !isFavourited
+                  ? "Favoriye Ekle"
+                  : "Favoriden Çıkar"}
+              </button>
+            </div>
+
+            {/* send message */}
+
+
+
+          
+          
+
             <section
               key={id}
               className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-lg"
             >
               <div className="container px-3 py-3 mx-auto flex justify-center">
                 <div className="flex flex-col items-center">
-                  <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md">
+                  <div className="w-28 h-28 m-3 border-2 border-gray-400 rounded-md  ">
                     <img
                       src={item?.logo}
                       alt=""
-                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.src =
+                          "https://img.freepik.com/premium-vector/luxury-university-logo-design_139869-120.jpg?w=740";
+                        e.target.alt = "geçersiz";
+                      }}
                     />
                   </div>
                   <h1 className="text-lg font-semibold text-gray-800 capitalize dark:text-white lg:text-lg">
@@ -325,16 +375,16 @@ const SubmitReview = ({ dept, uni }) => {
                     </p>
                     <div className="flex items-end -mx-2">
                       <button className="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-500 rounded-md hover:bg-green-400 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50">
-                        {t("Send Message")}
+                        <a href={mailtoLink}>{t("Send Message")}</a>
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
             </section>
-          ))}
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };

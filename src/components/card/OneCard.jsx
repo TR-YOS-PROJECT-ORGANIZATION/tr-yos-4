@@ -34,6 +34,7 @@ const lang = i18next.language;
   const [isAdded, setIsAdded] = useState(isInCompare);
   const { currentUser } = useSelector((state) => state?.auth);
   const navigate = useNavigate();
+
   const { t } = useTranslation();
 
   const [openModal, setOpenModal] = useState(false);
@@ -278,8 +279,8 @@ const lang = i18next.language;
                     </g>
                   </svg>
                   <span className="mt-0">
-                    {" "}
-                    {item.price}/{t("year")}{" "}
+          
+                    {item.price}₺ /{t("year")}{" "}
                   </span>
                 </p>
               </div>
