@@ -258,6 +258,10 @@ const SubmitReview = ({ dept, uni }) => {
 
             {/* send message */}
 
+
+          {/* send message */}
+          {uni?.map((item, id) => (
+
             <section
               key={id}
               className="bg-white dark:bg-gray-900 border mb-10 rounded-xl shadow-lg"

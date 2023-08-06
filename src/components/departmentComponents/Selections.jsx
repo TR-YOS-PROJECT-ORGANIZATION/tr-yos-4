@@ -11,11 +11,14 @@ import PriceForm from "./PriceForm";
 import i18next from 'i18next';
 
 const Selections = () => {
+  
   const { getUni, getCities, getAllDepartments } = useInfoCalls();
-  // const [selectedStatus, setSelectedStatus] = useState("all");
-  const [selectedCities, setSelectedCities] = useState();
+
+  const [selectedCities, setSelectedCities] = useState([]);
   const [selectedUnivercities, setSelectedUnivercities] = useState([]);
   const [selectedDepartments, setSelectedDepartments] = useState([]);
+
+
   const { t } = useTranslation();
   const lang = i18next.language;
   const dispatch = useDispatch();
@@ -28,7 +31,9 @@ const Selections = () => {
     getCities();
     getAllDepartments();
   }, []);
+
   const { univercities, cities, allDepartments } = useSelector((state) => state.info);
+  
   const filteredUniversities =
     selectedCities?.length > 0
       ? univercities?.filter(
@@ -62,10 +67,11 @@ const Selections = () => {
     navigate("/departments")
   };
 
+
   return (
   <div className="bottom-20 md:flex md:flex-col md:justify-center md:items-center sm:flex-col  sm:items-center md:w-[100%] sm:w-full max-sm:w-full bg-green-dark rounded lg:p-8 md:p-4 sm:p-1 shadow-xl ">
     <MultiSelect
-      className="max-w-full rounded-lg sm:max-w-md bg-white-500 p-2  border border-green-dark"
+      className="max-w-full  w-full rounded-lg sm:max-w-md bg-white-500 p-2  border border-green-dark"
       onValueChange={"" || setSelectedCities}
       placeholder={t("Select City")}
     >
